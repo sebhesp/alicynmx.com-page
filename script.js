@@ -100,7 +100,7 @@
     }
 
     function updateLink() {
-      sendLink.href = encodeMessage(textarea.value || "Hola, quiero comprar Alicyn.");
+      sendLink.href = encodeMessage(textarea.value || "Hola, quiero comprar Alicyn 100 ml.");
     }
 
     function setOpen(isOpen) {

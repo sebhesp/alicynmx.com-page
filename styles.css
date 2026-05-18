@@ -597,6 +597,7 @@ body {
 }
 
 .alicyn-page .usage-moments,
+.alicyn-page .alert-section,
 .alicyn-page .product-details,
 .alicyn-page .story-section,
 .alicyn-page .faq-section {
@@ -643,6 +644,33 @@ body {
   background: rgba(143, 191, 195, 0.08);
   color: var(--soft);
   padding: 16px 18px;
+}
+
+.alicyn-page .signal-grid {
+  display: grid;
+  gap: 14px;
+  max-width: var(--container);
+  margin: 0 auto;
+}
+
+.alicyn-page .signal-card {
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.035), rgba(255, 255, 255, 0.015));
+  padding: 22px;
+}
+
+.alicyn-page .signal-card-warning {
+  border-color: rgba(217, 164, 164, 0.28);
+  background: linear-gradient(180deg, rgba(217, 164, 164, 0.06), rgba(255, 255, 255, 0.015));
+}
+
+.alicyn-page .signal-card ul {
+  display: grid;
+  gap: 10px;
+  margin: 0;
+  padding-left: 18px;
+  color: var(--soft);
 }
 
 .alicyn-page .details-layout {
@@ -1098,6 +1126,10 @@ body {
   .alicyn-page .details-layout {
     grid-template-columns: 0.78fr 1.22fr;
     align-items: start;
+  }
+
+  .alicyn-page .signal-grid {
+    grid-template-columns: 1fr 1fr;
   }
 
   .alicyn-page .details-list {

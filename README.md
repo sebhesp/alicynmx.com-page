@@ -1,6 +1,8 @@
 # Alicyn landing/product page
 
-Static, production-ready sales page for Alicyn, a 30 ml antiseptic solution for responsible post-piercing care.
+Static, production-ready sales page for Alicyn, a 100 ml antiseptic solution for responsible post-piercing care.
+
+Current positioning: Alicyn is a targeted care product, not a default daily-use product. The page frames it as support for key moments of higher discomfort, exposure or sensitivity during the first phase after a piercing.
 
 The page is intentionally framework-free, build-free, and easy to migrate into Shopify. It can run by opening `index.html` directly and can also be published on GitHub Pages.
 
@@ -66,6 +68,23 @@ Update:
 - Product JSON-LD `offers.price`
 - Open Graph product price metadata
 
+## Change bottle size or positioning
+
+Search for:
+
+```text
+100 ml
+uso puntual
+momentos clave
+```
+
+Keep the core positioning intact unless the product strategy changes:
+
+- Alicyn is for targeted support, not automatic daily use.
+- It supports responsible cleaning and a calming sensation in common discomfort moments.
+- It is for external topical use on healthy skin.
+- It is not a substitute for professional evaluation when warning signs appear.
+
 ## Change the product URL
 
 Search for:
@@ -85,6 +104,41 @@ Search for:
 ```
 
 Update it in `index.html` and `script.js`. Keep the `https://wa.me/` format and URL-encode message text.
+
+## Edit FAQ and warning signs
+
+FAQ items live in `index.html` inside the `#faq` section. Each item uses:
+
+- `.faq-question`
+- `aria-controls`
+- matching `.faq-answer` ID
+
+When adding a FAQ, keep those IDs unique and preserve the button structure so the accordion stays keyboard-accessible.
+
+Warning signs live in the `#senales-alerta` section. Keep the distinction clear:
+
+- Common discomforts: sensitivity, light visible swelling, localized mild redness, friction discomfort, small normal crusting or clear/light yellow secretion.
+- Warning signs: intense or increasing pain, strong heat, abundant/thick/green/intense yellow/bad-smelling discharge, fever, spreading red lines, worsening swelling, embedding jewelry, severe reaction/allergy or persistent bleeding.
+
+If warning signs appear, the copy should tell shoppers to pause self-care experiments and consult a piercer or healthcare professional.
+
+## Claims safety rules
+
+Do not publish copy that says Alicyn:
+
+- Resolves infections
+- Asegura resultados del proceso
+- Acorta el proceso natural
+- Funciona como anestésico
+- Replaces a piercer or healthcare professional
+
+Preferred wording:
+
+- `sensación calmante`
+- `ayuda a aliviar molestias comunes`
+- `apoya una limpieza responsable`
+- `acompaña momentos de mayor sensibilidad`
+- `fórmula pensada para uso tópico externo`
 
 ## Deploy on GitHub Pages
 

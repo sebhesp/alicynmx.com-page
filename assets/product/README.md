@@ -2,6 +2,8 @@
 
 Place the main product photo here named `alicyn-product.png`.
 
+Current product size on the page is 100 ml. Use a bottle photo that matches the 100 ml label.
+
 Recommended:
 
 - Transparent PNG

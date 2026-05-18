@@ -13,7 +13,7 @@
 
 Create one Shopify product:
 
-- Title: `Alicyn Solución Antiséptica 30 ml`
+- Title: `Alicyn Solución Antiséptica 100 ml`
 - Price: `$349 MXN`
 - URL handle: `alicyn-solucion-antiseptica`
 - Product type: `Piercing aftercare`
@@ -23,7 +23,23 @@ Create one Shopify product:
 Recommended product description:
 
 ```text
-Solución antiséptica de uso tópico para limpieza y rutina responsable de cuidado post-piercing. Uso externo sobre piel sana. Evita ojos y mucosas. Consulta a tu perforador o profesional de salud si las molestias empeoran o persisten.
+Solución antiséptica de uso tópico externo para cuidado post piercing puntual. Pensada para apoyar una limpieza responsable y sensación calmante en momentos clave de mayor sensibilidad o exposición. Uso sobre piel sana. Evita ojos y mucosas. No debe usarse como sustituto de valoración profesional ante signos de infección.
+```
+
+## Positioning
+
+Alicyn is not positioned as a default daily-use product. In Shopify copy, product cards, metafields and PDP sections should describe it as targeted support for key moments:
+
+- After accidental pulls, bumps or hits
+- After sleeping on the piercing
+- After exposure to sweat, dust, street environment, public transport, gym, makeup, skincare or hair products
+- When there is sensitivity, mild burning, common visible swelling or irritation
+- When a piercer recommends it as punctual support
+
+Use this line when space is limited:
+
+```text
+100 ml · pensado para acompañarte en momentos clave del proceso.
 ```
 
 ## Section-by-section migration
@@ -53,9 +69,13 @@ For a Liquid product image:
 {{ product.featured_image | image_url: width: 1200 | image_tag: loading: 'lazy', alt: product.title }}
 ```
 
-### Benefits, usage, details, testimonials, studios and FAQ
+### Benefits, when-to-use, warning signs, details, testimonials, studios and FAQ
 
 These can be pasted into Custom Liquid sections. Keep the outer `.alicyn-page` wrapper so the CSS remains scoped and avoids theme conflicts.
+
+### Warning signs section
+
+Keep the `#senales-alerta` section close to the use instructions. This supports responsible conversion by helping shoppers distinguish common discomfort from signs that require professional help.
 
 ### CTAs
 
@@ -118,6 +138,8 @@ Avoid adding apps for layout, icons, animations or simple accordions.
 - WhatsApp CTA uses the correct number.
 - Studio CTA clearly says `Cotizar`.
 - Product details include size, ingredients, usage and shipping note.
+- Product details say `100 ml` and `uso puntual`.
+- The main CTA says `Comprar Alicyn 100 ml — $349 MXN`.
 - Testimonials sound human and avoid medical promises.
 - Footer includes WhatsApp, Instagram and legal notes.
 
@@ -130,13 +152,26 @@ Do not publish claims that Alicyn:
 - Identifica condiciones médicas
 - Atiende problemas médicos
 - Asegura resultados
+- Funciona como anestésico
+- Debe usarse automáticamente todos los días
 
 Required disclaimers to keep visible:
 
 - Solo uso externo.
 - Evitar ojos y mucosas.
 - Usar sobre piel sana.
+- Alicyn está pensado para piel sana y molestias comunes del proceso.
+- No debe usarse como sustituto de valoración profesional ante signos de infección.
 - Consultar a un perforador o profesional de salud si las molestias empeoran o persisten.
+
+## Editing FAQ and warning signs
+
+FAQ lives in the `#faq` section of `index.html`. Keep each `.faq-question` button connected to a matching answer with `aria-controls` and a unique ID.
+
+The warning signs section lives at `#senales-alerta`. Keep these lists accurate and conservative:
+
+- Common discomforts: sensibilidad, inflamación visual ligera, enrojecimiento leve localizado, incomodidad al roce, costrita normal o secreción clara/ligeramente amarillenta en pequeñas cantidades.
+- Warning signs: dolor intenso o creciente, calor fuerte, secreción abundante/espesa/verde/amarilla intensa/con mal olor, fiebre, líneas rojas, inflamación que empeora, joyería incrustada, reacción severa/alergia o sangrado persistente.
 
 For testimonials and customer photos:
 
