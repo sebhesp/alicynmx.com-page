@@ -1,0 +1,11 @@
+﻿{
+  "sections": {
+    "alicyn_landing": {
+      "type": "alicyn-landing",
+      "settings": {}
+    }
+  },
+  "order": [
+    "alicyn_landing"
+  ]
+}

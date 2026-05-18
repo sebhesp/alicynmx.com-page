@@ -1,74 +1,40 @@
-<!doctype html>
-<html lang="es-MX">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Alicyn | Cuidado post-piercing responsable</title>
-    <meta
-      name="description"
-      content="Alicyn 100 ml es una solución para piercing de uso tópico externo, pensada para limpieza responsable y sensación calmante en momentos clave de mayor sensibilidad o exposición."
-    >
-    <link rel="canonical" href="https://alicynmx.com/products/alicyn-solucion-antiseptica">
-
-    <meta property="og:type" content="product">
-    <meta property="og:title" content="Alicyn | Cuidado post-piercing responsable">
-    <meta
-      property="og:description"
-      content="Cuidado post piercing puntual para momentos de mayor sensibilidad, roce, golpe o exposición. Uso externo sobre piel sana. 100 ml."
-    >
-    <meta property="og:url" content="https://alicynmx.com/products/alicyn-solucion-antiseptica">
-    <meta property="og:image" content="https://alicynmx.com/assets/product/alicyn-product.png">
-    <meta property="product:price:amount" content="349.00">
-    <meta property="product:price:currency" content="MXN">
-
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Alicyn | Cuidado post-piercing responsable">
-    <meta
-      name="twitter:description"
-      content="Limpieza de piercing responsable y sensación calmante para momentos clave del proceso."
-    >
-    <meta name="twitter:image" content="https://alicynmx.com/assets/product/alicyn-product.png">
-
-    <link rel="stylesheet" href="styles.css">
-    <script type="application/ld+json">
+﻿<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": "Alicyn Solución Antiséptica 100 ml",
+    "brand": {
+      "@type": "Brand",
+      "name": "Alicyn"
+    },
+    "description": "Solución de uso tópico externo para limpieza responsable y sensación calmante en momentos clave de mayor sensibilidad o exposición durante el cuidado post piercing.",
+    "image": "{{ 'alicyn-product.png' | asset_url }}",
+    "sku": "ALICYN-100ML",
+    "category": "Piercing aftercare",
+    "material": "Sulfato de cobre, sulfato de zinc, alcanfor y agua destilada.",
+    "url": "https://alicynmx.com/products/alicyn-solucion-antiseptica",
+    "offers": {
+      "@type": "Offer",
+      "priceCurrency": "MXN",
+      "price": "349.00",
+      "availability": "https://schema.org/InStock",
+      "url": "https://alicynmx.com/products/alicyn-solucion-antiseptica"
+    },
+    "additionalProperty": [
       {
-        "@context": "https://schema.org",
-        "@type": "Product",
-        "name": "Alicyn Solución Antiséptica 100 ml",
-        "brand": {
-          "@type": "Brand",
-          "name": "Alicyn"
-        },
-        "description": "Solución de uso tópico externo para limpieza responsable y sensación calmante en momentos clave de mayor sensibilidad o exposición durante el cuidado post piercing.",
-        "image": "https://alicynmx.com/assets/product/alicyn-product.png",
-        "sku": "ALICYN-100ML",
-        "category": "Piercing aftercare",
-        "material": "Sulfato de cobre, sulfato de zinc, alcanfor y agua destilada.",
-        "url": "https://alicynmx.com/products/alicyn-solucion-antiseptica",
-        "offers": {
-          "@type": "Offer",
-          "priceCurrency": "MXN",
-          "price": "349.00",
-          "availability": "https://schema.org/InStock",
-          "url": "https://alicynmx.com/products/alicyn-solucion-antiseptica"
-        },
-        "additionalProperty": [
-          {
-            "@type": "PropertyValue",
-            "name": "Contenido",
-            "value": "100 ml"
-          },
-          {
-            "@type": "PropertyValue",
-            "name": "Uso",
-            "value": "Externo, sobre piel sana. Evitar ojos y mucosas."
-          }
-        ]
+        "@type": "PropertyValue",
+        "name": "Contenido",
+        "value": "100 ml"
+      },
+      {
+        "@type": "PropertyValue",
+        "name": "Uso",
+        "value": "Externo, sobre piel sana. Evitar ojos y mucosas."
       }
-    </script>
-  </head>
-  <body>
-    <div class="alicyn-page">
+    ]
+  }
+</script>
+<div class="alicyn-page">
       <a class="skip-link" href="#contenido">Saltar al contenido</a>
 
       <aside class="announcement-bar" aria-label="Anuncio de envío">
@@ -135,14 +101,14 @@
 
           <div class="hero-product" aria-label="Imagen de producto Alicyn">
             <!-- PRODUCT IMAGE BLOCK
-              Place the final product photo at: assets/product/alicyn-product.png
-              Shopify theme path recommendation: /assets/product/alicyn-product.png
-              If the image is missing, script.js hides the broken image and keeps the CSS bottle placeholder visible.
+              Place the final 100 ml product photo in the theme assets folder as: assets/alicyn-product.png
+              The current file is a transparent placeholder so the theme has no missing asset request.
+              Replace that asset in Shopify or in GitHub before launch.
             -->
             <div class="product-stage" data-product-image-wrap>
               <img
                 class="product-photo"
-                src="assets/product/alicyn-product.png"
+                src="{{ 'alicyn-product.png' | asset_url }}"
                 alt="Frasco de Alicyn solución antiséptica para cuidado post-piercing, 100 ml"
                 width="640"
                 height="840"
@@ -840,6 +806,16 @@
       </footer>
     </div>
 
-    <script src="script.js" defer></script>
-  </body>
-</html>
+{% schema %}
+{
+  "name": "Alicyn landing",
+  "tag": "section",
+  "class": "shopify-section-alicyn-landing",
+  "settings": [],
+  "presets": [
+    {
+      "name": "Alicyn landing"
+    }
+  ]
+}
+{% endschema %}
