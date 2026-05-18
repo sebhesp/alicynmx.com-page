@@ -2,7 +2,9 @@
 
 Production-ready Shopify Online Store 2.0 theme for the Alicyn landing/product page.
 
-This repo is now a Shopify theme, not a static GitHub Pages site. The design, Spanish copy, FAQ, WhatsApp chat widget, 100 ml positioning, responsive layout and safety language from the static page have been preserved inside a Shopify section.
+This repo is now a Shopify theme, not a static GitHub Pages site. The design, Spanish copy, FAQ, WhatsApp chat widget, 100 ml positioning, responsive layout and safety language live inside a Shopify section.
+
+The landing page has also been aligned with the public Instagram identity at `https://www.instagram.com/alicyn.mx/`: Alicyn Piercing Aftercare, educational carousel language, aqua/lavender product visuals, DM/WhatsApp purchase flow, piercer/studio audience and safe “cuida tus perforaciones” messaging. See `BRAND_REFERENCE_NOTES.md`.
 
 ## Theme structure
 
@@ -26,6 +28,7 @@ alicynmx.com-page/
 ├── templates/
 │   └── index.json
 ├── README.md
+├── BRAND_REFERENCE_NOTES.md
 └── SHOPIFY_IMPLEMENTATION.md
 ```
 
@@ -102,5 +105,5 @@ Because this is a Shopify theme, previewing the final Liquid requires Shopify. S
 - Product photo: replace `assets/alicyn-product.png`.
 - Product URL: `/products/alicyn-solucion-antiseptica`.
 - WhatsApp: `https://wa.me/525542388056`.
-- Instagram: `https://www.instagram.com/alicynmx/`.
+- Instagram: `https://www.instagram.com/alicyn.mx/`.
 - Domain/canonical: `https://alicynmx.com`.

@@ -102,7 +102,7 @@ https://wa.me/525542388056
 Current Instagram:
 
 ```text
-https://www.instagram.com/alicynmx/
+https://www.instagram.com/alicyn.mx/
 ```
 
 ## Claims checklist
@@ -111,6 +111,7 @@ Keep the page within this positioning:
 
 - Not daily-use by default.
 - Targeted for key moments of discomfort, exposure or sensitivity.
+- Consistent with Alicyn's Instagram positioning as piercing aftercare for real-life moments: sudor, bumps, cambio de joyería, dudas por DM and piercer/studio support.
 - External topical use only.
 - Use on healthy skin.
 - Avoid eyes and mucosas.
