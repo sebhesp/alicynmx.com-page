@@ -118,10 +118,10 @@ Keep the page within this positioning:
 
 Do not publish copy saying Alicyn:
 
-- Resolves infections
-- Guarantees outcomes
+- Resuelve problemas médicos
+- Asegura resultados
 - Changes the natural timing of the process
-- Works as an anesthetic
+- Funciona como adormecedor médico
 - Replaces a piercer or healthcare professional
 
 ## QA checklist before publishing

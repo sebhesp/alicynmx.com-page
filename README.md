@@ -60,7 +60,7 @@ Keep copy focused on:
 - momentos de mayor sensibilidad, exposición, roce, jalón or golpe
 - piel sana and external topical use
 
-Do not claim that Alicyn resolves infections, guarantees outcomes or changes the natural timing of the process.
+Do not claim that Alicyn resolves medical problems, assures outcomes or changes the natural timing of the process.
 
 ## Connect this repo to Shopify
 
@@ -71,6 +71,21 @@ Do not claim that Alicyn resolves infections, guarantees outcomes or changes the
 5. Select branch: `main`.
 6. Connect the theme.
 7. Preview before publishing.
+
+## Shopify GitHub Connection Troubleshooting
+
+If Shopify says `Not Found`, confirm that the Shopify GitHub app has access to `sebhesp/alicynmx.com-page`. In GitHub, review the Shopify app installation and grant access to this repository, or disconnect and reconnect GitHub from Shopify.
+
+When connecting the theme, choose branch `main`. The branch root must contain the Shopify theme folders directly:
+
+- `layout/`
+- `templates/`
+- `sections/`
+- `assets/`
+- `config/`
+- `locales/`
+
+Do not connect a subfolder. Do not connect an old static branch. If Shopify says the branch is not a valid theme, check that `layout/theme.liquid` and `config/settings_schema.json` exist at the root-level theme paths and that JSON files do not contain a UTF-8 BOM.
 
 ## Local checks
 

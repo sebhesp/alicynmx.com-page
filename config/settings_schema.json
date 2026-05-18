@@ -1,1 +1,10 @@
-[]
+[
+  {
+    "name": "theme_info",
+    "theme_name": "Alicyn Landing",
+    "theme_version": "1.0.0",
+    "theme_author": "Alicyn",
+    "theme_documentation_url": "https://alicynmx.com",
+    "theme_support_url": "https://wa.me/525542388056?text=Hola%2C%20necesito%20soporte%20con%20Alicyn"
+  }
+]
