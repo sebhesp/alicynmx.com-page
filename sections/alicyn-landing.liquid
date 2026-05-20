@@ -16,7 +16,7 @@
     "offers": {
       "@type": "Offer",
       "priceCurrency": "MXN",
-      "price": "349.00",
+      "price": "300.00",
       "availability": "https://schema.org/InStock",
       "url": "https://alicynmx.com/products/alicyn-solucion-antiseptica"
     },
@@ -79,7 +79,7 @@
             </p>
             <div class="hero-actions" aria-label="Acciones principales">
               <a class="button button-primary" href="/products/alicyn-solucion-antiseptica">
-                Comprar Alicyn 100 ml &mdash; $349 MXN
+                Comprar Alicyn 100 ml &mdash; $300 MXN
                 <svg aria-hidden="true" viewBox="0 0 24 24" focusable="false">
                   <path d="M5 12h12m-5-5 5 5-5 5"></path>
                 </svg>
@@ -131,12 +131,21 @@
               </div>
               <div class="product-note">
                 <span>Fórmula simple</span>
-                <strong>$349 MXN</strong>
+                <strong>$300 MXN</strong>
               </div>
             </div>
             <!-- END PRODUCT IMAGE BLOCK -->
           </div>
         </section>
+
+        {% render 'alicyn-product-packs',
+          product_single_handle: section.settings.product_single_handle,
+          product_pack_2_handle: section.settings.product_pack_2_handle,
+          product_pack_3_handle: section.settings.product_pack_3_handle,
+          product_pack_5_handle: section.settings.product_pack_5_handle
+        %}
+
+        {% render 'alicyn-rewards' %}
 
         <section class="trust-strip" aria-label="Puntos de confianza">
           <div class="trust-item">
@@ -334,7 +343,7 @@
                 piel sana, cuando hay mayor sensibilidad o exposición. Evita ojos y mucosas.
               </p>
               <a class="button button-primary" href="/products/alicyn-solucion-antiseptica">
-                Comprar Alicyn 100 ml &mdash; $349 MXN
+                Comprar Alicyn 100 ml &mdash; $300 MXN
               </a>
             </div>
             <dl class="details-list">
@@ -498,32 +507,14 @@
               <li>Soporte por WhatsApp para pedidos, dudas y recompra</li>
               <li>Consulta disponibilidad para CDMX, Edo. Mex y envíos nacionales</li>
             </ul>
-            <a
-              class="button button-secondary"
-              href="https://wa.me/525542388056?text=Hola%2C%20soy%20estudio%20y%20quiero%20cotizar%20Alicyn"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Cotizar para mi estudio
-            </a>
+            <a class="button button-secondary" href="/pages/mayoreo-alicyn">Solicitar acceso a mayoreo</a>
           </div>
-          <div class="studio-packs" aria-label="Paquetes para estudios">
-            <article>
-              <span>Pack 6 piezas</span>
-              <strong>Cotizar</strong>
-              <p>Para probar rotación en mostrador con educación clara.</p>
-            </article>
-            <article>
-              <span>Pack 12 piezas</span>
-              <strong>Cotizar</strong>
-              <p>Para estudios con flujo constante y recompra planeada.</p>
-            </article>
-            <article>
-              <span>Kit de introducción</span>
-              <strong>Cotizar</strong>
-              <p>Producto, guía de uso, material visual y soporte por WhatsApp.</p>
-            </article>
-          </div>
+          {% render 'alicyn-wholesale-pricing',
+            wholesale_pack_5_handle: section.settings.wholesale_pack_5_handle,
+            wholesale_pack_10_handle: section.settings.wholesale_pack_10_handle,
+            wholesale_pack_20_handle: section.settings.wholesale_pack_20_handle,
+            wholesale_pack_50_handle: section.settings.wholesale_pack_50_handle
+          %}
         </section>
 
         <section id="faq" class="section-pad faq-section" aria-labelledby="faq-title">
@@ -723,7 +714,7 @@
           </p>
           <div class="hero-actions">
             <a class="button button-primary" href="/products/alicyn-solucion-antiseptica">
-              Comprar Alicyn 100 ml &mdash; $349 MXN
+              Comprar Alicyn 100 ml &mdash; $300 MXN
             </a>
             <a
               class="button button-secondary"
@@ -779,7 +770,7 @@
       </section>
 
       <a class="sticky-mobile-cta" href="/products/alicyn-solucion-antiseptica">
-        Comprar Alicyn 100 ml &mdash; $349
+        Comprar Alicyn 100 ml &mdash; $300
       </a>
 
       <footer class="site-footer" aria-label="Pie de página">
@@ -819,7 +810,56 @@
 {% schema %}
 {
   "name": "Alicyn Landing",
-  "settings": [],
+  "settings": [
+    {
+      "type": "text",
+      "id": "product_single_handle",
+      "label": "Producto individual handle",
+      "default": "alicyn-solucion-antiseptica"
+    },
+    {
+      "type": "text",
+      "id": "product_pack_2_handle",
+      "label": "Pack 2 handle",
+      "default": "alicyn-pack-2"
+    },
+    {
+      "type": "text",
+      "id": "product_pack_3_handle",
+      "label": "Pack 3 handle",
+      "default": "alicyn-pack-3"
+    },
+    {
+      "type": "text",
+      "id": "product_pack_5_handle",
+      "label": "Pack 5 handle",
+      "default": "alicyn-pack-5"
+    },
+    {
+      "type": "text",
+      "id": "wholesale_pack_5_handle",
+      "label": "Mayoreo 5 handle",
+      "default": "alicyn-mayoreo-5"
+    },
+    {
+      "type": "text",
+      "id": "wholesale_pack_10_handle",
+      "label": "Mayoreo 10 handle",
+      "default": "alicyn-mayoreo-10"
+    },
+    {
+      "type": "text",
+      "id": "wholesale_pack_20_handle",
+      "label": "Mayoreo 20 handle",
+      "default": "alicyn-mayoreo-20"
+    },
+    {
+      "type": "text",
+      "id": "wholesale_pack_50_handle",
+      "label": "Mayoreo 50 handle",
+      "default": "alicyn-mayoreo-50"
+    }
+  ],
   "presets": [
     {
       "name": "Alicyn Landing"

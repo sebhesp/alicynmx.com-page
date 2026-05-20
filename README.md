@@ -1,10 +1,10 @@
 # Alicyn Shopify theme
 
-Production-ready Shopify Online Store 2.0 theme for the Alicyn landing/product page.
+Production-ready Shopify Online Store 2.0 theme for `https://alicynmx.com`.
 
-This repo is now a Shopify theme, not a static GitHub Pages site. The design, Spanish copy, FAQ, WhatsApp chat widget, 100 ml positioning, responsive layout and safety language live inside a Shopify section.
+This repo is a Shopify theme, not a static GitHub Pages site. The homepage renders `sections/alicyn-landing.liquid` with the Alicyn 100 ml landing page, product packs, rewards, wholesale gating, FAQ, WhatsApp widget and mobile CTA.
 
-The landing page has also been aligned with the public Instagram identity at `https://www.instagram.com/alicyn.mx/`: Alicyn Piercing Aftercare, educational carousel language, aqua/lavender product visuals, DM/WhatsApp purchase flow, piercer/studio audience and safe “cuida tus perforaciones” messaging. See `BRAND_REFERENCE_NOTES.md`.
+The brand direction follows the public Instagram identity at `https://www.instagram.com/alicyn.mx/`. See `BRAND_REFERENCE_NOTES.md`.
 
 ## Theme structure
 
@@ -20,25 +20,49 @@ alicynmx.com-page/
 │   └── theme.liquid
 ├── locales/
 │   ├── en.default.json
-│   └── es.default.json
+│   ├── es.default.json
+│   └── es.json
 ├── sections/
-│   └── alicyn-landing.liquid
+│   ├── alicyn-landing.liquid
+│   └── alicyn-wholesale-application.liquid
 ├── snippets/
-│   └── alicyn-placeholder.liquid
+│   ├── alicyn-placeholder.liquid
+│   ├── alicyn-product-packs.liquid
+│   ├── alicyn-rewards.liquid
+│   └── alicyn-wholesale-pricing.liquid
 ├── templates/
-│   └── index.json
-├── README.md
+│   ├── index.json
+│   └── page.mayoreo-alicyn.json
 ├── BRAND_REFERENCE_NOTES.md
+├── SETUP_REWARDS_WHOLESALE.md
 └── SHOPIFY_IMPLEMENTATION.md
 ```
 
 ## Main files
 
-- `layout/theme.liquid` loads Shopify header/layout hooks plus `assets/alicyn.css` and `assets/alicyn.js`.
-- `templates/index.json` renders the `alicyn-landing` section on the homepage.
-- `sections/alicyn-landing.liquid` contains the Alicyn landing page markup, JSON-LD Product schema, FAQ, chat widget and footer.
-- `assets/alicyn.css` contains the preserved scoped styling.
-- `assets/alicyn.js` contains the preserved FAQ, mobile nav and WhatsApp chat behavior.
+- `layout/theme.liquid` loads `content_for_header`, `content_for_layout`, `assets/alicyn.css` and `assets/alicyn.js`.
+- `templates/index.json` renders the homepage landing section.
+- `sections/alicyn-landing.liquid` contains the primary landing page and configurable product handles.
+- `snippets/alicyn-product-packs.liquid` renders real Shopify add-to-cart forms for public packs when products exist.
+- `snippets/alicyn-rewards.liquid` renders rewards based on `customer.orders_count`, `customer.total_spent` and customer tags.
+- `snippets/alicyn-wholesale-pricing.liquid` renders wholesale prices only for authorized customer tags.
+- `sections/alicyn-wholesale-application.liquid` renders the real Shopify contact form for wholesale access.
+
+## Product setup summary
+
+Public product price:
+
+```text
+Alicyn 100 ml: $300 MXN
+```
+
+Main product URL:
+
+```text
+https://alicynmx.com/products/alicyn-solucion-antiseptica
+```
+
+Public packs and wholesale products must exist as real Shopify products for checkout to respect prices. Full setup is documented in `SETUP_REWARDS_WHOLESALE.md`.
 
 ## Product image
 
@@ -48,9 +72,9 @@ Replace:
 assets/alicyn-product.png
 ```
 
-The current file is a tiny transparent placeholder so Shopify has no missing asset request. Upload the final 100 ml bottle photo with the same filename before launch.
+Upload the final 100 ml bottle photo with the same filename before launch.
 
-## Positioning
+## Positioning and claims
 
 Alicyn is positioned as targeted support for key moments, not automatic daily use by default.
 
@@ -60,8 +84,8 @@ Keep copy focused on:
 - limpieza de piercing responsable
 - sensación calmante
 - molestias comunes
-- momentos de mayor sensibilidad, exposición, roce, jalón or golpe
-- piel sana and external topical use
+- momentos de mayor sensibilidad, exposición, roce, jalón o golpe
+- piel sana y uso tópico externo
 
 Do not claim that Alicyn resolves medical problems, assures outcomes or changes the natural timing of the process.
 
@@ -75,11 +99,29 @@ Do not claim that Alicyn resolves medical problems, assures outcomes or changes 
 6. Connect the theme.
 7. Preview before publishing.
 
-## Shopify GitHub Connection Troubleshooting
+## Shopify domain setup
 
-If Shopify says `Not Found`, confirm that the Shopify GitHub app has access to `sebhesp/alicynmx.com-page`. In GitHub, review the Shopify app installation and grant access to this repository, or disconnect and reconnect GitHub from Shopify.
+1. Connect custom domain: `alicynmx.com`.
+2. Redirect `www.alicynmx.com` to `alicynmx.com`.
+3. Confirm SSL is enabled.
+4. Set `alicynmx.com` as the primary domain.
 
-When connecting the theme, choose branch `main`. The branch root must contain the Shopify theme folders directly:
+## Rewards and wholesale setup
+
+Read `SETUP_REWARDS_WHOLESALE.md` before publishing rewards or wholesale blocks.
+
+Important limitations:
+
+- Liquid can show benefits from the logged-in `customer` object.
+- Liquid cannot create discounts or change checkout prices.
+- Pack and wholesale prices must be real Shopify products or real Shopify discounts.
+- Customer tags must be managed manually, with Shopify Flow, a loyalty app or another automation.
+
+## Shopify GitHub connection troubleshooting
+
+If Shopify says `Not Found`, confirm that the Shopify GitHub app has access to `sebhesp/alicynmx.com-page`.
+
+Choose branch `main`. The branch root must contain these folders directly:
 
 - `layout/`
 - `templates/`
@@ -88,22 +130,32 @@ When connecting the theme, choose branch `main`. The branch root must contain th
 - `config/`
 - `locales/`
 
-Do not connect a subfolder. Do not connect an old static branch. If Shopify says the branch is not a valid theme, check that `layout/theme.liquid` and `config/settings_schema.json` exist at the root-level theme paths and that JSON files do not contain a UTF-8 BOM.
+Do not connect a subfolder or an old static branch.
 
 ## Local checks
 
-Because this is a Shopify theme, previewing the final Liquid requires Shopify. Static checks you can still run locally:
+Static checks you can run locally:
 
 - Confirm `templates/index.json` renders `alicyn-landing`.
+- Confirm `templates/page.mayoreo-alicyn.json` renders `alicyn-wholesale-application`.
 - Confirm `layout/theme.liquid` includes `{{ content_for_header }}` and `{{ content_for_layout }}`.
-- Confirm no old bottle-size references exist.
+- Confirm no old bottle-size or old public price references exist.
 - Confirm product CTA links point to `/products/alicyn-solucion-antiseptica`.
-- Confirm WhatsApp links use the current placeholder number.
+- Confirm WhatsApp links use the current number.
+
+## SEO and indexing notes
+
+After launch:
+
+- Verify `https://alicynmx.com` in Google Search Console.
+- Submit the Shopify sitemap.
+- Confirm the preferred canonical domain is `https://alicynmx.com`.
+- Review product schema in Rich Results Test after the product is published.
 
 ## Placeholders
 
 - Product photo: replace `assets/alicyn-product.png`.
-- Product URL: `/products/alicyn-solucion-antiseptica`.
+- Product handles: configure section settings in the Shopify theme editor if handles differ.
 - WhatsApp: `https://wa.me/525542388056`.
 - Instagram: `https://www.instagram.com/alicyn.mx/`.
 - Domain/canonical: `https://alicynmx.com`.

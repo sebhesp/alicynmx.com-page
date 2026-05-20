@@ -1,0 +1,180 @@
+{% liquid
+  assign recurrent_threshold = 90000
+  assign vip_threshold = 150000
+  assign ambassador_threshold = 240000
+%}
+
+<section id="recompensas" class="alicyn-rewards section-pad" aria-labelledby="alicyn-rewards-title">
+  <div class="section-heading">
+    <p class="eyebrow">Cuenta Alicyn</p>
+    <h2 id="alicyn-rewards-title">Recompensas conectadas a tu cuenta</h2>
+    <p>Los beneficios se muestran según tu cuenta de cliente, historial de compra y tags asignados en Shopify.</p>
+  </div>
+
+  {% if customer == nil %}
+    <div class="alicyn-rewards-card alicyn-rewards-guest">
+      <h3>Crea tu cuenta Alicyn y desbloquea recompensas</h3>
+      <p>Acumula compras, accede a descuentos especiales y recibe beneficios exclusivos en tus próximas compras.</p>
+      <div class="hero-actions">
+        <a class="button button-primary" href="/account/register">Crear cuenta</a>
+        <a class="button button-secondary" href="/account/login">Iniciar sesión</a>
+      </div>
+    </div>
+  {% else %}
+    {% liquid
+      assign orders_count = customer.orders_count | default: 0 | plus: 0
+      assign total_spent = customer.total_spent | default: 0 | plus: 0
+      assign has_recurrent_tag = false
+      assign has_vip_tag = false
+      assign has_ambassador_tag = false
+
+      if customer.tags contains 'cliente-recurrente'
+        assign has_recurrent_tag = true
+      endif
+
+      if customer.tags contains 'vip-alicyn'
+        assign has_vip_tag = true
+      endif
+
+      if customer.tags contains 'embajador-alicyn'
+        assign has_ambassador_tag = true
+      endif
+
+      assign level_rank = 0
+      assign level_name = 'Cuenta Alicyn'
+      assign level_benefit = 'Tu historial empieza con tu primera compra.'
+
+      if has_ambassador_tag or orders_count >= 8 or total_spent >= ambassador_threshold
+        assign level_rank = 4
+        assign level_name = 'Embajador Alicyn'
+        assign level_benefit = '1 Alicyn gratis en compra de 2+ piezas.'
+      elsif has_vip_tag or orders_count >= 5 or total_spent >= vip_threshold
+        assign level_rank = 3
+        assign level_name = 'Cliente VIP'
+        assign level_benefit = '15% OFF con código configurado en Shopify Admin.'
+      elsif has_recurrent_tag or orders_count >= 3 or total_spent >= recurrent_threshold
+        assign level_rank = 2
+        assign level_name = 'Cliente Recurrente'
+        assign level_benefit = '10% OFF con código configurado en Shopify Admin.'
+      elsif orders_count >= 1
+        assign level_rank = 1
+        assign level_name = 'Cliente Alicyn'
+        assign level_benefit = 'Historial activo para futuras recompensas.'
+      endif
+
+      assign next_name = 'Cliente Alicyn'
+      assign next_orders = 1
+      assign next_spend = 30000
+
+      if level_rank == 1
+        assign next_name = 'Cliente Recurrente'
+        assign next_orders = 3
+        assign next_spend = recurrent_threshold
+      elsif level_rank == 2
+        assign next_name = 'Cliente VIP'
+        assign next_orders = 5
+        assign next_spend = vip_threshold
+      elsif level_rank == 3
+        assign next_name = 'Embajador Alicyn'
+        assign next_orders = 8
+        assign next_spend = ambassador_threshold
+      elsif level_rank == 4
+        assign next_name = 'Nivel máximo'
+        assign next_orders = orders_count
+        assign next_spend = total_spent
+      endif
+
+      assign missing_orders = next_orders | minus: orders_count
+      if missing_orders < 0
+        assign missing_orders = 0
+      endif
+
+      assign missing_spend = next_spend | minus: total_spent
+      if missing_spend < 0
+        assign missing_spend = 0
+      endif
+
+      assign progress_orders = 100
+      assign progress_spend = 100
+      if level_rank < 4
+        assign progress_orders = orders_count | times: 100 | divided_by: next_orders
+        assign progress_spend = total_spent | times: 100 | divided_by: next_spend
+      endif
+
+      assign progress_percent = progress_orders
+      if progress_spend > progress_percent
+        assign progress_percent = progress_spend
+      endif
+      if progress_percent > 100
+        assign progress_percent = 100
+      endif
+
+      assign discount_code = ''
+      if level_rank == 2
+        assign discount_code = 'ALICYN10'
+      elsif level_rank == 3
+        assign discount_code = 'ALICYNVIP15'
+      elsif level_rank == 4
+        assign discount_code = 'ALICYNEMBAJADOR'
+      endif
+    %}
+
+    <div class="alicyn-rewards-card">
+      <div class="alicyn-rewards-meta">
+        <span>Hola{% if customer.first_name != blank %}, {{ customer.first_name }}{% endif %}</span>
+        <strong>{{ level_name }}</strong>
+      </div>
+
+      <div class="alicyn-rewards-stats" aria-label="Historial de recompensas">
+        <div>
+          <span>Pedidos acumulados</span>
+          <strong>{{ orders_count }}</strong>
+        </div>
+        <div>
+          <span>Gasto acumulado</span>
+          <strong>{{ total_spent | money }}</strong>
+        </div>
+        <div>
+          <span>Beneficio actual</span>
+          <strong>{{ level_benefit }}</strong>
+        </div>
+      </div>
+
+      <div class="alicyn-rewards-progress" aria-label="Progreso hacia {{ next_name }}">
+        <div class="alicyn-rewards-progress-bar" style="width: {{ progress_percent }}%;"></div>
+      </div>
+
+      {% if level_rank < 4 %}
+        <p class="alicyn-rewards-next">Te faltan {{ missing_orders }} pedidos o {{ missing_spend | money }} para llegar a {{ next_name }}.</p>
+      {% else %}
+        <p class="alicyn-rewards-next">Ya desbloqueaste el nivel más alto. Mantén tu código activo desde Shopify Admin.</p>
+      {% endif %}
+
+      <div class="alicyn-rewards-benefits">
+        <h3>Beneficios desbloqueados</h3>
+        <ul>
+          {% if level_rank >= 1 %}
+            <li>Cliente Alicyn: historial activo de compras.</li>
+          {% endif %}
+          {% if level_rank >= 2 %}
+            <li>Cliente Recurrente: 10% OFF con ALICYN10.</li>
+          {% endif %}
+          {% if level_rank >= 3 %}
+            <li>Cliente VIP: 15% OFF con ALICYNVIP15.</li>
+          {% endif %}
+          {% if level_rank >= 4 %}
+            <li>Embajador Alicyn: beneficio especial con ALICYNEMBAJADOR.</li>
+          {% endif %}
+          {% if level_rank == 0 %}
+            <li>Haz tu primera compra para activar el historial de recompensas.</li>
+          {% endif %}
+        </ul>
+      </div>
+
+      {% if discount_code != blank %}
+        <a class="button button-primary" href="/discount/{{ discount_code }}?redirect=/products/alicyn-solucion-antiseptica">Usar mi descuento</a>
+        <p class="alicyn-rewards-setup">Este botón aplica un código que debe existir y estar activo en Shopify Admin.</p>
+      {% endif %}
+    </div>
+  {% endif %}
+</section>

@@ -1,0 +1,11 @@
+{
+  "sections": {
+    "main": {
+      "type": "alicyn-wholesale-application",
+      "settings": {}
+    }
+  },
+  "order": [
+    "main"
+  ]
+}

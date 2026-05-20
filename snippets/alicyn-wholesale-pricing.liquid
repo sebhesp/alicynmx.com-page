@@ -1,0 +1,115 @@
+{% liquid
+  assign wholesale_5_handle = wholesale_pack_5_handle | default: 'alicyn-mayoreo-5'
+  assign wholesale_10_handle = wholesale_pack_10_handle | default: 'alicyn-mayoreo-10'
+  assign wholesale_20_handle = wholesale_pack_20_handle | default: 'alicyn-mayoreo-20'
+  assign wholesale_50_handle = wholesale_pack_50_handle | default: 'alicyn-mayoreo-50'
+
+  assign wholesale_5_product = all_products[wholesale_5_handle]
+  assign wholesale_10_product = all_products[wholesale_10_handle]
+  assign wholesale_20_product = all_products[wholesale_20_handle]
+  assign wholesale_50_product = all_products[wholesale_50_handle]
+
+  assign wholesale_access = false
+  if customer
+    if customer.tags contains 'piercer'
+      assign wholesale_access = true
+    elsif customer.tags contains 'estudio-aliado'
+      assign wholesale_access = true
+    elsif customer.tags contains 'estudio-pro'
+      assign wholesale_access = true
+    elsif customer.tags contains 'distribuidor-alicyn'
+      assign wholesale_access = true
+    elsif customer.tags contains 'mayoreo'
+      assign wholesale_access = true
+    endif
+  endif
+
+  assign wholesale_label_id = 'alicyn-wholesale-request-title'
+  if wholesale_access
+    assign wholesale_label_id = 'alicyn-wholesale-title'
+  endif
+%}
+
+<div class="alicyn-wholesale" aria-labelledby="{{ wholesale_label_id }}">
+  {% if wholesale_access %}
+    <div class="alicyn-wholesale-heading">
+      <p class="eyebrow">Acceso autorizado</p>
+      <h3 id="alicyn-wholesale-title">Precios especiales para piercers y estudios</h3>
+      <p>Estos botones agregan productos reales de mayoreo a Shopify. Si un producto no existe o no está disponible, no se muestra compra directa.</p>
+    </div>
+
+    <div class="alicyn-wholesale-grid">
+      <article class="alicyn-wholesale-card">
+        <span>Kit inicial</span>
+        <h4>5 piezas</h4>
+        {% if wholesale_5_product != blank and wholesale_5_product.available and wholesale_5_product.selected_or_first_available_variant != blank %}
+          <strong>{{ wholesale_5_product.price | money }}</strong>
+          <p>{{ wholesale_5_product.price | divided_by: 5 | money }} c/u · precio desde producto Shopify.</p>
+          <form class="alicyn-cart-form" method="post" action="/cart/add">
+            <input type="hidden" name="id" value="{{ wholesale_5_product.selected_or_first_available_variant.id }}">
+            <button class="button button-primary" type="submit">Agregar mayoreo</button>
+          </form>
+        {% else %}
+          <strong>Meta: $750 MXN</strong>
+          <p>Pendiente configurar producto de mayoreo en Shopify Admin.</p>
+        {% endif %}
+      </article>
+
+      <article class="alicyn-wholesale-card">
+        <span>Recompra</span>
+        <h4>10 piezas</h4>
+        {% if wholesale_10_product != blank and wholesale_10_product.available and wholesale_10_product.selected_or_first_available_variant != blank %}
+          <strong>{{ wholesale_10_product.price | money }}</strong>
+          <p>{{ wholesale_10_product.price | divided_by: 10 | money }} c/u · precio desde producto Shopify.</p>
+          <form class="alicyn-cart-form" method="post" action="/cart/add">
+            <input type="hidden" name="id" value="{{ wholesale_10_product.selected_or_first_available_variant.id }}">
+            <button class="button button-primary" type="submit">Agregar mayoreo</button>
+          </form>
+        {% else %}
+          <strong>Meta: $1,350 MXN</strong>
+          <p>Pendiente configurar producto de mayoreo en Shopify Admin.</p>
+        {% endif %}
+      </article>
+
+      <article class="alicyn-wholesale-card">
+        <span>Estudio Pro</span>
+        <h4>20 piezas</h4>
+        {% if wholesale_20_product != blank and wholesale_20_product.available and wholesale_20_product.selected_or_first_available_variant != blank %}
+          <strong>{{ wholesale_20_product.price | money }}</strong>
+          <p>{{ wholesale_20_product.price | divided_by: 20 | money }} c/u · precio desde producto Shopify.</p>
+          <form class="alicyn-cart-form" method="post" action="/cart/add">
+            <input type="hidden" name="id" value="{{ wholesale_20_product.selected_or_first_available_variant.id }}">
+            <button class="button button-primary" type="submit">Agregar mayoreo</button>
+          </form>
+        {% else %}
+          <strong>Meta: $2,400 MXN</strong>
+          <p>Pendiente configurar producto de mayoreo en Shopify Admin.</p>
+        {% endif %}
+      </article>
+
+      <article class="alicyn-wholesale-card">
+        <span>Distribuidor</span>
+        <h4>50 piezas</h4>
+        {% if wholesale_50_product != blank and wholesale_50_product.available and wholesale_50_product.selected_or_first_available_variant != blank %}
+          <strong>{{ wholesale_50_product.price | money }}</strong>
+          <p>{{ wholesale_50_product.price | divided_by: 50 | money }} c/u · precio desde producto Shopify.</p>
+          <form class="alicyn-cart-form" method="post" action="/cart/add">
+            <input type="hidden" name="id" value="{{ wholesale_50_product.selected_or_first_available_variant.id }}">
+            <button class="button button-primary" type="submit">Agregar mayoreo</button>
+          </form>
+        {% else %}
+          <strong>Meta: $5,250 MXN</strong>
+          <p>Pendiente configurar producto de mayoreo en Shopify Admin.</p>
+        {% endif %}
+      </article>
+    </div>
+  {% else %}
+    <div class="alicyn-wholesale-locked">
+      <p class="eyebrow">Mayoreo Alicyn</p>
+      <h3 id="alicyn-wholesale-request-title">¿Tienes un estudio o eres piercer?</h3>
+      <p>Solicita acceso a precios especiales y empieza a vender Alicyn como parte del cuidado posterior de tus clientes.</p>
+      <a class="button button-primary" href="/pages/mayoreo-alicyn">Solicitar acceso a mayoreo</a>
+      <p class="alicyn-wholesale-note">Los precios de mayoreo solo se renderizan para cuentas autorizadas por tag.</p>
+    </div>
+  {% endif %}
+</div>

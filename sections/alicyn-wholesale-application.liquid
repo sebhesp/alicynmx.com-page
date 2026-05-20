@@ -1,0 +1,84 @@
+<div class="alicyn-page">
+  <a class="skip-link" href="#solicitud-mayoreo">Saltar al formulario</a>
+
+  <main id="solicitud-mayoreo" class="alicyn-form-section section-pad" aria-labelledby="wholesale-application-title">
+    <div class="section-heading">
+      <p class="eyebrow">Mayoreo Alicyn</p>
+      <h1 id="wholesale-application-title">Solicitud de acceso para piercers y estudios</h1>
+      <p>Cuéntanos sobre tu estudio para revisar acceso a productos de mayoreo, material visual y soporte para clientes.</p>
+    </div>
+
+    {% form 'contact', id: 'AlicynWholesaleApplication', class: 'alicyn-form' %}
+      <input type="hidden" name="contact[subject]" value="Solicitud de acceso a mayoreo Alicyn">
+      <input type="hidden" name="contact[tags]" value="mayoreo-alicyn,piercer-lead">
+
+      {% if form.posted_successfully? %}
+        <div class="alicyn-form-success" role="status" tabindex="-1">
+          Gracias. Recibimos tu solicitud y te contactaremos para revisar acceso a mayoreo Alicyn.
+        </div>
+      {% endif %}
+
+      {% if form.errors %}
+        <div class="alicyn-form-errors" role="alert">
+          {{ form.errors | default_errors }}
+        </div>
+      {% endif %}
+
+      <div class="alicyn-form-grid">
+        <div class="alicyn-field">
+          <label for="WholesaleStudioName">Nombre del estudio</label>
+          <input id="WholesaleStudioName" type="text" name="contact[Nombre del estudio]" autocomplete="organization" required>
+        </div>
+
+        <div class="alicyn-field">
+          <label for="WholesaleContactName">Nombre de contacto</label>
+          <input id="WholesaleContactName" type="text" name="contact[name]" autocomplete="name" required>
+        </div>
+
+        <div class="alicyn-field">
+          <label for="WholesaleCity">Ciudad</label>
+          <input id="WholesaleCity" type="text" name="contact[Ciudad]" autocomplete="address-level2" required>
+        </div>
+
+        <div class="alicyn-field">
+          <label for="WholesaleInstagram">Instagram o página del estudio</label>
+          <input id="WholesaleInstagram" type="text" name="contact[Instagram o pagina]" placeholder="@tuestudio">
+        </div>
+
+        <div class="alicyn-field">
+          <label for="WholesalePhone">Teléfono / WhatsApp</label>
+          <input id="WholesalePhone" type="tel" name="contact[Telefono WhatsApp]" autocomplete="tel" required>
+        </div>
+
+        <div class="alicyn-field">
+          <label for="WholesaleEmail">Correo</label>
+          <input id="WholesaleEmail" type="email" name="contact[email]" autocomplete="email" required>
+        </div>
+
+        <div class="alicyn-field">
+          <label for="WholesaleVolume">Volumen estimado de compra mensual</label>
+          <input id="WholesaleVolume" type="text" name="contact[Volumen estimado mensual]" placeholder="Ej. 10, 20 o 50 piezas">
+        </div>
+
+        <div class="alicyn-field alicyn-field-full">
+          <label for="WholesaleMessage">Mensaje adicional</label>
+          <textarea id="WholesaleMessage" name="contact[body]" rows="5" placeholder="Cuéntanos qué tipo de perforaciones trabajas, ciudad y cómo quieres integrar Alicyn."></textarea>
+        </div>
+      </div>
+
+      <button class="button button-primary" type="submit">Enviar solicitud</button>
+    {% endform %}
+  </main>
+</div>
+
+{% schema %}
+{
+  "name": "Alicyn Wholesale Application",
+  "settings": [],
+  "presets": [
+    {
+      "name": "Alicyn Wholesale Application"
+    }
+  ]
+}
+{% endschema %}

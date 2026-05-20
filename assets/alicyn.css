@@ -51,6 +51,7 @@ body {
 }
 
 .alicyn-page button,
+.alicyn-page input,
 .alicyn-page textarea {
   font: inherit;
 }
@@ -320,6 +321,12 @@ body {
 .alicyn-page .button-primary {
   background: linear-gradient(135deg, var(--brand-ice), var(--brand-aqua));
   color: var(--ink);
+}
+
+.alicyn-page .button:disabled {
+  cursor: not-allowed;
+  opacity: 0.62;
+  transform: none;
 }
 
 .alicyn-page .button-secondary {
@@ -805,6 +812,207 @@ body {
   margin-bottom: 8px;
 }
 
+.alicyn-page .alicyn-packs,
+.alicyn-page .alicyn-rewards {
+  border-top: 1px solid var(--border);
+}
+
+.alicyn-page .alicyn-pack-grid,
+.alicyn-page .alicyn-wholesale-grid,
+.alicyn-page .alicyn-form-grid {
+  display: grid;
+  gap: 14px;
+}
+
+.alicyn-page .alicyn-pack-grid,
+.alicyn-page .alicyn-rewards-card,
+.alicyn-page .alicyn-form {
+  max-width: var(--container);
+  margin: 0 auto;
+}
+
+.alicyn-page .alicyn-pack-card,
+.alicyn-page .alicyn-rewards-card,
+.alicyn-page .alicyn-wholesale-card,
+.alicyn-page .alicyn-wholesale-locked,
+.alicyn-page .alicyn-field input,
+.alicyn-page .alicyn-field textarea,
+.alicyn-page .alicyn-form-success,
+.alicyn-page .alicyn-form-errors {
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.035), rgba(255, 255, 255, 0.015));
+}
+
+.alicyn-page .alicyn-pack-card,
+.alicyn-page .alicyn-rewards-card,
+.alicyn-page .alicyn-wholesale-card,
+.alicyn-page .alicyn-wholesale-locked {
+  padding: 20px;
+}
+
+.alicyn-page .alicyn-pack-kicker,
+.alicyn-page .alicyn-wholesale-card span,
+.alicyn-page .alicyn-rewards-meta span,
+.alicyn-page .alicyn-rewards-stats span,
+.alicyn-page .alicyn-wholesale-note,
+.alicyn-page .alicyn-rewards-setup {
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+
+.alicyn-page .alicyn-pack-price,
+.alicyn-page .alicyn-wholesale-card strong,
+.alicyn-page .alicyn-rewards-meta strong {
+  display: block;
+  color: var(--accent-2);
+  font-size: 1.45rem;
+  line-height: 1.15;
+  margin: 8px 0 10px;
+}
+
+.alicyn-page .alicyn-pack-note,
+.alicyn-page .alicyn-pack-card p,
+.alicyn-page .alicyn-wholesale-card p,
+.alicyn-page .alicyn-wholesale-locked p,
+.alicyn-page .alicyn-rewards-next,
+.alicyn-page .alicyn-rewards-benefits li {
+  color: var(--soft);
+}
+
+.alicyn-page .alicyn-cart-form {
+  margin-top: 16px;
+}
+
+.alicyn-page .alicyn-cart-form .button {
+  width: 100%;
+}
+
+.alicyn-page .alicyn-rewards-card {
+  display: grid;
+  gap: 18px;
+}
+
+.alicyn-page .alicyn-rewards-guest {
+  text-align: center;
+}
+
+.alicyn-page .alicyn-rewards-guest .hero-actions {
+  justify-content: center;
+}
+
+.alicyn-page .alicyn-rewards-meta {
+  display: grid;
+  gap: 2px;
+}
+
+.alicyn-page .alicyn-rewards-stats {
+  display: grid;
+  gap: 10px;
+}
+
+.alicyn-page .alicyn-rewards-stats div {
+  border: 1px solid rgba(232, 232, 234, 0.12);
+  border-radius: var(--radius);
+  background: rgba(255, 255, 255, 0.025);
+  padding: 14px;
+}
+
+.alicyn-page .alicyn-rewards-stats strong {
+  display: block;
+  color: var(--text);
+  margin-top: 4px;
+}
+
+.alicyn-page .alicyn-rewards-progress {
+  height: 12px;
+  overflow: hidden;
+  border: 1px solid rgba(167, 222, 228, 0.28);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.alicyn-page .alicyn-rewards-progress-bar {
+  height: 100%;
+  min-width: 8px;
+  border-radius: inherit;
+  background: linear-gradient(90deg, var(--brand-aqua), var(--brand-lavender));
+}
+
+.alicyn-page .alicyn-rewards-benefits ul {
+  display: grid;
+  gap: 8px;
+  margin: 10px 0 0;
+  padding-left: 18px;
+}
+
+.alicyn-page .alicyn-wholesale {
+  display: grid;
+  gap: 18px;
+}
+
+.alicyn-page .alicyn-wholesale-heading p {
+  color: var(--soft);
+}
+
+.alicyn-page .alicyn-wholesale-card h4 {
+  color: var(--text);
+  font-size: 1.05rem;
+  margin: 4px 0 0;
+}
+
+.alicyn-page .alicyn-wholesale-locked {
+  background:
+    linear-gradient(135deg, rgba(167, 222, 228, 0.1), rgba(187, 184, 242, 0.05)),
+    rgba(255, 255, 255, 0.015);
+}
+
+.alicyn-page .alicyn-form-section {
+  min-height: 100vh;
+}
+
+.alicyn-page .alicyn-form {
+  display: grid;
+  gap: 18px;
+}
+
+.alicyn-page .alicyn-field {
+  display: grid;
+  gap: 8px;
+}
+
+.alicyn-page .alicyn-field label {
+  color: var(--soft);
+  font-weight: 800;
+}
+
+.alicyn-page .alicyn-field input,
+.alicyn-page .alicyn-field textarea {
+  width: 100%;
+  color: var(--text);
+  padding: 12px 14px;
+}
+
+.alicyn-page .alicyn-field textarea {
+  min-height: 140px;
+  resize: vertical;
+}
+
+.alicyn-page .alicyn-form-success,
+.alicyn-page .alicyn-form-errors {
+  padding: 14px 16px;
+}
+
+.alicyn-page .alicyn-form-success {
+  border-color: rgba(167, 222, 228, 0.36);
+  color: var(--brand-ice);
+}
+
+.alicyn-page .alicyn-form-errors {
+  border-color: rgba(217, 164, 164, 0.36);
+  color: var(--danger);
+}
+
 .alicyn-page .faq-list {
   max-width: 860px;
   margin: 0 auto;
@@ -1098,6 +1306,17 @@ body {
     grid-template-columns: repeat(2, 1fr);
   }
 
+  .alicyn-page .alicyn-pack-grid,
+  .alicyn-page .alicyn-wholesale-grid,
+  .alicyn-page .alicyn-rewards-stats,
+  .alicyn-page .alicyn-form-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .alicyn-page .alicyn-field-full {
+    grid-column: 1 / -1;
+  }
+
   .alicyn-page .sticky-mobile-cta {
     display: none;
   }
@@ -1191,6 +1410,11 @@ body {
 
   .alicyn-page .studio-copy {
     grid-column: span 2;
+  }
+
+  .alicyn-page .alicyn-pack-grid,
+  .alicyn-page .alicyn-wholesale-grid {
+    grid-template-columns: repeat(4, 1fr);
   }
 
   .alicyn-page .site-footer {
