@@ -3,6 +3,10 @@
   assign pack_2_handle = product_pack_2_handle | default: 'alicyn-pack-2'
   assign pack_3_handle = product_pack_3_handle | default: 'alicyn-pack-3'
   assign pack_5_handle = product_pack_5_handle | default: 'alicyn-pack-5'
+  assign packs_eyebrow_text = packs_eyebrow | default: 'Compra directa'
+  assign packs_heading_text = packs_heading | default: 'Packs de cuidado Alicyn'
+  assign packs_copy_text = packs_copy | default: 'Compra una pieza o elige un pack con mejor precio por volumen. Cada compra activa usa productos reales de Shopify para que el checkout respete el precio.'
+  assign whatsapp_fallback_url = whatsapp_url | default: 'https://wa.me/525542388056?text=Hola%2C%20quiero%20comprar%20Alicyn'
 
   assign single_product = all_products[single_handle]
   assign pack_2_product = all_products[pack_2_handle]
@@ -12,9 +16,9 @@
 
 <section id="packs" class="alicyn-packs section-pad" aria-labelledby="alicyn-packs-title">
   <div class="section-heading">
-    <p class="eyebrow">Compra directa</p>
-    <h2 id="alicyn-packs-title">Packs de cuidado Alicyn</h2>
-    <p>Compra una pieza o elige un pack con mejor precio por volumen. Cada compra activa usa productos reales de Shopify para que el checkout respete el precio.</p>
+    <p class="eyebrow">{{ packs_eyebrow_text | escape }}</p>
+    <h2 id="alicyn-packs-title">{{ packs_heading_text | escape }}</h2>
+    <p>{{ packs_copy_text | escape }}</p>
   </div>
 
   <div class="alicyn-pack-grid" aria-label="Packs disponibles de Alicyn">
@@ -31,7 +35,7 @@
       {% else %}
         <strong class="alicyn-pack-price">Precio objetivo: $300 MXN</strong>
         <p class="alicyn-pack-note">Configura este producto en Shopify Admin para activar compra directa.</p>
-        <a class="button button-secondary" href="https://wa.me/525542388056?text=Hola%2C%20quiero%20comprar%20Alicyn%20100%20ml" target="_blank" rel="noopener noreferrer">Comprar por WhatsApp</a>
+        <a class="button button-secondary" href="{{ whatsapp_fallback_url | escape }}" target="_blank" rel="noopener noreferrer">Comprar por WhatsApp</a>
       {% endif %}
     </article>
 
@@ -48,7 +52,7 @@
       {% else %}
         <strong class="alicyn-pack-price">Precio objetivo: $570 MXN</strong>
         <p class="alicyn-pack-note">Configura este pack en Shopify Admin para activar compra directa.</p>
-        <a class="button button-secondary" href="https://wa.me/525542388056?text=Hola%2C%20quiero%20comprar%20el%20pack%202%20de%20Alicyn" target="_blank" rel="noopener noreferrer">Pedir por WhatsApp</a>
+        <a class="button button-secondary" href="{{ whatsapp_fallback_url | escape }}" target="_blank" rel="noopener noreferrer">Pedir por WhatsApp</a>
       {% endif %}
     </article>
 
@@ -65,7 +69,7 @@
       {% else %}
         <strong class="alicyn-pack-price">Precio objetivo: $810 MXN</strong>
         <p class="alicyn-pack-note">Configura este pack en Shopify Admin para activar compra directa.</p>
-        <a class="button button-secondary" href="https://wa.me/525542388056?text=Hola%2C%20quiero%20comprar%20el%20pack%203%20de%20Alicyn" target="_blank" rel="noopener noreferrer">Pedir por WhatsApp</a>
+        <a class="button button-secondary" href="{{ whatsapp_fallback_url | escape }}" target="_blank" rel="noopener noreferrer">Pedir por WhatsApp</a>
       {% endif %}
     </article>
 
@@ -82,7 +86,7 @@
       {% else %}
         <strong class="alicyn-pack-price">Precio objetivo: $1,250 MXN</strong>
         <p class="alicyn-pack-note">Configura este pack en Shopify Admin para activar compra directa.</p>
-        <a class="button button-secondary" href="https://wa.me/525542388056?text=Hola%2C%20quiero%20comprar%20el%20pack%205%20de%20Alicyn" target="_blank" rel="noopener noreferrer">Pedir por WhatsApp</a>
+        <a class="button button-secondary" href="{{ whatsapp_fallback_url | escape }}" target="_blank" rel="noopener noreferrer">Pedir por WhatsApp</a>
       {% endif %}
     </article>
   </div>

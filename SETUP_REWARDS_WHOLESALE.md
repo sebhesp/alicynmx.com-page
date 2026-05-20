@@ -32,6 +32,8 @@ Crea productos reales en Shopify:
 
 El theme usa `all_products[handle]` y renderiza formularios `/cart/add` únicamente cuando el producto existe, está disponible y tiene una variante disponible.
 
+Los handles se editan desde `Online Store > Themes > Customize > Home page > Alicyn Landing > Product handles`. Si cambias un handle en Shopify Admin, cámbialo también en el Theme Editor.
+
 Si un producto no existe, el theme muestra:
 
 ```text
@@ -61,6 +63,8 @@ La protección del theme es visual y basada en Liquid:
 - Personas no autorizadas no ven precios de mayoreo.
 - Personas no autorizadas no reciben formularios add-to-cart de productos de mayoreo.
 - Personas autorizadas se detectan por customer tags.
+
+Los handles de mayoreo también se editan desde el Theme Editor. No hardcodees IDs de variantes en Liquid.
 
 ## D) Customer tags
 
@@ -169,6 +173,9 @@ El formulario es un Shopify contact form real y envía:
 
 Prueba antes de publicar:
 
+- Editar un bloque de beneficio desde el Theme Editor.
+- Reordenar un FAQ desde el Theme Editor.
+- Cambiar la imagen de producto desde el Theme Editor.
 - Usuario no logueado.
 - Usuario logueado sin compras.
 - Cliente con 1 compra.

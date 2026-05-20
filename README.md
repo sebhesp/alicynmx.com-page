@@ -24,7 +24,8 @@ alicynmx.com-page/
 │   └── es.json
 ├── sections/
 │   ├── alicyn-landing.liquid
-│   └── alicyn-wholesale-application.liquid
+│   ├── alicyn-wholesale-application.liquid
+│   └── apps.liquid
 ├── snippets/
 │   ├── alicyn-placeholder.liquid
 │   ├── alicyn-product-packs.liquid
@@ -42,11 +43,41 @@ alicynmx.com-page/
 
 - `layout/theme.liquid` loads `content_for_header`, `content_for_layout`, `assets/alicyn.css` and `assets/alicyn.js`.
 - `templates/index.json` renders the homepage landing section.
-- `sections/alicyn-landing.liquid` contains the primary landing page and configurable product handles.
+- `sections/alicyn-landing.liquid` contains the primary landing page, editable section settings and local Shopify blocks.
 - `snippets/alicyn-product-packs.liquid` renders real Shopify add-to-cart forms for public packs when products exist.
 - `snippets/alicyn-rewards.liquid` renders rewards based on `customer.orders_count`, `customer.total_spent` and customer tags.
 - `snippets/alicyn-wholesale-pricing.liquid` renders wholesale prices only for authorized customer tags.
 - `sections/alicyn-wholesale-application.liquid` renders the real Shopify contact form for wholesale access.
+
+## Shopify theme editor customization
+
+Open `Online Store > Themes > Customize > Home page > Alicyn Landing`.
+
+The section exposes settings for:
+
+- Product URL, WhatsApp URL, Instagram URL and brand text.
+- Announcement bar, hero copy, product image, CTAs, price labels and product facts.
+- Product pack handles and wholesale pack handles.
+- Section headings and copy for benefits, usage moments, warning signs, how-to, details, reviews, studios, FAQ, chat and footer.
+- SEO/Product schema name, description and price amount.
+
+The homepage template includes 46 editable Shopify blocks:
+
+- Trust badges.
+- Benefit cards.
+- Usage moments.
+- How-to steps.
+- Testimonials.
+- Story cards.
+- FAQ items.
+- WhatsApp quick replies.
+- App blocks through Shopify's `@app` block type.
+
+Each block uses Shopify `block.shopify_attributes`, so it can be selected, edited, reordered, duplicated or removed in the theme editor. Keep total blocks at or below Shopify's section limit of 50.
+
+The theme also includes `sections/apps.liquid` so app blocks can be added as standalone app sections when Shopify or an installed app needs that wrapper.
+
+Do not edit prices only as text if checkout must respect them. Public packs and wholesale prices still need real Shopify products/discounts, documented in `SETUP_REWARDS_WHOLESALE.md`.
 
 ## Product setup summary
 

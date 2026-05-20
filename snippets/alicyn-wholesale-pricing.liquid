@@ -3,6 +3,14 @@
   assign wholesale_10_handle = wholesale_pack_10_handle | default: 'alicyn-mayoreo-10'
   assign wholesale_20_handle = wholesale_pack_20_handle | default: 'alicyn-mayoreo-20'
   assign wholesale_50_handle = wholesale_pack_50_handle | default: 'alicyn-mayoreo-50'
+  assign wholesale_eyebrow_text = wholesale_eyebrow | default: 'Acceso autorizado'
+  assign wholesale_heading_text = wholesale_heading | default: 'Precios especiales para piercers y estudios'
+  assign wholesale_copy_text = wholesale_copy | default: 'Estos botones agregan productos reales de mayoreo a Shopify. Si un producto no existe o no está disponible, no se muestra compra directa.'
+  assign wholesale_request_eyebrow_text = wholesale_request_eyebrow | default: 'Mayoreo Alicyn'
+  assign wholesale_request_heading_text = wholesale_request_heading | default: '¿Tienes un estudio o eres piercer?'
+  assign wholesale_request_copy_text = wholesale_request_copy | default: 'Solicita acceso a precios especiales y empieza a vender Alicyn como parte del cuidado posterior de tus clientes.'
+  assign wholesale_request_button_text = wholesale_request_button | default: 'Solicitar acceso a mayoreo'
+  assign wholesale_request_url_value = wholesale_request_url | default: '/pages/mayoreo-alicyn'
 
   assign wholesale_5_product = all_products[wholesale_5_handle]
   assign wholesale_10_product = all_products[wholesale_10_handle]
@@ -33,9 +41,9 @@
 <div class="alicyn-wholesale" aria-labelledby="{{ wholesale_label_id }}">
   {% if wholesale_access %}
     <div class="alicyn-wholesale-heading">
-      <p class="eyebrow">Acceso autorizado</p>
-      <h3 id="alicyn-wholesale-title">Precios especiales para piercers y estudios</h3>
-      <p>Estos botones agregan productos reales de mayoreo a Shopify. Si un producto no existe o no está disponible, no se muestra compra directa.</p>
+      <p class="eyebrow">{{ wholesale_eyebrow_text | escape }}</p>
+      <h3 id="alicyn-wholesale-title">{{ wholesale_heading_text | escape }}</h3>
+      <p>{{ wholesale_copy_text | escape }}</p>
     </div>
 
     <div class="alicyn-wholesale-grid">
@@ -105,10 +113,10 @@
     </div>
   {% else %}
     <div class="alicyn-wholesale-locked">
-      <p class="eyebrow">Mayoreo Alicyn</p>
-      <h3 id="alicyn-wholesale-request-title">¿Tienes un estudio o eres piercer?</h3>
-      <p>Solicita acceso a precios especiales y empieza a vender Alicyn como parte del cuidado posterior de tus clientes.</p>
-      <a class="button button-primary" href="/pages/mayoreo-alicyn">Solicitar acceso a mayoreo</a>
+      <p class="eyebrow">{{ wholesale_request_eyebrow_text | escape }}</p>
+      <h3 id="alicyn-wholesale-request-title">{{ wholesale_request_heading_text | escape }}</h3>
+      <p>{{ wholesale_request_copy_text | escape }}</p>
+      <a class="button button-primary" href="{{ wholesale_request_url_value | escape }}">{{ wholesale_request_button_text | escape }}</a>
       <p class="alicyn-wholesale-note">Los precios de mayoreo solo se renderizan para cuentas autorizadas por tag.</p>
     </div>
   {% endif %}

@@ -2,13 +2,17 @@
   assign recurrent_threshold = 90000
   assign vip_threshold = 150000
   assign ambassador_threshold = 240000
+  assign product_redirect_url = product_url | default: '/products/alicyn-solucion-antiseptica'
+  assign rewards_eyebrow_text = rewards_eyebrow | default: 'Cuenta Alicyn'
+  assign rewards_heading_text = rewards_heading | default: 'Recompensas conectadas a tu cuenta'
+  assign rewards_copy_text = rewards_copy | default: 'Los beneficios se muestran según tu cuenta de cliente, historial de compra y tags asignados en Shopify.'
 %}
 
 <section id="recompensas" class="alicyn-rewards section-pad" aria-labelledby="alicyn-rewards-title">
   <div class="section-heading">
-    <p class="eyebrow">Cuenta Alicyn</p>
-    <h2 id="alicyn-rewards-title">Recompensas conectadas a tu cuenta</h2>
-    <p>Los beneficios se muestran según tu cuenta de cliente, historial de compra y tags asignados en Shopify.</p>
+    <p class="eyebrow">{{ rewards_eyebrow_text | escape }}</p>
+    <h2 id="alicyn-rewards-title">{{ rewards_heading_text | escape }}</h2>
+    <p>{{ rewards_copy_text | escape }}</p>
   </div>
 
   {% if customer == nil %}
@@ -172,7 +176,7 @@
       </div>
 
       {% if discount_code != blank %}
-        <a class="button button-primary" href="/discount/{{ discount_code }}?redirect=/products/alicyn-solucion-antiseptica">Usar mi descuento</a>
+        <a class="button button-primary" href="/discount/{{ discount_code }}?redirect={{ product_redirect_url | url_encode }}">Usar mi descuento</a>
         <p class="alicyn-rewards-setup">Este botón aplica un código que debe existir y estar activo en Shopify Admin.</p>
       {% endif %}
     </div>

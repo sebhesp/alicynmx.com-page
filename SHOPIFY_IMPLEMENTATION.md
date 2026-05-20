@@ -9,6 +9,7 @@ This repository is a Shopify Online Store 2.0 theme for `https://alicynmx.com`.
 - `templates/page.mayoreo-alicyn.json`
 - `sections/alicyn-landing.liquid`
 - `sections/alicyn-wholesale-application.liquid`
+- `sections/apps.liquid`
 - `snippets/alicyn-product-packs.liquid`
 - `snippets/alicyn-rewards.liquid`
 - `snippets/alicyn-wholesale-pricing.liquid`
@@ -77,6 +78,16 @@ SETUP_REWARDS_WHOLESALE.md
 }
 ```
 
+The homepage section is configured for Shopify's native theme editor:
+
+- Global content, URLs, CTAs, product image, schema data and product handles are section settings.
+- Repeating content is stored as Shopify blocks in `templates/index.json`.
+- Blocks can be edited, reordered, duplicated or removed from `Online Store > Themes > Customize`.
+- The section uses `block.shopify_attributes` for editor selection support.
+- The section supports app blocks with Shopify's `@app` block type.
+- `sections/apps.liquid` is present as the app wrapper section.
+- The template currently ships with 46 blocks, under Shopify's 50-block limit per section.
+
 The landing section contains:
 
 - Announcement bar
@@ -122,6 +133,28 @@ In the Shopify theme editor, the homepage `Alicyn Landing` section exposes produ
 - `wholesale_pack_50_handle`
 
 If handles differ in Shopify Admin, update them there. Do not hardcode variant IDs.
+
+It also exposes editable settings for:
+
+- Announcement, hero, CTAs and product image.
+- Product price label and JSON-LD price amount.
+- Section headings/copy.
+- Warning signs and usage guidance.
+- Studio/wholesale request copy.
+- WhatsApp chat labels and default message.
+- Footer disclaimers.
+
+Editable block types:
+
+- Trust badge
+- Benefit card
+- Usage moment
+- Usage step
+- Testimonial
+- Story card
+- FAQ item
+- Chat quick reply
+- App block
 
 ## CTA links
 

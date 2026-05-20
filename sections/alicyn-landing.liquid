@@ -1,30 +1,49 @@
+{% liquid
+  assign product_url = section.settings.product_url | default: '/products/alicyn-solucion-antiseptica'
+  assign whatsapp_url = section.settings.whatsapp_url | default: 'https://wa.me/525542388056?text=Hola%2C%20quiero%20comprar%20Alicyn'
+  assign instagram_url = section.settings.instagram_url | default: 'https://www.instagram.com/alicyn.mx/'
+  assign product_size = section.settings.product_size | default: '100 ml'
+  assign product_price = section.settings.product_price | default: '300.00'
+  assign product_price_label = section.settings.product_price_label | default: '$300 MXN'
+  assign primary_cta_label = section.settings.primary_cta_label | default: 'Comprar Alicyn 100 ml — $300 MXN'
+  assign sticky_cta_label = section.settings.sticky_cta_label | default: 'Comprar Alicyn 100 ml — $300'
+  assign product_canonical_url = product_url
+  unless product_url contains 'http'
+    assign product_canonical_url = 'https://alicynmx.com' | append: product_url
+  endunless
+  assign product_schema_image = 'alicyn-product.png' | asset_url
+  if section.settings.product_image != blank
+    assign product_schema_image = section.settings.product_image | image_url: width: 1200
+  endif
+%}
+
 <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "Product",
-    "name": "Alicyn Solución Antiséptica 100 ml",
+    "name": {{ section.settings.schema_product_name | default: 'Alicyn Solución Antiséptica 100 ml' | json }},
     "brand": {
       "@type": "Brand",
       "name": "Alicyn"
     },
-    "description": "Piercing aftercare de uso tópico externo para cuidar tus perforaciones con limpieza responsable y sensación calmante en momentos clave de mayor sensibilidad o exposición.",
-    "image": "{{ 'alicyn-product.png' | asset_url }}",
+    "description": {{ section.settings.schema_description | default: 'Piercing aftercare de uso tópico externo para cuidar tus perforaciones con limpieza responsable y sensación calmante en momentos clave de mayor sensibilidad o exposición.' | json }},
+    "image": {{ product_schema_image | json }},
     "sku": "ALICYN-100ML",
     "category": "Piercing aftercare",
     "material": "Sulfato de cobre, sulfato de zinc, alcanfor y agua destilada.",
-    "url": "https://alicynmx.com/products/alicyn-solucion-antiseptica",
+    "url": {{ product_canonical_url | json }},
     "offers": {
       "@type": "Offer",
       "priceCurrency": "MXN",
-      "price": "300.00",
+      "price": {{ product_price | json }},
       "availability": "https://schema.org/InStock",
-      "url": "https://alicynmx.com/products/alicyn-solucion-antiseptica"
+      "url": {{ product_canonical_url | json }}
     },
     "additionalProperty": [
       {
         "@type": "PropertyValue",
         "name": "Contenido",
-        "value": "100 ml"
+        "value": {{ product_size | json }}
       },
       {
         "@type": "PropertyValue",
@@ -34,783 +53,692 @@
     ]
   }
 </script>
+
 <div class="alicyn-page">
-      <a class="skip-link" href="#contenido">Saltar al contenido</a>
+  <a class="skip-link" href="#contenido">Saltar al contenido</a>
 
-      <aside class="announcement-bar" aria-label="Anuncio de envío">
-        <span>100 ml · Piercing Aftercare by Alicyn MX · envíos a todo México</span>
-      </aside>
+  <aside class="announcement-bar" aria-label="Anuncio de envío">
+    <span>{{ section.settings.announcement_text | escape }}</span>
+  </aside>
 
-      <header class="site-header" aria-label="Encabezado principal">
-        <a class="brand" href="#producto" aria-label="Ir al inicio de Alicyn">
-          <span class="brand-drop" aria-hidden="true"></span>
-          <span>alicyn</span>
-        </a>
-        <button
-          class="nav-toggle"
-          type="button"
-          aria-expanded="false"
-          aria-controls="site-navigation"
-          aria-label="Abrir navegación"
-        >
-          <span class="nav-toggle-line"></span>
-          <span class="nav-toggle-line"></span>
-        </button>
-        <nav id="site-navigation" class="header-nav" aria-label="Navegación principal" data-open="false">
-          <a href="#producto">Producto</a>
-          <a href="#beneficios">Beneficios</a>
-          <a href="#como-usarlo">Cómo usarlo</a>
-          <a href="#experiencias">Experiencias</a>
-          <a href="#estudios">Estudios</a>
-          <a href="#faq">FAQ</a>
-        </nav>
-        <a class="header-cta" href="/products/alicyn-solucion-antiseptica">Comprar</a>
-      </header>
+  <header class="site-header" aria-label="Encabezado principal">
+    <a class="brand" href="#producto" aria-label="Ir al inicio de Alicyn">
+      <span class="brand-drop" aria-hidden="true"></span>
+      <span>{{ section.settings.brand_text | escape }}</span>
+    </a>
+    <button
+      class="nav-toggle"
+      type="button"
+      aria-expanded="false"
+      aria-controls="site-navigation"
+      aria-label="Abrir navegación"
+    >
+      <span class="nav-toggle-line"></span>
+      <span class="nav-toggle-line"></span>
+    </button>
+    <nav id="site-navigation" class="header-nav" aria-label="Navegación principal" data-open="false">
+      <a href="#producto">Producto</a>
+      <a href="#beneficios">Beneficios</a>
+      <a href="#como-usarlo">Cómo usarlo</a>
+      <a href="#experiencias">Experiencias</a>
+      <a href="#estudios">Estudios</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+    <a class="header-cta" href="{{ product_url | escape }}">{{ section.settings.header_cta_label | escape }}</a>
+  </header>
 
-      <main id="contenido">
-        <section id="producto" class="hero section-pad" aria-labelledby="hero-title">
-          <div class="hero-copy">
-            <p class="eyebrow">Piercing Aftercare by Alicyn MX</p>
-            <h1 id="hero-title">Cuida tus perforaciones en los momentos que más lo necesitan.</h1>
-            <p class="hero-subcopy">
-              No es para tocar tu piercing todo el día. Alicyn 100 ml acompaña esos momentos reales: después de sudar,
-              dormir sobre la pieza, recibir un jalón, cambiar joyería o notar sensibilidad común. Limpieza responsable y
-              sensación calmante para piel sana, con la guía de tu perforador siempre al centro.
-            </p>
-            <div class="hero-actions" aria-label="Acciones principales">
-              <a class="button button-primary" href="/products/alicyn-solucion-antiseptica">
-                Comprar Alicyn 100 ml &mdash; $300 MXN
-                <svg aria-hidden="true" viewBox="0 0 24 24" focusable="false">
-                  <path d="M5 12h12m-5-5 5 5-5 5"></path>
-                </svg>
-              </a>
-              <a class="button button-secondary" href="#como-usarlo">Ver cómo se usa</a>
-            </div>
-            <dl class="hero-facts" aria-label="Resumen del producto">
-              <div>
-                <dt>Contenido</dt>
-                <dd>100 ml</dd>
-              </div>
-              <div>
-                <dt>Uso</dt>
-                <dd>Puntual</dd>
-              </div>
-              <div>
-                <dt>Envíos</dt>
-                <dd>México</dd>
-              </div>
-            </dl>
+  <main id="contenido">
+    <section id="producto" class="hero section-pad" aria-labelledby="hero-title">
+      <div class="hero-copy">
+        <p class="eyebrow">{{ section.settings.hero_eyebrow | escape }}</p>
+        <h1 id="hero-title">{{ section.settings.hero_heading | escape }}</h1>
+        <p class="hero-subcopy">{{ section.settings.hero_copy | escape | newline_to_br }}</p>
+        <div class="hero-actions" aria-label="Acciones principales">
+          <a class="button button-primary" href="{{ product_url | escape }}">
+            {{ primary_cta_label | escape }}
+            <svg aria-hidden="true" viewBox="0 0 24 24" focusable="false">
+              <path d="M5 12h12m-5-5 5 5-5 5"></path>
+            </svg>
+          </a>
+          <a class="button button-secondary" href="#como-usarlo">{{ section.settings.secondary_cta_label | escape }}</a>
+        </div>
+        <dl class="hero-facts" aria-label="Resumen del producto">
+          <div>
+            <dt>{{ section.settings.hero_fact_1_label | escape }}</dt>
+            <dd>{{ section.settings.hero_fact_1_value | escape }}</dd>
           </div>
+          <div>
+            <dt>{{ section.settings.hero_fact_2_label | escape }}</dt>
+            <dd>{{ section.settings.hero_fact_2_value | escape }}</dd>
+          </div>
+          <div>
+            <dt>{{ section.settings.hero_fact_3_label | escape }}</dt>
+            <dd>{{ section.settings.hero_fact_3_value | escape }}</dd>
+          </div>
+        </dl>
+      </div>
 
-          <div class="hero-product" aria-label="Imagen de producto Alicyn">
-            <!-- PRODUCT IMAGE BLOCK
-              Place the final 100 ml product photo in the theme assets folder as: assets/alicyn-product.png
-              The current file is a transparent placeholder so the theme has no missing asset request.
-              Replace that asset in Shopify or in GitHub before launch.
-            -->
-            <div class="product-stage" data-product-image-wrap>
-              <img
-                class="product-photo"
-                src="{{ 'alicyn-product.png' | asset_url }}"
-                alt="Frasco de Alicyn solución antiséptica para cuidado post-piercing, 100 ml"
-                width="640"
-                height="840"
-                loading="lazy"
-                decoding="async"
-                data-product-image
-              >
-              <div class="bottle-placeholder" aria-hidden="true">
-                <div class="bottle-cap"></div>
-                <div class="bottle-neck"></div>
-                <div class="bottle-body">
-                  <span class="bottle-brand">ALICYN</span>
-                  <span class="bottle-line"></span>
-                  <span class="bottle-copy">Solución antiséptica</span>
-                  <span class="bottle-size">100 ml</span>
-                </div>
-              </div>
-              <div class="product-note">
-                <span>Fórmula simple</span>
-                <strong>$300 MXN</strong>
-              </div>
-            </div>
-            <!-- END PRODUCT IMAGE BLOCK -->
-          </div>
-        </section>
-
-        {% render 'alicyn-product-packs',
-          product_single_handle: section.settings.product_single_handle,
-          product_pack_2_handle: section.settings.product_pack_2_handle,
-          product_pack_3_handle: section.settings.product_pack_3_handle,
-          product_pack_5_handle: section.settings.product_pack_5_handle
-        %}
-
-        {% render 'alicyn-rewards' %}
-
-        <section class="trust-strip" aria-label="Puntos de confianza">
-          <div class="trust-item">
-            <span class="mini-icon" aria-hidden="true"></span>
-            Fórmula simple
-          </div>
-          <div class="trust-item">
-            <span class="mini-icon" aria-hidden="true"></span>
-            Hecho en México
-          </div>
-          <div class="trust-item">
-            <span class="mini-icon" aria-hidden="true"></span>
-            Uso tópico
-          </div>
-          <div class="trust-item">
-            <span class="mini-icon" aria-hidden="true"></span>
-            Piercing aftercare
-          </div>
-          <div class="trust-item">
-            <span class="mini-icon" aria-hidden="true"></span>
-            Envíos a todo México
-          </div>
-        </section>
-
-        <section id="beneficios" class="section-pad benefits" aria-labelledby="benefits-title">
-          <div class="section-heading">
-            <p class="eyebrow">Alicyn Tips</p>
-            <h2 id="benefits-title">Aftercare claro para cuando tu perforación pide atención.</h2>
-            <p>
-              Inspirado en la forma en que Alicyn educa en Instagram: mensajes directos, visuales limpios y cuidado de
-              perforaciones sin complicar la rutina. Para limpieza de piercing, frescura y apoyo puntual en molestias
-              comunes.
-            </p>
-          </div>
-          <div class="card-grid six-grid">
-            <article class="info-card">
-              <span class="card-icon clean" aria-hidden="true"></span>
-              <h3>Después de sudor o calle</h3>
-              <p>Apoya la limpieza de piercing después de gym, transporte, polvo, maquillaje o ambientes no controlados.</p>
-            </article>
-            <article class="info-card">
-              <span class="card-icon fresh" aria-hidden="true"></span>
-              <h3>Sensación calmante</h3>
-              <p>Ayuda a aliviar molestias comunes cuando el piercing irritado se siente sensible por roce, presión o sueño.</p>
-            </article>
-            <article class="info-card">
-              <span class="card-icon routine" aria-hidden="true"></span>
-              <h3>No es para sobre-tocar</h3>
-              <p>Para momentos específicos; no reemplaza una rutina de cuidado piercing sencilla ni la guía profesional.</p>
-            </article>
-            <article class="info-card">
-              <span class="card-icon support" aria-hidden="true"></span>
-              <h3>Para cambios de joyería</h3>
-              <p>Útil como apoyo cuando manipulaste la pieza o tu perforador te indicó limpieza puntual alrededor.</p>
-            </article>
-            <article class="info-card">
-              <span class="card-icon no-perfume" aria-hidden="true"></span>
-              <h3>Fórmula directa</h3>
-              <p>Sin perfumes añadidos; sulfato de cobre, sulfato de zinc, alcanfor y agua destilada.</p>
-            </article>
-            <article class="info-card">
-              <span class="card-icon studio" aria-hidden="true"></span>
-              <h3>Casa, estudio o mostrador</h3>
-              <p>100 ml para tener a la mano o sumar a productos para piercing México con educación clara.</p>
-            </article>
-          </div>
-        </section>
-
-        <section id="cuando-usar" class="section-pad usage-moments" aria-labelledby="moments-title">
-          <div class="section-heading">
-            <p class="eyebrow">Momentos que importan</p>
-            <h2 id="moments-title">¿Cuándo sí usar Alicyn?</h2>
-            <p>
-              Alicyn es una solución para piercing útil en momentos específicos, no un hábito automático de todos los
-              días. Piénsalo para cuando la perforación estuvo más expuesta o sensible y necesitas cuidado puntual sin
-              manipular de más.
-            </p>
-          </div>
-          <div class="moment-list">
-            <article>
-              <span>01</span>
-              <h3>Cuando hubo roce, jalón o golpe</h3>
-              <p>Para apoyar una limpieza cuidadosa después de un movimiento accidental, un tirón de la joyería o un golpe leve.</p>
-            </article>
-            <article>
-              <span>02</span>
-              <h3>Después de dormir sobre el piercing</h3>
-              <p>Especialmente en cuidado de helix, conch, tragus o lóbulo cuando amaneció más sensible por presión.</p>
-            </article>
-            <article>
-              <span>03</span>
-              <h3>Después de baño, sudor o calle</h3>
-              <p>Gym, transporte público, polvo, maquillaje, skincare, productos para cabello o exposición similar.</p>
-            </article>
-            <article>
-              <span>04</span>
-              <h3>Cuando notas bump o sensibilidad común</h3>
-              <p>Puede apoyar limpieza y comodidad, pero un piercing bump debe revisarse si persiste o cambia.</p>
-            </article>
-            <article>
-              <span>05</span>
-              <h3>Al cambiar joyería o por indicación profesional</h3>
-              <p>Como apoyo puntual durante la primera fase del proceso, siempre que no existan señales de alerta.</p>
-            </article>
-          </div>
-        </section>
-
-        <section id="senales-alerta" class="section-pad alert-section" aria-labelledby="alert-title">
-          <div class="section-heading">
-            <p class="eyebrow">Alicyn Tips</p>
-            <h2 id="alert-title">Antes de usarlo: aprende a reconocer señales de alerta</h2>
-            <p>
-              Un buen cuidado para piercing también significa saber cuándo no improvisar en casa. Alicyn está pensado
-              para piel sana y molestias comunes del proceso. No debe usarse como sustituto de valoración profesional
-              ante signos o señales de infección.
-            </p>
-          </div>
-          <div class="signal-grid">
-            <article class="signal-card">
-              <h3>Molestias comunes del proceso</h3>
-              <ul>
-                <li>Sensibilidad</li>
-                <li>Inflamación visual ligera</li>
-                <li>Enrojecimiento leve localizado</li>
-                <li>Incomodidad al roce</li>
-                <li>Costrita normal o secreción clara/ligeramente amarillenta en pequeñas cantidades</li>
-              </ul>
-            </article>
-            <article class="signal-card signal-card-warning">
-              <h3>Señales para consultar</h3>
-              <ul>
-                <li>Dolor intenso o creciente</li>
-                <li>Calor fuerte en la zona</li>
-                <li>Secreción abundante, espesa, verde, amarilla intensa o con mal olor</li>
-                <li>Fiebre o líneas rojas que se extienden</li>
-                <li>Inflamación que empeora en lugar de mejorar</li>
-                <li>Joyería que se está incrustando</li>
-                <li>Reacción severa, alergia o sangrado persistente</li>
-              </ul>
-            </article>
-          </div>
-          <div class="care-note" role="note">
-            If any of these signs appear, pause self-care experiments and consult your piercer or a healthcare
-            professional.
-          </div>
-        </section>
-
-        <section id="como-usarlo" class="section-pad how-to" aria-labelledby="how-title">
-          <div class="section-heading">
-            <p class="eyebrow">Cómo usarlo</p>
-            <h2 id="how-title">Úsalo solo cuando el momento lo pide.</h2>
-            <p>
-              Para cuidado post piercing puntual: después de sudor, roce, cambio de joyería o molestias en piercing,
-              siempre sobre piel sana y siguiendo la indicación de tu perforador.
-            </p>
-          </div>
-          <ol class="step-grid">
-            <li>
-              <span>01</span>
-              <h3>Lava tus manos</h3>
-              <p>Empieza con manos limpias antes de acercarte a tu piercing.</p>
-            </li>
-            <li>
-              <span>02</span>
-              <h3>Aplica en gasa o cotonete limpio</h3>
-              <p>Usa una cantidad moderada y evita reutilizar materiales.</p>
-            </li>
-            <li>
-              <span>03</span>
-              <h3>Limpia alrededor</h3>
-              <p>No gires ni manipules excesivamente la joyería; trabaja alrededor con calma.</p>
-            </li>
-            <li>
-              <span>04</span>
-              <h3>Deja secar o seca con gasa limpia</h3>
-              <p>Termina con un secado suave para que la zona no quede húmeda.</p>
-            </li>
-          </ol>
-          <div class="care-note" role="note">
-            Alicyn está pensado para piel sana y molestias comunes del proceso. No debe usarse como sustituto de
-            valoración profesional ante signos de infección.
-          </div>
-        </section>
-
-        <section id="detalles" class="section-pad product-details" aria-labelledby="details-title">
-          <div class="section-heading">
-            <p class="eyebrow">Producto</p>
-            <h2 id="details-title">Alicyn 100 ml, listo para tenerlo a la mano.</h2>
-          </div>
-          <div class="details-layout">
-            <div class="details-panel">
-              <h3>Alicyn solución antiséptica</h3>
-              <p>
-                100 ml · pensado para acompañarte en momentos clave del proceso. Fórmula para uso tópico externo, sobre
-                piel sana, cuando hay mayor sensibilidad o exposición. Evita ojos y mucosas.
-              </p>
-              <a class="button button-primary" href="/products/alicyn-solucion-antiseptica">
-                Comprar Alicyn 100 ml &mdash; $300 MXN
-              </a>
-            </div>
-            <dl class="details-list">
-              <div>
-                <dt>Contenido</dt>
-                <dd>100 ml</dd>
-              </div>
-              <div>
-                <dt>Uso</dt>
-                <dd>Externo, puntual y sobre piel sana</dd>
-              </div>
-              <div>
-                <dt>Cuándo usarlo</dt>
-                <dd>Después de sudor, roce, jalón, cambio de joyería o exposición a ambientes no controlados</dd>
-              </div>
-              <div>
-                <dt>Ingredientes</dt>
-                <dd>Sulfato de cobre, sulfato de zinc, alcanfor y agua destilada</dd>
-              </div>
-              <div>
-                <dt>Uso esperado</dt>
-                <dd>100 ml · pensado para acompañarte en momentos clave del proceso.</dd>
-              </div>
-              <div>
-                <dt>Conservación</dt>
-                <dd>Guarda bien cerrado, en lugar fresco, seco y fuera de luz directa</dd>
-              </div>
-              <div>
-                <dt>Qué incluye</dt>
-                <dd>1 frasco Alicyn 100 ml e indicaciones de uso</dd>
-              </div>
-              <div>
-                <dt>Envío</dt>
-                <dd>Envíos a todo México; consulta disponibilidad de salida rápida en CDMX y Edo. Mex</dd>
-              </div>
-            </dl>
-          </div>
-        </section>
-
-        <section id="experiencias" class="section-pad testimonials" aria-labelledby="testimonials-title">
-          <div class="section-heading">
-            <p class="eyebrow">Experiencias</p>
-            <h2 id="testimonials-title">Historias de piercing life, contadas sin exagerar.</h2>
-            <p>
-              Reseñas en el tono de la comunidad Alicyn: directas, humanas y enfocadas en limpieza, frescura y confianza
-              en momentos puntuales de cuidado de nostril, helix, conch, lóbulo, septum y tragus.
-            </p>
-          </div>
-          <div class="review-grid">
-            <article class="review-card">
-              <div class="review-top">
-                <strong>M. R.</strong>
-                <span>Nostril · 5/5</span>
-              </div>
-              <p>
-                "Mi nostril se sentía sensible después de un jalón con la toalla. Lo usé con gasa limpia y me ayudó a
-                sentir que estaba cuidándolo sin tocarlo de más."
-              </p>
-            </article>
-            <article class="review-card">
-              <div class="review-top">
-                <strong>A. G.</strong>
-                <span>Helix · 5/5</span>
-              </div>
-              <p>
-                "Para mi helix lo guardo para cuando dormí sobre ese lado o sudé mucho. Se siente fresco y me recuerda
-                no estar moviendo la joyería."
-              </p>
-            </article>
-            <article class="review-card">
-              <div class="review-top">
-                <strong>L. C.</strong>
-                <span>Conch · 4.8/5</span>
-              </div>
-              <p>
-                "Mi conch se pone sensible con audífonos y cabello. Me gusta tener Alicyn para esos momentos donde quiero
-                limpiar alrededor y seguir mi día."
-              </p>
-            </article>
-            <article class="review-card">
-              <div class="review-top">
-                <strong>D. S.</strong>
-                <span>Lóbulo · 5/5</span>
-              </div>
-              <p>
-                "Después del gym mis lóbulos se sentían incómodos. Lo uso cuando hubo sudor o polvo, no como pretexto
-                para estar tocándolos todo el día."
-              </p>
-            </article>
-            <article class="review-card">
-              <div class="review-top">
-                <strong>P. V.</strong>
-                <span>Septum · 4.9/5</span>
-              </div>
-              <p>
-                "Me gusta que la marca habla claro. Para mi septum lo uso solo por fuera, evito mucosa y si algo se ve
-                raro prefiero preguntar."
-              </p>
-            </article>
-            <article class="review-card">
-              <div class="review-top">
-                <strong>R. N.</strong>
-                <span>Tragus · 5/5</span>
-              </div>
-              <p>
-                "El tragus me molestó después de un golpe pequeño con el audífono. Tenerlo en casa me ayudó a limpiar
-                con calma y escribirle a mi perforador si tenía duda."
-              </p>
-            </article>
-          </div>
-          <p class="section-disclaimer">
-            Las experiencias pueden variar. Alicyn no sustituye la valoración de un perforador profesional.
-          </p>
-        </section>
-
-        <section id="rutina" class="section-pad story-section" aria-labelledby="story-title">
-          <div class="section-heading">
-            <p class="eyebrow">Antes / Durante / Después</p>
-            <h2 id="story-title">No son fotos médicas. Es la historia de cuidar sin pánico.</h2>
-          </div>
-          <div class="story-grid">
-            <article>
-              <span>Antes</span>
-              <h3>Me dio un jalón y me preocupé</h3>
-              <p>
-                La joyería se sintió delicada, el área más sensible y apareció la duda: limpiar, tocar menos o mandar
-                mensaje para preguntar.
-              </p>
-            </article>
-            <article>
-              <span>Durante</span>
-              <h3>Revisé señales antes de actuar</h3>
-              <p>
-                Si parece molestia común, uso manos lavadas, gasa limpia y movimientos suaves. Si aparece una señal de
-                alerta, pauso y consulto.
-              </p>
-            </article>
-            <article>
-              <span>Después</span>
-              <h3>Ahora cuido sin manipular de más</h3>
-              <p>
-                Alicyn acompaña el momento clave con sensación fresca y limpieza responsable, sin sustituir el consejo
-                profesional.
-              </p>
-            </article>
-          </div>
-        </section>
-
-        <section id="estudios" class="section-pad studios" aria-labelledby="studios-title">
-          <div class="studio-copy">
-            <p class="eyebrow">Alicyn para piercers</p>
-            <h2 id="studios-title">Una opción fácil de explicar en cabina y mostrador.</h2>
-            <p>
-              La comunidad de Instagram pregunta por DM, pedidos y paquetes para estudios. Aquí lo traducimos a una
-              propuesta clara: aftercare piercing México con educación honesta, soporte por WhatsApp y material visual
-              para clientes.
-            </p>
-            <ul class="studio-list" aria-label="Beneficios para estudios">
-              <li>Mayoristas y paquetes para piercers o estudios</li>
-              <li>Material visual con instrucciones y señales para consultar</li>
-              <li>Soporte por WhatsApp para pedidos, dudas y recompra</li>
-              <li>Consulta disponibilidad para CDMX, Edo. Mex y envíos nacionales</li>
-            </ul>
-            <a class="button button-secondary" href="/pages/mayoreo-alicyn">Solicitar acceso a mayoreo</a>
-          </div>
-          {% render 'alicyn-wholesale-pricing',
-            wholesale_pack_5_handle: section.settings.wholesale_pack_5_handle,
-            wholesale_pack_10_handle: section.settings.wholesale_pack_10_handle,
-            wholesale_pack_20_handle: section.settings.wholesale_pack_20_handle,
-            wholesale_pack_50_handle: section.settings.wholesale_pack_50_handle
-          %}
-        </section>
-
-        <section id="faq" class="section-pad faq-section" aria-labelledby="faq-title">
-          <div class="section-heading">
-            <p class="eyebrow">FAQ</p>
-            <h2 id="faq-title">Preguntas frecuentes</h2>
-          </div>
-          <div class="faq-list" data-faq-list>
-            <article class="faq-item">
-              <h3>
-                <button class="faq-question" type="button" aria-expanded="false" aria-controls="faq-1">
-                  ¿Alicyn es para uso diario?
-                  <span aria-hidden="true"></span>
-                </button>
-              </h3>
-              <div id="faq-1" class="faq-answer" hidden>
-                <p>
-                  No necesariamente. Alicyn está pensado para momentos clave: sudor, roce, jalón, cambio de joyería,
-                  piercing bump o sensibilidad común. Sigue siempre la indicación de tu perforador.
-                </p>
-              </div>
-            </article>
-            <article class="faq-item">
-              <h3>
-                <button class="faq-question" type="button" aria-expanded="false" aria-controls="faq-2">
-                  ¿Cuándo conviene usar Alicyn?
-                  <span aria-hidden="true"></span>
-                </button>
-              </h3>
-              <div id="faq-2" class="faq-answer" hidden>
-                <p>
-                  Cuando hubo roce, jalón, golpe, exposición a sudor/polvo, después de dormir sobre la pieza, al cambiar
-                  joyería o cuando sientes molestias comunes del proceso, siempre que no existan señales de infección.
-                </p>
-              </div>
-            </article>
-            <article class="faq-item">
-              <h3>
-                <button class="faq-question" type="button" aria-expanded="false" aria-controls="faq-3">
-                  ¿Puedo usar Alicyn si mi piercing está infectado?
-                  <span aria-hidden="true"></span>
-                </button>
-              </h3>
-              <div id="faq-3" class="faq-answer" hidden>
-                <p>
-                  No lo uses como sustituto de atención profesional. Si hay signos de infección, consulta a tu
-                  perforador o a un profesional de salud antes de seguir probando productos.
-                </p>
-              </div>
-            </article>
-            <article class="faq-item">
-              <h3>
-                <button class="faq-question" type="button" aria-expanded="false" aria-controls="faq-4">
-                  ¿Qué signos pueden indicar infección?
-                  <span aria-hidden="true"></span>
-                </button>
-              </h3>
-              <div id="faq-4" class="faq-answer" hidden>
-                <p>
-                  Dolor intenso o creciente, calor fuerte, secreción abundante o espesa, color verde o amarillo intenso,
-                  mal olor, fiebre, líneas rojas, inflamación que empeora, joyería incrustada, reacción severa, alergia
-                  o sangrado persistente. Si aparece algo de esto, pausa experimentos de autocuidado y consulta.
-                </p>
-              </div>
-            </article>
-            <article class="faq-item">
-              <h3>
-                <button class="faq-question" type="button" aria-expanded="false" aria-controls="faq-5">
-                  ¿Sirve para piercing bump?
-                  <span aria-hidden="true"></span>
-                </button>
-              </h3>
-              <div id="faq-5" class="faq-answer" hidden>
-                <p>
-                  Puede ayudar a mantener limpia la zona y aliviar molestias comunes, pero un piercing bump puede
-                  deberse a ángulo, joyería, trauma, presión o irritación. Lo correcto es revisarlo con un perforador.
-                </p>
-              </div>
-            </article>
-            <article class="faq-item">
-              <h3>
-                <button class="faq-question" type="button" aria-expanded="false" aria-controls="faq-6">
-                  ¿Por qué no usarlo todo el tiempo?
-                  <span aria-hidden="true"></span>
-                </button>
-              </h3>
-              <div id="faq-6" class="faq-answer" hidden>
-                <p>
-                  Porque el cuidado responsable también implica no manipular de más. Alicyn acompaña momentos
-                  específicos; no reemplaza una rutina simple, el criterio de tu piercer ni la valoración profesional.
-                </p>
-              </div>
-            </article>
-            <article class="faq-item">
-              <h3>
-                <button class="faq-question" type="button" aria-expanded="false" aria-controls="faq-7">
-                  ¿Alicyn reemplaza atención profesional?
-                  <span aria-hidden="true"></span>
-                </button>
-              </h3>
-              <div id="faq-7" class="faq-answer" hidden>
-                <p>
-                  No. Alicyn apoya una limpieza responsable en piel sana y molestias comunes. Si tienes duda, mándanos
-                  WhatsApp y, ante señales de infección, busca valoración profesional.
-                </p>
-              </div>
-            </article>
-            <article class="faq-item">
-              <h3>
-                <button class="faq-question" type="button" aria-expanded="false" aria-controls="faq-8">
-                  ¿Alicyn cambia el tiempo del proceso?
-                  <span aria-hidden="true"></span>
-                </button>
-              </h3>
-              <div id="faq-8" class="faq-answer" hidden>
-                <p>
-                  No hacemos promesas sobre tiempos. Tu cuerpo lleva su propio proceso; Alicyn acompaña momentos de mayor
-                  sensibilidad con limpieza responsable y sensación calmante.
-                </p>
-              </div>
-            </article>
-            <article class="faq-item">
-              <h3>
-                <button class="faq-question" type="button" aria-expanded="false" aria-controls="faq-9">
-                  ¿Puedo usarlo en nostril o helix?
-                  <span aria-hidden="true"></span>
-                </button>
-              </h3>
-              <div id="faq-9" class="faq-answer" hidden>
-                <p>
-                  Sí, como cuidado de nostril o cuidado de helix en la parte externa y alrededor de la joyería. Evita
-                  mucosas, no introduzcas producto dentro de la nariz y no muevas la pieza de más.
-                </p>
-              </div>
-            </article>
-            <article class="faq-item">
-              <h3>
-                <button class="faq-question" type="button" aria-expanded="false" aria-controls="faq-10">
-                  ¿Puedo usarlo en mucosas?
-                  <span aria-hidden="true"></span>
-                </button>
-              </h3>
-              <div id="faq-10" class="faq-answer" hidden>
-                <p>No. Alicyn es de uso externo. Evita ojos, boca, interior de nariz y cualquier mucosa.</p>
-              </div>
-            </article>
-            <article class="faq-item">
-              <h3>
-                <button class="faq-question" type="button" aria-expanded="false" aria-controls="faq-11">
-                  ¿Qué hago si me arde demasiado?
-                  <span aria-hidden="true"></span>
-                </button>
-              </h3>
-              <div id="faq-11" class="faq-answer" hidden>
-                <p>
-                  Suspende el uso, enjuaga con agua limpia si es necesario y consulta a tu perforador o profesional de
-                  salud si la molestia persiste o empeora.
-                </p>
-              </div>
-            </article>
-            <article class="faq-item">
-              <h3>
-                <button class="faq-question" type="button" aria-expanded="false" aria-controls="faq-12">
-                  ¿Cuánto dura un frasco?
-                  <span aria-hidden="true"></span>
-                </button>
-              </h3>
-              <div id="faq-12" class="faq-answer" hidden>
-                <p>
-                  No prometemos una duración exacta. 100 ml · pensado para acompañarte en momentos clave del proceso.
-                </p>
-              </div>
-            </article>
-            <article class="faq-item">
-              <h3>
-                <button class="faq-question" type="button" aria-expanded="false" aria-controls="faq-13">
-                  ¿Hacen envíos a todo México?
-                  <span aria-hidden="true"></span>
-                </button>
-              </h3>
-              <div id="faq-13" class="faq-answer" hidden>
-                <p>
-                  Sí. Hay envíos a todo México y puedes consultar por WhatsApp disponibilidad de salida rápida para CDMX
-                  y Edo. Mex.
-                </p>
-              </div>
-            </article>
-          </div>
-        </section>
-
-        <section class="final-cta section-pad" aria-labelledby="final-title">
-          <p class="eyebrow">Alicyn Piercing Aftercare</p>
-          <h2 id="final-title">Tenlo listo para esos momentos en los que tu perforación se siente más vulnerable.</h2>
-          <p>
-            Cuidado post piercing puntual de uso tópico externo, pensado para limpieza responsable y sensación calmante
-            cuando hay mayor sensibilidad, roce o exposición.
-          </p>
-          <div class="hero-actions">
-            <a class="button button-primary" href="/products/alicyn-solucion-antiseptica">
-              Comprar Alicyn 100 ml &mdash; $300 MXN
-            </a>
-            <a
-              class="button button-secondary"
-              href="https://wa.me/525542388056?text=Hola%2C%20quiero%20comprar%20Alicyn"
-              target="_blank"
-              rel="noopener noreferrer"
+      <div class="hero-product" aria-label="Imagen de producto Alicyn">
+        <!-- PRODUCT IMAGE BLOCK
+          Preferred: choose the product image from the Shopify theme editor.
+          Fallback asset path for GitHub/theme uploads: assets/alicyn-product.png
+        -->
+        <div class="product-stage" data-product-image-wrap>
+          {% if section.settings.product_image != blank %}
+            <img
+              class="product-photo"
+              src="{{ section.settings.product_image | image_url: width: 760 }}"
+              srcset="
+                {{ section.settings.product_image | image_url: width: 320 }} 320w,
+                {{ section.settings.product_image | image_url: width: 520 }} 520w,
+                {{ section.settings.product_image | image_url: width: 760 }} 760w
+              "
+              sizes="(min-width: 900px) 360px, 78vw"
+              alt="{{ section.settings.product_image_alt | escape }}"
+              width="640"
+              height="840"
+              loading="lazy"
+              decoding="async"
+              data-product-image
             >
-              Comprar por WhatsApp
-            </a>
-          </div>
-        </section>
-      </main>
-
-      <section class="chat-widget" aria-label="Chat de ayuda Alicyn">
-        <button
-          class="chat-toggle"
-          type="button"
-          aria-expanded="false"
-          aria-controls="chat-panel"
-          aria-label="Abrir ayuda por WhatsApp"
-        >
-          <svg aria-hidden="true" viewBox="0 0 24 24" focusable="false">
-            <path d="M5 19.5 6.2 16A7.5 7.5 0 1 1 9 18.4l-4 1.1Z"></path>
-            <path d="M8.8 10.2c.6 1.4 1.7 2.5 3 3.1.4.2.7.1.9-.2l.5-.6c.2-.3.5-.4.8-.3l1.5.6c.3.1.5.4.5.7 0 .7-.5 1.3-1.1 1.5-1 .3-2.9-.1-4.7-1.9-1.9-1.8-2.3-3.7-1.9-4.7.2-.6.8-1.1 1.5-1.1.3 0 .6.2.7.5l.6 1.5c.1.3 0 .6-.3.8l-.6.5c-.3.2-.4.5-.2.9Z"></path>
-          </svg>
-        </button>
-        <div id="chat-panel" class="chat-panel" role="dialog" aria-modal="false" aria-labelledby="chat-title" hidden>
-          <div class="chat-header">
-            <div>
-              <p id="chat-title">Alicyn por WhatsApp</p>
-              <span>Pedidos, dudas y soporte para piercers.</span>
+          {% else %}
+            <img
+              class="product-photo"
+              src="{{ 'alicyn-product.png' | asset_url }}"
+              alt="{{ section.settings.product_image_alt | escape }}"
+              width="640"
+              height="840"
+              loading="lazy"
+              decoding="async"
+              data-product-image
+            >
+          {% endif %}
+          <div class="bottle-placeholder" aria-hidden="true">
+            <div class="bottle-cap"></div>
+            <div class="bottle-neck"></div>
+            <div class="bottle-body">
+              <span class="bottle-brand">ALICYN</span>
+              <span class="bottle-line"></span>
+              <span class="bottle-copy">Solución antiséptica</span>
+              <span class="bottle-size">{{ product_size | escape }}</span>
             </div>
-            <button class="chat-close" type="button" aria-label="Cerrar ayuda">Cerrar</button>
           </div>
-          <div class="quick-questions" aria-label="Preguntas rápidas">
-            <button type="button" data-chat-message="Hola, quiero comprar Alicyn 100 ml.">Quiero comprar</button>
-            <button type="button" data-chat-message="Hola, tengo un piercing bump o sensibilidad común y quiero saber si Alicyn puede ayudar como apoyo puntual.">Piercing bump</button>
-            <button type="button" data-chat-message="Hola, soy piercer/estudio y quiero cotizar paquetes de Alicyn.">Soy piercer</button>
-            <button type="button" data-chat-message="Hola, quiero saber si hay envío disponible para mi ciudad.">Envíos</button>
+          <div class="product-note">
+            <span>{{ section.settings.product_note_label | escape }}</span>
+            <strong>{{ section.settings.product_note_value | escape }}</strong>
           </div>
-          <label class="chat-label" for="chat-message">Mensaje</label>
-          <textarea id="chat-message" rows="3">Hola, quiero comprar Alicyn 100 ml.</textarea>
-          <a
-            id="chat-whatsapp-link"
-            class="button button-primary chat-send"
-            href="https://wa.me/525542388056?text=Hola%2C%20quiero%20comprar%20Alicyn"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Abrir WhatsApp
-          </a>
         </div>
-      </section>
+        <!-- END PRODUCT IMAGE BLOCK -->
+      </div>
+    </section>
 
-      <a class="sticky-mobile-cta" href="/products/alicyn-solucion-antiseptica">
-        Comprar Alicyn 100 ml &mdash; $300
-      </a>
+    {% if section.settings.show_packs %}
+      {% render 'alicyn-product-packs',
+        product_single_handle: section.settings.product_single_handle,
+        product_pack_2_handle: section.settings.product_pack_2_handle,
+        product_pack_3_handle: section.settings.product_pack_3_handle,
+        product_pack_5_handle: section.settings.product_pack_5_handle,
+        packs_eyebrow: section.settings.packs_eyebrow,
+        packs_heading: section.settings.packs_heading,
+        packs_copy: section.settings.packs_copy,
+        whatsapp_url: whatsapp_url
+      %}
+    {% endif %}
 
-      <footer class="site-footer" aria-label="Pie de página">
+    {% if section.settings.show_rewards %}
+      {% render 'alicyn-rewards',
+        product_url: product_url,
+        rewards_eyebrow: section.settings.rewards_eyebrow,
+        rewards_heading: section.settings.rewards_heading,
+        rewards_copy: section.settings.rewards_copy
+      %}
+    {% endif %}
+
+    {% for block in section.blocks %}
+      {% case block.type %}
+        {% when '@app' %}
+          <div class="alicyn-app-block section-pad" {{ block.shopify_attributes }}>
+            {% render block %}
+          </div>
+      {% endcase %}
+    {% endfor %}
+
+    <section class="trust-strip" aria-label="Puntos de confianza">
+      {% for block in section.blocks %}
+        {% case block.type %}
+          {% when 'trust_badge' %}
+            <div class="trust-item" {{ block.shopify_attributes }}>
+              <span class="mini-icon" aria-hidden="true"></span>
+              {{ block.settings.text | escape }}
+            </div>
+        {% endcase %}
+      {% endfor %}
+    </section>
+
+    <section id="beneficios" class="section-pad benefits" aria-labelledby="benefits-title">
+      <div class="section-heading">
+        <p class="eyebrow">{{ section.settings.benefits_eyebrow | escape }}</p>
+        <h2 id="benefits-title">{{ section.settings.benefits_heading | escape }}</h2>
+        <p>{{ section.settings.benefits_copy | escape | newline_to_br }}</p>
+      </div>
+      <div class="card-grid six-grid">
+        {% for block in section.blocks %}
+          {% case block.type %}
+            {% when 'benefit' %}
+              <article class="info-card" {{ block.shopify_attributes }}>
+                <span class="card-icon {{ block.settings.icon }}" aria-hidden="true"></span>
+                <h3>{{ block.settings.title | escape }}</h3>
+                <p>{{ block.settings.text | escape }}</p>
+              </article>
+          {% endcase %}
+        {% endfor %}
+      </div>
+    </section>
+
+    <section id="cuando-usar" class="section-pad usage-moments" aria-labelledby="moments-title">
+      <div class="section-heading">
+        <p class="eyebrow">{{ section.settings.moments_eyebrow | escape }}</p>
+        <h2 id="moments-title">{{ section.settings.moments_heading | escape }}</h2>
+        <p>{{ section.settings.moments_copy | escape | newline_to_br }}</p>
+      </div>
+      <div class="moment-list">
+        {% for block in section.blocks %}
+          {% case block.type %}
+            {% when 'usage_moment' %}
+              <article {{ block.shopify_attributes }}>
+                <span>{{ block.settings.number | escape }}</span>
+                <h3>{{ block.settings.title | escape }}</h3>
+                <p>{{ block.settings.text | escape }}</p>
+              </article>
+          {% endcase %}
+        {% endfor %}
+      </div>
+    </section>
+
+    <section id="senales-alerta" class="section-pad alert-section" aria-labelledby="alert-title">
+      <div class="section-heading">
+        <p class="eyebrow">{{ section.settings.alert_eyebrow | escape }}</p>
+        <h2 id="alert-title">{{ section.settings.alert_heading | escape }}</h2>
+        <p>{{ section.settings.alert_copy | escape | newline_to_br }}</p>
+      </div>
+      <div class="signal-grid">
+        <article class="signal-card">
+          <h3>{{ section.settings.alert_common_heading | escape }}</h3>
+          <p class="signal-list-text">{{ section.settings.alert_common_items | escape | newline_to_br }}</p>
+        </article>
+        <article class="signal-card signal-card-warning">
+          <h3>{{ section.settings.alert_warning_heading | escape }}</h3>
+          <p class="signal-list-text">{{ section.settings.alert_warning_items | escape | newline_to_br }}</p>
+        </article>
+      </div>
+      <div class="care-note" role="note">
+        {{ section.settings.alert_note | escape | newline_to_br }}
+      </div>
+    </section>
+
+    <section id="como-usarlo" class="section-pad how-to" aria-labelledby="how-title">
+      <div class="section-heading">
+        <p class="eyebrow">{{ section.settings.how_eyebrow | escape }}</p>
+        <h2 id="how-title">{{ section.settings.how_heading | escape }}</h2>
+        <p>{{ section.settings.how_copy | escape | newline_to_br }}</p>
+      </div>
+      <ol class="step-grid">
+        {% for block in section.blocks %}
+          {% case block.type %}
+            {% when 'usage_step' %}
+              <li {{ block.shopify_attributes }}>
+                <span>{{ block.settings.number | escape }}</span>
+                <h3>{{ block.settings.title | escape }}</h3>
+                <p>{{ block.settings.text | escape }}</p>
+              </li>
+          {% endcase %}
+        {% endfor %}
+      </ol>
+      <div class="care-note" role="note">
+        {{ section.settings.how_note | escape | newline_to_br }}
+      </div>
+    </section>
+
+    <section id="detalles" class="section-pad product-details" aria-labelledby="details-title">
+      <div class="section-heading">
+        <p class="eyebrow">{{ section.settings.details_eyebrow | escape }}</p>
+        <h2 id="details-title">{{ section.settings.details_heading | escape }}</h2>
+      </div>
+      <div class="details-layout">
+        <div class="details-panel">
+          <h3>{{ section.settings.details_product_title | escape }}</h3>
+          <p>{{ section.settings.details_summary | escape | newline_to_br }}</p>
+          <a class="button button-primary" href="{{ product_url | escape }}">{{ section.settings.details_cta_label | escape }}</a>
+        </div>
+        <dl class="details-list">
+          <div>
+            <dt>{{ section.settings.detail_1_label | escape }}</dt>
+            <dd>{{ section.settings.detail_1_value | escape }}</dd>
+          </div>
+          <div>
+            <dt>{{ section.settings.detail_2_label | escape }}</dt>
+            <dd>{{ section.settings.detail_2_value | escape }}</dd>
+          </div>
+          <div>
+            <dt>{{ section.settings.detail_3_label | escape }}</dt>
+            <dd>{{ section.settings.detail_3_value | escape }}</dd>
+          </div>
+          <div>
+            <dt>{{ section.settings.detail_4_label | escape }}</dt>
+            <dd>{{ section.settings.detail_4_value | escape }}</dd>
+          </div>
+          <div>
+            <dt>{{ section.settings.detail_5_label | escape }}</dt>
+            <dd>{{ section.settings.detail_5_value | escape }}</dd>
+          </div>
+          <div>
+            <dt>{{ section.settings.detail_6_label | escape }}</dt>
+            <dd>{{ section.settings.detail_6_value | escape }}</dd>
+          </div>
+          <div>
+            <dt>{{ section.settings.detail_7_label | escape }}</dt>
+            <dd>{{ section.settings.detail_7_value | escape }}</dd>
+          </div>
+          <div>
+            <dt>{{ section.settings.detail_8_label | escape }}</dt>
+            <dd>{{ section.settings.detail_8_value | escape }}</dd>
+          </div>
+        </dl>
+      </div>
+    </section>
+
+    <section id="experiencias" class="section-pad experiences" aria-labelledby="reviews-title">
+      <div class="section-heading">
+        <p class="eyebrow">{{ section.settings.reviews_eyebrow | escape }}</p>
+        <h2 id="reviews-title">{{ section.settings.reviews_heading | escape }}</h2>
+        <p>{{ section.settings.reviews_copy | escape | newline_to_br }}</p>
+      </div>
+      <div class="review-grid">
+        {% for block in section.blocks %}
+          {% case block.type %}
+            {% when 'testimonial' %}
+              <article class="review-card" {{ block.shopify_attributes }}>
+                <div class="review-top">
+                  <strong>{{ block.settings.initials | escape }} · {{ block.settings.piercing | escape }}</strong>
+                  <span>{{ block.settings.rating | escape }}</span>
+                </div>
+                <p>{{ block.settings.text | escape }}</p>
+              </article>
+          {% endcase %}
+        {% endfor %}
+      </div>
+      <div class="section-disclaimer">{{ section.settings.reviews_disclaimer | escape }}</div>
+    </section>
+
+    <section class="section-pad story-section" aria-labelledby="story-title">
+      <div class="section-heading">
+        <p class="eyebrow">{{ section.settings.story_eyebrow | escape }}</p>
+        <h2 id="story-title">{{ section.settings.story_heading | escape }}</h2>
+      </div>
+      <div class="story-grid">
+        {% for block in section.blocks %}
+          {% case block.type %}
+            {% when 'story_card' %}
+              <article {{ block.shopify_attributes }}>
+                <span>{{ block.settings.stage | escape }}</span>
+                <h3>{{ block.settings.title | escape }}</h3>
+                <p>{{ block.settings.text | escape }}</p>
+              </article>
+          {% endcase %}
+        {% endfor %}
+      </div>
+    </section>
+
+    <section id="estudios" class="section-pad studios" aria-labelledby="studios-title">
+      <div class="studio-copy">
+        <p class="eyebrow">{{ section.settings.studios_eyebrow | escape }}</p>
+        <h2 id="studios-title">{{ section.settings.studios_heading | escape }}</h2>
+        <p>{{ section.settings.studios_copy | escape | newline_to_br }}</p>
+        <div class="studio-list-text">{{ section.settings.studios_features | escape | newline_to_br }}</div>
+        <a class="button button-secondary" href="{{ section.settings.wholesale_request_url | escape }}">{{ section.settings.studios_cta_label | escape }}</a>
+      </div>
+      {% render 'alicyn-wholesale-pricing',
+        wholesale_pack_5_handle: section.settings.wholesale_pack_5_handle,
+        wholesale_pack_10_handle: section.settings.wholesale_pack_10_handle,
+        wholesale_pack_20_handle: section.settings.wholesale_pack_20_handle,
+        wholesale_pack_50_handle: section.settings.wholesale_pack_50_handle,
+        wholesale_eyebrow: section.settings.wholesale_eyebrow,
+        wholesale_heading: section.settings.wholesale_heading,
+        wholesale_copy: section.settings.wholesale_copy,
+        wholesale_request_eyebrow: section.settings.wholesale_request_eyebrow,
+        wholesale_request_heading: section.settings.wholesale_request_heading,
+        wholesale_request_copy: section.settings.wholesale_request_copy,
+        wholesale_request_button: section.settings.wholesale_request_button,
+        wholesale_request_url: section.settings.wholesale_request_url
+      %}
+    </section>
+
+    <section id="faq" class="section-pad faq-section" aria-labelledby="faq-title">
+      <div class="section-heading">
+        <p class="eyebrow">{{ section.settings.faq_eyebrow | escape }}</p>
+        <h2 id="faq-title">{{ section.settings.faq_heading | escape }}</h2>
+      </div>
+      <div class="faq-list" data-faq-list>
+        {% assign faq_index = 0 %}
+        {% for block in section.blocks %}
+          {% case block.type %}
+            {% when 'faq_item' %}
+              {% assign faq_index = faq_index | plus: 1 %}
+              <article class="faq-item" {{ block.shopify_attributes }}>
+                <h3>
+                  <button class="faq-question" type="button" aria-expanded="false" aria-controls="faq-{{ faq_index }}">
+                    {{ block.settings.question | escape }}
+                    <span aria-hidden="true"></span>
+                  </button>
+                </h3>
+                <div id="faq-{{ faq_index }}" class="faq-answer" hidden>
+                  <p>{{ block.settings.answer | escape | newline_to_br }}</p>
+                </div>
+              </article>
+          {% endcase %}
+        {% endfor %}
+      </div>
+    </section>
+
+    <section class="final-cta section-pad" aria-labelledby="final-title">
+      <p class="eyebrow">{{ section.settings.final_eyebrow | escape }}</p>
+      <h2 id="final-title">{{ section.settings.final_heading | escape }}</h2>
+      <p>{{ section.settings.final_copy | escape | newline_to_br }}</p>
+      <div class="hero-actions">
+        <a class="button button-primary" href="{{ product_url | escape }}">{{ section.settings.final_primary_label | escape }}</a>
+        <a class="button button-secondary" href="{{ whatsapp_url | escape }}" target="_blank" rel="noopener noreferrer">
+          {{ section.settings.final_secondary_label | escape }}
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <section class="chat-widget" aria-label="Chat de ayuda Alicyn">
+    <button
+      class="chat-toggle"
+      type="button"
+      aria-expanded="false"
+      aria-controls="chat-panel"
+      aria-label="Abrir ayuda por WhatsApp"
+    >
+      <svg aria-hidden="true" viewBox="0 0 24 24" focusable="false">
+        <path d="M5 19.5 6.2 16A7.5 7.5 0 1 1 9 18.4l-4 1.1Z"></path>
+        <path d="M8.8 10.2c.6 1.4 1.7 2.5 3 3.1.4.2.7.1.9-.2l.5-.6c.2-.3.5-.4.8-.3l1.5.6c.3.1.5.4.5.7 0 .7-.5 1.3-1.1 1.5-1 .3-2.9-.1-4.7-1.9-1.9-1.8-2.3-3.7-1.9-4.7.2-.6.8-1.1 1.5-1.1.3 0 .6.2.7.5l.6 1.5c.1.3 0 .6-.3.8l-.6.5c-.3.2-.4.5-.2.9Z"></path>
+      </svg>
+    </button>
+    <div id="chat-panel" class="chat-panel" role="dialog" aria-modal="false" aria-labelledby="chat-title" hidden>
+      <div class="chat-header">
         <div>
-          <a class="brand footer-brand" href="#producto">
-            <span class="brand-drop" aria-hidden="true"></span>
-            <span>alicyn</span>
-          </a>
-          <p>
-            Piercing aftercare de uso tópico para cuidado post piercing puntual. Solo uso externo. Evita ojos y mucosas.
-            Usa sobre piel sana. Consulta a tu perforador si tienes dudas o si las molestias empeoran.
-          </p>
+          <p id="chat-title">{{ section.settings.chat_title | escape }}</p>
+          <span>{{ section.settings.chat_subtitle | escape }}</span>
         </div>
-        <nav aria-label="Enlaces rápidos">
-          <a href="#producto">Producto</a>
-          <a href="#beneficios">Beneficios</a>
-          <a href="#como-usarlo">Cómo usarlo</a>
-          <a href="#experiencias">Experiencias</a>
-          <a href="#estudios">Estudios</a>
-          <a href="#faq">FAQ</a>
-        </nav>
-        <div class="footer-contact">
-          <a
-            href="https://wa.me/525542388056?text=Hola%2C%20quiero%20comprar%20Alicyn"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            WhatsApp
-          </a>
-          <a href="https://www.instagram.com/alicyn.mx/" target="_blank" rel="noopener noreferrer">Instagram</a>
-          <span>Solo uso externo</span>
-          <span>Consulta a tu perforador si tienes dudas</span>
-        </div>
-      </footer>
+        <button class="chat-close" type="button" aria-label="Cerrar ayuda">{{ section.settings.chat_close_label | escape }}</button>
+      </div>
+      <div class="quick-questions" aria-label="Preguntas rápidas">
+        {% for block in section.blocks %}
+          {% case block.type %}
+            {% when 'chat_quick_reply' %}
+              <button type="button" data-chat-message="{{ block.settings.message | escape }}" {{ block.shopify_attributes }}>
+                {{ block.settings.label | escape }}
+              </button>
+          {% endcase %}
+        {% endfor %}
+      </div>
+      <label class="chat-label" for="chat-message">{{ section.settings.chat_message_label | escape }}</label>
+      <textarea id="chat-message" rows="3">{{ section.settings.chat_default_message | escape }}</textarea>
+      <a
+        id="chat-whatsapp-link"
+        class="button button-primary chat-send"
+        href="{{ whatsapp_url | escape }}"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        {{ section.settings.chat_send_label | escape }}
+      </a>
     </div>
+  </section>
+
+  <a class="sticky-mobile-cta" href="{{ product_url | escape }}">
+    {{ sticky_cta_label | escape }}
+  </a>
+
+  <footer class="site-footer" aria-label="Pie de página">
+    <div>
+      <a class="brand footer-brand" href="#producto">
+        <span class="brand-drop" aria-hidden="true"></span>
+        <span>{{ section.settings.brand_text | escape }}</span>
+      </a>
+      <p>{{ section.settings.footer_copy | escape | newline_to_br }}</p>
+    </div>
+    <nav aria-label="Enlaces rápidos">
+      <a href="#producto">Producto</a>
+      <a href="#beneficios">Beneficios</a>
+      <a href="#como-usarlo">Cómo usarlo</a>
+      <a href="#experiencias">Experiencias</a>
+      <a href="#estudios">Estudios</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+    <div class="footer-contact">
+      <a href="{{ whatsapp_url | escape }}" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+      <a href="{{ instagram_url | escape }}" target="_blank" rel="noopener noreferrer">Instagram</a>
+      <span>{{ section.settings.footer_badge_1 | escape }}</span>
+      <span>{{ section.settings.footer_badge_2 | escape }}</span>
+    </div>
+  </footer>
+</div>
 
 {% schema %}
 {
   "name": "Alicyn Landing",
+  "max_blocks": 50,
   "settings": [
+    {
+      "type": "header",
+      "content": "General"
+    },
+    {
+      "type": "text",
+      "id": "product_url",
+      "label": "Product URL",
+      "default": "/products/alicyn-solucion-antiseptica"
+    },
+    {
+      "type": "text",
+      "id": "whatsapp_url",
+      "label": "WhatsApp URL",
+      "default": "https://wa.me/525542388056?text=Hola%2C%20quiero%20comprar%20Alicyn"
+    },
+    {
+      "type": "text",
+      "id": "instagram_url",
+      "label": "Instagram URL",
+      "default": "https://www.instagram.com/alicyn.mx/"
+    },
+    {
+      "type": "text",
+      "id": "brand_text",
+      "label": "Brand text",
+      "default": "alicyn"
+    },
+    {
+      "type": "text",
+      "id": "announcement_text",
+      "label": "Announcement bar",
+      "default": "100 ml · Piercing Aftercare by Alicyn MX · envíos a todo México"
+    },
+    {
+      "type": "text",
+      "id": "header_cta_label",
+      "label": "Header CTA label",
+      "default": "Comprar"
+    },
+    {
+      "type": "text",
+      "id": "product_size",
+      "label": "Product size",
+      "default": "100 ml"
+    },
+    {
+      "type": "text",
+      "id": "product_price",
+      "label": "Schema price amount",
+      "default": "300.00"
+    },
+    {
+      "type": "text",
+      "id": "product_price_label",
+      "label": "Displayed price label",
+      "default": "$300 MXN"
+    },
+    {
+      "type": "header",
+      "content": "Hero"
+    },
+    {
+      "type": "text",
+      "id": "hero_eyebrow",
+      "label": "Hero eyebrow",
+      "default": "Piercing Aftercare by Alicyn MX"
+    },
+    {
+      "type": "text",
+      "id": "hero_heading",
+      "label": "Hero heading",
+      "default": "Cuida tus perforaciones en los momentos que más lo necesitan."
+    },
+    {
+      "type": "textarea",
+      "id": "hero_copy",
+      "label": "Hero copy",
+      "default": "No es para tocar tu piercing todo el día. Alicyn 100 ml acompaña esos momentos reales: después de sudar, dormir sobre la pieza, recibir un jalón, cambiar joyería o notar sensibilidad común. Limpieza responsable y sensación calmante para piel sana, con la guía de tu perforador siempre al centro."
+    },
+    {
+      "type": "text",
+      "id": "primary_cta_label",
+      "label": "Primary CTA label",
+      "default": "Comprar Alicyn 100 ml — $300 MXN"
+    },
+    {
+      "type": "text",
+      "id": "secondary_cta_label",
+      "label": "Secondary CTA label",
+      "default": "Ver cómo se usa"
+    },
+    {
+      "type": "image_picker",
+      "id": "product_image",
+      "label": "Product image"
+    },
+    {
+      "type": "text",
+      "id": "product_image_alt",
+      "label": "Product image alt text",
+      "default": "Frasco de Alicyn solución antiséptica para cuidado post-piercing, 100 ml"
+    },
+    {
+      "type": "text",
+      "id": "product_note_label",
+      "label": "Product note label",
+      "default": "Fórmula simple"
+    },
+    {
+      "type": "text",
+      "id": "product_note_value",
+      "label": "Product note value",
+      "default": "$300 MXN"
+    },
+    {
+      "type": "text",
+      "id": "hero_fact_1_label",
+      "label": "Hero fact 1 label",
+      "default": "Contenido"
+    },
+    {
+      "type": "text",
+      "id": "hero_fact_1_value",
+      "label": "Hero fact 1 value",
+      "default": "100 ml"
+    },
+    {
+      "type": "text",
+      "id": "hero_fact_2_label",
+      "label": "Hero fact 2 label",
+      "default": "Uso"
+    },
+    {
+      "type": "text",
+      "id": "hero_fact_2_value",
+      "label": "Hero fact 2 value",
+      "default": "Puntual"
+    },
+    {
+      "type": "text",
+      "id": "hero_fact_3_label",
+      "label": "Hero fact 3 label",
+      "default": "Envíos"
+    },
+    {
+      "type": "text",
+      "id": "hero_fact_3_value",
+      "label": "Hero fact 3 value",
+      "default": "México"
+    },
+    {
+      "type": "header",
+      "content": "Packs and rewards"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_packs",
+      "label": "Show product packs",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_rewards",
+      "label": "Show rewards",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "packs_eyebrow",
+      "label": "Packs eyebrow",
+      "default": "Compra directa"
+    },
+    {
+      "type": "text",
+      "id": "packs_heading",
+      "label": "Packs heading",
+      "default": "Packs de cuidado Alicyn"
+    },
+    {
+      "type": "textarea",
+      "id": "packs_copy",
+      "label": "Packs copy",
+      "default": "Compra una pieza o elige un pack con mejor precio por volumen. Cada compra activa usa productos reales de Shopify para que el checkout respete el precio."
+    },
+    {
+      "type": "text",
+      "id": "rewards_eyebrow",
+      "label": "Rewards eyebrow",
+      "default": "Cuenta Alicyn"
+    },
+    {
+      "type": "text",
+      "id": "rewards_heading",
+      "label": "Rewards heading",
+      "default": "Recompensas conectadas a tu cuenta"
+    },
+    {
+      "type": "textarea",
+      "id": "rewards_copy",
+      "label": "Rewards copy",
+      "default": "Los beneficios se muestran según tu cuenta de cliente, historial de compra y tags asignados en Shopify."
+    },
+    {
+      "type": "header",
+      "content": "Product handles"
+    },
     {
       "type": "text",
       "id": "product_single_handle",
@@ -858,11 +786,732 @@
       "id": "wholesale_pack_50_handle",
       "label": "Mayoreo 50 handle",
       "default": "alicyn-mayoreo-50"
+    },
+    {
+      "type": "header",
+      "content": "Content sections"
+    },
+    {
+      "type": "text",
+      "id": "benefits_eyebrow",
+      "label": "Benefits eyebrow",
+      "default": "Alicyn Tips"
+    },
+    {
+      "type": "text",
+      "id": "benefits_heading",
+      "label": "Benefits heading",
+      "default": "Aftercare claro para cuando tu perforación pide atención."
+    },
+    {
+      "type": "textarea",
+      "id": "benefits_copy",
+      "label": "Benefits copy",
+      "default": "Inspirado en la forma en que Alicyn educa en Instagram: mensajes directos, visuales limpios y cuidado de perforaciones sin complicar la rutina. Para limpieza de piercing, frescura y apoyo puntual en molestias comunes."
+    },
+    {
+      "type": "text",
+      "id": "moments_eyebrow",
+      "label": "Moments eyebrow",
+      "default": "Momentos que importan"
+    },
+    {
+      "type": "text",
+      "id": "moments_heading",
+      "label": "Moments heading",
+      "default": "¿Cuándo sí usar Alicyn?"
+    },
+    {
+      "type": "textarea",
+      "id": "moments_copy",
+      "label": "Moments copy",
+      "default": "Alicyn es una solución para piercing útil en momentos específicos, no un hábito automático de todos los días. Piénsalo para cuando la perforación estuvo más expuesta o sensible y necesitas cuidado puntual sin manipular de más."
+    },
+    {
+      "type": "text",
+      "id": "alert_eyebrow",
+      "label": "Warning signs eyebrow",
+      "default": "Alicyn Tips"
+    },
+    {
+      "type": "text",
+      "id": "alert_heading",
+      "label": "Warning signs heading",
+      "default": "Antes de usarlo: aprende a reconocer señales de alerta"
+    },
+    {
+      "type": "textarea",
+      "id": "alert_copy",
+      "label": "Warning signs copy",
+      "default": "Un buen cuidado para piercing también significa saber cuándo no improvisar en casa. Alicyn está pensado para piel sana y molestias comunes del proceso. No debe usarse como sustituto de valoración profesional ante signos o señales de infección."
+    },
+    {
+      "type": "text",
+      "id": "alert_common_heading",
+      "label": "Common signs heading",
+      "default": "Molestias comunes del proceso"
+    },
+    {
+      "type": "textarea",
+      "id": "alert_common_items",
+      "label": "Common signs list",
+      "default": "Sensibilidad\nInflamación visual ligera\nEnrojecimiento leve localizado\nIncomodidad al roce\nCostrita normal o secreción clara/ligeramente amarillenta en pequeñas cantidades"
+    },
+    {
+      "type": "text",
+      "id": "alert_warning_heading",
+      "label": "Warning signs list heading",
+      "default": "Señales para consultar"
+    },
+    {
+      "type": "textarea",
+      "id": "alert_warning_items",
+      "label": "Warning signs list",
+      "default": "Dolor intenso o creciente\nCalor fuerte en la zona\nSecreción abundante, espesa, verde, amarilla intensa o con mal olor\nFiebre o líneas rojas que se extienden\nInflamación que empeora en lugar de mejorar\nJoyería que se está incrustando\nReacción severa, alergia o sangrado persistente"
+    },
+    {
+      "type": "textarea",
+      "id": "alert_note",
+      "label": "Warning note",
+      "default": "If any of these signs appear, pause self-care experiments and consult your piercer or a healthcare professional."
+    },
+    {
+      "type": "text",
+      "id": "how_eyebrow",
+      "label": "How-to eyebrow",
+      "default": "Cómo usarlo"
+    },
+    {
+      "type": "text",
+      "id": "how_heading",
+      "label": "How-to heading",
+      "default": "Úsalo solo cuando el momento lo pide."
+    },
+    {
+      "type": "textarea",
+      "id": "how_copy",
+      "label": "How-to copy",
+      "default": "Para cuidado post piercing puntual: después de sudor, roce, cambio de joyería o molestias en piercing, siempre sobre piel sana y siguiendo la indicación de tu perforador."
+    },
+    {
+      "type": "textarea",
+      "id": "how_note",
+      "label": "How-to note",
+      "default": "Alicyn está pensado para piel sana y molestias comunes del proceso. No debe usarse como sustituto de valoración profesional ante signos de infección."
+    },
+    {
+      "type": "header",
+      "content": "Product details"
+    },
+    {
+      "type": "text",
+      "id": "details_eyebrow",
+      "label": "Details eyebrow",
+      "default": "Producto"
+    },
+    {
+      "type": "text",
+      "id": "details_heading",
+      "label": "Details heading",
+      "default": "Alicyn 100 ml, listo para tenerlo a la mano."
+    },
+    {
+      "type": "text",
+      "id": "details_product_title",
+      "label": "Details product title",
+      "default": "Alicyn solución antiséptica"
+    },
+    {
+      "type": "textarea",
+      "id": "details_summary",
+      "label": "Details summary",
+      "default": "100 ml · pensado para acompañarte en momentos clave del proceso. Fórmula para uso tópico externo, sobre piel sana, cuando hay mayor sensibilidad o exposición. Evita ojos y mucosas."
+    },
+    {
+      "type": "text",
+      "id": "details_cta_label",
+      "label": "Details CTA label",
+      "default": "Comprar Alicyn 100 ml — $300 MXN"
+    },
+    {
+      "type": "text",
+      "id": "detail_1_label",
+      "label": "Detail 1 label",
+      "default": "Contenido"
+    },
+    {
+      "type": "text",
+      "id": "detail_1_value",
+      "label": "Detail 1 value",
+      "default": "100 ml"
+    },
+    {
+      "type": "text",
+      "id": "detail_2_label",
+      "label": "Detail 2 label",
+      "default": "Uso"
+    },
+    {
+      "type": "text",
+      "id": "detail_2_value",
+      "label": "Detail 2 value",
+      "default": "Externo, puntual y sobre piel sana"
+    },
+    {
+      "type": "text",
+      "id": "detail_3_label",
+      "label": "Detail 3 label",
+      "default": "Cuándo usarlo"
+    },
+    {
+      "type": "textarea",
+      "id": "detail_3_value",
+      "label": "Detail 3 value",
+      "default": "Después de sudor, roce, jalón, cambio de joyería o exposición a ambientes no controlados"
+    },
+    {
+      "type": "text",
+      "id": "detail_4_label",
+      "label": "Detail 4 label",
+      "default": "Ingredientes"
+    },
+    {
+      "type": "textarea",
+      "id": "detail_4_value",
+      "label": "Detail 4 value",
+      "default": "Sulfato de cobre, sulfato de zinc, alcanfor y agua destilada"
+    },
+    {
+      "type": "text",
+      "id": "detail_5_label",
+      "label": "Detail 5 label",
+      "default": "Uso esperado"
+    },
+    {
+      "type": "text",
+      "id": "detail_5_value",
+      "label": "Detail 5 value",
+      "default": "100 ml · pensado para acompañarte en momentos clave del proceso."
+    },
+    {
+      "type": "text",
+      "id": "detail_6_label",
+      "label": "Detail 6 label",
+      "default": "Conservación"
+    },
+    {
+      "type": "textarea",
+      "id": "detail_6_value",
+      "label": "Detail 6 value",
+      "default": "Guarda bien cerrado, en lugar fresco, seco y fuera de luz directa"
+    },
+    {
+      "type": "text",
+      "id": "detail_7_label",
+      "label": "Detail 7 label",
+      "default": "Qué incluye"
+    },
+    {
+      "type": "text",
+      "id": "detail_7_value",
+      "label": "Detail 7 value",
+      "default": "1 frasco Alicyn 100 ml e indicaciones de uso"
+    },
+    {
+      "type": "text",
+      "id": "detail_8_label",
+      "label": "Detail 8 label",
+      "default": "Envío"
+    },
+    {
+      "type": "textarea",
+      "id": "detail_8_value",
+      "label": "Detail 8 value",
+      "default": "Envíos a todo México; consulta disponibilidad de salida rápida en CDMX y Edo. Mex"
+    },
+    {
+      "type": "header",
+      "content": "Reviews and story"
+    },
+    {
+      "type": "text",
+      "id": "reviews_eyebrow",
+      "label": "Reviews eyebrow",
+      "default": "Experiencias"
+    },
+    {
+      "type": "text",
+      "id": "reviews_heading",
+      "label": "Reviews heading",
+      "default": "Lo que busca la comunidad: confianza, rutina clara y menos miedo."
+    },
+    {
+      "type": "textarea",
+      "id": "reviews_copy",
+      "label": "Reviews copy",
+      "default": "Reseñas en el tono de la comunidad Alicyn: directas, humanas y enfocadas en limpieza, frescura y confianza para cuidar sin prometer resultados médicos."
+    },
+    {
+      "type": "textarea",
+      "id": "reviews_disclaimer",
+      "label": "Reviews disclaimer",
+      "default": "Las experiencias pueden variar. Alicyn no sustituye la valoración de un perforador profesional."
+    },
+    {
+      "type": "text",
+      "id": "story_eyebrow",
+      "label": "Story eyebrow",
+      "default": "Antes / Durante / Después"
+    },
+    {
+      "type": "text",
+      "id": "story_heading",
+      "label": "Story heading",
+      "default": "No son fotos médicas. Es la historia de aprender a cuidar mejor."
+    },
+    {
+      "type": "header",
+      "content": "Studios and wholesale"
+    },
+    {
+      "type": "text",
+      "id": "studios_eyebrow",
+      "label": "Studios eyebrow",
+      "default": "Alicyn para piercers"
+    },
+    {
+      "type": "text",
+      "id": "studios_heading",
+      "label": "Studios heading",
+      "default": "Una opción fácil de explicar en cabina y mostrador."
+    },
+    {
+      "type": "textarea",
+      "id": "studios_copy",
+      "label": "Studios copy",
+      "default": "La comunidad de Instagram pregunta por DM, pedidos y paquetes para estudios. Aquí lo traducimos a una propuesta clara: aftercare piercing México con educación honesta, soporte por WhatsApp y material visual para clientes."
+    },
+    {
+      "type": "textarea",
+      "id": "studios_features",
+      "label": "Studios features",
+      "default": "Mayoristas y paquetes para piercers o estudios\nMaterial visual con instrucciones y señales para consultar\nSoporte por WhatsApp para pedidos, dudas y recompra\nConsulta disponibilidad para CDMX, Edo. Mex y envíos nacionales"
+    },
+    {
+      "type": "text",
+      "id": "studios_cta_label",
+      "label": "Studios CTA label",
+      "default": "Solicitar acceso a mayoreo"
+    },
+    {
+      "type": "text",
+      "id": "wholesale_request_url",
+      "label": "Wholesale request URL",
+      "default": "/pages/mayoreo-alicyn"
+    },
+    {
+      "type": "text",
+      "id": "wholesale_eyebrow",
+      "label": "Authorized wholesale eyebrow",
+      "default": "Acceso autorizado"
+    },
+    {
+      "type": "text",
+      "id": "wholesale_heading",
+      "label": "Authorized wholesale heading",
+      "default": "Precios especiales para piercers y estudios"
+    },
+    {
+      "type": "textarea",
+      "id": "wholesale_copy",
+      "label": "Authorized wholesale copy",
+      "default": "Estos botones agregan productos reales de mayoreo a Shopify. Si un producto no existe o no está disponible, no se muestra compra directa."
+    },
+    {
+      "type": "text",
+      "id": "wholesale_request_eyebrow",
+      "label": "Locked wholesale eyebrow",
+      "default": "Mayoreo Alicyn"
+    },
+    {
+      "type": "text",
+      "id": "wholesale_request_heading",
+      "label": "Locked wholesale heading",
+      "default": "¿Tienes un estudio o eres piercer?"
+    },
+    {
+      "type": "textarea",
+      "id": "wholesale_request_copy",
+      "label": "Locked wholesale copy",
+      "default": "Solicita acceso a precios especiales y empieza a vender Alicyn como parte del cuidado posterior de tus clientes."
+    },
+    {
+      "type": "text",
+      "id": "wholesale_request_button",
+      "label": "Locked wholesale button",
+      "default": "Solicitar acceso a mayoreo"
+    },
+    {
+      "type": "header",
+      "content": "FAQ, chat and footer"
+    },
+    {
+      "type": "text",
+      "id": "faq_eyebrow",
+      "label": "FAQ eyebrow",
+      "default": "FAQ"
+    },
+    {
+      "type": "text",
+      "id": "faq_heading",
+      "label": "FAQ heading",
+      "default": "Preguntas frecuentes"
+    },
+    {
+      "type": "text",
+      "id": "final_eyebrow",
+      "label": "Final CTA eyebrow",
+      "default": "Alicyn Piercing Aftercare"
+    },
+    {
+      "type": "text",
+      "id": "final_heading",
+      "label": "Final CTA heading",
+      "default": "Tenlo listo para esos momentos en los que tu perforación se siente más vulnerable."
+    },
+    {
+      "type": "textarea",
+      "id": "final_copy",
+      "label": "Final CTA copy",
+      "default": "Cuidado post piercing puntual de uso tópico externo, pensado para limpieza responsable y sensación calmante cuando hay mayor sensibilidad, roce o exposición."
+    },
+    {
+      "type": "text",
+      "id": "final_primary_label",
+      "label": "Final primary CTA label",
+      "default": "Comprar Alicyn 100 ml — $300 MXN"
+    },
+    {
+      "type": "text",
+      "id": "final_secondary_label",
+      "label": "Final secondary CTA label",
+      "default": "Comprar por WhatsApp"
+    },
+    {
+      "type": "text",
+      "id": "chat_title",
+      "label": "Chat title",
+      "default": "Alicyn por WhatsApp"
+    },
+    {
+      "type": "text",
+      "id": "chat_subtitle",
+      "label": "Chat subtitle",
+      "default": "Pedidos, dudas y soporte para piercers."
+    },
+    {
+      "type": "text",
+      "id": "chat_close_label",
+      "label": "Chat close label",
+      "default": "Cerrar"
+    },
+    {
+      "type": "text",
+      "id": "chat_message_label",
+      "label": "Chat message label",
+      "default": "Mensaje"
+    },
+    {
+      "type": "textarea",
+      "id": "chat_default_message",
+      "label": "Chat default message",
+      "default": "Hola, quiero comprar Alicyn 100 ml."
+    },
+    {
+      "type": "text",
+      "id": "chat_send_label",
+      "label": "Chat send label",
+      "default": "Abrir WhatsApp"
+    },
+    {
+      "type": "text",
+      "id": "sticky_cta_label",
+      "label": "Sticky mobile CTA label",
+      "default": "Comprar Alicyn 100 ml — $300"
+    },
+    {
+      "type": "textarea",
+      "id": "footer_copy",
+      "label": "Footer copy",
+      "default": "Piercing aftercare de uso tópico para cuidado post piercing puntual. Solo uso externo. Evita ojos y mucosas. Usa sobre piel sana. Consulta a tu perforador si tienes dudas o si las molestias empeoran."
+    },
+    {
+      "type": "text",
+      "id": "footer_badge_1",
+      "label": "Footer badge 1",
+      "default": "Solo uso externo"
+    },
+    {
+      "type": "text",
+      "id": "footer_badge_2",
+      "label": "Footer badge 2",
+      "default": "Consulta a tu perforador si tienes dudas"
+    },
+    {
+      "type": "header",
+      "content": "SEO schema"
+    },
+    {
+      "type": "text",
+      "id": "schema_product_name",
+      "label": "Schema product name",
+      "default": "Alicyn Solución Antiséptica 100 ml"
+    },
+    {
+      "type": "textarea",
+      "id": "schema_description",
+      "label": "Schema description",
+      "default": "Piercing aftercare de uso tópico externo para cuidar tus perforaciones con limpieza responsable y sensación calmante en momentos clave de mayor sensibilidad o exposición."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "@app"
+    },
+    {
+      "type": "trust_badge",
+      "name": "Trust badge",
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Text",
+          "default": "Fórmula simple"
+        }
+      ]
+    },
+    {
+      "type": "benefit",
+      "name": "Benefit card",
+      "settings": [
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Icon style",
+          "default": "clean",
+          "options": [
+            { "value": "clean", "label": "Clean" },
+            { "value": "fresh", "label": "Fresh" },
+            { "value": "routine", "label": "Routine" },
+            { "value": "support", "label": "Support" },
+            { "value": "no-perfume", "label": "No perfume" },
+            { "value": "studio", "label": "Studio" }
+          ]
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Sensación calmante"
+        },
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "Text",
+          "default": "Ayuda a aliviar molestias comunes cuando el piercing se siente sensible por roce, presión o sueño."
+        }
+      ]
+    },
+    {
+      "type": "usage_moment",
+      "name": "Usage moment",
+      "settings": [
+        {
+          "type": "text",
+          "id": "number",
+          "label": "Number",
+          "default": "01"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Cuando hubo roce, jalón o golpe"
+        },
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "Text",
+          "default": "Para apoyar una limpieza cuidadosa después de un movimiento accidental, un tirón de la joyería o un golpe leve."
+        }
+      ]
+    },
+    {
+      "type": "usage_step",
+      "name": "Usage step",
+      "settings": [
+        {
+          "type": "text",
+          "id": "number",
+          "label": "Number",
+          "default": "01"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Lava tus manos"
+        },
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "Text",
+          "default": "Empieza con manos limpias antes de acercarte a tu piercing."
+        }
+      ]
+    },
+    {
+      "type": "testimonial",
+      "name": "Testimonial",
+      "settings": [
+        {
+          "type": "text",
+          "id": "initials",
+          "label": "Initials",
+          "default": "M.R."
+        },
+        {
+          "type": "text",
+          "id": "piercing",
+          "label": "Piercing",
+          "default": "nostril"
+        },
+        {
+          "type": "text",
+          "id": "rating",
+          "label": "Rating",
+          "default": "★★★★★"
+        },
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "Text",
+          "default": "Me gustó porque no me hizo querer estar tocando mi piercing todo el día. Lo usé cuando se sintió sensible después de dormir de lado y me dio más confianza para limpiarlo."
+        }
+      ]
+    },
+    {
+      "type": "story_card",
+      "name": "Story card",
+      "settings": [
+        {
+          "type": "text",
+          "id": "stage",
+          "label": "Stage",
+          "default": "Antes"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Me daba miedo tocarlo"
+        },
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "Text",
+          "default": "Sentía sensibilidad y no sabía si limpiar, esperar o escribirle a mi perforador. Me faltaba una guía sencilla."
+        }
+      ]
+    },
+    {
+      "type": "faq_item",
+      "name": "FAQ item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "question",
+          "label": "Question",
+          "default": "¿Alicyn es para uso diario?"
+        },
+        {
+          "type": "textarea",
+          "id": "answer",
+          "label": "Answer",
+          "default": "No necesariamente. Alicyn está pensado para momentos clave de mayor molestia, exposición o sensibilidad. Sigue siempre la indicación de tu perforador."
+        }
+      ]
+    },
+    {
+      "type": "chat_quick_reply",
+      "name": "Chat quick reply",
+      "settings": [
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Button label",
+          "default": "Quiero comprar"
+        },
+        {
+          "type": "textarea",
+          "id": "message",
+          "label": "WhatsApp message",
+          "default": "Hola, quiero comprar Alicyn 100 ml."
+        }
+      ]
     }
   ],
   "presets": [
     {
-      "name": "Alicyn Landing"
+      "name": "Alicyn Landing",
+      "blocks": [
+        { "type": "trust_badge", "settings": { "text": "Fórmula simple" } },
+        { "type": "trust_badge", "settings": { "text": "Hecho en México" } },
+        { "type": "trust_badge", "settings": { "text": "Uso tópico" } },
+        { "type": "trust_badge", "settings": { "text": "Piercing aftercare" } },
+        { "type": "trust_badge", "settings": { "text": "Envíos a todo México" } },
+        { "type": "benefit", "settings": { "icon": "clean", "title": "Después de sudor o calle", "text": "Apoya la limpieza de piercing después de gym, transporte, polvo, maquillaje o ambientes no controlados." } },
+        { "type": "benefit", "settings": { "icon": "fresh", "title": "Sensación calmante", "text": "Ayuda a aliviar molestias comunes cuando el piercing irritado se siente sensible por roce, presión o sueño." } },
+        { "type": "benefit", "settings": { "icon": "routine", "title": "No es para sobre-tocar", "text": "Para momentos específicos; no reemplaza una rutina de cuidado piercing sencilla ni la guía profesional." } },
+        { "type": "benefit", "settings": { "icon": "support", "title": "Para cambios de joyería", "text": "Útil como apoyo cuando manipulaste la pieza o tu perforador te indicó limpieza puntual alrededor." } },
+        { "type": "benefit", "settings": { "icon": "no-perfume", "title": "Fórmula directa", "text": "Sin perfumes añadidos; sulfato de cobre, sulfato de zinc, alcanfor y agua destilada." } },
+        { "type": "benefit", "settings": { "icon": "studio", "title": "Casa, estudio o mostrador", "text": "100 ml para tener a la mano o sumar a productos para piercing México con educación clara." } },
+        { "type": "usage_moment", "settings": { "number": "01", "title": "Cuando hubo roce, jalón o golpe", "text": "Para apoyar una limpieza cuidadosa después de un movimiento accidental, un tirón de la joyería o un golpe leve." } },
+        { "type": "usage_moment", "settings": { "number": "02", "title": "Después de dormir sobre el piercing", "text": "Especialmente en cuidado de helix, conch, tragus o lóbulo cuando amaneció más sensible por presión." } },
+        { "type": "usage_moment", "settings": { "number": "03", "title": "Después de baño, sudor o calle", "text": "Gym, transporte público, polvo, maquillaje, skincare, productos para cabello o exposición similar." } },
+        { "type": "usage_moment", "settings": { "number": "04", "title": "Cuando notas bump o sensibilidad común", "text": "Puede apoyar limpieza y comodidad, pero un piercing bump debe revisarse si persiste o cambia." } },
+        { "type": "usage_moment", "settings": { "number": "05", "title": "Al cambiar joyería o por indicación profesional", "text": "Como apoyo puntual durante la primera fase del proceso, siempre que no existan señales de alerta." } },
+        { "type": "usage_step", "settings": { "number": "01", "title": "Lava tus manos", "text": "Empieza con manos limpias antes de acercarte a tu piercing." } },
+        { "type": "usage_step", "settings": { "number": "02", "title": "Aplica en gasa o cotonete limpio", "text": "Usa una cantidad moderada y evita reutilizar materiales." } },
+        { "type": "usage_step", "settings": { "number": "03", "title": "Limpia alrededor", "text": "No gires ni manipules excesivamente la joyería; trabaja alrededor con calma." } },
+        { "type": "usage_step", "settings": { "number": "04", "title": "Deja secar o seca con gasa limpia", "text": "Termina con un secado suave para que la zona no quede húmeda." } },
+        { "type": "testimonial", "settings": { "initials": "M.R.", "piercing": "nostril", "rating": "★★★★★", "text": "Me gustó porque no me hizo querer estar tocando mi piercing todo el día. Lo usé cuando se sintió sensible después de dormir de lado y me dio más confianza para limpiarlo." } },
+        { "type": "testimonial", "settings": { "initials": "A.G.", "piercing": "helix", "rating": "★★★★★", "text": "Mi helix se sentía incómodo después del gym. Alicyn me ayudó a tener una limpieza puntual y una sensación fresca sin mover la joyería." } },
+        { "type": "testimonial", "settings": { "initials": "D.L.", "piercing": "conch", "rating": "★★★★★", "text": "Lo compré por recomendación de mi piercer. Me dio tranquilidad tener algo claro para esos días de roce o presión, sin inventar mil pasos." } },
+        { "type": "testimonial", "settings": { "initials": "P.S.", "piercing": "lóbulo", "rating": "★★★★★", "text": "Para mi segundo lóbulo lo usé cuando se sentía sensible por cubrebocas y cabello. La rutina se volvió más limpia y fácil de seguir." } },
+        { "type": "testimonial", "settings": { "initials": "F.N.", "piercing": "septum", "rating": "★★★★☆", "text": "Me sirvió entender que no va en mucosas. Lo usé sólo en la parte externa cuando lo necesitaba y pregunté a mi perforador si tenía dudas." } },
+        { "type": "testimonial", "settings": { "initials": "C.V.", "piercing": "tragus", "rating": "★★★★★", "text": "Traigo audífonos seguido y a veces se irritaba por presión. Alicyn se volvió mi apoyo puntual para limpiar alrededor cuando se sentía vulnerable." } },
+        { "type": "story_card", "settings": { "stage": "Antes", "title": "Me daba miedo tocarlo", "text": "Sentía sensibilidad y no sabía si limpiar, esperar o escribirle a mi perforador. Me faltaba una guía sencilla." } },
+        { "type": "story_card", "settings": { "stage": "Durante", "title": "Revisé señales antes de actuar", "text": "Si parece molestia común, uso manos lavadas, gasa limpia y movimientos suaves. Si aparece una señal de alerta, pauso y consulto." } },
+        { "type": "story_card", "settings": { "stage": "Después", "title": "Ahora cuido sin manipular de más", "text": "Alicyn acompaña el momento clave con sensación fresca y limpieza responsable, sin sustituir el consejo profesional." } },
+        { "type": "faq_item", "settings": { "question": "¿Alicyn es para uso diario?", "answer": "No necesariamente. Alicyn está pensado para momentos clave: sudor, roce, jalón, cambio de joyería, piercing bump o sensibilidad común. Sigue siempre la indicación de tu perforador." } },
+        { "type": "faq_item", "settings": { "question": "¿Cuándo conviene usar Alicyn?", "answer": "Cuando hubo roce, jalón, golpe, exposición a sudor/polvo, después de dormir sobre la pieza, al cambiar joyería o cuando sientes molestias comunes del proceso, siempre que no existan señales de infección." } },
+        { "type": "faq_item", "settings": { "question": "¿Puedo usar Alicyn si mi piercing está infectado?", "answer": "No lo uses como sustituto de atención profesional. Si hay signos de infección, consulta a tu perforador o a un profesional de salud antes de seguir probando productos." } },
+        { "type": "faq_item", "settings": { "question": "¿Qué signos pueden indicar infección?", "answer": "Dolor intenso o creciente, calor fuerte, secreción abundante o espesa, color verde o amarillo intenso, mal olor, fiebre, líneas rojas, inflamación que empeora, joyería incrustada, reacción severa, alergia o sangrado persistente. Si aparece algo de esto, pausa experimentos de autocuidado y consulta." } },
+        { "type": "faq_item", "settings": { "question": "¿Sirve para piercing bump?", "answer": "Puede ayudar a mantener limpia la zona y aliviar molestias comunes, pero un piercing bump puede deberse a ángulo, joyería, trauma, presión o irritación. Lo correcto es revisarlo con un perforador." } },
+        { "type": "faq_item", "settings": { "question": "¿Por qué no usarlo todo el tiempo?", "answer": "Porque el cuidado responsable también implica no manipular de más. Alicyn acompaña momentos específicos; no reemplaza una rutina simple, el criterio de tu piercer ni la valoración profesional." } },
+        { "type": "faq_item", "settings": { "question": "¿Alicyn reemplaza atención profesional?", "answer": "No. Alicyn apoya una limpieza responsable en piel sana y molestias comunes. Si tienes duda, mándanos WhatsApp y, ante señales de infección, busca valoración profesional." } },
+        { "type": "faq_item", "settings": { "question": "¿Alicyn cambia el tiempo del proceso?", "answer": "No hacemos promesas sobre tiempos. Tu cuerpo lleva su propio proceso; Alicyn acompaña momentos de mayor sensibilidad con limpieza responsable y sensación calmante." } },
+        { "type": "faq_item", "settings": { "question": "¿Puedo usarlo en nostril o helix?", "answer": "Sí, como cuidado de nostril o cuidado de helix en la parte externa y alrededor de la joyería. Evita mucosas, no introduzcas producto dentro de la nariz y no muevas la pieza de más." } },
+        { "type": "faq_item", "settings": { "question": "¿Puedo usarlo en mucosas?", "answer": "No. Alicyn es de uso externo. Evita ojos, boca, interior de nariz y cualquier mucosa." } },
+        { "type": "faq_item", "settings": { "question": "¿Qué hago si me arde demasiado?", "answer": "Suspende el uso, enjuaga con agua limpia si es necesario y consulta a tu perforador o profesional de salud si la molestia persiste o empeora." } },
+        { "type": "faq_item", "settings": { "question": "¿Cuánto dura un frasco?", "answer": "No prometemos una duración exacta. 100 ml · pensado para acompañarte en momentos clave del proceso." } },
+        { "type": "faq_item", "settings": { "question": "¿Hacen envíos a todo México?", "answer": "Sí. Hay envíos a todo México y puedes consultar por WhatsApp disponibilidad de salida rápida para CDMX y Edo. Mex." } },
+        { "type": "chat_quick_reply", "settings": { "label": "Quiero comprar", "message": "Hola, quiero comprar Alicyn 100 ml." } },
+        { "type": "chat_quick_reply", "settings": { "label": "Piercing bump", "message": "Hola, tengo un piercing bump o sensibilidad común y quiero saber si Alicyn puede ayudar como apoyo puntual." } },
+        { "type": "chat_quick_reply", "settings": { "label": "Soy piercer", "message": "Hola, soy piercer/estudio y quiero cotizar paquetes de Alicyn." } },
+        { "type": "chat_quick_reply", "settings": { "label": "Envíos", "message": "Hola, quiero saber si hay envío disponible para mi ciudad." } }
+      ]
     }
   ]
 }

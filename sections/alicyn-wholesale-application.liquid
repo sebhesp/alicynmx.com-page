@@ -3,18 +3,18 @@
 
   <main id="solicitud-mayoreo" class="alicyn-form-section section-pad" aria-labelledby="wholesale-application-title">
     <div class="section-heading">
-      <p class="eyebrow">Mayoreo Alicyn</p>
-      <h1 id="wholesale-application-title">Solicitud de acceso para piercers y estudios</h1>
-      <p>Cuéntanos sobre tu estudio para revisar acceso a productos de mayoreo, material visual y soporte para clientes.</p>
+      <p class="eyebrow">{{ section.settings.eyebrow | escape }}</p>
+      <h1 id="wholesale-application-title">{{ section.settings.heading | escape }}</h1>
+      <p>{{ section.settings.copy | escape }}</p>
     </div>
 
     {% form 'contact', id: 'AlicynWholesaleApplication', class: 'alicyn-form' %}
-      <input type="hidden" name="contact[subject]" value="Solicitud de acceso a mayoreo Alicyn">
-      <input type="hidden" name="contact[tags]" value="mayoreo-alicyn,piercer-lead">
+      <input type="hidden" name="contact[subject]" value="{{ section.settings.form_subject | escape }}">
+      <input type="hidden" name="contact[tags]" value="{{ section.settings.form_tags | escape }}">
 
       {% if form.posted_successfully? %}
         <div class="alicyn-form-success" role="status" tabindex="-1">
-          Gracias. Recibimos tu solicitud y te contactaremos para revisar acceso a mayoreo Alicyn.
+          {{ section.settings.success_message | escape }}
         </div>
       {% endif %}
 
@@ -66,7 +66,7 @@
         </div>
       </div>
 
-      <button class="button button-primary" type="submit">Enviar solicitud</button>
+      <button class="button button-primary" type="submit">{{ section.settings.button_label | escape }}</button>
     {% endform %}
   </main>
 </div>
@@ -74,7 +74,50 @@
 {% schema %}
 {
   "name": "Alicyn Wholesale Application",
-  "settings": [],
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "Mayoreo Alicyn"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Solicitud de acceso para piercers y estudios"
+    },
+    {
+      "type": "textarea",
+      "id": "copy",
+      "label": "Intro copy",
+      "default": "Cuéntanos sobre tu estudio para revisar acceso a productos de mayoreo, material visual y soporte para clientes."
+    },
+    {
+      "type": "text",
+      "id": "form_subject",
+      "label": "Contact form subject",
+      "default": "Solicitud de acceso a mayoreo Alicyn"
+    },
+    {
+      "type": "text",
+      "id": "form_tags",
+      "label": "Contact form tags",
+      "default": "mayoreo-alicyn,piercer-lead"
+    },
+    {
+      "type": "textarea",
+      "id": "success_message",
+      "label": "Success message",
+      "default": "Gracias. Recibimos tu solicitud y te contactaremos para revisar acceso a mayoreo Alicyn."
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button label",
+      "default": "Enviar solicitud"
+    }
+  ],
   "presets": [
     {
       "name": "Alicyn Wholesale Application"

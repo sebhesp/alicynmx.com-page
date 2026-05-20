@@ -724,6 +724,16 @@ body {
   color: var(--soft);
 }
 
+.alicyn-page .signal-list-text,
+.alicyn-page .studio-list-text {
+  color: var(--soft);
+  margin: 0;
+}
+
+.alicyn-page .studio-list-text {
+  margin-bottom: 24px;
+}
+
 .alicyn-page .details-layout {
   display: grid;
   gap: 14px;
@@ -815,6 +825,11 @@ body {
 .alicyn-page .alicyn-packs,
 .alicyn-page .alicyn-rewards {
   border-top: 1px solid var(--border);
+}
+
+.alicyn-page .alicyn-app-block {
+  max-width: var(--container);
+  margin: 0 auto;
 }
 
 .alicyn-page .alicyn-pack-grid,
