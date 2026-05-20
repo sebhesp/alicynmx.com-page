@@ -1,5 +1,14 @@
 {% liquid
   assign product_url = section.settings.product_url | default: '/products/alicyn-solucion-antiseptica'
+  assign checkout_url = section.settings.checkout_url | default: ''
+  assign checkout_product_handle = section.settings.product_single_handle | default: 'alicyn-solucion-antiseptica'
+  assign checkout_product = all_products[checkout_product_handle]
+  assign buy_url = product_url
+  if checkout_url != blank
+    assign buy_url = checkout_url
+  elsif checkout_product != blank and checkout_product.available and checkout_product.selected_or_first_available_variant != blank
+    assign buy_url = '/cart/' | append: checkout_product.selected_or_first_available_variant.id | append: ':1'
+  endif
   assign whatsapp_url = section.settings.whatsapp_url | default: 'https://wa.me/525542388056?text=Hola%2C%20quiero%20comprar%20Alicyn'
   assign instagram_url = section.settings.instagram_url | default: 'https://www.instagram.com/alicyn.mx/'
   assign product_size = section.settings.product_size | default: '100 ml'
@@ -84,7 +93,13 @@
       <a href="#estudios">Estudios</a>
       <a href="#faq">FAQ</a>
     </nav>
-    <a class="header-cta" href="{{ product_url | escape }}">{{ section.settings.header_cta_label | escape }}</a>
+    <a
+      class="header-cta"
+      href="{{ buy_url | escape }}"
+      {% if section.settings.open_checkout_new_tab %}target="_blank" rel="noopener noreferrer"{% endif %}
+    >
+      {{ section.settings.header_cta_label | escape }}
+    </a>
   </header>
 
   <main id="contenido">
@@ -94,7 +109,11 @@
         <h1 id="hero-title">{{ section.settings.hero_heading | escape }}</h1>
         <p class="hero-subcopy">{{ section.settings.hero_copy | escape | newline_to_br }}</p>
         <div class="hero-actions" aria-label="Acciones principales">
-          <a class="button button-primary" href="{{ product_url | escape }}">
+          <a
+            class="button button-primary"
+            href="{{ buy_url | escape }}"
+            {% if section.settings.open_checkout_new_tab %}target="_blank" rel="noopener noreferrer"{% endif %}
+          >
             {{ primary_cta_label | escape }}
             <svg aria-hidden="true" viewBox="0 0 24 24" focusable="false">
               <path d="M5 12h12m-5-5 5 5-5 5"></path>
@@ -308,7 +327,13 @@
         <div class="details-panel">
           <h3>{{ section.settings.details_product_title | escape }}</h3>
           <p>{{ section.settings.details_summary | escape | newline_to_br }}</p>
-          <a class="button button-primary" href="{{ product_url | escape }}">{{ section.settings.details_cta_label | escape }}</a>
+          <a
+            class="button button-primary"
+            href="{{ buy_url | escape }}"
+            {% if section.settings.open_checkout_new_tab %}target="_blank" rel="noopener noreferrer"{% endif %}
+          >
+            {{ section.settings.details_cta_label | escape }}
+          </a>
         </div>
         <dl class="details-list">
           <div>
@@ -445,7 +470,13 @@
       <h2 id="final-title">{{ section.settings.final_heading | escape }}</h2>
       <p>{{ section.settings.final_copy | escape | newline_to_br }}</p>
       <div class="hero-actions">
-        <a class="button button-primary" href="{{ product_url | escape }}">{{ section.settings.final_primary_label | escape }}</a>
+        <a
+          class="button button-primary"
+          href="{{ buy_url | escape }}"
+          {% if section.settings.open_checkout_new_tab %}target="_blank" rel="noopener noreferrer"{% endif %}
+        >
+          {{ section.settings.final_primary_label | escape }}
+        </a>
         <a class="button button-secondary" href="{{ whatsapp_url | escape }}" target="_blank" rel="noopener noreferrer">
           {{ section.settings.final_secondary_label | escape }}
         </a>
@@ -498,7 +529,11 @@
     </div>
   </section>
 
-  <a class="sticky-mobile-cta" href="{{ product_url | escape }}">
+  <a
+    class="sticky-mobile-cta"
+    href="{{ buy_url | escape }}"
+    {% if section.settings.open_checkout_new_tab %}target="_blank" rel="noopener noreferrer"{% endif %}
+  >
     {{ sticky_cta_label | escape }}
   </a>
 
@@ -541,6 +576,19 @@
       "id": "product_url",
       "label": "Product URL",
       "default": "/products/alicyn-solucion-antiseptica"
+    },
+    {
+      "type": "text",
+      "id": "checkout_url",
+      "label": "Checkout URL for buy buttons",
+      "info": "Paste the checkout/payment link already configured in Shopify or your payment provider. If empty, buy buttons use Product URL.",
+      "default": ""
+    },
+    {
+      "type": "checkbox",
+      "id": "open_checkout_new_tab",
+      "label": "Open checkout in a new tab",
+      "default": false
     },
     {
       "type": "text",

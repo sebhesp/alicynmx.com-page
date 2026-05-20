@@ -55,7 +55,7 @@ Open `Online Store > Themes > Customize > Home page > Alicyn Landing`.
 
 The section exposes settings for:
 
-- Product URL, WhatsApp URL, Instagram URL and brand text.
+- Product URL, Checkout URL, WhatsApp URL, Instagram URL and brand text.
 - Announcement bar, hero copy, product image, CTAs, price labels and product facts.
 - Product pack handles and wholesale pack handles.
 - Section headings and copy for benefits, usage moments, warning signs, how-to, details, reviews, studios, FAQ, chat and footer.
@@ -78,6 +78,30 @@ Each block uses Shopify `block.shopify_attributes`, so it can be selected, edite
 The theme also includes `sections/apps.liquid` so app blocks can be added as standalone app sections when Shopify or an installed app needs that wrapper.
 
 Do not edit prices only as text if checkout must respect them. Public packs and wholesale prices still need real Shopify products/discounts, documented in `SETUP_REWARDS_WHOLESALE.md`.
+
+## Link buy buttons to checkout
+
+In Shopify Admin:
+
+1. Go to `Online Store > Themes > Customize`.
+2. Open `Home page > Alicyn Landing`.
+3. In `General`, paste the configured checkout/payment link into `Checkout URL for buy buttons` only if you want to override Shopify's automatic checkout link.
+4. Leave `Product URL` as `/products/alicyn-solucion-antiseptica` for SEO/schema and fallback.
+5. Enable `Open checkout in a new tab` only if the checkout is external.
+
+Buy button behavior:
+
+- If `Checkout URL for buy buttons` is filled, these CTAs use that URL.
+- If it is empty and the individual Shopify product exists, the CTAs use a Shopify cart permalink: `/cart/{variant_id}:1`.
+- If the product cannot be resolved, the CTAs fall back to `Product URL`.
+
+Affected CTAs:
+
+- Header `Comprar`
+- Hero primary CTA
+- Product details CTA
+- Final CTA
+- Sticky mobile CTA
 
 ## Product setup summary
 

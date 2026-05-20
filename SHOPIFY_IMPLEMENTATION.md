@@ -137,6 +137,7 @@ If handles differ in Shopify Admin, update them there. Do not hardcode variant I
 It also exposes editable settings for:
 
 - Announcement, hero, CTAs and product image.
+- Checkout URL for the main buy buttons.
 - Product price label and JSON-LD price amount.
 - Section headings/copy.
 - Warning signs and usage guidance.
@@ -155,6 +156,26 @@ Editable block types:
 - FAQ item
 - Chat quick reply
 - App block
+
+## Linking buy buttons to checkout
+
+Use the `Checkout URL for buy buttons` setting in `Alicyn Landing` only when you need to override the automatic Shopify checkout link.
+
+Buy button behavior:
+
+- If `Checkout URL for buy buttons` is filled, the main CTAs link directly to that URL.
+- If it is empty and the product handle resolves through `all_products`, the theme links to a real Shopify cart permalink: `/cart/{variant_id}:1`.
+- If the product cannot be resolved, the theme falls back to `/products/alicyn-solucion-antiseptica`.
+
+Main CTAs affected:
+
+- Header CTA
+- Hero primary CTA
+- Product details CTA
+- Final CTA
+- Sticky mobile CTA
+
+Use `Open checkout in a new tab` only for external payment links. For normal Shopify checkout/cart permalink flow, keep it disabled.
 
 ## CTA links
 
