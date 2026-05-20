@@ -136,7 +136,7 @@ If handles differ in Shopify Admin, update them there. Do not hardcode variant I
 
 It also exposes editable settings for:
 
-- Announcement, hero, CTAs and product image.
+- Announcement, hero, CTAs, product image, product image background cleanup and product image fit.
 - Checkout URL for the main buy buttons.
 - Product price label and JSON-LD price amount.
 - Section headings/copy.
@@ -176,6 +176,16 @@ Main CTAs affected:
 - Sticky mobile CTA
 
 Use `Open checkout in a new tab` only for external payment links. For normal Shopify checkout/cart permalink flow, keep it disabled.
+
+## Product photo background and fit
+
+In `Online Store > Themes > Customize > Home page > Alicyn Landing > Hero`, use these settings:
+
+- `Product image`: upload or select the Alicyn 100 ml product photo.
+- `Limpieza visual del fondo de la foto`: choose `Fondo claro` for white or pale-background photos, `PNG/WebP transparente` for images already cut out, or `Sin ajuste` for editorial photos.
+- `Encuadre de la foto de producto`: choose `Producto completo visible` for bottle photos or `Llenar el area del hero` for wider product shots.
+
+The theme removes the old visible product frame and uses a dark editorial glow so the bottle reads as part of the page. For true pixel-level background removal, remove the background in Shopify's media editor with Shopify Magic or an image app before selecting the file in the theme editor.
 
 ## CTA links
 

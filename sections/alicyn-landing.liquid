@@ -16,6 +16,8 @@
   assign product_price_label = section.settings.product_price_label | default: '$300 MXN'
   assign primary_cta_label = section.settings.primary_cta_label | default: 'Comprar Alicyn 100 ml — $300 MXN'
   assign sticky_cta_label = section.settings.sticky_cta_label | default: 'Comprar Alicyn 100 ml — $300'
+  assign product_image_cleanup = section.settings.product_image_cleanup | default: 'light'
+  assign product_image_fit = section.settings.product_image_fit | default: 'contain'
   assign product_canonical_url = product_url
   unless product_url contains 'http'
     assign product_canonical_url = 'https://alicynmx.com' | append: product_url
@@ -142,10 +144,10 @@
           Preferred: choose the product image from the Shopify theme editor.
           Fallback asset path for GitHub/theme uploads: assets/alicyn-product.png
         -->
-        <div class="product-stage" data-product-image-wrap>
+        <div class="product-stage product-stage-cleanup-{{ product_image_cleanup }} product-stage-fit-{{ product_image_fit }}" data-product-image-wrap>
           {% if section.settings.product_image != blank %}
             <img
-              class="product-photo"
+              class="product-photo product-photo-fit-{{ product_image_fit }}"
               src="{{ section.settings.product_image | image_url: width: 760 }}"
               srcset="
                 {{ section.settings.product_image | image_url: width: 320 }} 320w,
@@ -162,7 +164,7 @@
             >
           {% else %}
             <img
-              class="product-photo"
+              class="product-photo product-photo-fit-{{ product_image_fit }}"
               src="{{ 'alicyn-product.png' | asset_url }}"
               alt="{{ section.settings.product_image_alt | escape }}"
               width="640"
@@ -676,6 +678,28 @@
       "type": "image_picker",
       "id": "product_image",
       "label": "Product image"
+    },
+    {
+      "type": "select",
+      "id": "product_image_cleanup",
+      "label": "Limpieza visual del fondo de la foto",
+      "info": "Usa Fondo claro cuando la foto tenga fondo blanco o pálido. Para recorte perfecto, elimina el fondo en el editor de medios de Shopify antes de seleccionar la imagen.",
+      "default": "light",
+      "options": [
+        { "value": "light", "label": "Fondo claro" },
+        { "value": "transparent", "label": "PNG/WebP transparente" },
+        { "value": "none", "label": "Sin ajuste" }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "product_image_fit",
+      "label": "Encuadre de la foto de producto",
+      "default": "contain",
+      "options": [
+        { "value": "contain", "label": "Producto completo visible" },
+        { "value": "cover", "label": "Llenar el area del hero" }
+      ]
     },
     {
       "type": "text",

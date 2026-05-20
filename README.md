@@ -56,7 +56,7 @@ Open `Online Store > Themes > Customize > Home page > Alicyn Landing`.
 The section exposes settings for:
 
 - Product URL, Checkout URL, WhatsApp URL, Instagram URL and brand text.
-- Announcement bar, hero copy, product image, CTAs, price labels and product facts.
+- Announcement bar, hero copy, product image, image background cleanup, image fit, CTAs, price labels and product facts.
 - Product pack handles and wholesale pack handles.
 - Section headings and copy for benefits, usage moments, warning signs, how-to, details, reviews, studios, FAQ, chat and footer.
 - SEO/Product schema name, description and price amount.
@@ -102,6 +102,19 @@ Affected CTAs:
 - Product details CTA
 - Final CTA
 - Sticky mobile CTA
+
+## Product photo background and fit
+
+In `Online Store > Themes > Customize > Home page > Alicyn Landing > Hero`, upload the product image in `Product image`.
+
+Use:
+
+- `Limpieza visual del fondo de la foto: Fondo claro` for photos on white or pale backgrounds. The theme visually blends out light backgrounds so the bottle reads like a cutout.
+- `Limpieza visual del fondo de la foto: PNG/WebP transparente` when the image already has the background removed.
+- `Encuadre de la foto de producto: Producto completo visible` for bottle/product photos.
+- `Encuadre de la foto de producto: Llenar el area del hero` only for wider editorial product shots.
+
+For true pixel-level background removal, remove the background in Shopify's media editor with Shopify Magic before selecting the image in the theme editor.
 
 ## Product setup summary
 

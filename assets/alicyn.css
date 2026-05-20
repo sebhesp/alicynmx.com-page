@@ -377,40 +377,62 @@ body {
   display: grid;
   justify-items: start;
   align-items: center;
+  isolation: isolate;
 }
 
 .alicyn-page .product-stage {
   position: relative;
-  width: min(100%, 440px);
-  max-width: 340px;
+  width: min(100%, 520px);
+  max-width: 360px;
   min-width: 0;
-  min-height: 540px;
+  min-height: 500px;
   display: grid;
   place-items: center;
-  overflow: hidden;
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
+  overflow: visible;
+  border: 0;
+  border-radius: 0;
   background:
-    linear-gradient(160deg, rgba(167, 222, 228, 0.26), rgba(187, 184, 242, 0.14) 44%, rgba(255, 255, 255, 0.035)),
-    var(--surface);
-  box-shadow: var(--shadow);
+    radial-gradient(circle at 50% 44%, rgba(167, 222, 228, 0.2), rgba(167, 222, 228, 0.04) 34%, rgba(167, 222, 228, 0) 62%),
+    radial-gradient(circle at 58% 72%, rgba(187, 184, 242, 0.16), rgba(187, 184, 242, 0) 54%);
 }
 
 .alicyn-page .product-stage::before {
   content: "";
   position: absolute;
-  inset: 14px;
-  border: 1px solid rgba(255, 255, 255, 0.06);
-  border-radius: var(--radius);
+  inset: 10% 8% 8%;
+  z-index: 0;
+  border: 0;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(143, 191, 195, 0.18), rgba(143, 191, 195, 0.04) 42%, transparent 70%);
+  filter: blur(18px);
+  pointer-events: none;
 }
 
 .alicyn-page .product-photo {
   position: relative;
   z-index: 2;
-  width: min(78%, 320px);
-  height: auto;
+  width: 100%;
+  max-width: 430px;
+  height: min(72vh, 620px);
   object-fit: contain;
-  filter: drop-shadow(0 30px 46px rgba(0, 0, 0, 0.45));
+  object-position: center;
+  filter: drop-shadow(0 34px 54px rgba(0, 0, 0, 0.48));
+}
+
+.alicyn-page .product-photo-fit-cover {
+  max-width: none;
+  height: min(72vh, 650px);
+  object-fit: cover;
+}
+
+.alicyn-page .product-stage-cleanup-light .product-photo {
+  mix-blend-mode: multiply;
+  filter: contrast(1.06) saturate(1.04) drop-shadow(0 34px 54px rgba(0, 0, 0, 0.5));
+}
+
+.alicyn-page .product-stage-cleanup-transparent .product-photo,
+.alicyn-page .product-stage-cleanup-none .product-photo {
+  mix-blend-mode: normal;
 }
 
 .alicyn-page .product-photo.is-missing {
@@ -495,9 +517,9 @@ body {
   z-index: 3;
   display: grid;
   gap: 2px;
-  border: 1px solid rgba(232, 232, 234, 0.16);
-  border-radius: var(--radius);
-  background: rgba(11, 11, 13, 0.78);
+  border: 0;
+  border-radius: 999px;
+  background: rgba(11, 11, 13, 0.52);
   padding: 12px 14px;
   backdrop-filter: blur(14px);
 }
@@ -1284,7 +1306,8 @@ body {
   }
 
   .alicyn-page .product-stage {
-    max-width: 440px;
+    max-width: 520px;
+    min-height: 600px;
   }
 
   .alicyn-page .hero-product {
