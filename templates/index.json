@@ -1,55 +1,364 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "alicyn_landing": {
       "type": "alicyn-landing",
-      "settings": {},
       "blocks": {
-        "trust_formula": { "type": "trust_badge", "settings": { "text": "Fórmula simple" } },
-        "trust_mexico": { "type": "trust_badge", "settings": { "text": "Hecho en México" } },
-        "trust_topical": { "type": "trust_badge", "settings": { "text": "Uso tópico" } },
-        "trust_aftercare": { "type": "trust_badge", "settings": { "text": "Piercing aftercare" } },
-        "trust_shipping": { "type": "trust_badge", "settings": { "text": "Envíos a todo México" } },
-        "benefit_sweat": { "type": "benefit", "settings": { "icon": "clean", "title": "Después de sudor o calle", "text": "Apoya la limpieza de piercing después de gym, transporte, polvo, maquillaje o ambientes no controlados." } },
-        "benefit_calm": { "type": "benefit", "settings": { "icon": "fresh", "title": "Sensación calmante", "text": "Ayuda a aliviar molestias comunes cuando el piercing irritado se siente sensible por roce, presión o sueño." } },
-        "benefit_touch": { "type": "benefit", "settings": { "icon": "routine", "title": "No es para sobre-tocar", "text": "Para momentos específicos; no reemplaza una rutina de cuidado piercing sencilla ni la guía profesional." } },
-        "benefit_jewelry": { "type": "benefit", "settings": { "icon": "support", "title": "Para cambios de joyería", "text": "Útil como apoyo cuando manipulaste la pieza o tu perforador te indicó limpieza puntual alrededor." } },
-        "benefit_formula": { "type": "benefit", "settings": { "icon": "no-perfume", "title": "Fórmula directa", "text": "Sin perfumes añadidos; sulfato de cobre, sulfato de zinc, alcanfor y agua destilada." } },
-        "benefit_studio": { "type": "benefit", "settings": { "icon": "studio", "title": "Casa, estudio o mostrador", "text": "100 ml para tener a la mano o sumar a productos para piercing México con educación clara." } },
-        "moment_pull": { "type": "usage_moment", "settings": { "number": "01", "title": "Cuando hubo roce, jalón o golpe", "text": "Para apoyar una limpieza cuidadosa después de un movimiento accidental, un tirón de la joyería o un golpe leve." } },
-        "moment_sleep": { "type": "usage_moment", "settings": { "number": "02", "title": "Después de dormir sobre el piercing", "text": "Especialmente en cuidado de helix, conch, tragus o lóbulo cuando amaneció más sensible por presión." } },
-        "moment_sweat": { "type": "usage_moment", "settings": { "number": "03", "title": "Después de baño, sudor o calle", "text": "Gym, transporte público, polvo, maquillaje, skincare, productos para cabello o exposición similar." } },
-        "moment_bump": { "type": "usage_moment", "settings": { "number": "04", "title": "Cuando notas bump o sensibilidad común", "text": "Puede apoyar limpieza y comodidad, pero un piercing bump debe revisarse si persiste o cambia." } },
-        "moment_jewelry": { "type": "usage_moment", "settings": { "number": "05", "title": "Al cambiar joyería o por indicación profesional", "text": "Como apoyo puntual durante la primera fase del proceso, siempre que no existan señales de alerta." } },
-        "step_hands": { "type": "usage_step", "settings": { "number": "01", "title": "Lava tus manos", "text": "Empieza con manos limpias antes de acercarte a tu piercing." } },
-        "step_gauze": { "type": "usage_step", "settings": { "number": "02", "title": "Aplica en gasa o cotonete limpio", "text": "Usa una cantidad moderada y evita reutilizar materiales." } },
-        "step_clean": { "type": "usage_step", "settings": { "number": "03", "title": "Limpia alrededor", "text": "No gires ni manipules excesivamente la joyería; trabaja alrededor con calma." } },
-        "step_dry": { "type": "usage_step", "settings": { "number": "04", "title": "Deja secar o seca con gasa limpia", "text": "Termina con un secado suave para que la zona no quede húmeda." } },
-        "review_nostril": { "type": "testimonial", "settings": { "initials": "M.R.", "piercing": "nostril", "rating": "★★★★★", "text": "Me gustó porque no me hizo querer estar tocando mi piercing todo el día. Lo usé cuando se sintió sensible después de dormir de lado y me dio más confianza para limpiarlo." } },
-        "review_helix": { "type": "testimonial", "settings": { "initials": "A.G.", "piercing": "helix", "rating": "★★★★★", "text": "Mi helix se sentía incómodo después del gym. Alicyn me ayudó a tener una limpieza puntual y una sensación fresca sin mover la joyería." } },
-        "review_conch": { "type": "testimonial", "settings": { "initials": "D.L.", "piercing": "conch", "rating": "★★★★★", "text": "Lo compré por recomendación de mi piercer. Me dio tranquilidad tener algo claro para esos días de roce o presión, sin inventar mil pasos." } },
-        "review_lobulo": { "type": "testimonial", "settings": { "initials": "P.S.", "piercing": "lóbulo", "rating": "★★★★★", "text": "Para mi segundo lóbulo lo usé cuando se sentía sensible por cubrebocas y cabello. La rutina se volvió más limpia y fácil de seguir." } },
-        "review_septum": { "type": "testimonial", "settings": { "initials": "F.N.", "piercing": "septum", "rating": "★★★★☆", "text": "Me sirvió entender que no va en mucosas. Lo usé sólo en la parte externa cuando lo necesitaba y pregunté a mi perforador si tenía dudas." } },
-        "review_tragus": { "type": "testimonial", "settings": { "initials": "C.V.", "piercing": "tragus", "rating": "★★★★★", "text": "Traigo audífonos seguido y a veces se irritaba por presión. Alicyn se volvió mi apoyo puntual para limpiar alrededor cuando se sentía vulnerable." } },
-        "story_before": { "type": "story_card", "settings": { "stage": "Antes", "title": "Me daba miedo tocarlo", "text": "Sentía sensibilidad y no sabía si limpiar, esperar o escribirle a mi perforador. Me faltaba una guía sencilla." } },
-        "story_during": { "type": "story_card", "settings": { "stage": "Durante", "title": "Revisé señales antes de actuar", "text": "Si parece molestia común, uso manos lavadas, gasa limpia y movimientos suaves. Si aparece una señal de alerta, pauso y consulto." } },
-        "story_after": { "type": "story_card", "settings": { "stage": "Después", "title": "Ahora cuido sin manipular de más", "text": "Alicyn acompaña el momento clave con sensación fresca y limpieza responsable, sin sustituir el consejo profesional." } },
-        "faq_daily": { "type": "faq_item", "settings": { "question": "¿Alicyn es para uso diario?", "answer": "No necesariamente. Alicyn está pensado para momentos clave: sudor, roce, jalón, cambio de joyería, piercing bump o sensibilidad común. Sigue siempre la indicación de tu perforador." } },
-        "faq_when": { "type": "faq_item", "settings": { "question": "¿Cuándo conviene usar Alicyn?", "answer": "Cuando hubo roce, jalón, golpe, exposición a sudor/polvo, después de dormir sobre la pieza, al cambiar joyería o cuando sientes molestias comunes del proceso, siempre que no existan señales de infección." } },
-        "faq_infected": { "type": "faq_item", "settings": { "question": "¿Puedo usar Alicyn si mi piercing está infectado?", "answer": "No lo uses como sustituto de atención profesional. Si hay signos de infección, consulta a tu perforador o a un profesional de salud antes de seguir probando productos." } },
-        "faq_warning": { "type": "faq_item", "settings": { "question": "¿Qué signos pueden indicar infección?", "answer": "Dolor intenso o creciente, calor fuerte, secreción abundante o espesa, color verde o amarillo intenso, mal olor, fiebre, líneas rojas, inflamación que empeora, joyería incrustada, reacción severa, alergia o sangrado persistente. Si aparece algo de esto, pausa experimentos de autocuidado y consulta." } },
-        "faq_bump": { "type": "faq_item", "settings": { "question": "¿Sirve para piercing bump?", "answer": "Puede ayudar a mantener limpia la zona y aliviar molestias comunes, pero un piercing bump puede deberse a ángulo, joyería, trauma, presión o irritación. Lo correcto es revisarlo con un perforador." } },
-        "faq_overuse": { "type": "faq_item", "settings": { "question": "¿Por qué no usarlo todo el tiempo?", "answer": "Porque el cuidado responsable también implica no manipular de más. Alicyn acompaña momentos específicos; no reemplaza una rutina simple, el criterio de tu piercer ni la valoración profesional." } },
-        "faq_professional": { "type": "faq_item", "settings": { "question": "¿Alicyn reemplaza atención profesional?", "answer": "No. Alicyn apoya una limpieza responsable en piel sana y molestias comunes. Si tienes duda, mándanos WhatsApp y, ante señales de infección, busca valoración profesional." } },
-        "faq_time": { "type": "faq_item", "settings": { "question": "¿Alicyn cambia el tiempo del proceso?", "answer": "No hacemos promesas sobre tiempos. Tu cuerpo lleva su propio proceso; Alicyn acompaña momentos de mayor sensibilidad con limpieza responsable y sensación calmante." } },
-        "faq_nostril": { "type": "faq_item", "settings": { "question": "¿Puedo usarlo en nostril o helix?", "answer": "Sí, como cuidado de nostril o cuidado de helix en la parte externa y alrededor de la joyería. Evita mucosas, no introduzcas producto dentro de la nariz y no muevas la pieza de más." } },
-        "faq_mucosas": { "type": "faq_item", "settings": { "question": "¿Puedo usarlo en mucosas?", "answer": "No. Alicyn es de uso externo. Evita ojos, boca, interior de nariz y cualquier mucosa." } },
-        "faq_burn": { "type": "faq_item", "settings": { "question": "¿Qué hago si me arde demasiado?", "answer": "Suspende el uso, enjuaga con agua limpia si es necesario y consulta a tu perforador o profesional de salud si la molestia persiste o empeora." } },
-        "faq_duration": { "type": "faq_item", "settings": { "question": "¿Cuánto dura un frasco?", "answer": "No prometemos una duración exacta. 100 ml · pensado para acompañarte en momentos clave del proceso." } },
-        "faq_shipping": { "type": "faq_item", "settings": { "question": "¿Hacen envíos a todo México?", "answer": "Sí. Hay envíos a todo México y puedes consultar por WhatsApp disponibilidad de salida rápida para CDMX y Edo. Mex." } },
-        "chat_buy": { "type": "chat_quick_reply", "settings": { "label": "Quiero comprar", "message": "Hola, quiero comprar Alicyn 100 ml." } },
-        "chat_bump": { "type": "chat_quick_reply", "settings": { "label": "Piercing bump", "message": "Hola, tengo un piercing bump o sensibilidad común y quiero saber si Alicyn puede ayudar como apoyo puntual." } },
-        "chat_piercer": { "type": "chat_quick_reply", "settings": { "label": "Soy piercer", "message": "Hola, soy piercer/estudio y quiero cotizar paquetes de Alicyn." } },
-        "chat_shipping": { "type": "chat_quick_reply", "settings": { "label": "Envíos", "message": "Hola, quiero saber si hay envío disponible para mi ciudad." } }
+        "trust_formula": {
+          "type": "trust_badge",
+          "settings": {
+            "text": "Fórmula simple"
+          }
+        },
+        "trust_mexico": {
+          "type": "trust_badge",
+          "settings": {
+            "text": "Hecho en México"
+          }
+        },
+        "trust_topical": {
+          "type": "trust_badge",
+          "settings": {
+            "text": "Uso tópico"
+          }
+        },
+        "trust_aftercare": {
+          "type": "trust_badge",
+          "settings": {
+            "text": "Piercing aftercare"
+          }
+        },
+        "trust_shipping": {
+          "type": "trust_badge",
+          "settings": {
+            "text": "Envíos a todo México"
+          }
+        },
+        "benefit_sweat": {
+          "type": "benefit",
+          "settings": {
+            "icon": "clean",
+            "title": "Después de sudor o calle",
+            "text": "Apoya la limpieza de piercing después de gym, transporte, polvo, maquillaje o ambientes no controlados."
+          }
+        },
+        "benefit_calm": {
+          "type": "benefit",
+          "settings": {
+            "icon": "fresh",
+            "title": "Sensación calmante",
+            "text": "Ayuda a aliviar molestias comunes cuando el piercing irritado se siente sensible por roce, presión o sueño."
+          }
+        },
+        "benefit_touch": {
+          "type": "benefit",
+          "settings": {
+            "icon": "routine",
+            "title": "No es para sobre-tocar",
+            "text": "Para momentos específicos; no reemplaza una rutina de cuidado piercing sencilla ni la guía profesional."
+          }
+        },
+        "benefit_jewelry": {
+          "type": "benefit",
+          "settings": {
+            "icon": "support",
+            "title": "Para cambios de joyería",
+            "text": "Útil como apoyo cuando manipulaste la pieza o tu perforador te indicó limpieza puntual alrededor."
+          }
+        },
+        "benefit_formula": {
+          "type": "benefit",
+          "settings": {
+            "icon": "no-perfume",
+            "title": "Fórmula directa",
+            "text": "Sin perfumes añadidos; sulfato de cobre, sulfato de zinc, alcanfor y agua destilada."
+          }
+        },
+        "benefit_studio": {
+          "type": "benefit",
+          "settings": {
+            "icon": "studio",
+            "title": "Casa, estudio o mostrador",
+            "text": "100 ml para tener a la mano o sumar a productos para piercing México con educación clara."
+          }
+        },
+        "moment_pull": {
+          "type": "usage_moment",
+          "settings": {
+            "number": "01",
+            "title": "Cuando hubo roce, jalón o golpe",
+            "text": "Para apoyar una limpieza cuidadosa después de un movimiento accidental, un tirón de la joyería o un golpe leve."
+          }
+        },
+        "moment_sleep": {
+          "type": "usage_moment",
+          "settings": {
+            "number": "02",
+            "title": "Después de dormir sobre el piercing",
+            "text": "Especialmente en cuidado de helix, conch, tragus o lóbulo cuando amaneció más sensible por presión."
+          }
+        },
+        "moment_sweat": {
+          "type": "usage_moment",
+          "settings": {
+            "number": "03",
+            "title": "Después de baño, sudor o calle",
+            "text": "Gym, transporte público, polvo, maquillaje, skincare, productos para cabello o exposición similar."
+          }
+        },
+        "moment_bump": {
+          "type": "usage_moment",
+          "settings": {
+            "number": "04",
+            "title": "Cuando notas bump o sensibilidad común",
+            "text": "Puede apoyar limpieza y comodidad, pero un piercing bump debe revisarse si persiste o cambia."
+          }
+        },
+        "moment_jewelry": {
+          "type": "usage_moment",
+          "settings": {
+            "number": "05",
+            "title": "Al cambiar joyería o por indicación profesional",
+            "text": "Como apoyo puntual durante la primera fase del proceso, siempre que no existan señales de alerta."
+          }
+        },
+        "step_hands": {
+          "type": "usage_step",
+          "settings": {
+            "number": "01",
+            "title": "Lava tus manos",
+            "text": "Empieza con manos limpias antes de acercarte a tu piercing."
+          }
+        },
+        "step_gauze": {
+          "type": "usage_step",
+          "settings": {
+            "number": "02",
+            "title": "Aplica en gasa o cotonete limpio",
+            "text": "Usa una cantidad moderada y evita reutilizar materiales."
+          }
+        },
+        "step_clean": {
+          "type": "usage_step",
+          "settings": {
+            "number": "03",
+            "title": "Limpia alrededor",
+            "text": "No gires ni manipules excesivamente la joyería; trabaja alrededor con calma."
+          }
+        },
+        "step_dry": {
+          "type": "usage_step",
+          "settings": {
+            "number": "04",
+            "title": "Deja secar o seca con gasa limpia",
+            "text": "Termina con un secado suave para que la zona no quede húmeda."
+          }
+        },
+        "review_nostril": {
+          "type": "testimonial",
+          "settings": {
+            "initials": "M.R.",
+            "piercing": "nostril",
+            "rating": "★★★★★",
+            "text": "Me gustó porque no me hizo querer estar tocando mi piercing todo el día. Lo usé cuando se sintió sensible después de dormir de lado y me dio más confianza para limpiarlo."
+          }
+        },
+        "review_helix": {
+          "type": "testimonial",
+          "settings": {
+            "initials": "A.G.",
+            "piercing": "helix",
+            "rating": "★★★★★",
+            "text": "Mi helix se sentía incómodo después del gym. Alicyn me ayudó a tener una limpieza puntual y una sensación fresca sin mover la joyería."
+          }
+        },
+        "review_conch": {
+          "type": "testimonial",
+          "settings": {
+            "initials": "D.L.",
+            "piercing": "conch",
+            "rating": "★★★★★",
+            "text": "Lo compré por recomendación de mi piercer. Me dio tranquilidad tener algo claro para esos días de roce o presión, sin inventar mil pasos."
+          }
+        },
+        "review_lobulo": {
+          "type": "testimonial",
+          "settings": {
+            "initials": "P.S.",
+            "piercing": "lóbulo",
+            "rating": "★★★★★",
+            "text": "Para mi segundo lóbulo lo usé cuando se sentía sensible por cubrebocas y cabello. La rutina se volvió más limpia y fácil de seguir."
+          }
+        },
+        "review_septum": {
+          "type": "testimonial",
+          "settings": {
+            "initials": "F.N.",
+            "piercing": "septum",
+            "rating": "★★★★☆",
+            "text": "Me sirvió entender que no va en mucosas. Lo usé sólo en la parte externa cuando lo necesitaba y pregunté a mi perforador si tenía dudas."
+          }
+        },
+        "review_tragus": {
+          "type": "testimonial",
+          "settings": {
+            "initials": "C.V.",
+            "piercing": "tragus",
+            "rating": "★★★★★",
+            "text": "Traigo audífonos seguido y a veces se irritaba por presión. Alicyn se volvió mi apoyo puntual para limpiar alrededor cuando se sentía vulnerable."
+          }
+        },
+        "story_before": {
+          "type": "story_card",
+          "settings": {
+            "stage": "Antes",
+            "title": "Me daba miedo tocarlo",
+            "text": "Sentía sensibilidad y no sabía si limpiar, esperar o escribirle a mi perforador. Me faltaba una guía sencilla."
+          }
+        },
+        "story_during": {
+          "type": "story_card",
+          "settings": {
+            "stage": "Durante",
+            "title": "Revisé señales antes de actuar",
+            "text": "Si parece molestia común, uso manos lavadas, gasa limpia y movimientos suaves. Si aparece una señal de alerta, pauso y consulto."
+          }
+        },
+        "story_after": {
+          "type": "story_card",
+          "settings": {
+            "stage": "Después",
+            "title": "Ahora cuido sin manipular de más",
+            "text": "Alicyn acompaña el momento clave con sensación fresca y limpieza responsable, sin sustituir el consejo profesional."
+          }
+        },
+        "faq_daily": {
+          "type": "faq_item",
+          "settings": {
+            "question": "¿Alicyn es para uso diario?",
+            "answer": "No necesariamente. Alicyn está pensado para momentos clave: sudor, roce, jalón, cambio de joyería, piercing bump o sensibilidad común. Sigue siempre la indicación de tu perforador."
+          }
+        },
+        "faq_when": {
+          "type": "faq_item",
+          "settings": {
+            "question": "¿Cuándo conviene usar Alicyn?",
+            "answer": "Cuando hubo roce, jalón, golpe, exposición a sudor/polvo, después de dormir sobre la pieza, al cambiar joyería o cuando sientes molestias comunes del proceso, siempre que no existan señales de infección."
+          }
+        },
+        "faq_infected": {
+          "type": "faq_item",
+          "settings": {
+            "question": "¿Puedo usar Alicyn si mi piercing está infectado?",
+            "answer": "No lo uses como sustituto de atención profesional. Si hay signos de infección, consulta a tu perforador o a un profesional de salud antes de seguir probando productos."
+          }
+        },
+        "faq_warning": {
+          "type": "faq_item",
+          "settings": {
+            "question": "¿Qué signos pueden indicar infección?",
+            "answer": "Dolor intenso o creciente, calor fuerte, secreción abundante o espesa, color verde o amarillo intenso, mal olor, fiebre, líneas rojas, inflamación que empeora, joyería incrustada, reacción severa, alergia o sangrado persistente. Si aparece algo de esto, pausa experimentos de autocuidado y consulta."
+          }
+        },
+        "faq_bump": {
+          "type": "faq_item",
+          "settings": {
+            "question": "¿Sirve para piercing bump?",
+            "answer": "Puede ayudar a mantener limpia la zona y aliviar molestias comunes, pero un piercing bump puede deberse a ángulo, joyería, trauma, presión o irritación. Lo correcto es revisarlo con un perforador."
+          }
+        },
+        "faq_overuse": {
+          "type": "faq_item",
+          "settings": {
+            "question": "¿Por qué no usarlo todo el tiempo?",
+            "answer": "Porque el cuidado responsable también implica no manipular de más. Alicyn acompaña momentos específicos; no reemplaza una rutina simple, el criterio de tu piercer ni la valoración profesional."
+          }
+        },
+        "faq_professional": {
+          "type": "faq_item",
+          "settings": {
+            "question": "¿Alicyn reemplaza atención profesional?",
+            "answer": "No. Alicyn apoya una limpieza responsable en piel sana y molestias comunes. Si tienes duda, mándanos WhatsApp y, ante señales de infección, busca valoración profesional."
+          }
+        },
+        "faq_time": {
+          "type": "faq_item",
+          "settings": {
+            "question": "¿Alicyn cambia el tiempo del proceso?",
+            "answer": "No hacemos promesas sobre tiempos. Tu cuerpo lleva su propio proceso; Alicyn acompaña momentos de mayor sensibilidad con limpieza responsable y sensación calmante."
+          }
+        },
+        "faq_nostril": {
+          "type": "faq_item",
+          "settings": {
+            "question": "¿Puedo usarlo en nostril o helix?",
+            "answer": "Sí, como cuidado de nostril o cuidado de helix en la parte externa y alrededor de la joyería. Evita mucosas, no introduzcas producto dentro de la nariz y no muevas la pieza de más."
+          }
+        },
+        "faq_mucosas": {
+          "type": "faq_item",
+          "settings": {
+            "question": "¿Puedo usarlo en mucosas?",
+            "answer": "No. Alicyn es de uso externo. Evita ojos, boca, interior de nariz y cualquier mucosa."
+          }
+        },
+        "faq_burn": {
+          "type": "faq_item",
+          "settings": {
+            "question": "¿Qué hago si me arde demasiado?",
+            "answer": "Suspende el uso, enjuaga con agua limpia si es necesario y consulta a tu perforador o profesional de salud si la molestia persiste o empeora."
+          }
+        },
+        "faq_duration": {
+          "type": "faq_item",
+          "settings": {
+            "question": "¿Cuánto dura un frasco?",
+            "answer": "No prometemos una duración exacta. 100 ml · pensado para acompañarte en momentos clave del proceso."
+          }
+        },
+        "faq_shipping": {
+          "type": "faq_item",
+          "settings": {
+            "question": "¿Hacen envíos a todo México?",
+            "answer": "Sí. Hay envíos a todo México y puedes consultar por WhatsApp disponibilidad de salida rápida para CDMX y Edo. Mex."
+          }
+        },
+        "chat_buy": {
+          "type": "chat_quick_reply",
+          "settings": {
+            "label": "Quiero comprar",
+            "message": "Hola, quiero comprar Alicyn 100 ml."
+          }
+        },
+        "chat_bump": {
+          "type": "chat_quick_reply",
+          "settings": {
+            "label": "Piercing bump",
+            "message": "Hola, tengo un piercing bump o sensibilidad común y quiero saber si Alicyn puede ayudar como apoyo puntual."
+          }
+        },
+        "chat_piercer": {
+          "type": "chat_quick_reply",
+          "settings": {
+            "label": "Soy piercer",
+            "message": "Hola, soy piercer/estudio y quiero cotizar paquetes de Alicyn."
+          }
+        },
+        "chat_shipping": {
+          "type": "chat_quick_reply",
+          "settings": {
+            "label": "Envíos",
+            "message": "Hola, quiero saber si hay envío disponible para mi ciudad."
+          }
+        }
       },
       "block_order": [
         "trust_formula",
@@ -98,7 +407,125 @@
         "chat_bump",
         "chat_piercer",
         "chat_shipping"
-      ]
+      ],
+      "settings": {
+        "product_url": "/products/alicyn-solucion-antiseptica",
+        "whatsapp_url": "https://wa.me/525542388056?text=Hola%2C%20quiero%20comprar%20Alicyn",
+        "instagram_url": "https://www.instagram.com/alicyn.mx/",
+        "brand_text": "alicyn",
+        "announcement_text": "100 ml · Piercing Aftercare by Alicyn MX · envíos a todo México",
+        "header_cta_label": "Comprar",
+        "product_size": "100 ml",
+        "product_price": "300.00",
+        "product_price_label": "$300 MXN",
+        "hero_eyebrow": "Piercing Aftercare by Alicyn MX",
+        "hero_heading": "Cuida tus perforaciones en los momentos que más lo necesitan.",
+        "hero_copy": "No es para tocar tu piercing todo el día. Alicyn 100 ml acompaña esos momentos reales: después de sudar, dormir sobre la pieza, recibir un jalón, cambiar joyería o notar sensibilidad común. Limpieza responsable y sensación calmante para piel sana, con la guía de tu perforador siempre al centro.",
+        "primary_cta_label": "Comprar Alicyn 100 ml — $350 MXN",
+        "secondary_cta_label": "Ver cómo se usa",
+        "product_image_alt": "Frasco de Alicyn solución antiséptica para cuidado post-piercing, 100 ml",
+        "product_note_label": "Fórmula simple",
+        "product_note_value": "$300 MXN",
+        "hero_fact_1_label": "Contenido",
+        "hero_fact_1_value": "100 ml",
+        "hero_fact_2_label": "Uso",
+        "hero_fact_2_value": "Puntual",
+        "hero_fact_3_label": "Envíos",
+        "hero_fact_3_value": "México",
+        "show_packs": true,
+        "show_rewards": true,
+        "packs_eyebrow": "Compra directa",
+        "packs_heading": "Packs de cuidado Alicyn",
+        "packs_copy": "Compra una pieza o elige un pack con mejor precio por volumen. Cada compra activa usa productos reales de Shopify para que el checkout respete el precio.",
+        "rewards_eyebrow": "Cuenta Alicyn",
+        "rewards_heading": "Recompensas conectadas a tu cuenta",
+        "rewards_copy": "Los beneficios se muestran según tu cuenta de cliente, historial de compra y tags asignados en Shopify.",
+        "product_single_handle": "alicyn-solucion-antiseptica",
+        "product_pack_2_handle": "alicyn-pack-2",
+        "product_pack_3_handle": "alicyn-pack-3",
+        "product_pack_5_handle": "alicyn-pack-5",
+        "wholesale_pack_5_handle": "alicyn-mayoreo-5",
+        "wholesale_pack_10_handle": "alicyn-mayoreo-10",
+        "wholesale_pack_20_handle": "alicyn-mayoreo-20",
+        "wholesale_pack_50_handle": "alicyn-mayoreo-50",
+        "benefits_eyebrow": "Alicyn Tips",
+        "benefits_heading": "Aftercare claro para cuando tu perforación pide atención.",
+        "benefits_copy": "Inspirado en la forma en que Alicyn educa en Instagram: mensajes directos, visuales limpios y cuidado de perforaciones sin complicar la rutina. Para limpieza de piercing, frescura y apoyo puntual en molestias comunes.",
+        "moments_eyebrow": "Momentos que importan",
+        "moments_heading": "¿Cuándo sí usar Alicyn?",
+        "moments_copy": "Alicyn es una solución para piercing útil en momentos específicos, no un hábito automático de todos los días. Piénsalo para cuando la perforación estuvo más expuesta o sensible y necesitas cuidado puntual sin manipular de más.",
+        "alert_eyebrow": "Alicyn Tips",
+        "alert_heading": "Antes de usarlo: aprende a reconocer señales de alerta",
+        "alert_copy": "Un buen cuidado para piercing también significa saber cuándo no improvisar en casa. Alicyn está pensado para piel sana y molestias comunes del proceso. No debe usarse como sustituto de valoración profesional ante signos o señales de infección.",
+        "alert_common_heading": "Molestias comunes del proceso",
+        "alert_common_items": "Sensibilidad\nInflamación visual ligera\nEnrojecimiento leve localizado\nIncomodidad al roce\nCostrita normal o secreción clara/ligeramente amarillenta en pequeñas cantidades",
+        "alert_warning_heading": "Señales para consultar",
+        "alert_warning_items": "Dolor intenso o creciente\nCalor fuerte en la zona\nSecreción abundante, espesa, verde, amarilla intensa o con mal olor\nFiebre o líneas rojas que se extienden\nInflamación que empeora en lugar de mejorar\nJoyería que se está incrustando\nReacción severa, alergia o sangrado persistente",
+        "alert_note": "If any of these signs appear, pause self-care experiments and consult your piercer or a healthcare professional.",
+        "how_eyebrow": "Cómo usarlo",
+        "how_heading": "Úsalo solo cuando el momento lo pide.",
+        "how_copy": "Para cuidado post piercing puntual: después de sudor, roce, cambio de joyería o molestias en piercing, siempre sobre piel sana y siguiendo la indicación de tu perforador.",
+        "how_note": "Alicyn está pensado para piel sana y molestias comunes del proceso. No debe usarse como sustituto de valoración profesional ante signos de infección.",
+        "details_eyebrow": "Producto",
+        "details_heading": "Alicyn 100 ml, listo para tenerlo a la mano.",
+        "details_product_title": "Alicyn solución antiséptica",
+        "details_summary": "100 ml · pensado para acompañarte en momentos clave del proceso. Fórmula para uso tópico externo, sobre piel sana, cuando hay mayor sensibilidad o exposición. Evita ojos y mucosas.",
+        "details_cta_label": "Comprar Alicyn 100 ml — $300 MXN",
+        "detail_1_label": "Contenido",
+        "detail_1_value": "100 ml",
+        "detail_2_label": "Uso",
+        "detail_2_value": "Externo, puntual y sobre piel sana",
+        "detail_3_label": "Cuándo usarlo",
+        "detail_3_value": "Después de sudor, roce, jalón, cambio de joyería o exposición a ambientes no controlados",
+        "detail_4_label": "Ingredientes",
+        "detail_4_value": "Sulfato de cobre, sulfato de zinc, alcanfor y agua destilada",
+        "detail_5_label": "Uso esperado",
+        "detail_5_value": "100 ml · pensado para acompañarte en momentos clave del proceso.",
+        "detail_6_label": "Conservación",
+        "detail_6_value": "Guarda bien cerrado, en lugar fresco, seco y fuera de luz directa",
+        "detail_7_label": "Qué incluye",
+        "detail_7_value": "1 frasco Alicyn 100 ml e indicaciones de uso",
+        "detail_8_label": "Envío",
+        "detail_8_value": "Envíos a todo México; consulta disponibilidad de salida rápida en CDMX y Edo. Mex",
+        "reviews_eyebrow": "Experiencias",
+        "reviews_heading": "Lo que busca la comunidad: confianza, rutina clara y menos miedo.",
+        "reviews_copy": "Reseñas en el tono de la comunidad Alicyn: directas, humanas y enfocadas en limpieza, frescura y confianza para cuidar sin prometer resultados médicos.",
+        "reviews_disclaimer": "Las experiencias pueden variar. Alicyn no sustituye la valoración de un perforador profesional.",
+        "story_eyebrow": "Antes / Durante / Después",
+        "story_heading": "No son fotos médicas. Es la historia de aprender a cuidar mejor.",
+        "studios_eyebrow": "Alicyn para piercers",
+        "studios_heading": "Una opción fácil de explicar en cabina y mostrador.",
+        "studios_copy": "La comunidad de Instagram pregunta por DM, pedidos y paquetes para estudios. Aquí lo traducimos a una propuesta clara: aftercare piercing México con educación honesta, soporte por WhatsApp y material visual para clientes.",
+        "studios_features": "Mayoristas y paquetes para piercers o estudios\nMaterial visual con instrucciones y señales para consultar\nSoporte por WhatsApp para pedidos, dudas y recompra\nConsulta disponibilidad para CDMX, Edo. Mex y envíos nacionales",
+        "studios_cta_label": "Solicitar acceso a mayoreo",
+        "wholesale_request_url": "/pages/mayoreo-alicyn",
+        "wholesale_eyebrow": "Acceso autorizado",
+        "wholesale_heading": "Precios especiales para piercers y estudios",
+        "wholesale_copy": "Estos botones agregan productos reales de mayoreo a Shopify. Si un producto no existe o no está disponible, no se muestra compra directa.",
+        "wholesale_request_eyebrow": "Mayoreo Alicyn",
+        "wholesale_request_heading": "¿Tienes un estudio o eres piercer?",
+        "wholesale_request_copy": "Solicita acceso a precios especiales y empieza a vender Alicyn como parte del cuidado posterior de tus clientes.",
+        "wholesale_request_button": "Solicitar acceso a mayoreo",
+        "faq_eyebrow": "FAQ",
+        "faq_heading": "Preguntas frecuentes",
+        "final_eyebrow": "Alicyn Piercing Aftercare",
+        "final_heading": "Tenlo listo para esos momentos en los que tu perforación se siente más vulnerable.",
+        "final_copy": "Cuidado post piercing puntual de uso tópico externo, pensado para limpieza responsable y sensación calmante cuando hay mayor sensibilidad, roce o exposición.",
+        "final_primary_label": "Comprar Alicyn 100 ml — $300 MXN",
+        "final_secondary_label": "Comprar por WhatsApp",
+        "chat_title": "Alicyn por WhatsApp",
+        "chat_subtitle": "Pedidos, dudas y soporte para piercers.",
+        "chat_close_label": "Cerrar",
+        "chat_message_label": "Mensaje",
+        "chat_default_message": "Hola, quiero comprar Alicyn 100 ml.",
+        "chat_send_label": "Abrir WhatsApp",
+        "sticky_cta_label": "Comprar Alicyn 100 ml — $300",
+        "footer_copy": "Piercing aftercare de uso tópico para cuidado post piercing puntual. Solo uso externo. Evita ojos y mucosas. Usa sobre piel sana. Consulta a tu perforador si tienes dudas o si las molestias empeoran.",
+        "footer_badge_1": "Solo uso externo",
+        "footer_badge_2": "Consulta a tu perforador si tienes dudas",
+        "schema_product_name": "Alicyn Solución Antiséptica 100 ml",
+        "schema_description": "Piercing aftercare de uso tópico externo para cuidar tus perforaciones con limpieza responsable y sensación calmante en momentos clave de mayor sensibilidad o exposición."
+      }
     }
   },
   "order": [
