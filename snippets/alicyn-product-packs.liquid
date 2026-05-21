@@ -16,6 +16,18 @@
   assign pack_3_product = all_products[pack_3_handle]
   assign pack_4_product = all_products[pack_4_handle]
   assign pack_5_product = all_products[pack_5_handle]
+
+  assign pack_visual_enabled = true
+  if show_pack_images == false
+    assign pack_visual_enabled = false
+  endif
+  assign pack_visual_image = pack_product_image
+  if pack_visual_image == blank
+    assign pack_visual_image = fallback_product_image
+  endif
+  assign pack_visual_alt = pack_product_image_alt | default: 'Alicyn solución antiséptica 100 ml para cuidado post-piercing'
+  assign pack_visual_style = pack_image_style | default: 'stacked'
+  assign pack_visual_scale = pack_image_scale | default: 100 | divided_by: 100.0
 %}
 
 <section id="packs" class="alicyn-packs section-pad" aria-labelledby="alicyn-packs-title">
@@ -28,6 +40,44 @@
 
   <div class="alicyn-pack-grid" aria-label="Packs disponibles de Alicyn">
     <article class="alicyn-pack-card">
+      {% assign pack_count = 1 %}
+      {% assign pack_image_count = pack_count %}
+      {% if pack_visual_style == 'single' %}
+        {% assign pack_image_count = 1 %}
+      {% endif %}
+      {% if pack_visual_enabled %}
+        <div class="alicyn-pack-visual alicyn-pack-visual-{{ pack_visual_style }}" data-pack-count="{{ pack_count }}" style="--pack-image-scale: {{ pack_visual_scale }};">
+          <div class="alicyn-pack-image-stack">
+            {% for image_index in (1..pack_image_count) %}
+              {% capture current_alt %}{% if forloop.first %}Pack 1 de {{ pack_visual_alt }}{% endif %}{% endcapture %}
+              {% if pack_visual_image != blank %}
+                <img
+                  class="alicyn-pack-product-image"
+                  src="{{ pack_visual_image | image_url: width: 320 }}"
+                  srcset="{{ pack_visual_image | image_url: width: 220 }} 220w, {{ pack_visual_image | image_url: width: 320 }} 320w"
+                  sizes="110px"
+                  alt="{{ current_alt | strip | escape }}"
+                  width="180"
+                  height="260"
+                  loading="lazy"
+                  {% unless forloop.first %}aria-hidden="true"{% endunless %}
+                >
+              {% else %}
+                <img
+                  class="alicyn-pack-product-image"
+                  src="{{ 'alicyn-product.png' | asset_url }}"
+                  alt="{{ current_alt | strip | escape }}"
+                  width="180"
+                  height="260"
+                  loading="lazy"
+                  onerror="this.style.display='none';"
+                  {% unless forloop.first %}aria-hidden="true"{% endunless %}
+                >
+              {% endif %}
+            {% endfor %}
+          </div>
+        </div>
+      {% endif %}
       <span class="alicyn-pack-kicker">1 pieza</span>
       <h3>Alicyn 100 ml</h3>
       {% if single_product != blank and single_product.available and single_product.selected_or_first_available_variant != blank %}
@@ -37,7 +87,7 @@
         <strong class="alicyn-pack-price">Precio objetivo: $350 MXN</strong>
         <p class="alicyn-pack-unit">$350 MXN por pieza</p>
       {% endif %}
-      <p>Para tener Alicyn a la mano cuando tu perforación necesita cuidado puntual.</p>
+      <p>Para cuidado personal.</p>
       {% render 'alicyn-buy-actions',
         product_handle: single_handle,
         quantity: 1,
@@ -53,6 +103,25 @@
     </article>
 
     <article class="alicyn-pack-card">
+      {% assign pack_count = 2 %}
+      {% assign pack_image_count = pack_count %}
+      {% if pack_visual_style == 'single' %}
+        {% assign pack_image_count = 1 %}
+      {% endif %}
+      {% if pack_visual_enabled %}
+        <div class="alicyn-pack-visual alicyn-pack-visual-{{ pack_visual_style }}" data-pack-count="{{ pack_count }}" style="--pack-image-scale: {{ pack_visual_scale }};">
+          <div class="alicyn-pack-image-stack">
+            {% for image_index in (1..pack_image_count) %}
+              {% capture current_alt %}{% if forloop.first %}Pack 2 de {{ pack_visual_alt }}{% endif %}{% endcapture %}
+              {% if pack_visual_image != blank %}
+                <img class="alicyn-pack-product-image" src="{{ pack_visual_image | image_url: width: 320 }}" srcset="{{ pack_visual_image | image_url: width: 220 }} 220w, {{ pack_visual_image | image_url: width: 320 }} 320w" sizes="110px" alt="{{ current_alt | strip | escape }}" width="180" height="260" loading="lazy" {% unless forloop.first %}aria-hidden="true"{% endunless %}>
+              {% else %}
+                <img class="alicyn-pack-product-image" src="{{ 'alicyn-product.png' | asset_url }}" alt="{{ current_alt | strip | escape }}" width="180" height="260" loading="lazy" onerror="this.style.display='none';" {% unless forloop.first %}aria-hidden="true"{% endunless %}>
+              {% endif %}
+            {% endfor %}
+          </div>
+        </div>
+      {% endif %}
       <span class="alicyn-pack-kicker">2 piezas</span>
       <h3>Alicyn Pack 2</h3>
       {% if pack_2_product != blank and pack_2_product.available and pack_2_product.selected_or_first_available_variant != blank %}
@@ -62,7 +131,7 @@
         <strong class="alicyn-pack-price">Precio objetivo: $665 MXN</strong>
         <p class="alicyn-pack-unit">$332.50 MXN por pieza</p>
       {% endif %}
-      <p>Ideal para compartir con alguien más o tener una de repuesto.</p>
+      <p>Para compartir o tener repuesto.</p>
       {% render 'alicyn-buy-actions',
         product_handle: pack_2_handle,
         quantity: 1,
@@ -78,7 +147,26 @@
     </article>
 
     <article class="alicyn-pack-card">
-      <span class="alicyn-pack-badge">Mejor para compartir</span>
+      {% assign pack_count = 3 %}
+      {% assign pack_image_count = pack_count %}
+      {% if pack_visual_style == 'single' %}
+        {% assign pack_image_count = 1 %}
+      {% endif %}
+      {% if pack_visual_enabled %}
+        <div class="alicyn-pack-visual alicyn-pack-visual-{{ pack_visual_style }}" data-pack-count="{{ pack_count }}" style="--pack-image-scale: {{ pack_visual_scale }};">
+          <div class="alicyn-pack-image-stack">
+            {% for image_index in (1..pack_image_count) %}
+              {% capture current_alt %}{% if forloop.first %}Pack 3 de {{ pack_visual_alt }}{% endif %}{% endcapture %}
+              {% if pack_visual_image != blank %}
+                <img class="alicyn-pack-product-image" src="{{ pack_visual_image | image_url: width: 320 }}" srcset="{{ pack_visual_image | image_url: width: 220 }} 220w, {{ pack_visual_image | image_url: width: 320 }} 320w" sizes="110px" alt="{{ current_alt | strip | escape }}" width="180" height="260" loading="lazy" {% unless forloop.first %}aria-hidden="true"{% endunless %}>
+              {% else %}
+                <img class="alicyn-pack-product-image" src="{{ 'alicyn-product.png' | asset_url }}" alt="{{ current_alt | strip | escape }}" width="180" height="260" loading="lazy" onerror="this.style.display='none';" {% unless forloop.first %}aria-hidden="true"{% endunless %}>
+              {% endif %}
+            {% endfor %}
+          </div>
+        </div>
+      {% endif %}
+      <span class="alicyn-pack-badge">Ideal para amigos</span>
       <span class="alicyn-pack-kicker">3 piezas</span>
       <h3>Alicyn Pack 3</h3>
       {% if pack_3_product != blank and pack_3_product.available and pack_3_product.selected_or_first_available_variant != blank %}
@@ -88,7 +176,7 @@
         <strong class="alicyn-pack-price">Precio objetivo: $945 MXN</strong>
         <p class="alicyn-pack-unit">$315 MXN por pieza</p>
       {% endif %}
-      <p>Buena opción para comprar con amigos y aprovechar mejor el envío.</p>
+      <p>Para comprar con amigos.</p>
       {% render 'alicyn-buy-actions',
         product_handle: pack_3_handle,
         quantity: 1,
@@ -104,7 +192,26 @@
     </article>
 
     <article class="alicyn-pack-card">
-      <span class="alicyn-pack-badge">Aprovecha mejor tu pedido</span>
+      {% assign pack_count = 4 %}
+      {% assign pack_image_count = pack_count %}
+      {% if pack_visual_style == 'single' %}
+        {% assign pack_image_count = 1 %}
+      {% endif %}
+      {% if pack_visual_enabled %}
+        <div class="alicyn-pack-visual alicyn-pack-visual-{{ pack_visual_style }}" data-pack-count="{{ pack_count }}" style="--pack-image-scale: {{ pack_visual_scale }};">
+          <div class="alicyn-pack-image-stack">
+            {% for image_index in (1..pack_image_count) %}
+              {% capture current_alt %}{% if forloop.first %}Pack 4 de {{ pack_visual_alt }}{% endif %}{% endcapture %}
+              {% if pack_visual_image != blank %}
+                <img class="alicyn-pack-product-image" src="{{ pack_visual_image | image_url: width: 320 }}" srcset="{{ pack_visual_image | image_url: width: 220 }} 220w, {{ pack_visual_image | image_url: width: 320 }} 320w" sizes="110px" alt="{{ current_alt | strip | escape }}" width="180" height="260" loading="lazy" {% unless forloop.first %}aria-hidden="true"{% endunless %}>
+              {% else %}
+                <img class="alicyn-pack-product-image" src="{{ 'alicyn-product.png' | asset_url }}" alt="{{ current_alt | strip | escape }}" width="180" height="260" loading="lazy" onerror="this.style.display='none';" {% unless forloop.first %}aria-hidden="true"{% endunless %}>
+              {% endif %}
+            {% endfor %}
+          </div>
+        </div>
+      {% endif %}
+      <span class="alicyn-pack-badge">Pedido grupal</span>
       <span class="alicyn-pack-kicker">4 piezas</span>
       <h3>Alicyn Pack 4</h3>
       {% if pack_4_product != blank and pack_4_product.available and pack_4_product.selected_or_first_available_variant != blank %}
@@ -114,7 +221,7 @@
         <strong class="alicyn-pack-price">Precio objetivo: $1,220 MXN</strong>
         <p class="alicyn-pack-unit">$305 MXN por pieza</p>
       {% endif %}
-      <p>Para compartir, regalar o tener varias piezas listas en casa.</p>
+      <p>Para pedido grupal.</p>
       {% render 'alicyn-buy-actions',
         product_handle: pack_4_handle,
         quantity: 1,
@@ -130,7 +237,26 @@
     </article>
 
     <article class="alicyn-pack-card">
-      <span class="alicyn-pack-badge">Aprovecha mejor tu pedido</span>
+      {% assign pack_count = 5 %}
+      {% assign pack_image_count = pack_count %}
+      {% if pack_visual_style == 'single' %}
+        {% assign pack_image_count = 1 %}
+      {% endif %}
+      {% if pack_visual_enabled %}
+        <div class="alicyn-pack-visual alicyn-pack-visual-{{ pack_visual_style }}" data-pack-count="{{ pack_count }}" style="--pack-image-scale: {{ pack_visual_scale }};">
+          <div class="alicyn-pack-image-stack">
+            {% for image_index in (1..pack_image_count) %}
+              {% capture current_alt %}{% if forloop.first %}Pack 5 de {{ pack_visual_alt }}{% endif %}{% endcapture %}
+              {% if pack_visual_image != blank %}
+                <img class="alicyn-pack-product-image" src="{{ pack_visual_image | image_url: width: 320 }}" srcset="{{ pack_visual_image | image_url: width: 220 }} 220w, {{ pack_visual_image | image_url: width: 320 }} 320w" sizes="110px" alt="{{ current_alt | strip | escape }}" width="180" height="260" loading="lazy" {% unless forloop.first %}aria-hidden="true"{% endunless %}>
+              {% else %}
+                <img class="alicyn-pack-product-image" src="{{ 'alicyn-product.png' | asset_url }}" alt="{{ current_alt | strip | escape }}" width="180" height="260" loading="lazy" onerror="this.style.display='none';" {% unless forloop.first %}aria-hidden="true"{% endunless %}>
+              {% endif %}
+            {% endfor %}
+          </div>
+        </div>
+      {% endif %}
+      <span class="alicyn-pack-badge">Mejor precio público</span>
       <span class="alicyn-pack-kicker">5 piezas</span>
       <h3>Alicyn Pack 5</h3>
       {% if pack_5_product != blank and pack_5_product.available and pack_5_product.selected_or_first_available_variant != blank %}
@@ -140,7 +266,7 @@
         <strong class="alicyn-pack-price">Precio objetivo: $1,500 MXN</strong>
         <p class="alicyn-pack-unit">Mejor precio por pieza del pedido</p>
       {% endif %}
-      <p>La mejor opción para comprar en grupo y optimizar tu pedido.</p>
+      <p>Mejor precio por pieza.</p>
       {% render 'alicyn-buy-actions',
         product_handle: pack_5_handle,
         quantity: 1,

@@ -97,7 +97,7 @@ body {
   top: 0;
   z-index: 40;
   display: grid;
-  grid-template-columns: minmax(0, 250px) auto;
+  grid-template-columns: minmax(0, 1fr) auto;
   justify-content: start;
   align-items: center;
   gap: 12px;
@@ -118,6 +118,15 @@ body {
   font-weight: 900;
   letter-spacing: 0;
   text-transform: lowercase;
+  min-width: 0;
+}
+
+.alicyn-page .brand-with-logo {
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-start;
+  min-width: 0;
+  max-width: 100%;
 }
 
 .alicyn-page .brand-drop {
@@ -139,24 +148,34 @@ body {
   background: var(--brand-aqua);
 }
 
-.alicyn-page .brand-logo,
-.alicyn-page .footer-logo {
-  display: inline-flex;
-  align-items: center;
-  width: min(var(--brand-logo-width, 132px), 46vw);
+.alicyn-page .brand-logo-image {
+  display: block;
+  width: min(var(--header-logo-mobile-width, 124px), 42vw);
   max-width: 100%;
-}
-
-.alicyn-page .footer-logo {
-  width: min(var(--footer-logo-width, 140px), 56vw);
-}
-
-.alicyn-page .brand-logo-image,
-.alicyn-page .footer-logo-image {
-  width: 100%;
-  max-height: 36px;
+  max-height: 38px;
+  height: auto;
   object-fit: contain;
   object-position: left center;
+}
+
+.alicyn-page .brand-logo-image-fallback {
+  filter: drop-shadow(0 12px 24px rgba(143, 191, 195, 0.12));
+}
+
+.alicyn-page .brand-fallback {
+  align-items: center;
+  gap: 8px;
+}
+
+.alicyn-page .footer-logo-image {
+  display: block;
+  width: min(var(--footer-logo-width, 160px), 58vw);
+  max-width: 100%;
+  max-height: 54px;
+  height: auto;
+  object-fit: contain;
+  object-position: left center;
+  margin-bottom: 18px;
 }
 
 .alicyn-page .nav-toggle {
@@ -1038,6 +1057,115 @@ body {
   padding: 20px;
 }
 
+.alicyn-page .alicyn-pack-visual {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 150px;
+  margin: -2px 0 18px;
+  overflow: visible;
+}
+
+.alicyn-page .alicyn-pack-visual::before {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  width: 78%;
+  height: 58%;
+  border-radius: 999px;
+  background: radial-gradient(circle, rgba(167, 222, 228, 0.2), rgba(167, 222, 228, 0));
+  filter: blur(18px);
+}
+
+.alicyn-page .alicyn-pack-image-stack {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  width: min(100%, 240px);
+  min-width: 0;
+  margin: 0 auto;
+}
+
+.alicyn-page .alicyn-pack-product-image {
+  position: relative;
+  z-index: 1;
+  width: auto;
+  max-width: 86px;
+  max-height: 150px;
+  object-fit: contain;
+  transform: scale(var(--pack-image-scale, 1));
+  transform-origin: center bottom;
+  filter: drop-shadow(0 18px 24px rgba(0, 0, 0, 0.36));
+}
+
+.alicyn-page .alicyn-pack-image-stack .alicyn-pack-product-image + .alicyn-pack-product-image {
+  margin-left: -44px;
+}
+
+.alicyn-page .alicyn-pack-visual-stacked[data-pack-count="2"] .alicyn-pack-product-image:nth-child(1) {
+  transform: translateX(10px) rotate(-5deg) scale(var(--pack-image-scale, 1));
+}
+
+.alicyn-page .alicyn-pack-visual-stacked[data-pack-count="2"] .alicyn-pack-product-image:nth-child(2) {
+  transform: translateX(-8px) rotate(5deg) scale(var(--pack-image-scale, 1));
+}
+
+.alicyn-page .alicyn-pack-visual-stacked[data-pack-count="3"] .alicyn-pack-product-image:nth-child(1) {
+  transform: translateX(18px) rotate(-8deg) scale(calc(var(--pack-image-scale, 1) * 0.94));
+}
+
+.alicyn-page .alicyn-pack-visual-stacked[data-pack-count="3"] .alicyn-pack-product-image:nth-child(2) {
+  z-index: 3;
+  transform: translateY(-4px) scale(var(--pack-image-scale, 1));
+}
+
+.alicyn-page .alicyn-pack-visual-stacked[data-pack-count="3"] .alicyn-pack-product-image:nth-child(3) {
+  transform: translateX(-18px) rotate(8deg) scale(calc(var(--pack-image-scale, 1) * 0.94));
+}
+
+.alicyn-page .alicyn-pack-visual-stacked[data-pack-count="4"] .alicyn-pack-product-image:nth-child(1),
+.alicyn-page .alicyn-pack-visual-stacked[data-pack-count="5"] .alicyn-pack-product-image:nth-child(1) {
+  transform: translateX(28px) rotate(-10deg) scale(calc(var(--pack-image-scale, 1) * 0.88));
+}
+
+.alicyn-page .alicyn-pack-visual-stacked[data-pack-count="4"] .alicyn-pack-product-image:nth-child(2),
+.alicyn-page .alicyn-pack-visual-stacked[data-pack-count="5"] .alicyn-pack-product-image:nth-child(2) {
+  z-index: 2;
+  transform: translateX(10px) rotate(-4deg) scale(calc(var(--pack-image-scale, 1) * 0.95));
+}
+
+.alicyn-page .alicyn-pack-visual-stacked[data-pack-count="4"] .alicyn-pack-product-image:nth-child(3),
+.alicyn-page .alicyn-pack-visual-stacked[data-pack-count="5"] .alicyn-pack-product-image:nth-child(3) {
+  z-index: 4;
+  transform: translateY(-6px) scale(var(--pack-image-scale, 1));
+}
+
+.alicyn-page .alicyn-pack-visual-stacked[data-pack-count="4"] .alicyn-pack-product-image:nth-child(4),
+.alicyn-page .alicyn-pack-visual-stacked[data-pack-count="5"] .alicyn-pack-product-image:nth-child(4) {
+  z-index: 2;
+  transform: translateX(-10px) rotate(5deg) scale(calc(var(--pack-image-scale, 1) * 0.94));
+}
+
+.alicyn-page .alicyn-pack-visual-stacked[data-pack-count="5"] .alicyn-pack-product-image:nth-child(5) {
+  transform: translateX(-28px) rotate(10deg) scale(calc(var(--pack-image-scale, 1) * 0.86));
+}
+
+.alicyn-page .alicyn-pack-visual-row .alicyn-pack-image-stack {
+  gap: 0;
+}
+
+.alicyn-page .alicyn-pack-visual-row .alicyn-pack-product-image {
+  max-width: clamp(48px, 18vw, 76px);
+}
+
+.alicyn-page .alicyn-pack-visual-single .alicyn-pack-product-image {
+  max-width: 104px;
+  max-height: 164px;
+}
+
 .alicyn-page .alicyn-pack-kicker,
 .alicyn-page .alicyn-wholesale-card span,
 .alicyn-page .alicyn-rewards-meta span,
@@ -1619,7 +1747,8 @@ body {
 }
 
 .alicyn-page .footer-brand {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
   margin-bottom: 12px;
 }
 
@@ -1753,6 +1882,17 @@ body {
 
   .alicyn-page .site-footer {
     padding-bottom: 42px;
+  }
+}
+
+@media (min-width: 750px) {
+  .alicyn-page .brand-logo-image {
+    width: min(var(--header-logo-width, 156px), 22vw);
+    max-height: 46px;
+  }
+
+  .alicyn-page .site-header {
+    grid-template-columns: minmax(0, auto) 1fr auto;
   }
 }
 

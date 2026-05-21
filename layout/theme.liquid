@@ -1,33 +1,39 @@
 <!doctype html>
 <html lang="{{ request.locale.iso_code | default: 'es-MX' }}">
   {% liquid
-    assign social_image = 'alicyn-product.png' | asset_url
+    assign social_image = 'alicyn-social-share.png' | asset_url
     if settings.social_share_image != blank
       assign social_image = settings.social_share_image | image_url: width: 1200
+    endif
+    assign favicon_image = 'alicyn-favicon.png' | asset_url
+    if settings.favicon != blank
+      assign favicon_image = settings.favicon | image_url: width: 64, height: 64
+    endif
+    assign apple_icon = 'alicyn-favicon.png' | asset_url
+    if settings.favicon != blank
+      assign apple_icon = settings.favicon | image_url: width: 180, height: 180
     endif
   %}
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>{% if page_title %}{{ page_title | escape }}{% else %}Alicyn 100 ml | Cuidado post-piercing{% endif %}</title>
-    <meta name="description" content="{{ page_description | default: 'Alicyn 100 ml para cuidado post-piercing en México: limpieza responsable y sensación calmante en momentos clave de sudor, roce, piercing bump o sensibilidad común.' | escape }}">
+    <title>{% if page_title %}{{ page_title | escape }}{% else %}Alicyn Piercing After Care{% endif %}</title>
+    <meta name="description" content="{{ page_description | default: 'Solución antiséptica de uso tópico externo para cuidado post-piercing, limpieza responsable y molestias comunes del proceso.' | escape }}">
     <link rel="canonical" href="{{ canonical_url | default: 'https://alicynmx.com/products/alicyn-solucion-antiseptica' }}">
-    {% if settings.favicon != blank %}
-      <link rel="icon" type="image/png" href="{{ settings.favicon | image_url: width: 64, height: 64 }}">
-      <link rel="apple-touch-icon" href="{{ settings.favicon | image_url: width: 180, height: 180 }}">
-    {% endif %}
+    <link rel="icon" type="image/png" href="{{ favicon_image }}">
+    <link rel="apple-touch-icon" href="{{ apple_icon }}">
 
     <meta property="og:type" content="product">
-    <meta property="og:title" content="Alicyn 100 ml | Cuidado post-piercing">
-    <meta property="og:description" content="Cuida tus perforaciones en momentos clave de sudor, roce, cambio de joyería o sensibilidad común. Uso externo sobre piel sana. 100 ml.">
+    <meta property="og:title" content="Alicyn Piercing After Care">
+    <meta property="og:description" content="Solución antiséptica de uso tópico externo para cuidado post-piercing, limpieza responsable y molestias comunes del proceso.">
     <meta property="og:url" content="{{ canonical_url | default: 'https://alicynmx.com/products/alicyn-solucion-antiseptica' }}">
     <meta property="og:image" content="{{ social_image }}">
     <meta property="product:price:amount" content="350.00">
     <meta property="product:price:currency" content="MXN">
 
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Alicyn 100 ml | Cuidado post-piercing">
-    <meta name="twitter:description" content="Limpieza de piercing responsable en México y sensación calmante para momentos clave del proceso.">
+    <meta name="twitter:title" content="Alicyn Piercing After Care">
+    <meta name="twitter:description" content="Solución antiséptica de uso tópico externo para cuidado post-piercing, limpieza responsable y molestias comunes del proceso.">
     <meta name="twitter:image" content="{{ social_image }}">
 
     {{ 'alicyn.css' | asset_url | stylesheet_tag }}

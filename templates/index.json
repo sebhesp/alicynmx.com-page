@@ -460,7 +460,7 @@
         "product_size": "100 ml",
         "product_price": "350.00",
         "product_price_label": "$350 MXN",
-        "hero_eyebrow": "Cuidado post-piercing por Alicyn MX",
+        "hero_eyebrow": "Piercing After Care by Alicyn",
         "hero_heading": "Cuida tus perforaciones en los momentos que más lo necesitan.",
         "hero_copy": "No es para tocar tu piercing todo el día. Alicyn 100 ml acompaña esos momentos reales: después de sudar, dormir sobre la pieza, recibir un jalón, cambiar joyería o notar sensibilidad común. Limpieza responsable y sensación calmante para piel sana, con la guía de tu perforador siempre al centro.",
         "primary_cta_label": "Comprar Alicyn 100 ml — $350 MXN",
@@ -567,7 +567,23 @@
         "footer_badge_1": "Solo uso externo",
         "footer_badge_2": "Consulta a tu perforador si tienes dudas",
         "schema_product_name": "Alicyn Solución Antiséptica 100 ml",
-        "schema_description": "Cuidado post-piercing de uso tópico externo para cuidar tus perforaciones con limpieza responsable y sensación calmante en momentos clave de mayor sensibilidad o exposición."
+        "schema_description": "Cuidado post-piercing de uso tópico externo para cuidar tus perforaciones con limpieza responsable y sensación calmante en momentos clave de mayor sensibilidad o exposición.",
+        "header_logo_width": 156,
+        "header_logo_mobile_width": 124,
+        "footer_logo_width": 160,
+        "show_pack_images": true,
+        "pack_product_image": "shopify://shop_images/Antiseptico_para_piercings_Alicyn_100ml.png",
+        "pack_product_image_alt": "Alicyn solución antiséptica 100 ml para cuidado post-piercing",
+        "pack_image_style": "stacked",
+        "pack_image_scale": 100,
+        "product_pack_4_handle": "alicyn-pack-4",
+        "trust_years_number": "7 años",
+        "trust_years_label": "de confianza",
+        "trust_clients_number": "+1,000",
+        "trust_clients_label": "clientes satisfechos",
+        "trust_processes_number": "+1,000",
+        "trust_processes_label": "procesos acompañados",
+        "trust_community_label": "Uso tópico externo"
       }
     }
   },

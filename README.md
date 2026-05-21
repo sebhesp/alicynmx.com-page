@@ -5,6 +5,7 @@ Production-ready Shopify Online Store 2.0 theme for `https://alicynmx.com`.
 This repo is a Shopify theme, not a static GitHub Pages site. It includes a homepage landing page, real Shopify product page, real cart page, classic customer-account templates, product packs, rewards, wholesale gating, FAQ, WhatsApp widget and mobile CTA.
 
 The brand direction follows the public Instagram identity at `https://www.instagram.com/alicyn.mx/`. See `BRAND_REFERENCE_NOTES.md`.
+Logo, favicon, social share and pack-image setup are documented in `BRANDING_SETUP.md`.
 
 ## Theme structure
 
