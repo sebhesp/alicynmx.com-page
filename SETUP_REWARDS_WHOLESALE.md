@@ -40,9 +40,12 @@ Crea productos reales en Shopify:
 | Alicyn Solución Antiséptica 100 ml para Piercings | $350 MXN | `alicyn-solucion-antiseptica` |
 | Alicyn Pack 2 | $665 MXN | `alicyn-pack-2` |
 | Alicyn Pack 3 | $945 MXN | `alicyn-pack-3` |
+| Alicyn Pack 4 | $1,220 MXN | `alicyn-pack-4` |
 | Alicyn Pack 5 | $1,500 MXN | `alicyn-pack-5` |
 
 El theme usa `all_products[handle]` y renderiza formularios reales `/cart/add` únicamente cuando el producto existe, está disponible y tiene variante disponible.
+
+Estos packs son para clientes finales: compra individual, amigos, familia o recompra. No son precios de distribuidor ni mayoreo profesional.
 
 Los handles se editan desde `Online Store > Themes > Customize > Home page > Alicyn Landing > Product handles`.
 
@@ -228,7 +231,36 @@ Frase larga:
 El costo de envío se cotiza al finalizar la compra con Skydrop según tu dirección, cobertura y paquetería disponible.
 ```
 
-## L) Checklist de prueba
+## L) Marca, logos e imagen
+
+Configura desde Theme Editor:
+
+- `Logo principal`
+- `Ancho del logo principal`
+- `Logo footer`
+- `Ancho del logo footer`
+- `Product image`
+- Limpieza visual, encuadre, posición, escala, offset y padding de la imagen de producto.
+
+Configura desde `Theme settings > Brand assets`:
+
+- `Favicon`
+- `Imagen para compartir / thumbnail`
+
+La imagen de producto puede ser PNG transparente o JPG con fondo claro. Para recorte perfecto, elimina el fondo antes en el editor de medios de Shopify o con una app de imagen.
+
+## M) Social proof
+
+La landing puede comunicar trayectoria real:
+
+- `7 años acompañando procesos de perforación`
+- `+1,000 clientes satisfechos`
+- `+1,000 procesos acompañados`
+- `Confianza construida en comunidad`
+
+No usar `reseñas verificadas` salvo que exista integración real con una app de reseñas verificadas.
+
+## N) Checklist de prueba
 
 Compra:
 
@@ -240,6 +272,7 @@ Compra:
 - Pack 1.
 - Pack 2.
 - Pack 3.
+- Pack 4.
 - Pack 5.
 - Add to cart.
 - Comprar ahora.

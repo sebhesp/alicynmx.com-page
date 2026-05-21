@@ -17,7 +17,7 @@ The public Instagram profile data was accessible without login through Instagram
 
 ## Repeated language and themes
 
-- “Piercing Aftercare by Alicyn MX”
+- “Cuidado post-piercing por Alicyn MX”
 - “Cuida tus perforaciones”
 - Moments when piercings need more attention: sweat, bath, bump, discomfort, jewelry change and accidental contact.
 - “Cualquier duda” / message-based support.

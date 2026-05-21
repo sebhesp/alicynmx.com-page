@@ -66,9 +66,12 @@ Create real Shopify products:
 
 - `alicyn-pack-2` — `$665 MXN`
 - `alicyn-pack-3` — `$945 MXN`
+- `alicyn-pack-4` — `$1,220 MXN`
 - `alicyn-pack-5` — `$1,500 MXN`
 
 The homepage pack cards use `all_products[handle]`. If a pack does not exist, the theme shows a setup notice instead of pretending the price will be honored.
+
+Public packs are for final customers buying individually, with friends, family or for repurchase. They are not distributor/wholesale pricing.
 
 ## Purchase flow
 
@@ -224,6 +227,22 @@ In `Online Store > Themes > Customize > Home page > Alicyn Landing > Hero`, use:
 
 For true pixel-level background removal, remove the background in Shopify's media editor with Shopify Magic or an image app before selecting the file in the theme editor.
 
+## Logos, favicon and social thumbnail
+
+Configure from the homepage section:
+
+- `Logo principal`
+- `Ancho del logo principal`
+- `Logo footer`
+- `Ancho del logo footer`
+
+Configure globally from `Theme settings > Brand assets`:
+
+- `Favicon`
+- `Imagen para compartir / thumbnail`
+
+If no logo image is selected, the theme uses the text/drop fallback.
+
 ## Shopify domain setup
 
 1. Connect custom domain: `alicynmx.com`.
@@ -262,6 +281,7 @@ Purchase:
 - Pack 1.
 - Pack 2.
 - Pack 3.
+- Pack 4.
 - Pack 5.
 - Add to cart.
 - Buy now.

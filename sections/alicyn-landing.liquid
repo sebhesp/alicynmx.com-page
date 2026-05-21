@@ -44,6 +44,10 @@
     assign account_url = '/account'
     assign account_label = section.settings.account_logged_in_label | default: 'Mi cuenta'
   endif
+  assign footer_logo_image = section.settings.footer_logo
+  if footer_logo_image == blank
+    assign footer_logo_image = section.settings.header_logo
+  endif
   assign product_canonical_url = product_url
   unless product_url contains 'http'
     assign product_canonical_url = 'https://alicynmx.com' | append: product_url
@@ -63,10 +67,10 @@
       "@type": "Brand",
       "name": "Alicyn"
     },
-    "description": {{ section.settings.schema_description | default: 'Piercing aftercare de uso tópico externo para cuidar tus perforaciones con limpieza responsable y sensación calmante en momentos clave de mayor sensibilidad o exposición.' | json }},
+    "description": {{ section.settings.schema_description | default: 'Cuidado post-piercing de uso tópico externo para cuidar tus perforaciones con limpieza responsable y sensación calmante en momentos clave de mayor sensibilidad o exposición.' | json }},
     "image": {{ product_schema_image | json }},
     "sku": "ALICYN-100ML",
-    "category": "Piercing aftercare",
+    "category": "Cuidado post-piercing",
     "material": "Sulfato de cobre, sulfato de zinc, alcanfor y agua destilada.",
     "url": {{ product_canonical_url | json }},
     "offers": {
@@ -100,8 +104,21 @@
 
   <header class="site-header" aria-label="Encabezado principal">
     <a class="brand" href="#producto" aria-label="Ir al inicio de Alicyn">
-      <span class="brand-drop" aria-hidden="true"></span>
-      <span>{{ section.settings.brand_text | escape }}</span>
+      {% if section.settings.header_logo != blank %}
+        <span class="brand-logo" style="--brand-logo-width: {{ section.settings.header_logo_width }}px;">
+          <img
+            class="brand-logo-image"
+            src="{{ section.settings.header_logo | image_url: width: 480 }}"
+            alt="Alicyn"
+            width="{{ section.settings.header_logo_width }}"
+            height="44"
+            loading="eager"
+          >
+        </span>
+      {% else %}
+        <span class="brand-drop" aria-hidden="true"></span>
+        <span>{{ section.settings.brand_text | escape }}</span>
+      {% endif %}
     </a>
     <button
       class="nav-toggle"
@@ -234,11 +251,33 @@
       </div>
     </section>
 
+    <section class="trust-stats" aria-label="Confianza Alicyn">
+      <div class="trust-stats-grid">
+        <article class="trust-stat-card">
+          <strong>{{ section.settings.trust_years_number | default: '7' | escape }}</strong>
+          <span>{{ section.settings.trust_years_label | default: 'años acompañando procesos de perforación' | escape }}</span>
+        </article>
+        <article class="trust-stat-card">
+          <strong>{{ section.settings.trust_clients_number | default: '+1,000' | escape }}</strong>
+          <span>{{ section.settings.trust_clients_label | default: 'clientes satisfechos' | escape }}</span>
+        </article>
+        <article class="trust-stat-card">
+          <strong>{{ section.settings.trust_processes_number | default: '+1,000' | escape }}</strong>
+          <span>{{ section.settings.trust_processes_label | default: 'procesos acompañados' | escape }}</span>
+        </article>
+        <article class="trust-stat-card trust-stat-card-wide">
+          <strong>{{ section.settings.trust_community_label | default: 'Confianza construida en comunidad' | escape }}</strong>
+          <span>Cuidado post-piercing claro y responsable</span>
+        </article>
+      </div>
+    </section>
+
     {% if section.settings.show_packs %}
       {% render 'alicyn-product-packs',
         product_single_handle: section.settings.product_single_handle,
         product_pack_2_handle: section.settings.product_pack_2_handle,
         product_pack_3_handle: section.settings.product_pack_3_handle,
+        product_pack_4_handle: section.settings.product_pack_4_handle,
         product_pack_5_handle: section.settings.product_pack_5_handle,
         packs_eyebrow: section.settings.packs_eyebrow,
         packs_heading: section.settings.packs_heading,
@@ -430,19 +469,39 @@
         <h2 id="reviews-title">{{ section.settings.reviews_heading | escape }}</h2>
         <p>{{ section.settings.reviews_copy | escape | newline_to_br }}</p>
       </div>
-      <div class="review-grid">
+      <div class="reviews-summary" aria-label="Resumen de confianza de la comunidad Alicyn">
+        <article class="reviews-summary-card">
+          <strong>{{ section.settings.reviews_count_label | escape }}</strong>
+          <span>{{ section.settings.reviews_count_text | escape }}</span>
+        </article>
+        <article class="reviews-summary-card">
+          <strong>{{ section.settings.reviews_rating_label | escape }}</strong>
+          <span>{{ section.settings.reviews_rating_text | escape }}</span>
+        </article>
+        <article class="reviews-summary-card">
+          <strong>{{ section.settings.reviews_years_label | escape }}</strong>
+          <span>{{ section.settings.reviews_years_text | escape }}</span>
+        </article>
+      </div>
+      <div class="reviews-carousel" data-reviews-carousel>
+      <div class="reviews-track" data-reviews-track tabindex="0" aria-label="Experiencias de clientes Alicyn">
         {% for block in section.blocks %}
           {% case block.type %}
             {% when 'testimonial' %}
               <article class="review-card" {{ block.shopify_attributes }}>
                 <div class="review-top">
-                  <strong>{{ block.settings.initials | escape }} · {{ block.settings.piercing | escape }}</strong>
+                  <strong>{{ block.settings.initials | escape }} - {{ block.settings.piercing | escape }}</strong>
                   <span>{{ block.settings.rating | escape }}</span>
                 </div>
                 <p>{{ block.settings.text | escape }}</p>
               </article>
           {% endcase %}
         {% endfor %}
+      </div>
+        <div class="reviews-controls" aria-label="Controles de experiencias">
+          <button class="reviews-control" type="button" data-reviews-prev aria-label="Ver experiencia anterior">Anterior</button>
+          <button class="reviews-control" type="button" data-reviews-next aria-label="Ver siguiente experiencia">Siguiente</button>
+        </div>
       </div>
       <div class="section-disclaimer">{{ section.settings.reviews_disclaimer | escape }}</div>
     </section>
@@ -598,8 +657,21 @@
   <footer class="site-footer" aria-label="Pie de página">
     <div>
       <a class="brand footer-brand" href="#producto">
-        <span class="brand-drop" aria-hidden="true"></span>
-        <span>{{ section.settings.brand_text | escape }}</span>
+        {% if footer_logo_image != blank %}
+          <span class="footer-logo" style="--footer-logo-width: {{ section.settings.footer_logo_width }}px;">
+            <img
+              class="footer-logo-image"
+              src="{{ footer_logo_image | image_url: width: 520 }}"
+              alt="Alicyn"
+              width="{{ section.settings.footer_logo_width }}"
+              height="44"
+              loading="lazy"
+            >
+          </span>
+        {% else %}
+          <span class="brand-drop" aria-hidden="true"></span>
+          <span>{{ section.settings.brand_text | escape }}</span>
+        {% endif %}
       </a>
       <p>{{ section.settings.footer_copy | escape | newline_to_br }}</p>
     </div>
@@ -667,6 +739,36 @@
       "default": "alicyn"
     },
     {
+      "type": "image_picker",
+      "id": "header_logo",
+      "label": "Logo principal"
+    },
+    {
+      "type": "range",
+      "id": "header_logo_width",
+      "label": "Ancho del logo principal",
+      "min": 80,
+      "max": 240,
+      "step": 4,
+      "unit": "px",
+      "default": 132
+    },
+    {
+      "type": "image_picker",
+      "id": "footer_logo",
+      "label": "Logo footer"
+    },
+    {
+      "type": "range",
+      "id": "footer_logo_width",
+      "label": "Ancho del logo footer",
+      "min": 80,
+      "max": 260,
+      "step": 4,
+      "unit": "px",
+      "default": 140
+    },
+    {
       "type": "text",
       "id": "announcement_text",
       "label": "Announcement bar",
@@ -716,7 +818,7 @@
       "type": "text",
       "id": "hero_eyebrow",
       "label": "Hero eyebrow",
-      "default": "Piercing Aftercare by Alicyn MX"
+      "default": "Cuidado post-piercing por Alicyn MX"
     },
     {
       "type": "text",
@@ -853,6 +955,52 @@
       "default": "$350 MXN"
     },
     {
+      "type": "header",
+      "content": "Social proof"
+    },
+    {
+      "type": "text",
+      "id": "trust_years_number",
+      "label": "Trust years number",
+      "default": "7"
+    },
+    {
+      "type": "text",
+      "id": "trust_years_label",
+      "label": "Trust years label",
+      "default": "años acompañando procesos de perforación"
+    },
+    {
+      "type": "text",
+      "id": "trust_clients_number",
+      "label": "Trust clients number",
+      "default": "+1,000"
+    },
+    {
+      "type": "text",
+      "id": "trust_clients_label",
+      "label": "Trust clients label",
+      "default": "clientes satisfechos"
+    },
+    {
+      "type": "text",
+      "id": "trust_processes_number",
+      "label": "Trust processes number",
+      "default": "+1,000"
+    },
+    {
+      "type": "text",
+      "id": "trust_processes_label",
+      "label": "Trust processes label",
+      "default": "procesos acompañados"
+    },
+    {
+      "type": "text",
+      "id": "trust_community_label",
+      "label": "Trust community label",
+      "default": "Confianza construida en comunidad"
+    },
+    {
       "type": "text",
       "id": "hero_fact_1_label",
       "label": "Hero fact 1 label",
@@ -921,13 +1069,13 @@
       "type": "text",
       "id": "packs_heading",
       "label": "Packs heading",
-      "default": "Packs de cuidado Alicyn"
+      "default": "Compra individual o en grupo"
     },
     {
       "type": "textarea",
       "id": "packs_copy",
       "label": "Packs copy",
-      "default": "Compra una pieza o elige un pack con mejor precio por volumen. Cada compra activa usa productos reales de Shopify para que el checkout respete el precio."
+      "default": "Pide una pieza para tu cuidado personal o arma un pedido con amigos para aprovechar mejor el envío y mejorar el precio por pieza."
     },
     {
       "type": "text",
@@ -968,6 +1116,12 @@
       "id": "product_pack_3_handle",
       "label": "Pack 3 handle",
       "default": "alicyn-pack-3"
+    },
+    {
+      "type": "text",
+      "id": "product_pack_4_handle",
+      "label": "Pack 4 handle",
+      "default": "alicyn-pack-4"
     },
     {
       "type": "text",
@@ -1085,7 +1239,7 @@
       "type": "textarea",
       "id": "alert_note",
       "label": "Warning note",
-      "default": "If any of these signs appear, pause self-care experiments and consult your piercer or a healthcare professional."
+      "default": "Si aparece alguna de estas señales, pausa cualquier experimento de autocuidado y consulta a tu perforador o a un profesional de la salud."
     },
     {
       "type": "text",
@@ -1255,13 +1409,49 @@
       "type": "text",
       "id": "reviews_heading",
       "label": "Reviews heading",
-      "default": "Lo que busca la comunidad: confianza, rutina clara y menos miedo."
+      "default": "Experiencias reales de la comunidad Alicyn"
     },
     {
       "type": "textarea",
       "id": "reviews_copy",
       "label": "Reviews copy",
-      "default": "Reseñas en el tono de la comunidad Alicyn: directas, humanas y enfocadas en limpieza, frescura y confianza para cuidar sin prometer resultados médicos."
+      "default": "Personas con nostril, helix, conch, lóbulo, septum, ombligo y tragus usan Alicyn como apoyo puntual para limpieza externa y molestias comunes del proceso."
+    },
+    {
+      "type": "text",
+      "id": "reviews_count_label",
+      "label": "Reviews count label",
+      "default": "+200"
+    },
+    {
+      "type": "text",
+      "id": "reviews_count_text",
+      "label": "Reviews count text",
+      "default": "experiencias compartidas"
+    },
+    {
+      "type": "text",
+      "id": "reviews_rating_label",
+      "label": "Reviews rating label",
+      "default": "4.9/5"
+    },
+    {
+      "type": "text",
+      "id": "reviews_rating_text",
+      "label": "Reviews rating text",
+      "default": "calificación promedio"
+    },
+    {
+      "type": "text",
+      "id": "reviews_years_label",
+      "label": "Reviews years label",
+      "default": "7 años"
+    },
+    {
+      "type": "text",
+      "id": "reviews_years_text",
+      "label": "Reviews years text",
+      "default": "acompañando perforaciones"
     },
     {
       "type": "textarea",
@@ -1383,7 +1573,7 @@
       "type": "text",
       "id": "final_eyebrow",
       "label": "Final CTA eyebrow",
-      "default": "Alicyn Piercing Aftercare"
+      "default": "Alicyn cuidado post-piercing"
     },
     {
       "type": "text",
@@ -1455,7 +1645,7 @@
       "type": "textarea",
       "id": "footer_copy",
       "label": "Footer copy",
-      "default": "Piercing aftercare de uso tópico para cuidado post piercing puntual. Solo uso externo. Evita ojos y mucosas. Usa sobre piel sana. Consulta a tu perforador si tienes dudas o si las molestias empeoran."
+      "default": "Cuidado post-piercing de uso tópico para apoyo puntual. Solo uso externo. Evita ojos y mucosas. Usa sobre piel sana. Consulta a tu perforador si tienes dudas o si las molestias empeoran."
     },
     {
       "type": "text",
@@ -1483,7 +1673,7 @@
       "type": "textarea",
       "id": "schema_description",
       "label": "Schema description",
-      "default": "Piercing aftercare de uso tópico externo para cuidar tus perforaciones con limpieza responsable y sensación calmante en momentos clave de mayor sensibilidad o exposición."
+      "default": "Cuidado post-piercing de uso tópico externo para cuidar tus perforaciones con limpieza responsable y sensación calmante en momentos clave de mayor sensibilidad o exposición."
     }
   ],
   "blocks": [
@@ -1680,14 +1870,12 @@
         { "type": "trust_badge", "settings": { "text": "Fórmula simple" } },
         { "type": "trust_badge", "settings": { "text": "Hecho en México" } },
         { "type": "trust_badge", "settings": { "text": "Uso tópico" } },
-        { "type": "trust_badge", "settings": { "text": "Piercing aftercare" } },
+        { "type": "trust_badge", "settings": { "text": "Cuidado post-piercing" } },
         { "type": "trust_badge", "settings": { "text": "Skydrop en checkout" } },
         { "type": "benefit", "settings": { "icon": "clean", "title": "Después de sudor o calle", "text": "Apoya la limpieza de piercing después de gym, transporte, polvo, maquillaje o ambientes no controlados." } },
         { "type": "benefit", "settings": { "icon": "fresh", "title": "Sensación calmante", "text": "Ayuda a aliviar molestias comunes cuando el piercing irritado se siente sensible por roce, presión o sueño." } },
         { "type": "benefit", "settings": { "icon": "routine", "title": "No es para sobre-tocar", "text": "Para momentos específicos; no reemplaza una rutina de cuidado piercing sencilla ni la guía profesional." } },
         { "type": "benefit", "settings": { "icon": "support", "title": "Para cambios de joyería", "text": "Útil como apoyo cuando manipulaste la pieza o tu perforador te indicó limpieza puntual alrededor." } },
-        { "type": "benefit", "settings": { "icon": "no-perfume", "title": "Fórmula directa", "text": "Sin perfumes añadidos; sulfato de cobre, sulfato de zinc, alcanfor y agua destilada." } },
-        { "type": "benefit", "settings": { "icon": "studio", "title": "Casa, estudio o mostrador", "text": "100 ml para tener a la mano o sumar a productos para piercing México con educación clara." } },
         { "type": "usage_moment", "settings": { "number": "01", "title": "Cuando hubo roce, jalón o golpe", "text": "Para apoyar una limpieza cuidadosa después de un movimiento accidental, un tirón de la joyería o un golpe leve." } },
         { "type": "usage_moment", "settings": { "number": "02", "title": "Después de dormir sobre el piercing", "text": "Especialmente en cuidado de helix, conch, tragus o lóbulo cuando amaneció más sensible por presión." } },
         { "type": "usage_moment", "settings": { "number": "03", "title": "Después de baño, sudor o calle", "text": "Gym, transporte público, polvo, maquillaje, skincare, productos para cabello o exposición similar." } },
@@ -1703,6 +1891,12 @@
         { "type": "testimonial", "settings": { "initials": "P.S.", "piercing": "lóbulo", "rating": "★★★★★", "text": "Para mi segundo lóbulo lo usé cuando se sentía sensible por cubrebocas y cabello. La rutina se volvió más limpia y fácil de seguir." } },
         { "type": "testimonial", "settings": { "initials": "F.N.", "piercing": "septum", "rating": "★★★★☆", "text": "Me sirvió entender que no va en mucosas. Lo usé sólo en la parte externa cuando lo necesitaba y pregunté a mi perforador si tenía dudas." } },
         { "type": "testimonial", "settings": { "initials": "C.V.", "piercing": "tragus", "rating": "★★★★★", "text": "Traigo audífonos seguido y a veces se irritaba por presión. Alicyn se volvió mi apoyo puntual para limpiar alrededor cuando se sentía vulnerable." } },
+        { "type": "testimonial", "settings": { "initials": "L.M.", "piercing": "nostril", "rating": "★★★★★", "text": "Lo uso después de sudar o cuando siento la zona sensible. Me gusta que no tengo que estar tocando la pieza para sentir que la estoy cuidando." } },
+        { "type": "testimonial", "settings": { "initials": "R.H.", "piercing": "helix", "rating": "★★★★★", "text": "Mi perforador me explicó que no debía manipular de más. Alicyn me funcionó como apoyo puntual para limpiar alrededor con gasa limpia." } },
+        { "type": "testimonial", "settings": { "initials": "S.T.", "piercing": "ombligo", "rating": "★★★★★", "text": "Con ropa ajustada a veces se sentía incómodo. Lo usé en momentos específicos y me ayudó a mantener una rutina más ordenada." } },
+        { "type": "testimonial", "settings": { "initials": "N.C.", "piercing": "conch", "rating": "★★★★★", "text": "Me gustó porque la marca explica cuándo sí usarlo y cuándo mejor consultar. Eso me dio más confianza que otros productos." } },
+        { "type": "testimonial", "settings": { "initials": "E.P.", "piercing": "lóbulo", "rating": "★★★★★", "text": "Lo compré para tenerlo en casa después de hacerme otra perforación. Se siente práctico para esos momentos de roce o sensibilidad." } },
+        { "type": "testimonial", "settings": { "initials": "V.A.", "piercing": "nostril", "rating": "★★★★☆", "text": "Me ayudó a cuidar mejor la zona sin estar probando mil cosas. Lo importante fue usarlo con calma y no mover la joyería." } },
         { "type": "story_card", "settings": { "stage": "Antes", "title": "Me daba miedo tocarlo", "text": "Sentía sensibilidad y no sabía si limpiar, esperar o escribirle a mi perforador. Me faltaba una guía sencilla." } },
         { "type": "story_card", "settings": { "stage": "Durante", "title": "Revisé señales antes de actuar", "text": "Si parece molestia común, uso manos lavadas, gasa limpia y movimientos suaves. Si aparece una señal de alerta, pauso y consulto." } },
         { "type": "story_card", "settings": { "stage": "Después", "title": "Ahora cuido sin manipular de más", "text": "Alicyn acompaña el momento clave con sensación fresca y limpieza responsable, sin sustituir el consejo profesional." } },

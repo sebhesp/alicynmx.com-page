@@ -71,6 +71,7 @@ The section exposes settings for:
 - Product URL, optional checkout URL, WhatsApp URL, Instagram URL and brand text.
 - Account link labels.
 - Announcement bar, hero copy, product image, background cleanup, fit, position, scale, offsets, CTAs, price labels and product facts.
+- Header/footer logos.
 - Product pack handles and wholesale pack handles.
 - Section headings and copy for benefits, usage moments, warning signs, how-to, details, reviews, studios, FAQ, chat and footer.
 - SEO/Product schema name, description and price amount.
@@ -132,21 +133,30 @@ https://alicynmx.com/products/alicyn-solucion-antiseptica
 
 Public packs and wholesale products must exist as real Shopify products for checkout to respect prices. Full setup is documented in `SETUP_REWARDS_WHOLESALE.md`.
 
-## Skydrop shipping
+Public packs:
 
-Shipping copy must stay accurate:
+```text
+Alicyn Pack 2: $665 MXN
+Alicyn Pack 3: $945 MXN
+Alicyn Pack 4: $1,220 MXN
+Alicyn Pack 5: $1,500 MXN
+```
+
+## Envío con Skydrop
+
+El texto de envío debe mantenerse preciso:
 
 ```text
 Envío cotizado en checkout con Skydrop.
 ```
 
-Long version:
+Versión larga:
 
 ```text
 El costo de envío se cotiza al finalizar la compra con Skydrop según tu dirección, cobertura y paquetería disponible.
 ```
 
-Do not publish copy promising fixed shipping rates, specific coverage outcomes or shipping without cost.
+No publiques copy que prometa tarifas fijas, cobertura específica o envío sin costo.
 
 ## Product photo background and fit
 
@@ -161,6 +171,20 @@ Use:
 - `Posición`, `Escala`, `Ajuste vertical`, `Ajuste horizontal` and `Espacio alrededor` to fine-tune uploaded PNG/JPG product photos.
 
 For true pixel-level background removal, remove the background in Shopify's media editor with Shopify Magic or an image app before selecting the file in the theme editor.
+
+## Brand assets
+
+Configure from `Online Store > Themes > Customize`:
+
+- `Logo principal`
+- `Logo footer`
+
+Configure from `Theme settings > Brand assets`:
+
+- `Favicon`
+- `Imagen para compartir / thumbnail`
+
+If no logo is selected, the theme keeps the current text/drop fallback.
 
 ## Positioning and claims
 

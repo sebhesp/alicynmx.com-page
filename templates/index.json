@@ -24,7 +24,7 @@
         "trust_aftercare": {
           "type": "trust_badge",
           "settings": {
-            "text": "Piercing aftercare"
+            "text": "Cuidado post-piercing"
           }
         },
         "trust_shipping": {
@@ -63,22 +63,6 @@
             "icon": "support",
             "title": "Para cambios de joyería",
             "text": "Útil como apoyo cuando manipulaste la pieza o tu perforador te indicó limpieza puntual alrededor."
-          }
-        },
-        "benefit_formula": {
-          "type": "benefit",
-          "settings": {
-            "icon": "no-perfume",
-            "title": "Fórmula directa",
-            "text": "Sin perfumes añadidos; sulfato de cobre, sulfato de zinc, alcanfor y agua destilada."
-          }
-        },
-        "benefit_studio": {
-          "type": "benefit",
-          "settings": {
-            "icon": "studio",
-            "title": "Casa, estudio o mostrador",
-            "text": "100 ml para tener a la mano o sumar a productos para piercing México con educación clara."
           }
         },
         "moment_pull": {
@@ -349,6 +333,60 @@
             "label": "Envíos",
             "message": "Hola, quiero saber si hay envío disponible para mi ciudad."
           }
+        },
+        "review_nostril_2": {
+          "type": "testimonial",
+          "settings": {
+            "initials": "L.M.",
+            "piercing": "nostril",
+            "rating": "?????",
+            "text": "Lo uso despu?s de sudar o cuando siento la zona sensible. Me gusta que no tengo que estar tocando la pieza para sentir que la estoy cuidando."
+          }
+        },
+        "review_helix_2": {
+          "type": "testimonial",
+          "settings": {
+            "initials": "R.H.",
+            "piercing": "helix",
+            "rating": "?????",
+            "text": "Mi perforador me explic? que no deb?a manipular de m?s. Alicyn me funcion? como apoyo puntual para limpiar alrededor con gasa limpia."
+          }
+        },
+        "review_ombligo": {
+          "type": "testimonial",
+          "settings": {
+            "initials": "S.T.",
+            "piercing": "ombligo",
+            "rating": "?????",
+            "text": "Con ropa ajustada a veces se sent?a inc?modo. Lo us? en momentos espec?ficos y me ayud? a mantener una rutina m?s ordenada."
+          }
+        },
+        "review_conch_2": {
+          "type": "testimonial",
+          "settings": {
+            "initials": "N.C.",
+            "piercing": "conch",
+            "rating": "?????",
+            "text": "Me gust? porque la marca explica cu?ndo s? usarlo y cu?ndo mejor consultar. Eso me dio m?s confianza que otros productos."
+          }
+        },
+        "review_lobulo_2": {
+          "type": "testimonial",
+          "settings": {
+            "initials": "E.P.",
+            "piercing": "l?bulo",
+            "rating": "?????",
+            "text": "Lo compr? para tenerlo en casa despu?s de hacerme otra perforaci?n. Se siente pr?ctico para esos momentos de roce o sensibilidad."
+          }
+        },
+        "review_nostril_3": {
+          "type": "testimonial",
+          "settings": {
+            "initials": "V.A.",
+            "piercing": "nostril",
+            "rating": "?????",
+            "text": "Me ayud? a cuidar mejor la zona sin estar probando mil cosas. Lo importante fue usarlo con calma y no mover la joyer?a."
+          }
         }
       },
       "block_order": [
@@ -361,8 +399,6 @@
         "benefit_calm",
         "benefit_touch",
         "benefit_jewelry",
-        "benefit_formula",
-        "benefit_studio",
         "moment_pull",
         "moment_sleep",
         "moment_sweat",
@@ -378,6 +414,12 @@
         "review_lobulo",
         "review_septum",
         "review_tragus",
+        "review_nostril_2",
+        "review_helix_2",
+        "review_ombligo",
+        "review_conch_2",
+        "review_lobulo_2",
+        "review_nostril_3",
         "story_before",
         "story_during",
         "story_after",
@@ -409,7 +451,7 @@
         "product_size": "100 ml",
         "product_price": "350.00",
         "product_price_label": "$350 MXN",
-        "hero_eyebrow": "Piercing Aftercare by Alicyn MX",
+        "hero_eyebrow": "Cuidado post-piercing por Alicyn MX",
         "hero_heading": "Cuida tus perforaciones en los momentos que más lo necesitan.",
         "hero_copy": "No es para tocar tu piercing todo el día. Alicyn 100 ml acompaña esos momentos reales: después de sudar, dormir sobre la pieza, recibir un jalón, cambiar joyería o notar sensibilidad común. Limpieza responsable y sensación calmante para piel sana, con la guía de tu perforador siempre al centro.",
         "primary_cta_label": "Comprar Alicyn 100 ml — $350 MXN",
@@ -417,6 +459,13 @@
         "product_image_alt": "Frasco de Alicyn solución antiséptica para cuidado post-piercing, 100 ml",
         "product_note_label": "Fórmula simple",
         "product_note_value": "$350 MXN",
+        "trust_years_number": "7",
+        "trust_years_label": "años acompañando procesos de perforación",
+        "trust_clients_number": "+1,000",
+        "trust_clients_label": "clientes satisfechos",
+        "trust_processes_number": "+1,000",
+        "trust_processes_label": "procesos acompañados",
+        "trust_community_label": "Confianza construida en comunidad",
         "hero_fact_1_label": "Contenido",
         "hero_fact_1_value": "100 ml",
         "hero_fact_2_label": "Uso",
@@ -426,14 +475,15 @@
         "show_packs": true,
         "show_rewards": true,
         "packs_eyebrow": "Compra directa",
-        "packs_heading": "Packs de cuidado Alicyn",
-        "packs_copy": "Compra una pieza o elige un pack con mejor precio por volumen. Cada compra activa usa productos reales de Shopify para que el checkout respete el precio.",
+        "packs_heading": "Compra individual o en grupo",
+        "packs_copy": "Pide una pieza para tu cuidado personal o arma un pedido con amigos para aprovechar mejor el envío y mejorar el precio por pieza.",
         "rewards_eyebrow": "Cuenta Alicyn",
         "rewards_heading": "Recompensas conectadas a tu cuenta",
         "rewards_copy": "Los beneficios se muestran según tu cuenta de cliente, historial de compra y tags asignados en Shopify.",
         "product_single_handle": "alicyn-solucion-antiseptica",
         "product_pack_2_handle": "alicyn-pack-2",
         "product_pack_3_handle": "alicyn-pack-3",
+        "product_pack_4_handle": "alicyn-pack-4",
         "product_pack_5_handle": "alicyn-pack-5",
         "wholesale_pack_5_handle": "alicyn-mayoreo-5",
         "wholesale_pack_10_handle": "alicyn-mayoreo-10",
@@ -452,7 +502,7 @@
         "alert_common_items": "Sensibilidad\nInflamación visual ligera\nEnrojecimiento leve localizado\nIncomodidad al roce\nCostrita normal o secreción clara/ligeramente amarillenta en pequeñas cantidades",
         "alert_warning_heading": "Señales para consultar",
         "alert_warning_items": "Dolor intenso o creciente\nCalor fuerte en la zona\nSecreción abundante, espesa, verde, amarilla intensa o con mal olor\nFiebre o líneas rojas que se extienden\nInflamación que empeora en lugar de mejorar\nJoyería que se está incrustando\nReacción severa, alergia o sangrado persistente",
-        "alert_note": "If any of these signs appear, pause self-care experiments and consult your piercer or a healthcare professional.",
+        "alert_note": "Si aparece alguna de estas señales, pausa cualquier experimento de autocuidado y consulta a tu perforador o a un profesional de la salud.",
         "how_eyebrow": "Cómo usarlo",
         "how_heading": "Úsalo solo cuando el momento lo pide.",
         "how_copy": "Para cuidado post piercing puntual: después de sudor, roce, cambio de joyería o molestias en piercing, siempre sobre piel sana y siguiendo la indicación de tu perforador.",
@@ -479,8 +529,14 @@
         "detail_8_label": "Envío",
         "detail_8_value": "El costo de envío se cotiza al finalizar la compra con Skydrop según tu dirección, cobertura y paquetería disponible.",
         "reviews_eyebrow": "Experiencias",
-        "reviews_heading": "Lo que busca la comunidad: confianza, rutina clara y menos miedo.",
-        "reviews_copy": "Reseñas en el tono de la comunidad Alicyn: directas, humanas y enfocadas en limpieza, frescura y confianza para cuidar sin prometer resultados médicos.",
+        "reviews_heading": "Experiencias reales de la comunidad Alicyn",
+        "reviews_copy": "Personas con nostril, helix, conch, lóbulo, septum, ombligo y tragus usan Alicyn como apoyo puntual para limpieza externa y molestias comunes del proceso.",
+        "reviews_count_label": "+200",
+        "reviews_count_text": "experiencias compartidas",
+        "reviews_rating_label": "4.9/5",
+        "reviews_rating_text": "calificación promedio",
+        "reviews_years_label": "7 años",
+        "reviews_years_text": "acompañando perforaciones",
         "reviews_disclaimer": "Las experiencias pueden variar. Alicyn no sustituye la valoración de un perforador profesional.",
         "story_eyebrow": "Antes / Durante / Después",
         "story_heading": "No son fotos médicas. Es la historia de aprender a cuidar mejor.",
@@ -499,7 +555,7 @@
         "wholesale_request_button": "Solicitar acceso a mayoreo",
         "faq_eyebrow": "FAQ",
         "faq_heading": "Preguntas frecuentes",
-        "final_eyebrow": "Alicyn Piercing Aftercare",
+        "final_eyebrow": "Alicyn cuidado post-piercing",
         "final_heading": "Tenlo listo para esos momentos en los que tu perforación se siente más vulnerable.",
         "final_copy": "Cuidado post piercing puntual de uso tópico externo, pensado para limpieza responsable y sensación calmante cuando hay mayor sensibilidad, roce o exposición.",
         "final_primary_label": "Comprar Alicyn 100 ml — $350 MXN",
@@ -511,11 +567,11 @@
         "chat_default_message": "Hola, quiero comprar Alicyn 100 ml.",
         "chat_send_label": "Abrir WhatsApp",
         "sticky_cta_label": "Comprar Alicyn 100 ml — $350",
-        "footer_copy": "Piercing aftercare de uso tópico para cuidado post piercing puntual. Solo uso externo. Evita ojos y mucosas. Usa sobre piel sana. Consulta a tu perforador si tienes dudas o si las molestias empeoran.",
+        "footer_copy": "Cuidado post-piercing de uso tópico para apoyo puntual. Solo uso externo. Evita ojos y mucosas. Usa sobre piel sana. Consulta a tu perforador si tienes dudas o si las molestias empeoran.",
         "footer_badge_1": "Solo uso externo",
         "footer_badge_2": "Consulta a tu perforador si tienes dudas",
         "schema_product_name": "Alicyn Solución Antiséptica 100 ml",
-        "schema_description": "Piercing aftercare de uso tópico externo para cuidar tus perforaciones con limpieza responsable y sensación calmante en momentos clave de mayor sensibilidad o exposición."
+        "schema_description": "Cuidado post-piercing de uso tópico externo para cuidar tus perforaciones con limpieza responsable y sensación calmante en momentos clave de mayor sensibilidad o exposición."
       }
     }
   },

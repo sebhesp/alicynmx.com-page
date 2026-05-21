@@ -146,10 +146,107 @@
     updateLink();
   }
 
+  function setupReviewsCarousel() {
+    var carousels = document.querySelectorAll("[data-reviews-carousel]");
+    var reduceMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    carousels.forEach(function (carousel) {
+      var track = carousel.querySelector("[data-reviews-track]");
+      var previous = carousel.querySelector("[data-reviews-prev]");
+      var next = carousel.querySelector("[data-reviews-next]");
+      var timer = null;
+      var isPaused = false;
+
+      if (!track) {
+        return;
+      }
+
+      function getStep() {
+        var firstCard = track.querySelector(".review-card");
+        if (!firstCard) {
+          return track.clientWidth;
+        }
+
+        var styles = window.getComputedStyle(track);
+        var gap = parseFloat(styles.columnGap || styles.gap || "0") || 0;
+        return firstCard.getBoundingClientRect().width + gap;
+      }
+
+      function scrollByStep(direction) {
+        var step = getStep() * direction;
+        var maxScroll = track.scrollWidth - track.clientWidth - 4;
+        var nextLeft = track.scrollLeft + step;
+
+        if (nextLeft > maxScroll) {
+          nextLeft = 0;
+        } else if (nextLeft < 0) {
+          nextLeft = maxScroll;
+        }
+
+        track.scrollTo({
+          left: nextLeft,
+          behavior: reduceMotion ? "auto" : "smooth"
+        });
+      }
+
+      function start() {
+        if (reduceMotion || timer || isPaused) {
+          return;
+        }
+
+        timer = window.setInterval(function () {
+          scrollByStep(1);
+        }, 5000);
+      }
+
+      function stop() {
+        if (timer) {
+          window.clearInterval(timer);
+          timer = null;
+        }
+      }
+
+      if (previous) {
+        previous.addEventListener("click", function () {
+          scrollByStep(-1);
+        });
+      }
+
+      if (next) {
+        next.addEventListener("click", function () {
+          scrollByStep(1);
+        });
+      }
+
+      carousel.addEventListener("pointerenter", function () {
+        isPaused = true;
+        stop();
+      });
+
+      carousel.addEventListener("pointerleave", function () {
+        isPaused = false;
+        start();
+      });
+
+      carousel.addEventListener("focusin", function () {
+        isPaused = true;
+        stop();
+      });
+
+      carousel.addEventListener("focusout", function () {
+        isPaused = false;
+        start();
+      });
+
+      start();
+    });
+  }
+
   document.addEventListener("DOMContentLoaded", function () {
     setupProductImageFallback();
     setupMobileNav();
     setupFaq();
     setupChat();
+    setupReviewsCarousel();
   });
 })();
