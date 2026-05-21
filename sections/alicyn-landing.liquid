@@ -1,23 +1,49 @@
 {% liquid
   assign product_url = section.settings.product_url | default: '/products/alicyn-solucion-antiseptica'
-  assign checkout_url = section.settings.checkout_url | default: ''
+  assign checkout_url = section.settings.checkout_url | default: '' | strip
+  assign checkout_url_downcase = checkout_url | downcase
+  assign valid_checkout_url = false
+  if checkout_url != blank
+    if checkout_url_downcase contains 'checkout' or checkout_url_downcase contains 'mercadopago' or checkout_url_downcase contains '/cart/'
+      assign valid_checkout_url = true
+    endif
+  endif
   assign checkout_product_handle = section.settings.product_single_handle | default: 'alicyn-solucion-antiseptica'
   assign checkout_product = all_products[checkout_product_handle]
   assign buy_url = product_url
-  if checkout_url != blank
+  assign checkout_target_blank = false
+  assign direct_purchase_available = false
+  if valid_checkout_url
     assign buy_url = checkout_url
-  elsif checkout_product != blank and checkout_product.available and checkout_product.selected_or_first_available_variant != blank
+    assign direct_purchase_available = true
+    if section.settings.open_checkout_new_tab
+      assign checkout_target_blank = true
+    endif
+  elsif checkout_product != blank and checkout_product.available and checkout_product.selected_or_first_available_variant != blank and checkout_product.selected_or_first_available_variant.available
     assign buy_url = '/cart/' | append: checkout_product.selected_or_first_available_variant.id | append: ':1'
+    assign direct_purchase_available = true
   endif
   assign whatsapp_url = section.settings.whatsapp_url | default: 'https://wa.me/525542388056?text=Hola%2C%20quiero%20comprar%20Alicyn'
   assign instagram_url = section.settings.instagram_url | default: 'https://www.instagram.com/alicyn.mx/'
   assign product_size = section.settings.product_size | default: '100 ml'
-  assign product_price = section.settings.product_price | default: '300.00'
-  assign product_price_label = section.settings.product_price_label | default: '$300 MXN'
-  assign primary_cta_label = section.settings.primary_cta_label | default: 'Comprar Alicyn 100 ml — $300 MXN'
-  assign sticky_cta_label = section.settings.sticky_cta_label | default: 'Comprar Alicyn 100 ml — $300'
+  assign product_price = section.settings.product_price | default: '350.00'
+  assign product_price_label = section.settings.product_price_label | default: '$350 MXN'
+  assign primary_cta_label = section.settings.primary_cta_label | default: 'Comprar Alicyn 100 ml — $350 MXN'
+  assign sticky_cta_label = section.settings.sticky_cta_label | default: 'Comprar Alicyn 100 ml — $350'
   assign product_image_cleanup = section.settings.product_image_cleanup | default: 'light'
   assign product_image_fit = section.settings.product_image_fit | default: 'contain'
+  assign product_image_position = section.settings.product_image_position | default: 'center center'
+  assign product_image_scale = section.settings.product_image_scale | default: 100
+  assign product_image_scale_value = product_image_scale | divided_by: 100.0
+  assign product_image_vertical_offset = section.settings.product_image_vertical_offset | default: 0
+  assign product_image_horizontal_offset = section.settings.product_image_horizontal_offset | default: 0
+  assign product_image_stage_padding = section.settings.product_image_stage_padding | default: 24
+  assign account_url = '/account/login'
+  assign account_label = section.settings.account_link_label | default: 'Iniciar sesión'
+  if customer
+    assign account_url = '/account'
+    assign account_label = section.settings.account_logged_in_label | default: 'Mi cuenta'
+  endif
   assign product_canonical_url = product_url
   unless product_url contains 'http'
     assign product_canonical_url = 'https://alicynmx.com' | append: product_url
@@ -94,11 +120,13 @@
       <a href="#experiencias">Experiencias</a>
       <a href="#estudios">Estudios</a>
       <a href="#faq">FAQ</a>
+      <a href="/cart">Carrito</a>
+      <a href="{{ account_url | escape }}">{{ account_label | escape }}</a>
     </nav>
     <a
       class="header-cta"
       href="{{ buy_url | escape }}"
-      {% if section.settings.open_checkout_new_tab %}target="_blank" rel="noopener noreferrer"{% endif %}
+      {% if checkout_target_blank %}target="_blank" rel="noopener noreferrer"{% endif %}
     >
       {{ section.settings.header_cta_label | escape }}
     </a>
@@ -111,18 +139,25 @@
         <h1 id="hero-title">{{ section.settings.hero_heading | escape }}</h1>
         <p class="hero-subcopy">{{ section.settings.hero_copy | escape | newline_to_br }}</p>
         <div class="hero-actions" aria-label="Acciones principales">
-          <a
-            class="button button-primary"
-            href="{{ buy_url | escape }}"
-            {% if section.settings.open_checkout_new_tab %}target="_blank" rel="noopener noreferrer"{% endif %}
-          >
-            {{ primary_cta_label | escape }}
-            <svg aria-hidden="true" viewBox="0 0 24 24" focusable="false">
-              <path d="M5 12h12m-5-5 5 5-5 5"></path>
-            </svg>
-          </a>
+          {% render 'alicyn-buy-actions',
+            product_handle: section.settings.product_single_handle,
+            quantity: 1,
+            primary_label: 'Agregar al carrito',
+            secondary_label: primary_cta_label,
+            fallback_url: product_url,
+            whatsapp_url: whatsapp_url,
+            checkout_url: checkout_url,
+            open_checkout_new_tab: section.settings.open_checkout_new_tab,
+            show_add_to_cart: false,
+            show_buy_now: true,
+            class_name: 'alicyn-buy-actions-inline alicyn-buy-actions-hero'
+          %}
           <a class="button button-secondary" href="#como-usarlo">{{ section.settings.secondary_cta_label | escape }}</a>
         </div>
+        <p class="checkout-note">{{ section.settings.checkout_note | escape }}</p>
+        {% unless direct_purchase_available %}
+          <p class="alicyn-setup-note">{{ section.settings.product_setup_notice | escape }}</p>
+        {% endunless %}
         <dl class="hero-facts" aria-label="Resumen del producto">
           <div>
             <dt>{{ section.settings.hero_fact_1_label | escape }}</dt>
@@ -144,17 +179,23 @@
           Preferred: choose the product image from the Shopify theme editor.
           Fallback asset path for GitHub/theme uploads: assets/alicyn-product.png
         -->
-        <div class="product-stage product-stage-cleanup-{{ product_image_cleanup }} product-stage-fit-{{ product_image_fit }}" data-product-image-wrap>
+        <div
+          class="product-stage product-stage-cleanup-{{ product_image_cleanup }} product-stage-fit-{{ product_image_fit }}"
+          style="--product-image-fit: {{ product_image_fit }}; --product-image-position: {{ product_image_position }}; --product-image-scale: {{ product_image_scale_value }}; --product-image-x: {{ product_image_horizontal_offset }}px; --product-image-y: {{ product_image_vertical_offset }}px; --product-image-stage-padding: {{ product_image_stage_padding }}px;"
+          data-product-image-wrap
+        >
           {% if section.settings.product_image != blank %}
             <img
               class="product-photo product-photo-fit-{{ product_image_fit }}"
-              src="{{ section.settings.product_image | image_url: width: 760 }}"
+              src="{{ section.settings.product_image | image_url: width: 1000 }}"
               srcset="
                 {{ section.settings.product_image | image_url: width: 320 }} 320w,
                 {{ section.settings.product_image | image_url: width: 520 }} 520w,
-                {{ section.settings.product_image | image_url: width: 760 }} 760w
+                {{ section.settings.product_image | image_url: width: 760 }} 760w,
+                {{ section.settings.product_image | image_url: width: 1000 }} 1000w,
+                {{ section.settings.product_image | image_url: width: 1200 }} 1200w
               "
-              sizes="(min-width: 900px) 360px, 78vw"
+              sizes="(min-width: 900px) 440px, 84vw"
               alt="{{ section.settings.product_image_alt | escape }}"
               width="640"
               height="840"
@@ -202,7 +243,9 @@
         packs_eyebrow: section.settings.packs_eyebrow,
         packs_heading: section.settings.packs_heading,
         packs_copy: section.settings.packs_copy,
-        whatsapp_url: whatsapp_url
+        whatsapp_url: whatsapp_url,
+        product_url: product_url,
+        checkout_url: checkout_url
       %}
     {% endif %}
 
@@ -211,7 +254,8 @@
         product_url: product_url,
         rewards_eyebrow: section.settings.rewards_eyebrow,
         rewards_heading: section.settings.rewards_heading,
-        rewards_copy: section.settings.rewards_copy
+        rewards_copy: section.settings.rewards_copy,
+        show_discount_links: section.settings.show_reward_discount_links
       %}
     {% endif %}
 
@@ -329,13 +373,19 @@
         <div class="details-panel">
           <h3>{{ section.settings.details_product_title | escape }}</h3>
           <p>{{ section.settings.details_summary | escape | newline_to_br }}</p>
-          <a
-            class="button button-primary"
-            href="{{ buy_url | escape }}"
-            {% if section.settings.open_checkout_new_tab %}target="_blank" rel="noopener noreferrer"{% endif %}
-          >
-            {{ section.settings.details_cta_label | escape }}
-          </a>
+          {% render 'alicyn-buy-actions',
+            product_handle: section.settings.product_single_handle,
+            quantity: 1,
+            primary_label: 'Agregar al carrito',
+            secondary_label: section.settings.details_cta_label,
+            fallback_url: product_url,
+            whatsapp_url: whatsapp_url,
+            checkout_url: checkout_url,
+            open_checkout_new_tab: section.settings.open_checkout_new_tab,
+            show_add_to_cart: true,
+            show_buy_now: true,
+            class_name: 'alicyn-buy-actions-panel'
+          %}
         </div>
         <dl class="details-list">
           <div>
@@ -472,13 +522,19 @@
       <h2 id="final-title">{{ section.settings.final_heading | escape }}</h2>
       <p>{{ section.settings.final_copy | escape | newline_to_br }}</p>
       <div class="hero-actions">
-        <a
-          class="button button-primary"
-          href="{{ buy_url | escape }}"
-          {% if section.settings.open_checkout_new_tab %}target="_blank" rel="noopener noreferrer"{% endif %}
-        >
-          {{ section.settings.final_primary_label | escape }}
-        </a>
+        {% render 'alicyn-buy-actions',
+          product_handle: section.settings.product_single_handle,
+          quantity: 1,
+          primary_label: 'Agregar al carrito',
+          secondary_label: section.settings.final_primary_label,
+          fallback_url: product_url,
+          whatsapp_url: whatsapp_url,
+          checkout_url: checkout_url,
+          open_checkout_new_tab: section.settings.open_checkout_new_tab,
+          show_add_to_cart: false,
+          show_buy_now: true,
+          class_name: 'alicyn-buy-actions-inline'
+        %}
         <a class="button button-secondary" href="{{ whatsapp_url | escape }}" target="_blank" rel="noopener noreferrer">
           {{ section.settings.final_secondary_label | escape }}
         </a>
@@ -534,7 +590,7 @@
   <a
     class="sticky-mobile-cta"
     href="{{ buy_url | escape }}"
-    {% if section.settings.open_checkout_new_tab %}target="_blank" rel="noopener noreferrer"{% endif %}
+    {% if checkout_target_blank %}target="_blank" rel="noopener noreferrer"{% endif %}
   >
     {{ sticky_cta_label | escape }}
   </a>
@@ -583,7 +639,7 @@
       "type": "text",
       "id": "checkout_url",
       "label": "Checkout URL for buy buttons",
-      "info": "Paste the checkout/payment link already configured in Shopify or your payment provider. If empty, buy buttons use Product URL.",
+      "info": "Optional override. Leave empty to use the real Shopify product, cart and checkout flow so Skydrop can calculate shipping.",
       "default": ""
     },
     {
@@ -614,13 +670,25 @@
       "type": "text",
       "id": "announcement_text",
       "label": "Announcement bar",
-      "default": "100 ml · Piercing Aftercare by Alicyn MX · envíos a todo México"
+      "default": "100 ml · envío cotizado en checkout con Skydrop · compra segura"
     },
     {
       "type": "text",
       "id": "header_cta_label",
       "label": "Header CTA label",
       "default": "Comprar"
+    },
+    {
+      "type": "text",
+      "id": "account_link_label",
+      "label": "Account link label for guests",
+      "default": "Iniciar sesión"
+    },
+    {
+      "type": "text",
+      "id": "account_logged_in_label",
+      "label": "Account link label for customers",
+      "default": "Mi cuenta"
     },
     {
       "type": "text",
@@ -632,13 +700,13 @@
       "type": "text",
       "id": "product_price",
       "label": "Schema price amount",
-      "default": "300.00"
+      "default": "350.00"
     },
     {
       "type": "text",
       "id": "product_price_label",
       "label": "Displayed price label",
-      "default": "$300 MXN"
+      "default": "$350 MXN"
     },
     {
       "type": "header",
@@ -666,13 +734,25 @@
       "type": "text",
       "id": "primary_cta_label",
       "label": "Primary CTA label",
-      "default": "Comprar Alicyn 100 ml — $300 MXN"
+      "default": "Comprar Alicyn 100 ml — $350 MXN"
     },
     {
       "type": "text",
       "id": "secondary_cta_label",
       "label": "Secondary CTA label",
       "default": "Ver cómo se usa"
+    },
+    {
+      "type": "text",
+      "id": "checkout_note",
+      "label": "Checkout note",
+      "default": "Envío cotizado en checkout con Skydrop."
+    },
+    {
+      "type": "text",
+      "id": "product_setup_notice",
+      "label": "Product setup notice",
+      "default": "Configura el producto en Shopify Admin para activar compra directa."
     },
     {
       "type": "image_picker",
@@ -702,6 +782,59 @@
       ]
     },
     {
+      "type": "select",
+      "id": "product_image_position",
+      "label": "Posición de la foto de producto",
+      "default": "center center",
+      "options": [
+        { "value": "center center", "label": "Centro" },
+        { "value": "center top", "label": "Centro arriba" },
+        { "value": "center bottom", "label": "Centro abajo" },
+        { "value": "left center", "label": "Izquierda centro" },
+        { "value": "right center", "label": "Derecha centro" }
+      ]
+    },
+    {
+      "type": "range",
+      "id": "product_image_scale",
+      "label": "Escala de la foto de producto",
+      "min": 70,
+      "max": 120,
+      "step": 1,
+      "unit": "%",
+      "default": 100
+    },
+    {
+      "type": "range",
+      "id": "product_image_vertical_offset",
+      "label": "Ajuste vertical de la foto",
+      "min": -80,
+      "max": 80,
+      "step": 1,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "product_image_horizontal_offset",
+      "label": "Ajuste horizontal de la foto",
+      "min": -80,
+      "max": 80,
+      "step": 1,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "product_image_stage_padding",
+      "label": "Espacio alrededor de la foto",
+      "min": 0,
+      "max": 80,
+      "step": 1,
+      "unit": "px",
+      "default": 24
+    },
+    {
       "type": "text",
       "id": "product_image_alt",
       "label": "Product image alt text",
@@ -717,7 +850,7 @@
       "type": "text",
       "id": "product_note_value",
       "label": "Product note value",
-      "default": "$300 MXN"
+      "default": "$350 MXN"
     },
     {
       "type": "text",
@@ -747,13 +880,13 @@
       "type": "text",
       "id": "hero_fact_3_label",
       "label": "Hero fact 3 label",
-      "default": "Envíos"
+      "default": "Envío"
     },
     {
       "type": "text",
       "id": "hero_fact_3_value",
       "label": "Hero fact 3 value",
-      "default": "México"
+      "default": "Skydrop en checkout"
     },
     {
       "type": "header",
@@ -770,6 +903,13 @@
       "id": "show_rewards",
       "label": "Show rewards",
       "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_reward_discount_links",
+      "label": "Show reward discount links",
+      "info": "Enable only after ALICYN10, ALICYNVIP15 and ALICYNEMBAJADOR exist in Shopify Admin.",
+      "default": false
     },
     {
       "type": "text",
@@ -1003,7 +1143,7 @@
       "type": "text",
       "id": "details_cta_label",
       "label": "Details CTA label",
-      "default": "Comprar Alicyn 100 ml — $300 MXN"
+      "default": "Comprar Alicyn 100 ml — $350 MXN"
     },
     {
       "type": "text",
@@ -1099,7 +1239,7 @@
       "type": "textarea",
       "id": "detail_8_value",
       "label": "Detail 8 value",
-      "default": "Envíos a todo México; consulta disponibilidad de salida rápida en CDMX y Edo. Mex"
+      "default": "El costo de envío se cotiza al finalizar la compra con Skydrop según tu dirección, cobertura y paquetería disponible."
     },
     {
       "type": "header",
@@ -1167,7 +1307,7 @@
       "type": "textarea",
       "id": "studios_features",
       "label": "Studios features",
-      "default": "Mayoristas y paquetes para piercers o estudios\nMaterial visual con instrucciones y señales para consultar\nSoporte por WhatsApp para pedidos, dudas y recompra\nConsulta disponibilidad para CDMX, Edo. Mex y envíos nacionales"
+      "default": "Mayoristas y paquetes para piercers o estudios\nMaterial visual con instrucciones y señales para consultar\nSoporte por WhatsApp para pedidos, dudas y recompra\nEnvío cotizado en checkout con Skydrop"
     },
     {
       "type": "text",
@@ -1261,7 +1401,7 @@
       "type": "text",
       "id": "final_primary_label",
       "label": "Final primary CTA label",
-      "default": "Comprar Alicyn 100 ml — $300 MXN"
+      "default": "Comprar Alicyn 100 ml — $350 MXN"
     },
     {
       "type": "text",
@@ -1309,7 +1449,7 @@
       "type": "text",
       "id": "sticky_cta_label",
       "label": "Sticky mobile CTA label",
-      "default": "Comprar Alicyn 100 ml — $300"
+      "default": "Comprar Alicyn 100 ml — $350"
     },
     {
       "type": "textarea",
@@ -1541,7 +1681,7 @@
         { "type": "trust_badge", "settings": { "text": "Hecho en México" } },
         { "type": "trust_badge", "settings": { "text": "Uso tópico" } },
         { "type": "trust_badge", "settings": { "text": "Piercing aftercare" } },
-        { "type": "trust_badge", "settings": { "text": "Envíos a todo México" } },
+        { "type": "trust_badge", "settings": { "text": "Skydrop en checkout" } },
         { "type": "benefit", "settings": { "icon": "clean", "title": "Después de sudor o calle", "text": "Apoya la limpieza de piercing después de gym, transporte, polvo, maquillaje o ambientes no controlados." } },
         { "type": "benefit", "settings": { "icon": "fresh", "title": "Sensación calmante", "text": "Ayuda a aliviar molestias comunes cuando el piercing irritado se siente sensible por roce, presión o sueño." } },
         { "type": "benefit", "settings": { "icon": "routine", "title": "No es para sobre-tocar", "text": "Para momentos específicos; no reemplaza una rutina de cuidado piercing sencilla ni la guía profesional." } },
@@ -1578,7 +1718,7 @@
         { "type": "faq_item", "settings": { "question": "¿Puedo usarlo en mucosas?", "answer": "No. Alicyn es de uso externo. Evita ojos, boca, interior de nariz y cualquier mucosa." } },
         { "type": "faq_item", "settings": { "question": "¿Qué hago si me arde demasiado?", "answer": "Suspende el uso, enjuaga con agua limpia si es necesario y consulta a tu perforador o profesional de salud si la molestia persiste o empeora." } },
         { "type": "faq_item", "settings": { "question": "¿Cuánto dura un frasco?", "answer": "No prometemos una duración exacta. 100 ml · pensado para acompañarte en momentos clave del proceso." } },
-        { "type": "faq_item", "settings": { "question": "¿Hacen envíos a todo México?", "answer": "Sí. Hay envíos a todo México y puedes consultar por WhatsApp disponibilidad de salida rápida para CDMX y Edo. Mex." } },
+        { "type": "faq_item", "settings": { "question": "¿Hacen envíos a todo México?", "answer": "Sí, enviamos a México. El costo de envío se cotiza al finalizar la compra con Skydrop según tu dirección, cobertura y paquetería disponible." } },
         { "type": "chat_quick_reply", "settings": { "label": "Quiero comprar", "message": "Hola, quiero comprar Alicyn 100 ml." } },
         { "type": "chat_quick_reply", "settings": { "label": "Piercing bump", "message": "Hola, tengo un piercing bump o sensibilidad común y quiero saber si Alicyn puede ayudar como apoyo puntual." } },
         { "type": "chat_quick_reply", "settings": { "label": "Soy piercer", "message": "Hola, soy piercer/estudio y quiero cotizar paquetes de Alicyn." } },

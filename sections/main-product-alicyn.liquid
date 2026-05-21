@@ -1,0 +1,200 @@
+{% liquid
+  assign current_variant = product.selected_or_first_available_variant
+  assign account_url = '/account/login'
+  assign account_label = section.settings.login_label
+  if customer
+    assign account_url = '/account'
+    assign account_label = section.settings.account_label
+  endif
+  assign product_image_alt = product.title
+  if product.featured_image and product.featured_image.alt != blank
+    assign product_image_alt = product.featured_image.alt
+  endif
+%}
+
+<div class="alicyn-page">
+  <a class="skip-link" href="#main-product">Saltar al producto</a>
+
+  <header class="site-header" aria-label="Encabezado de producto">
+    <a class="brand" href="/">
+      <span class="brand-drop" aria-hidden="true"></span>
+      <span>{{ section.settings.brand_text | escape }}</span>
+    </a>
+    <nav class="header-nav header-nav-static" aria-label="Navegación de tienda">
+      <a href="/">Inicio</a>
+      <a href="/cart">Carrito</a>
+      <a href="{{ account_url }}">{{ account_label | escape }}</a>
+    </nav>
+  </header>
+
+  <main id="main-product" class="alicyn-product-page section-pad">
+    <div class="alicyn-product-media">
+      {% if product.featured_image %}
+        {{ product.featured_image | image_url: width: 1200 | image_tag:
+          widths: '320, 520, 760, 1000, 1200',
+          sizes: '(min-width: 900px) 520px, 90vw',
+          loading: 'eager',
+          alt: product_image_alt
+        }}
+      {% else %}
+        <img
+          src="{{ 'alicyn-product.png' | asset_url }}"
+          alt="{{ product.title | escape }}"
+          width="760"
+          height="1000"
+          loading="eager"
+        >
+      {% endif %}
+    </div>
+
+    <div class="alicyn-product-summary">
+      <p class="eyebrow">{{ section.settings.eyebrow | escape }}</p>
+      <h1>{{ product.title | escape }}</h1>
+
+      {% if current_variant %}
+        <p class="alicyn-product-price">{{ current_variant.price | money }}</p>
+      {% endif %}
+
+      <div class="alicyn-product-description">
+        {% if product.description != blank %}
+          {{ product.description }}
+        {% else %}
+          <p>{{ section.settings.fallback_description | escape }}</p>
+        {% endif %}
+      </div>
+
+      {% if product != blank and current_variant %}
+        <form class="alicyn-product-form" method="post" action="/cart/add">
+          {% if product.has_only_default_variant %}
+            <input type="hidden" name="id" value="{{ current_variant.id }}">
+          {% else %}
+            <label class="alicyn-field" for="ProductVariantSelector">
+              <span>Presentación</span>
+              <select id="ProductVariantSelector" name="id">
+                {% for variant in product.variants %}
+                  <option
+                    value="{{ variant.id }}"
+                    {% if variant == current_variant %}selected{% endif %}
+                    {% unless variant.available %}disabled{% endunless %}
+                  >
+                    {{ variant.title | escape }}{% unless variant.available %} — Agotado{% endunless %}
+                  </option>
+                {% endfor %}
+              </select>
+            </label>
+          {% endif %}
+
+          <label class="alicyn-field" for="ProductQuantity">
+            <span>Cantidad</span>
+            <input id="ProductQuantity" type="number" name="quantity" value="1" min="1">
+          </label>
+
+          <div class="alicyn-buy-actions alicyn-buy-actions-panel">
+            <button class="button button-primary" type="submit" {% unless current_variant.available %}disabled{% endunless %}>
+              Agregar al carrito
+            </button>
+            <button
+              class="button button-secondary"
+              type="submit"
+              name="return_to"
+              value="/checkout"
+              {% unless current_variant.available %}disabled{% endunless %}
+            >
+              Comprar ahora
+            </button>
+          </div>
+        </form>
+      {% else %}
+        <p class="alicyn-setup-note">Configura este producto en Shopify Admin para activar compra directa.</p>
+      {% endif %}
+
+      <p class="checkout-note">{{ section.settings.shipping_note | escape }}</p>
+
+      <div class="hero-actions">
+        <a class="button button-secondary" href="{{ account_url }}">{{ account_label | escape }}</a>
+        {% unless customer %}
+          <a class="button button-secondary" href="/account/register">Crear cuenta</a>
+        {% endunless %}
+      </div>
+    </div>
+  </main>
+
+  <section class="section-pad alicyn-product-support" aria-label="Información de producto">
+    <div class="card-grid three-grid">
+      <article class="info-card">
+        <h2>Beneficios</h2>
+        <p>{{ section.settings.benefits | escape | newline_to_br }}</p>
+      </article>
+      <article class="info-card">
+        <h2>Precauciones</h2>
+        <p>{{ section.settings.precautions | escape | newline_to_br }}</p>
+      </article>
+      <article class="info-card">
+        <h2>Envío</h2>
+        <p>{{ section.settings.shipping_faq | escape }}</p>
+      </article>
+    </div>
+  </section>
+</div>
+
+{% schema %}
+{
+  "name": "Alicyn Main Product",
+  "settings": [
+    {
+      "type": "text",
+      "id": "brand_text",
+      "label": "Brand text",
+      "default": "alicyn"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "Alicyn 100 ml"
+    },
+    {
+      "type": "textarea",
+      "id": "fallback_description",
+      "label": "Fallback description",
+      "default": "Solución antiséptica de uso tópico externo para cuidado post piercing puntual. Pensada para apoyar una limpieza responsable y sensación calmante en momentos clave de mayor sensibilidad o exposición. Uso sobre piel sana. Evita ojos y mucosas."
+    },
+    {
+      "type": "text",
+      "id": "shipping_note",
+      "label": "Shipping note",
+      "default": "Envío cotizado al finalizar la compra con Skydrop."
+    },
+    {
+      "type": "textarea",
+      "id": "benefits",
+      "label": "Benefits",
+      "default": "Limpieza responsable\nSensación calmante\nUso puntual en momentos de mayor sensibilidad\nPensado para cuidado de perforaciones"
+    },
+    {
+      "type": "textarea",
+      "id": "precautions",
+      "label": "Precautions",
+      "default": "Solo uso externo. Evita ojos y mucosas. Usa sobre piel sana. Consulta a tu perforador o a un profesional de salud si las molestias empeoran o aparecen señales de alerta."
+    },
+    {
+      "type": "text",
+      "id": "shipping_faq",
+      "label": "Shipping FAQ",
+      "default": "Sí, enviamos a México. El costo de envío se cotiza al finalizar la compra con Skydrop según tu dirección, cobertura y paquetería disponible."
+    },
+    {
+      "type": "text",
+      "id": "login_label",
+      "label": "Login label",
+      "default": "Iniciar sesión"
+    },
+    {
+      "type": "text",
+      "id": "account_label",
+      "label": "Account label",
+      "default": "Mi cuenta"
+    }
+  ]
+}
+{% endschema %}

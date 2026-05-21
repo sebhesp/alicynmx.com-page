@@ -391,6 +391,7 @@ body {
   overflow: visible;
   border: 0;
   border-radius: 0;
+  padding: var(--product-image-stage-padding, 24px);
   background:
     radial-gradient(circle at 50% 44%, rgba(167, 222, 228, 0.2), rgba(167, 222, 228, 0.04) 34%, rgba(167, 222, 228, 0) 62%),
     radial-gradient(circle at 58% 72%, rgba(187, 184, 242, 0.16), rgba(187, 184, 242, 0) 54%);
@@ -413,10 +414,12 @@ body {
   z-index: 2;
   width: 100%;
   max-width: 430px;
-  height: min(72vh, 620px);
-  object-fit: contain;
-  object-position: center;
+  height: min(72vh, calc(620px - (var(--product-image-stage-padding, 24px) * 2)));
+  object-fit: var(--product-image-fit, contain);
+  object-position: var(--product-image-position, center center);
   filter: drop-shadow(0 34px 54px rgba(0, 0, 0, 0.48));
+  transform: translate(var(--product-image-x, 0), var(--product-image-y, 0)) scale(var(--product-image-scale, 1));
+  transform-origin: center center;
 }
 
 .alicyn-page .product-photo-fit-cover {
@@ -437,6 +440,14 @@ body {
 
 .alicyn-page .product-photo.is-missing {
   display: none;
+}
+
+.alicyn-page .product-stage.has-image .bottle-placeholder {
+  display: none;
+}
+
+.alicyn-page .product-stage.has-placeholder .bottle-placeholder {
+  display: grid;
 }
 
 .alicyn-page .bottle-placeholder {
@@ -925,6 +936,54 @@ body {
   width: 100%;
 }
 
+.alicyn-page .alicyn-buy-actions {
+  display: grid;
+  gap: 10px;
+  width: 100%;
+  margin-top: 16px;
+}
+
+.alicyn-page .alicyn-buy-actions .alicyn-cart-form {
+  margin-top: 0;
+}
+
+.alicyn-page .alicyn-buy-actions-inline {
+  width: auto;
+  margin-top: 0;
+}
+
+.alicyn-page .alicyn-buy-actions-inline .button {
+  width: auto;
+}
+
+.alicyn-page .alicyn-buy-actions-panel {
+  max-width: 420px;
+}
+
+.alicyn-page .alicyn-buy-actions-fallback {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.alicyn-page .alicyn-setup-note,
+.alicyn-page .checkout-note,
+.alicyn-page .alicyn-inline-link,
+.alicyn-page .alicyn-remove-link {
+  color: var(--muted);
+  font-size: 0.88rem;
+}
+
+.alicyn-page .checkout-note {
+  margin: 14px 0 0;
+}
+
+.alicyn-page .alicyn-inline-link,
+.alicyn-page .alicyn-remove-link {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
 .alicyn-page .alicyn-rewards-card {
   display: grid;
   gap: 18px;
@@ -1024,10 +1083,17 @@ body {
 }
 
 .alicyn-page .alicyn-field input,
-.alicyn-page .alicyn-field textarea {
+.alicyn-page .alicyn-field textarea,
+.alicyn-page .alicyn-field select {
   width: 100%;
   color: var(--text);
   padding: 12px 14px;
+}
+
+.alicyn-page .alicyn-field select {
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: #0b0b0d;
 }
 
 .alicyn-page .alicyn-field textarea {
@@ -1048,6 +1114,134 @@ body {
 .alicyn-page .alicyn-form-errors {
   border-color: rgba(217, 164, 164, 0.36);
   color: var(--danger);
+}
+
+.alicyn-page .header-nav-static {
+  position: static;
+  display: flex;
+  justify-content: flex-end;
+  border: 0;
+  background: transparent;
+  box-shadow: none;
+  padding: 0;
+}
+
+.alicyn-page .alicyn-product-page,
+.alicyn-page .alicyn-cart-page,
+.alicyn-page .alicyn-account-page {
+  max-width: var(--container);
+  margin: 0 auto;
+}
+
+.alicyn-page .alicyn-product-page {
+  display: grid;
+  gap: 30px;
+  align-items: center;
+}
+
+.alicyn-page .alicyn-product-media {
+  display: grid;
+  place-items: center;
+  min-height: 420px;
+  background:
+    radial-gradient(circle at center, rgba(167, 222, 228, 0.16), rgba(167, 222, 228, 0.02) 45%, transparent 70%);
+}
+
+.alicyn-page .alicyn-product-media img {
+  width: min(100%, 520px);
+  max-height: 680px;
+  object-fit: contain;
+  filter: drop-shadow(0 34px 54px rgba(0, 0, 0, 0.48));
+}
+
+.alicyn-page .alicyn-product-summary {
+  display: grid;
+  gap: 18px;
+}
+
+.alicyn-page .alicyn-product-price {
+  color: var(--accent-2);
+  font-size: 1.8rem;
+  font-weight: 900;
+}
+
+.alicyn-page .alicyn-product-description {
+  color: var(--soft);
+}
+
+.alicyn-page .alicyn-product-form,
+.alicyn-page .alicyn-cart,
+.alicyn-page .alicyn-cart-summary,
+.alicyn-page .alicyn-cart-empty,
+.alicyn-page .alicyn-account-layout,
+.alicyn-page .alicyn-account-grid {
+  display: grid;
+  gap: 16px;
+}
+
+.alicyn-page .alicyn-cart-items {
+  display: grid;
+  gap: 12px;
+}
+
+.alicyn-page .alicyn-cart-item,
+.alicyn-page .alicyn-cart-summary,
+.alicyn-page .alicyn-cart-empty {
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.035), rgba(255, 255, 255, 0.015));
+  padding: 18px;
+}
+
+.alicyn-page .alicyn-cart-item {
+  display: grid;
+  grid-template-columns: 96px minmax(0, 1fr);
+  gap: 16px;
+}
+
+.alicyn-page .alicyn-cart-image {
+  display: grid;
+  place-items: center;
+  min-height: 96px;
+}
+
+.alicyn-page .alicyn-cart-image img {
+  max-height: 110px;
+  object-fit: contain;
+}
+
+.alicyn-page .alicyn-cart-info h2,
+.alicyn-page .alicyn-account-grid h2,
+.alicyn-page .alicyn-product-support h2 {
+  font-family: inherit;
+  font-size: 1.05rem;
+  line-height: 1.25;
+}
+
+.alicyn-page .alicyn-cart-summary div {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.alicyn-page .alicyn-cart-summary strong {
+  color: var(--accent-2);
+  font-size: 1.5rem;
+}
+
+.alicyn-page .alicyn-account-list {
+  display: grid;
+  gap: 12px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.alicyn-page .alicyn-account-list li {
+  display: grid;
+  gap: 2px;
+  color: var(--soft);
 }
 
 .alicyn-page .faq-list {
@@ -1351,6 +1545,11 @@ body {
     grid-template-columns: repeat(2, 1fr);
   }
 
+  .alicyn-page .alicyn-cart {
+    grid-template-columns: minmax(0, 1fr) minmax(280px, 360px);
+    align-items: start;
+  }
+
   .alicyn-page .alicyn-field-full {
     grid-column: 1 / -1;
   }
@@ -1408,11 +1607,25 @@ body {
     min-height: 760px;
   }
 
+  .alicyn-page .alicyn-product-page {
+    grid-template-columns: minmax(360px, 0.9fr) minmax(0, 1fr);
+  }
+
+  .alicyn-page .alicyn-account-layout,
+  .alicyn-page .alicyn-account-grid,
+  .alicyn-page .three-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
   .alicyn-page .section-heading {
     text-align: center;
   }
 
   .alicyn-page .six-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .alicyn-page .three-grid {
     grid-template-columns: repeat(3, 1fr);
   }
 

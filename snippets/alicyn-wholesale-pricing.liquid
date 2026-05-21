@@ -44,6 +44,7 @@
       <p class="eyebrow">{{ wholesale_eyebrow_text | escape }}</p>
       <h3 id="alicyn-wholesale-title">{{ wholesale_heading_text | escape }}</h3>
       <p>{{ wholesale_copy_text | escape }}</p>
+      <p class="alicyn-wholesale-note">Precio público sugerido de reventa: $350 MXN.</p>
     </div>
 
     <div class="alicyn-wholesale-grid">
@@ -53,14 +54,22 @@
         {% if wholesale_5_product != blank and wholesale_5_product.available and wholesale_5_product.selected_or_first_available_variant != blank %}
           <strong>{{ wholesale_5_product.price | money }}</strong>
           <p>{{ wholesale_5_product.price | divided_by: 5 | money }} c/u · precio desde producto Shopify.</p>
-          <form class="alicyn-cart-form" method="post" action="/cart/add">
-            <input type="hidden" name="id" value="{{ wholesale_5_product.selected_or_first_available_variant.id }}">
-            <button class="button button-primary" type="submit">Agregar mayoreo</button>
-          </form>
         {% else %}
           <strong>Meta: $750 MXN</strong>
           <p>Pendiente configurar producto de mayoreo en Shopify Admin.</p>
         {% endif %}
+        {% render 'alicyn-buy-actions',
+          product_handle: wholesale_5_handle,
+          quantity: 1,
+          primary_label: 'Agregar al carrito',
+          secondary_label: 'Comprar ahora',
+          fallback_url: '/pages/mayoreo-alicyn',
+          whatsapp_url: '',
+          checkout_url: '',
+          show_add_to_cart: true,
+          show_buy_now: true,
+          setup_message: 'Pendiente configurar producto de mayoreo en Shopify Admin.'
+        %}
       </article>
 
       <article class="alicyn-wholesale-card">
@@ -69,14 +78,22 @@
         {% if wholesale_10_product != blank and wholesale_10_product.available and wholesale_10_product.selected_or_first_available_variant != blank %}
           <strong>{{ wholesale_10_product.price | money }}</strong>
           <p>{{ wholesale_10_product.price | divided_by: 10 | money }} c/u · precio desde producto Shopify.</p>
-          <form class="alicyn-cart-form" method="post" action="/cart/add">
-            <input type="hidden" name="id" value="{{ wholesale_10_product.selected_or_first_available_variant.id }}">
-            <button class="button button-primary" type="submit">Agregar mayoreo</button>
-          </form>
         {% else %}
           <strong>Meta: $1,350 MXN</strong>
           <p>Pendiente configurar producto de mayoreo en Shopify Admin.</p>
         {% endif %}
+        {% render 'alicyn-buy-actions',
+          product_handle: wholesale_10_handle,
+          quantity: 1,
+          primary_label: 'Agregar al carrito',
+          secondary_label: 'Comprar ahora',
+          fallback_url: '/pages/mayoreo-alicyn',
+          whatsapp_url: '',
+          checkout_url: '',
+          show_add_to_cart: true,
+          show_buy_now: true,
+          setup_message: 'Pendiente configurar producto de mayoreo en Shopify Admin.'
+        %}
       </article>
 
       <article class="alicyn-wholesale-card">
@@ -85,14 +102,22 @@
         {% if wholesale_20_product != blank and wholesale_20_product.available and wholesale_20_product.selected_or_first_available_variant != blank %}
           <strong>{{ wholesale_20_product.price | money }}</strong>
           <p>{{ wholesale_20_product.price | divided_by: 20 | money }} c/u · precio desde producto Shopify.</p>
-          <form class="alicyn-cart-form" method="post" action="/cart/add">
-            <input type="hidden" name="id" value="{{ wholesale_20_product.selected_or_first_available_variant.id }}">
-            <button class="button button-primary" type="submit">Agregar mayoreo</button>
-          </form>
         {% else %}
           <strong>Meta: $2,400 MXN</strong>
           <p>Pendiente configurar producto de mayoreo en Shopify Admin.</p>
         {% endif %}
+        {% render 'alicyn-buy-actions',
+          product_handle: wholesale_20_handle,
+          quantity: 1,
+          primary_label: 'Agregar al carrito',
+          secondary_label: 'Comprar ahora',
+          fallback_url: '/pages/mayoreo-alicyn',
+          whatsapp_url: '',
+          checkout_url: '',
+          show_add_to_cart: true,
+          show_buy_now: true,
+          setup_message: 'Pendiente configurar producto de mayoreo en Shopify Admin.'
+        %}
       </article>
 
       <article class="alicyn-wholesale-card">
@@ -101,14 +126,22 @@
         {% if wholesale_50_product != blank and wholesale_50_product.available and wholesale_50_product.selected_or_first_available_variant != blank %}
           <strong>{{ wholesale_50_product.price | money }}</strong>
           <p>{{ wholesale_50_product.price | divided_by: 50 | money }} c/u · precio desde producto Shopify.</p>
-          <form class="alicyn-cart-form" method="post" action="/cart/add">
-            <input type="hidden" name="id" value="{{ wholesale_50_product.selected_or_first_available_variant.id }}">
-            <button class="button button-primary" type="submit">Agregar mayoreo</button>
-          </form>
         {% else %}
           <strong>Meta: $5,250 MXN</strong>
           <p>Pendiente configurar producto de mayoreo en Shopify Admin.</p>
         {% endif %}
+        {% render 'alicyn-buy-actions',
+          product_handle: wholesale_50_handle,
+          quantity: 1,
+          primary_label: 'Agregar al carrito',
+          secondary_label: 'Comprar ahora',
+          fallback_url: '/pages/mayoreo-alicyn',
+          whatsapp_url: '',
+          checkout_url: '',
+          show_add_to_cart: true,
+          show_buy_now: true,
+          setup_message: 'Pendiente configurar producto de mayoreo en Shopify Admin.'
+        %}
       </article>
     </div>
   {% else %}
@@ -117,7 +150,7 @@
       <h3 id="alicyn-wholesale-request-title">{{ wholesale_request_heading_text | escape }}</h3>
       <p>{{ wholesale_request_copy_text | escape }}</p>
       <a class="button button-primary" href="{{ wholesale_request_url_value | escape }}">{{ wholesale_request_button_text | escape }}</a>
-      <p class="alicyn-wholesale-note">Los precios de mayoreo solo se renderizan para cuentas autorizadas por tag.</p>
+      <p class="alicyn-wholesale-note">Los precios y botones de mayoreo solo se renderizan para cuentas autorizadas por tag.</p>
     </div>
   {% endif %}
 </div>

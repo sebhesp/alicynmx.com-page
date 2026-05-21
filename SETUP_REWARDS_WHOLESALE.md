@@ -1,46 +1,114 @@
-# Setup de recompensas y mayoreo Alicyn
+# Setup de compra real, recompensas, mayoreo y Skydrop
 
-Este theme muestra recompensas y acceso a mayoreo con Shopify Liquid, pero el checkout sólo puede respetar precios y descuentos que existan en Shopify Admin.
+Este theme usa Liquid y formularios nativos de Shopify. El checkout solo respeta precios, descuentos y envíos que existan en Shopify Admin.
 
-No trates el frontend como motor de precios. Ningún JavaScript cambia precios. Ninguna line item property simula descuentos.
+Reglas:
+
+- No simular precios con HTML, CSS o JavaScript.
+- No alterar checkout con JavaScript.
+- No hardcodear IDs de variantes.
+- No mostrar descuentos si no existen en Shopify Admin.
+- No prometer tarifa fija ni envío sin costo.
+- El envío se cotiza en checkout con Skydrop.
 
 ## A) Customer accounts
 
-1. In Shopify Admin, go to `Settings > Customer accounts`.
-2. Activa customer accounts.
-3. Decide si la tienda usará classic customer accounts o new customer accounts.
-4. Confirma que estas URLs funcionen en storefront:
+En Shopify Admin:
+
+1. Ve a `Settings > Customer accounts`.
+2. Activa cuentas de cliente.
+3. Define si usarás New Customer Accounts o Classic Customer Accounts.
+4. Prueba estas rutas:
    - `/account/login`
    - `/account/register`
+   - `/account`
 
-Notas:
+El theme incluye templates classic:
 
-- The rewards snippet uses the global `customer` object.
-- Si la persona visitante no inició sesión, el theme muestra links para crear cuenta e iniciar sesión.
-- New customer accounts puede redirigir a páginas de cuenta alojadas por Shopify. Prueba la experiencia antes de publicar.
+- `templates/customers/login.liquid`
+- `templates/customers/register.liquid`
+- `templates/customers/account.liquid`
 
-## B) Productos y packs para cliente final
+Si la tienda usa New Customer Accounts, Shopify puede redirigir a su flujo propio. Los links del theme siguen siendo seguros.
+
+## B) Producto y packs para cliente final
 
 Crea productos reales en Shopify:
 
 | Producto | Precio | Handle recomendado |
 | --- | ---: | --- |
-| Alicyn 100 ml | $300 MXN | `alicyn-solucion-antiseptica` |
-| Alicyn Pack 2 | $570 MXN | `alicyn-pack-2` |
-| Alicyn Pack 3 | $810 MXN | `alicyn-pack-3` |
-| Alicyn Pack 5 | $1,250 MXN | `alicyn-pack-5` |
+| Alicyn Solución Antiséptica 100 ml para Piercings | $350 MXN | `alicyn-solucion-antiseptica` |
+| Alicyn Pack 2 | $665 MXN | `alicyn-pack-2` |
+| Alicyn Pack 3 | $945 MXN | `alicyn-pack-3` |
+| Alicyn Pack 5 | $1,500 MXN | `alicyn-pack-5` |
 
-El theme usa `all_products[handle]` y renderiza formularios `/cart/add` únicamente cuando el producto existe, está disponible y tiene una variante disponible.
+El theme usa `all_products[handle]` y renderiza formularios reales `/cart/add` únicamente cuando el producto existe, está disponible y tiene variante disponible.
 
-Los handles se editan desde `Online Store > Themes > Customize > Home page > Alicyn Landing > Product handles`. Si cambias un handle en Shopify Admin, cámbialo también en el Theme Editor.
+Los handles se editan desde `Online Store > Themes > Customize > Home page > Alicyn Landing > Product handles`.
 
-Si un producto no existe, el theme muestra:
+## C) Botones de compra
+
+El snippet `snippets/alicyn-buy-actions.liquid` centraliza compra real:
+
+- `Agregar al carrito`: POST real a `/cart/add` con `variant.id`.
+- `Comprar ahora`: POST real a `/cart/add` con `return_to=/checkout`.
+- Fallback: si el producto no existe, muestra aviso de configuración y link seguro.
+
+Los CTAs principales usan el producto real por handle. El campo `Checkout URL for buy buttons` es opcional y debe dejarse vacío si quieres el flujo estándar Shopify + Skydrop.
+
+Usa `Checkout URL for buy buttons` solo si es un link válido de checkout/payment y sabes que no rompe cotización de envío.
+
+## D) Carrito y checkout
+
+El theme incluye:
+
+- `templates/cart.json`
+- `sections/main-cart-alicyn.liquid`
+
+El carrito permite:
+
+- Ver productos agregados.
+- Cambiar cantidades.
+- Eliminar productos.
+- Ver subtotal.
+- Continuar comprando.
+- Finalizar compra con el botón estándar `name="checkout"`.
+
+Texto de envío:
 
 ```text
-Configura este pack en Shopify Admin para activar compra directa.
+El envío se calculará en checkout con Skydrop según tu dirección.
 ```
 
-## C) Productos de mayoreo
+No se calcula envío en el carrito porque Skydrop lo cotiza en checkout.
+
+## E) Página de producto
+
+El theme incluye:
+
+- `templates/product.json`
+- `sections/main-product-alicyn.liquid`
+
+La página de producto usa el objeto real `product` de Shopify:
+
+- Imagen del producto.
+- Título.
+- Precio real con `product.price` / variante seleccionada.
+- Descripción real.
+- Selector de variante si existe.
+- Cantidad.
+- Agregar al carrito.
+- Comprar ahora.
+- Links a cuenta.
+- Nota de envío con Skydrop.
+
+Copy de envío:
+
+```text
+Envío cotizado al finalizar la compra con Skydrop.
+```
+
+## F) Productos de mayoreo
 
 Crea productos reales en Shopify:
 
@@ -51,30 +119,28 @@ Crea productos reales en Shopify:
 | Alicyn Mayoreo 20 | $2,400 MXN | $120 c/u | `alicyn-mayoreo-20` |
 | Alicyn Mayoreo 50 | $5,250 MXN | $105 c/u | `alicyn-mayoreo-50` |
 
+Precio público sugerido de reventa:
+
+```text
+$350 MXN
+```
+
 Recomendaciones:
 
-- No agregues productos de mayoreo a la navegación pública.
-- No agregues productos de mayoreo a colecciones públicas.
-- Si Shopify lo permite en tu configuración, ocúltalos de búsqueda o de canales no deseados.
-- Si necesitas control más fuerte, usa Shopify B2B, una app de wholesale, customer-specific pricing, Shopify Functions o descuentos por segmento.
+- No agregues productos de mayoreo a navegación pública.
+- No los agregues a colecciones públicas.
+- Ocúltalos de búsqueda/canales públicos si tu configuración lo permite.
+- Para control fuerte usa Shopify B2B, una app de wholesale, Shopify Functions o descuentos por segmento.
 
-La protección del theme es visual y basada en Liquid:
+## G) Tags de cliente
 
-- Personas no autorizadas no ven precios de mayoreo.
-- Personas no autorizadas no reciben formularios add-to-cart de productos de mayoreo.
-- Personas autorizadas se detectan por customer tags.
-
-Los handles de mayoreo también se editan desde el Theme Editor. No hardcodees IDs de variantes en Liquid.
-
-## D) Customer tags
-
-Usa estos tags para recompensas:
+Recompensas:
 
 - `cliente-recurrente`
 - `vip-alicyn`
 - `embajador-alicyn`
 
-Usa estos tags para acceso a mayoreo:
+Mayoreo:
 
 - `piercer`
 - `estudio-aliado`
@@ -82,71 +148,46 @@ Usa estos tags para acceso a mayoreo:
 - `distribuidor-alicyn`
 - `mayoreo`
 
-Desbloqueo manual de niveles:
+Los precios y botones de mayoreo solo se renderizan para clientes logueados con alguno de esos tags.
 
-- `cliente-recurrente` unlocks Cliente Recurrente.
-- `vip-alicyn` unlocks Cliente VIP.
-- `embajador-alicyn` unlocks Embajador Alicyn.
+## H) Descuentos reales
 
-Acceso a mayoreo:
-
-- Cualquiera de los tags de mayoreo desbloquea cards y formularios add-to-cart.
-
-## E) Discounts
-
-Crea estos descuentos reales en `Discounts` de Shopify Admin:
+Crea estos descuentos en `Discounts` de Shopify Admin:
 
 | Código | Beneficio previsto |
 | --- | --- |
 | `ALICYN10` | 10% OFF |
 | `ALICYNVIP15` | 15% OFF |
-| `ALICYNEMBAJADOR` | 1 Alicyn gratis en compra de 2+ piezas, si Shopify Discount permite configurarlo como Buy X Get Y |
+| `ALICYNEMBAJADOR` | Buy X Get Y o beneficio Embajador equivalente si Shopify lo permite |
 
-Controles recomendados:
+Limita los códigos por segmento/tag si Shopify Admin lo permite. Liquid solo muestra links; no crea descuentos ni verifica su existencia.
 
-- Limita `ALICYN10` al segmento/tag Cliente Recurrente si es posible.
-- Limita `ALICYNVIP15` a clientes VIP.
-- Limita `ALICYNEMBAJADOR` a clientes embajadores.
-- Si Shopify Admin no permite la restricción exacta, administra el código manualmente o usa Shopify Flow/app automation.
+En el Theme Editor, deja `Show reward discount links` apagado hasta que los códigos existan y estén limitados correctamente en Shopify Admin.
 
-Comportamiento del theme:
+## I) Recompensas
 
-- Liquid sólo muestra el link de descuento cuando el cliente califica por pedidos, gasto acumulado o tag.
-- El formato del link es:
+Niveles:
 
-```text
-/discount/CODE?redirect=/products/alicyn-solucion-antiseptica
-```
-
-El descuento debe existir en Shopify Admin. Liquid no puede verificarlo ni crearlo.
-
-## F) Lógica de recompensas y limitaciones
-
-Niveles de recompensas:
-
-| Nivel | Condición | Beneficio |
+| Nivel | Condición | Código |
 | --- | --- | --- |
-| Nivel 1 — Cliente Alicyn | 1 compra o más | Historial activo |
-| Nivel 2 — Cliente Recurrente | 3 pedidos o $900 MXN acumulados | 10% OFF |
-| Nivel 3 — Cliente VIP | 5 pedidos o $1,500 MXN acumulados | 15% OFF |
-| Nivel 4 — Embajador Alicyn | 8 pedidos o $2,400 MXN acumulados | 1 Alicyn gratis en compra de 2+ piezas |
+| Nivel 1 — Cliente Alicyn | 1 compra | Sin código |
+| Nivel 2 — Cliente Recurrente | 3 pedidos o $1,050 MXN acumulados | `ALICYN10` |
+| Nivel 3 — Cliente VIP | 5 pedidos o $1,750 MXN acumulados | `ALICYNVIP15` |
+| Nivel 4 — Embajador Alicyn | 8 pedidos o $2,800 MXN acumulados | `ALICYNEMBAJADOR` |
 
-`customer.total_spent` se compara en subunidad de moneda, así que los umbrales MXN son:
+`customer.total_spent` se compara en subunidad de moneda:
 
-- $900 MXN → `90000`
-- $1,500 MXN → `150000`
-- $2,400 MXN → `240000`
+- $1,050 MXN → `105000`
+- $1,750 MXN → `175000`
+- $2,800 MXN → `280000`
 
 Limitaciones:
 
-- Liquid puede mostrar beneficios según el objeto `customer` logueado.
-- Liquid no puede crear descuentos.
-- Liquid no puede cambiar precios reales en checkout.
-- `customer.total_spent` y `customer.orders_count` dependen de datos de cuenta/pedidos.
-- Shopify no agrega tags automáticamente para estos niveles salvo que configures Shopify Flow, una app o gestión manual.
-- Para automatizar tags por gasto/pedidos, usa Shopify Flow si está disponible, una loyalty app o automatización externa.
+- Liquid puede mostrar beneficios según el objeto `customer`.
+- Liquid no puede crear descuentos ni cambiar precios reales.
+- Shopify no agrega tags automáticamente salvo que configures Shopify Flow, una app o automatización externa.
 
-## G) Página de solicitud de mayoreo
+## J) Solicitud de mayoreo
 
 Crea una página en Shopify:
 
@@ -154,45 +195,98 @@ Crea una página en Shopify:
 - Handle: `mayoreo-alicyn`
 - Theme template: `page.mayoreo-alicyn`
 
-El template renderiza `sections/alicyn-wholesale-application.liquid`.
+El template renderiza un formulario real `{% form 'contact' %}` con:
 
-El formulario es un Shopify contact form real y envía:
+- Nombre del estudio.
+- Nombre de contacto.
+- Ciudad.
+- Instagram o página del estudio.
+- Teléfono / WhatsApp.
+- Correo.
+- Volumen estimado mensual.
+- Mensaje adicional.
 
-- Nombre del estudio
-- Nombre de contacto
-- Ciudad
-- Instagram o página del estudio
-- Teléfono / WhatsApp
-- Correo
-- Volumen estimado de compra mensual
-- Mensaje adicional
-- Subject oculto: `Solicitud de acceso a mayoreo Alicyn`
-- Tags ocultos: `mayoreo-alicyn,piercer-lead`
+## K) Skydrop
 
-## H) Checklist de prueba
+En Shopify Admin:
 
-Prueba antes de publicar:
+1. Confirma que Skydrop esté instalado y activo.
+2. Confirma que pueda cotizar en checkout.
+3. Prueba una dirección de CDMX.
+4. Prueba una dirección fuera de CDMX.
+5. No publiques textos de tarifa fija ni promesas de costo.
 
-- Editar un bloque de beneficio desde el Theme Editor.
-- Reordenar un FAQ desde el Theme Editor.
-- Cambiar la imagen de producto desde el Theme Editor.
-- Usuario no logueado.
-- Usuario logueado sin compras.
+Frase corta:
+
+```text
+Envío cotizado en checkout con Skydrop.
+```
+
+Frase larga:
+
+```text
+El costo de envío se cotiza al finalizar la compra con Skydrop según tu dirección, cobertura y paquetería disponible.
+```
+
+## L) Checklist de prueba
+
+Compra:
+
+- Header CTA.
+- Hero CTA.
+- Details CTA.
+- Final CTA.
+- Sticky mobile CTA.
+- Pack 1.
+- Pack 2.
+- Pack 3.
+- Pack 5.
+- Add to cart.
+- Comprar ahora.
+- Cart page.
+- Checkout.
+- Skydrop cotizando envío.
+
+Cuentas:
+
+- Crear cuenta.
+- Iniciar sesión.
+- Cerrar sesión.
+- Ver cuenta.
+- Usuario no logueado viendo rewards.
+- Usuario logueado viendo rewards.
+
+Rewards:
+
+- Cliente sin compras.
 - Cliente con 1 compra.
-- Cliente con 3 pedidos o tag `cliente-recurrente`.
+- Cliente con tag `cliente-recurrente`.
 - Cliente con tag `vip-alicyn`.
 - Cliente con tag `embajador-alicyn`.
-- Cliente sin mayoreo.
-- Cliente con tag `piercer`.
-- Cliente con tag `distribuidor-alicyn`.
-- Producto pack existente.
-- Producto pack no existente.
-- Add to cart de cada pack público.
-- Add to cart de cada pack de mayoreo autorizado.
-- URL de descuento para `ALICYN10`.
-- URL de descuento para `ALICYNVIP15`.
-- URL de descuento para `ALICYNEMBAJADOR`.
-- Mobile sticky CTA.
-- FAQ accordion.
-- WhatsApp widget.
-- Formulario de mayoreo.
+
+Mayoreo:
+
+- Cliente sin tag no ve precios.
+- Cliente con tag `piercer` ve precios.
+- Cliente con tag `distribuidor-alicyn` ve precios.
+- Mayoreo add-to-cart funciona.
+- Mayoreo checkout funciona.
+
+Imagen:
+
+- PNG transparente.
+- JPG con fondo claro.
+- Contain.
+- Cover.
+- Escala 90/100/110.
+- Offset vertical.
+- Offset horizontal.
+- Mobile.
+- Desktop.
+
+SEO:
+
+- Schema price `350.00`.
+- OG price `350.00`.
+- Alt text correcto.
+- No quedan referencias viejas de precio público.

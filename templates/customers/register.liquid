@@ -1,0 +1,40 @@
+<div class="alicyn-page">
+  <main class="alicyn-form-section section-pad" aria-labelledby="register-title">
+    <div class="section-heading">
+      <p class="eyebrow">Cuenta Alicyn</p>
+      <h1 id="register-title">Crear cuenta</h1>
+      <p>Crea tu cuenta para consultar pedidos y desbloquear recompensas conectadas a Shopify.</p>
+    </div>
+
+    {% form 'create_customer', class: 'alicyn-form' %}
+      {% if form.errors %}
+        <div class="alicyn-form-errors" role="alert">{{ form.errors | default_errors }}</div>
+      {% endif %}
+
+      <div class="alicyn-form-grid">
+        <div class="alicyn-field">
+          <label for="RegisterFirstName">Nombre</label>
+          <input id="RegisterFirstName" type="text" name="customer[first_name]" autocomplete="given-name">
+        </div>
+
+        <div class="alicyn-field">
+          <label for="RegisterLastName">Apellido</label>
+          <input id="RegisterLastName" type="text" name="customer[last_name]" autocomplete="family-name">
+        </div>
+
+        <div class="alicyn-field">
+          <label for="RegisterEmail">Correo</label>
+          <input id="RegisterEmail" type="email" name="customer[email]" autocomplete="email" required>
+        </div>
+
+        <div class="alicyn-field">
+          <label for="RegisterPassword">Contraseña</label>
+          <input id="RegisterPassword" type="password" name="customer[password]" autocomplete="new-password" required>
+        </div>
+      </div>
+
+      <button class="button button-primary" type="submit">Crear cuenta</button>
+      <a class="button button-secondary" href="/account/login">Iniciar sesión</a>
+    {% endform %}
+  </main>
+</div>

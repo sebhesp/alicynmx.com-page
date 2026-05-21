@@ -7,6 +7,8 @@
   assign packs_heading_text = packs_heading | default: 'Packs de cuidado Alicyn'
   assign packs_copy_text = packs_copy | default: 'Compra una pieza o elige un pack con mejor precio por volumen. Cada compra activa usa productos reales de Shopify para que el checkout respete el precio.'
   assign whatsapp_fallback_url = whatsapp_url | default: 'https://wa.me/525542388056?text=Hola%2C%20quiero%20comprar%20Alicyn'
+  assign product_url_value = product_url | default: '/products/alicyn-solucion-antiseptica'
+  assign checkout_url_value = checkout_url | default: ''
 
   assign single_product = all_products[single_handle]
   assign pack_2_product = all_products[pack_2_handle]
@@ -27,16 +29,23 @@
       <h3>Alicyn 100 ml</h3>
       {% if single_product != blank and single_product.available and single_product.selected_or_first_available_variant != blank %}
         <strong class="alicyn-pack-price">{{ single_product.price | money }}</strong>
-        <p>Precio individual público.</p>
-        <form class="alicyn-cart-form" method="post" action="/cart/add">
-          <input type="hidden" name="id" value="{{ single_product.selected_or_first_available_variant.id }}">
-          <button class="button button-primary" type="submit">Agregar al carrito</button>
-        </form>
+        <p>Precio público individual desde Shopify.</p>
       {% else %}
-        <strong class="alicyn-pack-price">Precio objetivo: $300 MXN</strong>
+        <strong class="alicyn-pack-price">Precio objetivo: $350 MXN</strong>
         <p class="alicyn-pack-note">Configura este producto en Shopify Admin para activar compra directa.</p>
-        <a class="button button-secondary" href="{{ whatsapp_fallback_url | escape }}" target="_blank" rel="noopener noreferrer">Comprar por WhatsApp</a>
       {% endif %}
+      {% render 'alicyn-buy-actions',
+        product_handle: single_handle,
+        quantity: 1,
+        primary_label: 'Agregar al carrito',
+        secondary_label: 'Comprar ahora',
+        fallback_url: product_url_value,
+        whatsapp_url: whatsapp_fallback_url,
+        checkout_url: checkout_url_value,
+        show_add_to_cart: true,
+        show_buy_now: true,
+        setup_message: 'Configura este producto en Shopify Admin para activar compra directa.'
+      %}
     </article>
 
     <article class="alicyn-pack-card">
@@ -45,15 +54,22 @@
       {% if pack_2_product != blank and pack_2_product.available and pack_2_product.selected_or_first_available_variant != blank %}
         <strong class="alicyn-pack-price">{{ pack_2_product.price | money }}</strong>
         <p>Mejor precio para compartir o tener repuesto.</p>
-        <form class="alicyn-cart-form" method="post" action="/cart/add">
-          <input type="hidden" name="id" value="{{ pack_2_product.selected_or_first_available_variant.id }}">
-          <button class="button button-primary" type="submit">Agregar al carrito</button>
-        </form>
       {% else %}
-        <strong class="alicyn-pack-price">Precio objetivo: $570 MXN</strong>
+        <strong class="alicyn-pack-price">Precio objetivo: $665 MXN</strong>
         <p class="alicyn-pack-note">Configura este pack en Shopify Admin para activar compra directa.</p>
-        <a class="button button-secondary" href="{{ whatsapp_fallback_url | escape }}" target="_blank" rel="noopener noreferrer">Pedir por WhatsApp</a>
       {% endif %}
+      {% render 'alicyn-buy-actions',
+        product_handle: pack_2_handle,
+        quantity: 1,
+        primary_label: 'Agregar al carrito',
+        secondary_label: 'Comprar ahora',
+        fallback_url: '/products/alicyn-pack-2',
+        whatsapp_url: whatsapp_fallback_url,
+        checkout_url: '',
+        show_add_to_cart: true,
+        show_buy_now: true,
+        setup_message: 'Configura este pack en Shopify Admin para activar compra directa.'
+      %}
     </article>
 
     <article class="alicyn-pack-card">
@@ -62,15 +78,22 @@
       {% if pack_3_product != blank and pack_3_product.available and pack_3_product.selected_or_first_available_variant != blank %}
         <strong class="alicyn-pack-price">{{ pack_3_product.price | money }}</strong>
         <p>Para casa, viaje o cuidado compartido.</p>
-        <form class="alicyn-cart-form" method="post" action="/cart/add">
-          <input type="hidden" name="id" value="{{ pack_3_product.selected_or_first_available_variant.id }}">
-          <button class="button button-primary" type="submit">Agregar al carrito</button>
-        </form>
       {% else %}
-        <strong class="alicyn-pack-price">Precio objetivo: $810 MXN</strong>
+        <strong class="alicyn-pack-price">Precio objetivo: $945 MXN</strong>
         <p class="alicyn-pack-note">Configura este pack en Shopify Admin para activar compra directa.</p>
-        <a class="button button-secondary" href="{{ whatsapp_fallback_url | escape }}" target="_blank" rel="noopener noreferrer">Pedir por WhatsApp</a>
       {% endif %}
+      {% render 'alicyn-buy-actions',
+        product_handle: pack_3_handle,
+        quantity: 1,
+        primary_label: 'Agregar al carrito',
+        secondary_label: 'Comprar ahora',
+        fallback_url: '/products/alicyn-pack-3',
+        whatsapp_url: whatsapp_fallback_url,
+        checkout_url: '',
+        show_add_to_cart: true,
+        show_buy_now: true,
+        setup_message: 'Configura este pack en Shopify Admin para activar compra directa.'
+      %}
     </article>
 
     <article class="alicyn-pack-card">
@@ -79,15 +102,22 @@
       {% if pack_5_product != blank and pack_5_product.available and pack_5_product.selected_or_first_available_variant != blank %}
         <strong class="alicyn-pack-price">{{ pack_5_product.price | money }}</strong>
         <p>Volumen ideal para familia, estudio pequeño o recompra.</p>
-        <form class="alicyn-cart-form" method="post" action="/cart/add">
-          <input type="hidden" name="id" value="{{ pack_5_product.selected_or_first_available_variant.id }}">
-          <button class="button button-primary" type="submit">Agregar al carrito</button>
-        </form>
       {% else %}
-        <strong class="alicyn-pack-price">Precio objetivo: $1,250 MXN</strong>
+        <strong class="alicyn-pack-price">Precio objetivo: $1,500 MXN</strong>
         <p class="alicyn-pack-note">Configura este pack en Shopify Admin para activar compra directa.</p>
-        <a class="button button-secondary" href="{{ whatsapp_fallback_url | escape }}" target="_blank" rel="noopener noreferrer">Pedir por WhatsApp</a>
       {% endif %}
+      {% render 'alicyn-buy-actions',
+        product_handle: pack_5_handle,
+        quantity: 1,
+        primary_label: 'Agregar al carrito',
+        secondary_label: 'Comprar ahora',
+        fallback_url: '/products/alicyn-pack-5',
+        whatsapp_url: whatsapp_fallback_url,
+        checkout_url: '',
+        show_add_to_cart: true,
+        show_buy_now: true,
+        setup_message: 'Configura este pack en Shopify Admin para activar compra directa.'
+      %}
     </article>
   </div>
 </section>

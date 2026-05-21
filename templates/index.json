@@ -30,7 +30,7 @@
         "trust_shipping": {
           "type": "trust_badge",
           "settings": {
-            "text": "Envíos a todo México"
+            "text": "Skydrop en checkout"
           }
         },
         "benefit_sweat": {
@@ -319,7 +319,7 @@
           "type": "faq_item",
           "settings": {
             "question": "¿Hacen envíos a todo México?",
-            "answer": "Sí. Hay envíos a todo México y puedes consultar por WhatsApp disponibilidad de salida rápida para CDMX y Edo. Mex."
+            "answer": "Sí, enviamos a México. El costo de envío se cotiza al finalizar la compra con Skydrop según tu dirección, cobertura y paquetería disponible."
           }
         },
         "chat_buy": {
@@ -404,11 +404,11 @@
         "whatsapp_url": "https://wa.me/525542388056?text=Hola%2C%20quiero%20comprar%20Alicyn",
         "instagram_url": "https://www.instagram.com/alicyn.mx/",
         "brand_text": "alicyn",
-        "announcement_text": "100 ml · Piercing Aftercare by Alicyn MX · envíos a todo México",
+        "announcement_text": "100 ml · envío cotizado en checkout con Skydrop · compra segura",
         "header_cta_label": "Comprar",
         "product_size": "100 ml",
-        "product_price": "300.00",
-        "product_price_label": "$300 MXN",
+        "product_price": "350.00",
+        "product_price_label": "$350 MXN",
         "hero_eyebrow": "Piercing Aftercare by Alicyn MX",
         "hero_heading": "Cuida tus perforaciones en los momentos que más lo necesitan.",
         "hero_copy": "No es para tocar tu piercing todo el día. Alicyn 100 ml acompaña esos momentos reales: después de sudar, dormir sobre la pieza, recibir un jalón, cambiar joyería o notar sensibilidad común. Limpieza responsable y sensación calmante para piel sana, con la guía de tu perforador siempre al centro.",
@@ -416,13 +416,13 @@
         "secondary_cta_label": "Ver cómo se usa",
         "product_image_alt": "Frasco de Alicyn solución antiséptica para cuidado post-piercing, 100 ml",
         "product_note_label": "Fórmula simple",
-        "product_note_value": "$300 MXN",
+        "product_note_value": "$350 MXN",
         "hero_fact_1_label": "Contenido",
         "hero_fact_1_value": "100 ml",
         "hero_fact_2_label": "Uso",
         "hero_fact_2_value": "Puntual",
-        "hero_fact_3_label": "Envíos",
-        "hero_fact_3_value": "México",
+        "hero_fact_3_label": "Envío",
+        "hero_fact_3_value": "Skydrop en checkout",
         "show_packs": true,
         "show_rewards": true,
         "packs_eyebrow": "Compra directa",
@@ -461,7 +461,7 @@
         "details_heading": "Alicyn 100 ml, listo para tenerlo a la mano.",
         "details_product_title": "Alicyn solución antiséptica",
         "details_summary": "100 ml · pensado para acompañarte en momentos clave del proceso. Fórmula para uso tópico externo, sobre piel sana, cuando hay mayor sensibilidad o exposición. Evita ojos y mucosas.",
-        "details_cta_label": "Comprar Alicyn 100 ml — $300 MXN",
+        "details_cta_label": "Comprar Alicyn 100 ml — $350 MXN",
         "detail_1_label": "Contenido",
         "detail_1_value": "100 ml",
         "detail_2_label": "Uso",
@@ -477,7 +477,7 @@
         "detail_7_label": "Qué incluye",
         "detail_7_value": "1 frasco Alicyn 100 ml e indicaciones de uso",
         "detail_8_label": "Envío",
-        "detail_8_value": "Envíos a todo México; consulta disponibilidad de salida rápida en CDMX y Edo. Mex",
+        "detail_8_value": "El costo de envío se cotiza al finalizar la compra con Skydrop según tu dirección, cobertura y paquetería disponible.",
         "reviews_eyebrow": "Experiencias",
         "reviews_heading": "Lo que busca la comunidad: confianza, rutina clara y menos miedo.",
         "reviews_copy": "Reseñas en el tono de la comunidad Alicyn: directas, humanas y enfocadas en limpieza, frescura y confianza para cuidar sin prometer resultados médicos.",
@@ -487,7 +487,7 @@
         "studios_eyebrow": "Alicyn para piercers",
         "studios_heading": "Una opción fácil de explicar en cabina y mostrador.",
         "studios_copy": "La comunidad de Instagram pregunta por DM, pedidos y paquetes para estudios. Aquí lo traducimos a una propuesta clara: aftercare piercing México con educación honesta, soporte por WhatsApp y material visual para clientes.",
-        "studios_features": "Mayoristas y paquetes para piercers o estudios\nMaterial visual con instrucciones y señales para consultar\nSoporte por WhatsApp para pedidos, dudas y recompra\nConsulta disponibilidad para CDMX, Edo. Mex y envíos nacionales",
+        "studios_features": "Mayoristas y paquetes para piercers o estudios\nMaterial visual con instrucciones y señales para consultar\nSoporte por WhatsApp para pedidos, dudas y recompra\nEnvío cotizado en checkout con Skydrop",
         "studios_cta_label": "Solicitar acceso a mayoreo",
         "wholesale_request_url": "/pages/mayoreo-alicyn",
         "wholesale_eyebrow": "Acceso autorizado",
@@ -502,7 +502,7 @@
         "final_eyebrow": "Alicyn Piercing Aftercare",
         "final_heading": "Tenlo listo para esos momentos en los que tu perforación se siente más vulnerable.",
         "final_copy": "Cuidado post piercing puntual de uso tópico externo, pensado para limpieza responsable y sensación calmante cuando hay mayor sensibilidad, roce o exposición.",
-        "final_primary_label": "Comprar Alicyn 100 ml — $300 MXN",
+        "final_primary_label": "Comprar Alicyn 100 ml — $350 MXN",
         "final_secondary_label": "Comprar por WhatsApp",
         "chat_title": "Alicyn por WhatsApp",
         "chat_subtitle": "Pedidos, dudas y soporte para piercers.",
@@ -510,7 +510,7 @@
         "chat_message_label": "Mensaje",
         "chat_default_message": "Hola, quiero comprar Alicyn 100 ml.",
         "chat_send_label": "Abrir WhatsApp",
-        "sticky_cta_label": "Comprar Alicyn 100 ml — $300",
+        "sticky_cta_label": "Comprar Alicyn 100 ml — $350",
         "footer_copy": "Piercing aftercare de uso tópico para cuidado post piercing puntual. Solo uso externo. Evita ojos y mucosas. Usa sobre piel sana. Consulta a tu perforador si tienes dudas o si las molestias empeoran.",
         "footer_badge_1": "Solo uso externo",
         "footer_badge_2": "Consulta a tu perforador si tienes dudas",

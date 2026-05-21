@@ -1,0 +1,48 @@
+<div class="alicyn-page">
+  <main class="alicyn-account-page section-pad" aria-labelledby="account-title">
+    <div class="section-heading">
+      <p class="eyebrow">Cuenta Alicyn</p>
+      <h1 id="account-title">Hola{% if customer.first_name != blank %}, {{ customer.first_name | escape }}{% endif %}</h1>
+      <p>Consulta tus pedidos y recompensas conectadas a tu cuenta.</p>
+      <div class="hero-actions">
+        <a class="button button-secondary" href="/account/logout">Cerrar sesión</a>
+        <a class="button button-secondary" href="/cart">Ver carrito</a>
+      </div>
+    </div>
+
+    {% render 'alicyn-rewards',
+      product_url: '/products/alicyn-solucion-antiseptica',
+      rewards_eyebrow: 'Recompensas',
+      rewards_heading: 'Tu nivel Alicyn',
+      rewards_copy: 'Los beneficios dependen de pedidos, gasto acumulado, tags y descuentos reales configurados en Shopify Admin.'
+    %}
+
+    <section class="alicyn-account-grid section-pad" aria-label="Detalle de cuenta">
+      <article class="info-card">
+        <h2>Pedidos recientes</h2>
+        {% if customer.orders_count > 0 %}
+          <ul class="alicyn-account-list">
+            {% for order in customer.orders limit: 5 %}
+              <li>
+                <a href="{{ order.customer_url }}">Pedido {{ order.name }}</a>
+                <span>{{ order.created_at | date: '%d/%m/%Y' }} · {{ order.total_price | money }}</span>
+              </li>
+            {% endfor %}
+          </ul>
+        {% else %}
+          <p>Aún no hay pedidos asociados a esta cuenta.</p>
+        {% endif %}
+      </article>
+
+      <article class="info-card">
+        <h2>Dirección principal</h2>
+        {% if customer.default_address %}
+          <p>{{ customer.default_address | format_address }}</p>
+        {% else %}
+          <p>Agrega tu dirección durante checkout para que Skydrop pueda cotizar envío según cobertura y paquetería disponible.</p>
+        {% endif %}
+        <a class="button button-secondary" href="/account/addresses">Administrar direcciones</a>
+      </article>
+    </section>
+  </main>
+</div>

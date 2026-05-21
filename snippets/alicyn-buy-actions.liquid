@@ -1,0 +1,84 @@
+{% liquid
+  assign action_product_handle = product_handle | default: 'alicyn-solucion-antiseptica'
+  assign action_quantity = quantity | default: 1 | plus: 0
+  if action_quantity < 1
+    assign action_quantity = 1
+  endif
+
+  assign action_product = all_products[action_product_handle]
+  assign action_variant = nil
+  if action_product != blank
+    assign action_variant = action_product.selected_or_first_available_variant
+  endif
+
+  assign fallback_url_value = fallback_url | default: '/products/alicyn-solucion-antiseptica'
+  assign whatsapp_url_value = whatsapp_url | default: ''
+  assign add_label = primary_label | default: 'Agregar al carrito'
+  assign buy_label = secondary_label | default: 'Comprar ahora'
+  assign setup_message_text = setup_message | default: 'Configura este producto en Shopify Admin para activar compra directa.'
+  assign extra_class = class_name | default: ''
+
+  assign add_enabled = true
+  if show_add_to_cart == false
+    assign add_enabled = false
+  endif
+
+  assign buy_enabled = true
+  if show_buy_now == false
+    assign buy_enabled = false
+  endif
+
+  assign checkout_url_clean = checkout_url | default: '' | strip
+  assign checkout_url_downcase = checkout_url_clean | downcase
+  assign valid_checkout_url = false
+  if checkout_url_clean != blank
+    if checkout_url_downcase contains 'checkout' or checkout_url_downcase contains 'mercadopago' or checkout_url_downcase contains '/cart/'
+      assign valid_checkout_url = true
+    endif
+  endif
+
+  assign open_external_checkout = false
+  if open_checkout_new_tab and valid_checkout_url
+    assign open_external_checkout = true
+  endif
+%}
+
+<div class="alicyn-buy-actions {{ extra_class }}" data-buy-actions>
+  {% if action_product != blank and action_product.available and action_variant != blank and action_variant.available %}
+    {% if add_enabled %}
+      <form class="alicyn-cart-form" method="post" action="/cart/add">
+        <input type="hidden" name="id" value="{{ action_variant.id }}">
+        <input type="hidden" name="quantity" value="{{ action_quantity }}">
+        <button class="button button-primary" type="submit">{{ add_label | escape }}</button>
+      </form>
+    {% endif %}
+
+    {% if buy_enabled %}
+      {% if valid_checkout_url %}
+        <a
+          class="button button-secondary"
+          href="{{ checkout_url_clean | escape }}"
+          {% if open_external_checkout %}target="_blank" rel="noopener noreferrer"{% endif %}
+        >
+          {{ buy_label | escape }}
+        </a>
+      {% else %}
+        <form class="alicyn-cart-form" method="post" action="/cart/add">
+          <input type="hidden" name="id" value="{{ action_variant.id }}">
+          <input type="hidden" name="quantity" value="{{ action_quantity }}">
+          <input type="hidden" name="return_to" value="/checkout">
+          <button class="button button-secondary" type="submit">{{ buy_label | escape }}</button>
+        </form>
+      {% endif %}
+    {% endif %}
+  {% else %}
+    <p class="alicyn-setup-note">{{ setup_message_text | escape }}</p>
+    <div class="alicyn-buy-actions-fallback">
+      {% if whatsapp_url_value != blank %}
+        <a class="button button-primary" href="{{ whatsapp_url_value | escape }}" target="_blank" rel="noopener noreferrer">Pedir por WhatsApp</a>
+      {% elsif fallback_url_value != blank %}
+        <a class="button button-secondary" href="{{ fallback_url_value | escape }}">{{ buy_label | escape }}</a>
+      {% endif %}
+    </div>
+  {% endif %}
+</div>

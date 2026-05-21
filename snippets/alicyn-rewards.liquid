@@ -1,11 +1,15 @@
 {% liquid
-  assign recurrent_threshold = 90000
-  assign vip_threshold = 150000
-  assign ambassador_threshold = 240000
+  assign recurrent_threshold = 105000
+  assign vip_threshold = 175000
+  assign ambassador_threshold = 280000
   assign product_redirect_url = product_url | default: '/products/alicyn-solucion-antiseptica'
   assign rewards_eyebrow_text = rewards_eyebrow | default: 'Cuenta Alicyn'
   assign rewards_heading_text = rewards_heading | default: 'Recompensas conectadas a tu cuenta'
   assign rewards_copy_text = rewards_copy | default: 'Los beneficios se muestran según tu cuenta de cliente, historial de compra y tags asignados en Shopify.'
+  assign discount_links_enabled = false
+  if show_discount_links == true
+    assign discount_links_enabled = true
+  endif
 %}
 
 <section id="recompensas" class="alicyn-rewards section-pad" aria-labelledby="alicyn-rewards-title">
@@ -51,15 +55,23 @@
       if has_ambassador_tag or orders_count >= 8 or total_spent >= ambassador_threshold
         assign level_rank = 4
         assign level_name = 'Embajador Alicyn'
-        assign level_benefit = '1 Alicyn gratis en compra de 2+ piezas.'
+        assign level_benefit = 'Beneficio Embajador con código configurado en Shopify Admin.'
       elsif has_vip_tag or orders_count >= 5 or total_spent >= vip_threshold
         assign level_rank = 3
         assign level_name = 'Cliente VIP'
-        assign level_benefit = '15% OFF con código configurado en Shopify Admin.'
+        if discount_links_enabled
+          assign level_benefit = '15% OFF con ALICYNVIP15.'
+        else
+          assign level_benefit = 'Beneficio VIP pendiente de activar en Shopify Admin.'
+        endif
       elsif has_recurrent_tag or orders_count >= 3 or total_spent >= recurrent_threshold
         assign level_rank = 2
         assign level_name = 'Cliente Recurrente'
-        assign level_benefit = '10% OFF con código configurado en Shopify Admin.'
+        if discount_links_enabled
+          assign level_benefit = '10% OFF con ALICYN10.'
+        else
+          assign level_benefit = 'Beneficio recurrente pendiente de activar en Shopify Admin.'
+        endif
       elsif orders_count >= 1
         assign level_rank = 1
         assign level_name = 'Cliente Alicyn'
@@ -68,7 +80,7 @@
 
       assign next_name = 'Cliente Alicyn'
       assign next_orders = 1
-      assign next_spend = 30000
+      assign next_spend = 35000
 
       if level_rank == 1
         assign next_name = 'Cliente Recurrente'
@@ -161,10 +173,18 @@
             <li>Cliente Alicyn: historial activo de compras.</li>
           {% endif %}
           {% if level_rank >= 2 %}
-            <li>Cliente Recurrente: 10% OFF con ALICYN10.</li>
+            {% if discount_links_enabled %}
+              <li>Cliente Recurrente: 10% OFF con ALICYN10.</li>
+            {% else %}
+              <li>Cliente Recurrente: ALICYN10 debe existir en Shopify Admin antes de mostrarse como descuento activo.</li>
+            {% endif %}
           {% endif %}
           {% if level_rank >= 3 %}
-            <li>Cliente VIP: 15% OFF con ALICYNVIP15.</li>
+            {% if discount_links_enabled %}
+              <li>Cliente VIP: 15% OFF con ALICYNVIP15.</li>
+            {% else %}
+              <li>Cliente VIP: ALICYNVIP15 debe existir en Shopify Admin antes de mostrarse como descuento activo.</li>
+            {% endif %}
           {% endif %}
           {% if level_rank >= 4 %}
             <li>Embajador Alicyn: beneficio especial con ALICYNEMBAJADOR.</li>
@@ -175,9 +195,11 @@
         </ul>
       </div>
 
-      {% if discount_code != blank %}
+      {% if discount_code != blank and discount_links_enabled %}
         <a class="button button-primary" href="/discount/{{ discount_code }}?redirect={{ product_redirect_url | url_encode }}">Usar mi descuento</a>
         <p class="alicyn-rewards-setup">Este botón aplica un código que debe existir y estar activo en Shopify Admin.</p>
+      {% elsif discount_code != blank %}
+        <p class="alicyn-rewards-setup">Código sugerido: {{ discount_code }}. Activa los links de recompensa desde Theme Editor sólo cuando el descuento exista en Shopify Admin.</p>
       {% endif %}
     </div>
   {% endif %}

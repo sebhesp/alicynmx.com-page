@@ -1,0 +1,127 @@
+<div class="alicyn-page">
+  <a class="skip-link" href="#main-cart">Saltar al carrito</a>
+
+  <header class="site-header" aria-label="Encabezado de carrito">
+    <a class="brand" href="/">
+      <span class="brand-drop" aria-hidden="true"></span>
+      <span>{{ section.settings.brand_text | escape }}</span>
+    </a>
+    <nav class="header-nav header-nav-static" aria-label="Navegación de tienda">
+      <a href="/">Inicio</a>
+      <a href="/products/alicyn-solucion-antiseptica">Producto</a>
+      {% if customer %}
+        <a href="/account">Mi cuenta</a>
+      {% else %}
+        <a href="/account/login">Iniciar sesión</a>
+      {% endif %}
+    </nav>
+  </header>
+
+  <main id="main-cart" class="alicyn-cart-page section-pad" aria-labelledby="cart-title">
+    <div class="section-heading">
+      <p class="eyebrow">{{ section.settings.eyebrow | escape }}</p>
+      <h1 id="cart-title">{{ section.settings.heading | escape }}</h1>
+      <p>{{ section.settings.shipping_note | escape }}</p>
+    </div>
+
+    {% if cart.item_count > 0 %}
+      <form class="alicyn-cart" action="{{ routes.cart_url }}" method="post">
+        <div class="alicyn-cart-items">
+          {% for item in cart.items %}
+            {% liquid
+              assign cart_item_image_alt = item.product.title
+              if item.image and item.image.alt != blank
+                assign cart_item_image_alt = item.image.alt
+              endif
+            %}
+            <article class="alicyn-cart-item">
+              <div class="alicyn-cart-image">
+                {% if item.image %}
+                  {{ item.image | image_url: width: 240 | image_tag:
+                    widths: '120, 180, 240',
+                    sizes: '120px',
+                    loading: 'lazy',
+                    alt: cart_item_image_alt
+                  }}
+                {% endif %}
+              </div>
+              <div class="alicyn-cart-info">
+                <h2>{{ item.product.title | escape }}</h2>
+                {% unless item.product.has_only_default_variant %}
+                  <p>{{ item.variant.title | escape }}</p>
+                {% endunless %}
+                <p>{{ item.final_line_price | money }}</p>
+                <label class="alicyn-field" for="CartQuantity-{{ forloop.index }}">
+                  <span>Cantidad</span>
+                  <input id="CartQuantity-{{ forloop.index }}" type="number" name="updates[]" value="{{ item.quantity }}" min="0">
+                </label>
+                <a class="alicyn-remove-link" href="/cart/change?line={{ forloop.index }}&quantity=0">Eliminar</a>
+              </div>
+            </article>
+          {% endfor %}
+        </div>
+
+        <aside class="alicyn-cart-summary" aria-label="Resumen del carrito">
+          <div>
+            <span>Subtotal</span>
+            <strong>{{ cart.total_price | money }}</strong>
+          </div>
+          <p>{{ section.settings.checkout_note | escape }}</p>
+          <button class="button button-secondary" type="submit" name="update">Actualizar carrito</button>
+          <button class="button button-primary" type="submit" name="checkout">Finalizar compra</button>
+          <a class="button button-secondary" href="{{ section.settings.continue_url | escape }}">Seguir comprando</a>
+        </aside>
+      </form>
+    {% else %}
+      <div class="alicyn-cart-empty">
+        <h2>Tu carrito está vacío</h2>
+        <p>Agrega Alicyn 100 ml o un pack para continuar a checkout.</p>
+        <a class="button button-primary" href="{{ section.settings.continue_url | escape }}">Seguir comprando</a>
+      </div>
+    {% endif %}
+  </main>
+</div>
+
+{% schema %}
+{
+  "name": "Alicyn Main Cart",
+  "settings": [
+    {
+      "type": "text",
+      "id": "brand_text",
+      "label": "Brand text",
+      "default": "alicyn"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "Carrito"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Revisa tu pedido"
+    },
+    {
+      "type": "text",
+      "id": "shipping_note",
+      "label": "Shipping note",
+      "default": "El envío se calculará en checkout con Skydrop según tu dirección."
+    },
+    {
+      "type": "text",
+      "id": "checkout_note",
+      "label": "Checkout note",
+      "default": "El costo de envío se cotiza al finalizar la compra con Skydrop según tu dirección, cobertura y paquetería disponible."
+    },
+    {
+      "type": "text",
+      "id": "continue_url",
+      "label": "Continue shopping URL",
+      "default": "/products/alicyn-solucion-antiseptica"
+    }
+  ]
+}
+{% endschema %}

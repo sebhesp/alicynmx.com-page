@@ -1,0 +1,51 @@
+<div class="alicyn-page">
+  <main class="alicyn-form-section section-pad" aria-labelledby="login-title">
+    <div class="section-heading">
+      <p class="eyebrow">Cuenta Alicyn</p>
+      <h1 id="login-title">Iniciar sesión</h1>
+      <p>Entra a tu cuenta para revisar pedidos, recompensas y beneficios disponibles.</p>
+    </div>
+
+    <div class="alicyn-account-layout">
+      {% form 'customer_login', class: 'alicyn-form' %}
+        {% if form.errors %}
+          <div class="alicyn-form-errors" role="alert">{{ form.errors | default_errors }}</div>
+        {% endif %}
+
+        <div class="alicyn-field">
+          <label for="CustomerEmail">Correo</label>
+          <input id="CustomerEmail" type="email" name="customer[email]" autocomplete="email" required>
+        </div>
+
+        <div class="alicyn-field">
+          <label for="CustomerPassword">Contraseña</label>
+          <input id="CustomerPassword" type="password" name="customer[password]" autocomplete="current-password" required>
+        </div>
+
+        <button class="button button-primary" type="submit">Iniciar sesión</button>
+        <a class="button button-secondary" href="/account/register">Crear cuenta</a>
+        <a class="alicyn-inline-link" href="#recover">Recuperar contraseña</a>
+      {% endform %}
+
+      <div id="recover" class="alicyn-form">
+        <h2>Recuperar contraseña</h2>
+        {% form 'recover_customer_password' %}
+          {% if form.posted_successfully? %}
+            <div class="alicyn-form-success" role="status">Te enviamos instrucciones para recuperar tu contraseña.</div>
+          {% endif %}
+
+          {% if form.errors %}
+            <div class="alicyn-form-errors" role="alert">{{ form.errors | default_errors }}</div>
+          {% endif %}
+
+          <div class="alicyn-field">
+            <label for="RecoverEmail">Correo</label>
+            <input id="RecoverEmail" type="email" name="email" autocomplete="email" required>
+          </div>
+
+          <button class="button button-secondary" type="submit">Enviar instrucciones</button>
+        {% endform %}
+      </div>
+    </div>
+  </main>
+</div>

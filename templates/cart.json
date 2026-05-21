@@ -1,0 +1,10 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-cart-alicyn"
+    }
+  },
+  "order": [
+    "main"
+  ]
+}
