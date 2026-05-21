@@ -30,7 +30,7 @@
   assign product_price_label = section.settings.product_price_label | default: '$350 MXN'
   assign primary_cta_label = section.settings.primary_cta_label | default: 'Comprar Alicyn 100 ml — $350 MXN'
   assign sticky_cta_label = section.settings.sticky_cta_label | default: 'Comprar Alicyn 100 ml — $350'
-  assign product_image_cleanup = section.settings.product_image_cleanup | default: 'light'
+  assign product_image_cleanup = section.settings.product_image_cleanup | default: 'transparent'
   assign product_image_fit = section.settings.product_image_fit | default: 'contain'
   assign product_image_position = section.settings.product_image_position | default: 'center center'
   assign product_image_scale = section.settings.product_image_scale | default: 100
@@ -121,6 +121,7 @@
           alt="Alicyn Piercing After Care"
           width="{{ section.settings.header_logo_width | default: 156 }}"
           loading="eager"
+          onerror="this.style.display='none'; this.nextElementSibling.style.display='inline-flex';"
         >
       {% else %}
         <img
@@ -131,11 +132,11 @@
           loading="eager"
           onerror="this.style.display='none'; this.nextElementSibling.style.display='inline-flex';"
         >
-        <span class="brand-fallback" style="display: none;">
-          <span class="brand-drop" aria-hidden="true"></span>
-          <span>{{ section.settings.brand_text | escape }}</span>
-        </span>
       {% endif %}
+      <span class="brand-fallback" style="display: none;">
+        <span class="brand-drop" aria-hidden="true"></span>
+        <span>{{ section.settings.brand_text | escape }}</span>
+      </span>
     </a>
     <button
       class="nav-toggle"
@@ -697,6 +698,7 @@
             alt="Alicyn Piercing After Care"
             width="{{ section.settings.footer_logo_width | default: 160 }}"
             loading="lazy"
+            onerror="this.style.display='none'; this.nextElementSibling.style.display='inline-flex';"
           >
         {% else %}
           <img
@@ -707,11 +709,11 @@
             loading="lazy"
             onerror="this.style.display='none'; this.nextElementSibling.style.display='inline-flex';"
           >
-          <span class="brand-fallback" style="display: none;">
-            <span class="brand-drop" aria-hidden="true"></span>
-            <span>{{ section.settings.brand_text | escape }}</span>
-          </span>
         {% endif %}
+        <span class="brand-fallback" style="display: none;">
+          <span class="brand-drop" aria-hidden="true"></span>
+          <span>{{ section.settings.brand_text | escape }}</span>
+        </span>
       </a>
       <p>{{ section.settings.footer_copy | escape | newline_to_br }}</p>
     </div>
@@ -874,13 +876,13 @@
       "type": "text",
       "id": "hero_heading",
       "label": "Hero heading",
-      "default": "Cuida tus perforaciones en los momentos que más lo necesitan."
+      "default": "Cuando tu piercing se siente vulnerable, cuídalo sin moverlo de más."
     },
     {
       "type": "textarea",
       "id": "hero_copy",
       "label": "Hero copy",
-      "default": "No es para tocar tu piercing todo el día. Alicyn 100 ml acompaña esos momentos reales: después de sudar, dormir sobre la pieza, recibir un jalón, cambiar joyería o notar sensibilidad común. Limpieza responsable y sensación calmante para piel sana, con la guía de tu perforador siempre al centro."
+      "default": "No es para tocar tu piercing todo el día. Es para esos momentos donde más dudas qué hacer: después de sudar, dormir sobre la pieza, recibir un jalón, cambiar joyería o notar sensibilidad común. Alicyn 100 ml apoya una limpieza externa responsable y una sensación calmante, sin reemplazar la guía de tu perforador."
     },
     {
       "type": "text",
@@ -898,7 +900,7 @@
       "type": "text",
       "id": "checkout_note",
       "label": "Checkout note",
-      "default": "Envío cotizado en checkout con Skydrop."
+      "default": "Compra segura. El envío se cotiza en checkout con Skydrop según tu dirección."
     },
     {
       "type": "text",
@@ -916,7 +918,7 @@
       "id": "product_image_cleanup",
       "label": "Limpieza visual del fondo de la foto",
       "info": "Usa Fondo claro cuando la foto tenga fondo blanco o pálido. Para recorte perfecto, elimina el fondo en el editor de medios de Shopify antes de seleccionar la imagen.",
-      "default": "light",
+      "default": "transparent",
       "options": [
         { "value": "light", "label": "Fondo claro" },
         { "value": "transparent", "label": "PNG/WebP transparente" },
@@ -1167,7 +1169,7 @@
       "type": "textarea",
       "id": "packs_copy",
       "label": "Packs copy",
-      "default": "Pide una pieza para tu cuidado personal o arma un pedido con amigos para aprovechar mejor el envío y mejorar el precio por pieza."
+      "default": "Pide una pieza para tu cuidado personal o arma un pedido con amigos. Tener Alicyn a la mano evita improvisar cuando aparece roce, sudor o sensibilidad común."
     },
     {
       "type": "text",
@@ -1259,13 +1261,13 @@
       "type": "text",
       "id": "benefits_heading",
       "label": "Benefits heading",
-      "default": "Aftercare claro para cuando tu perforación pide atención."
+      "default": "Cuidado claro para esos momentos en los que no quieres improvisar."
     },
     {
       "type": "textarea",
       "id": "benefits_copy",
       "label": "Benefits copy",
-      "default": "Inspirado en la forma en que Alicyn educa en Instagram: mensajes directos, visuales limpios y cuidado de perforaciones sin complicar la rutina. Para limpieza de piercing, frescura y apoyo puntual en molestias comunes."
+      "default": "Pensado para personas con piercing nuevo, nostril, helix, conch, ombligo o lóbulo que sienten roce, sudor, presión o sensibilidad común y quieren una forma simple de limpiar por fuera sin manipular de más."
     },
     {
       "type": "text",
@@ -1283,7 +1285,7 @@
       "type": "textarea",
       "id": "moments_copy",
       "label": "Moments copy",
-      "default": "Alicyn es una solución para piercing útil en momentos específicos, no un hábito automático de todos los días. Piénsalo para cuando la perforación estuvo más expuesta o sensible y necesitas cuidado puntual sin manipular de más."
+      "default": "Alicyn es una solución para piercing útil en momentos específicos, no un hábito automático de todos los días. Piénsalo para cuando la perforación estuvo expuesta, se siente sensible o quieres limpiar por fuera con más seguridad y menos improvisación."
     },
     {
       "type": "text",
@@ -1507,7 +1509,7 @@
       "type": "textarea",
       "id": "reviews_copy",
       "label": "Reviews copy",
-      "default": "Personas con nostril, helix, conch, lóbulo, septum, ombligo y tragus usan Alicyn como apoyo puntual para limpieza externa y molestias comunes del proceso."
+      "default": "Personas con nostril, helix, conch, lóbulo, septum, ombligo y tragus usan Alicyn como apoyo puntual cuando aparece sensibilidad, presión, sudor o la típica duda de si lo están cuidando bien."
     },
     {
       "type": "text",
@@ -1671,13 +1673,13 @@
       "type": "text",
       "id": "final_heading",
       "label": "Final CTA heading",
-      "default": "Tenlo listo para esos momentos en los que tu perforación se siente más vulnerable."
+      "default": "Ten Alicyn antes de que llegue ese momento incómodo."
     },
     {
       "type": "textarea",
       "id": "final_copy",
       "label": "Final CTA copy",
-      "default": "Cuidado post piercing puntual de uso tópico externo, pensado para limpieza responsable y sensación calmante cuando hay mayor sensibilidad, roce o exposición."
+      "default": "Cuando hay roce, sudor, presión o sensibilidad común, lo peor es improvisar. Alicyn 100 ml te da un apoyo tópico externo claro para limpieza responsable y sensación calmante, sin prometer resultados médicos."
     },
     {
       "type": "text",
@@ -1964,10 +1966,10 @@
         { "type": "trust_badge", "settings": { "text": "Uso tópico" } },
         { "type": "trust_badge", "settings": { "text": "Cuidado post-piercing" } },
         { "type": "trust_badge", "settings": { "text": "Skydrop en checkout" } },
-        { "type": "benefit", "settings": { "icon": "clean", "title": "Después de sudor o calle", "text": "Apoya la limpieza de piercing después de gym, transporte, polvo, maquillaje o ambientes no controlados." } },
-        { "type": "benefit", "settings": { "icon": "fresh", "title": "Sensación calmante", "text": "Ayuda a aliviar molestias comunes cuando el piercing irritado se siente sensible por roce, presión o sueño." } },
-        { "type": "benefit", "settings": { "icon": "routine", "title": "No es para sobre-tocar", "text": "Para momentos específicos; no reemplaza una rutina de cuidado piercing sencilla ni la guía profesional." } },
-        { "type": "benefit", "settings": { "icon": "support", "title": "Para cambios de joyería", "text": "Útil como apoyo cuando manipulaste la pieza o tu perforador te indicó limpieza puntual alrededor." } },
+        { "type": "benefit", "settings": { "icon": "clean", "title": "Después de sudor o calle", "text": "Para limpiar por fuera cuando hubo gym, transporte, polvo, maquillaje o un ambiente que no controlas." } },
+        { "type": "benefit", "settings": { "icon": "fresh", "title": "Sensación calmante", "text": "Apoya el alivio de molestias comunes del proceso, como sensibilidad o incomodidad por roce." } },
+        { "type": "benefit", "settings": { "icon": "routine", "title": "Menos improvisación", "text": "Un paso claro para esos momentos puntuales, sin tocar ni girar la joyería de más." } },
+        { "type": "benefit", "settings": { "icon": "support", "title": "Tranquilidad en casa", "text": "Para tener a la mano cuando dormiste sobre el piercing, hubo un jalón leve o sientes la zona vulnerable." } },
         { "type": "usage_moment", "settings": { "number": "01", "title": "Cuando hubo roce, jalón o golpe", "text": "Para apoyar una limpieza cuidadosa después de un movimiento accidental, un tirón de la joyería o un golpe leve." } },
         { "type": "usage_moment", "settings": { "number": "02", "title": "Después de dormir sobre el piercing", "text": "Especialmente en cuidado de helix, conch, tragus o lóbulo cuando amaneció más sensible por presión." } },
         { "type": "usage_moment", "settings": { "number": "03", "title": "Después de baño, sudor o calle", "text": "Gym, transporte público, polvo, maquillaje, skincare, productos para cabello o exposición similar." } },

@@ -55,7 +55,7 @@
           "settings": {
             "icon": "fresh",
             "title": "Sensación calmante",
-            "text": "Ayuda a aliviar molestias comunes cuando el piercing irritado se siente sensible por roce, presión o sueño."
+            "text": "Apoya el alivio de molestias comunes del proceso, como sensibilidad o incomodidad por roce."
           }
         },
         "benefit_touch": {
@@ -461,8 +461,8 @@
         "product_price": "350.00",
         "product_price_label": "$350 MXN",
         "hero_eyebrow": "Piercing After Care by Alicyn",
-        "hero_heading": "Cuida tus perforaciones en los momentos que más lo necesitan.",
-        "hero_copy": "No es para tocar tu piercing todo el día. Alicyn 100 ml acompaña esos momentos reales: después de sudar, dormir sobre la pieza, recibir un jalón, cambiar joyería o notar sensibilidad común. Limpieza responsable y sensación calmante para piel sana, con la guía de tu perforador siempre al centro.",
+        "hero_heading": "Cuando tu piercing se siente vulnerable, cuídalo sin moverlo de más.",
+        "hero_copy": "No es para tocar tu piercing todo el día. Es para esos momentos donde más dudas qué hacer: después de sudar, dormir sobre la pieza, recibir un jalón, cambiar joyería o notar sensibilidad común. Alicyn 100 ml apoya una limpieza externa responsable y una sensación calmante, sin reemplazar la guía de tu perforador.",
         "primary_cta_label": "Comprar Alicyn 100 ml — $350 MXN",
         "secondary_cta_label": "Ver cómo se usa",
         "product_image": "shopify://shop_images/Antiseptico_para_piercings_Alicyn_100ml.png",
@@ -479,7 +479,7 @@
         "show_rewards": true,
         "packs_eyebrow": "Compra directa",
         "packs_heading": "Compra individual o en grupo",
-        "packs_copy": "Pide una pieza para tu cuidado personal o arma un pedido con amigos para aprovechar mejor el envío y mejorar el precio por pieza.",
+        "packs_copy": "Pide una pieza para tu cuidado personal o arma un pedido con amigos. Tener Alicyn a la mano evita improvisar cuando aparece roce, sudor o sensibilidad común.",
         "rewards_eyebrow": "Cuenta Alicyn",
         "rewards_heading": "Recompensas conectadas a tu cuenta",
         "rewards_copy": "Los beneficios se muestran según tu cuenta de cliente, historial de compra y tags asignados en Shopify.",
@@ -492,11 +492,11 @@
         "wholesale_pack_20_handle": "alicyn-mayoreo-20",
         "wholesale_pack_50_handle": "alicyn-mayoreo-50",
         "benefits_eyebrow": "Alicyn Tips",
-        "benefits_heading": "Aftercare claro para cuando tu perforación pide atención.",
-        "benefits_copy": "Inspirado en la forma en que Alicyn educa en Instagram: mensajes directos, visuales limpios y cuidado de perforaciones sin complicar la rutina. Para limpieza de piercing, frescura y apoyo puntual en molestias comunes.",
+        "benefits_heading": "Cuidado claro para esos momentos en los que no quieres improvisar.",
+        "benefits_copy": "Pensado para personas con piercing nuevo, nostril, helix, conch, ombligo o lóbulo que sienten roce, sudor, presión o sensibilidad común y quieren una forma simple de limpiar por fuera sin manipular de más.",
         "moments_eyebrow": "Momentos que importan",
         "moments_heading": "¿Cuándo sí usar Alicyn?",
-        "moments_copy": "Alicyn es una solución para piercing útil en momentos específicos, no un hábito automático de todos los días. Piénsalo para cuando la perforación estuvo más expuesta o sensible y necesitas cuidado puntual sin manipular de más.",
+        "moments_copy": "Alicyn es una solución para piercing útil en momentos específicos, no un hábito automático de todos los días. Piénsalo para cuando la perforación estuvo expuesta, se siente sensible o quieres limpiar por fuera con más seguridad y menos improvisación.",
         "alert_eyebrow": "Alicyn Tips",
         "alert_heading": "Antes de usarlo: aprende a reconocer señales de alerta",
         "alert_copy": "Un buen cuidado para piercing también significa saber cuándo no improvisar en casa. Alicyn está pensado para piel sana y molestias comunes del proceso. No debe usarse como sustituto de valoración profesional ante signos o señales de infección.",
@@ -532,7 +532,7 @@
         "detail_8_value": "El costo de envío se cotiza al finalizar la compra con Skydrop según tu dirección, cobertura y paquetería disponible.",
         "reviews_eyebrow": "Experiencias",
         "reviews_heading": "Experiencias reales de la comunidad Alicyn",
-        "reviews_copy": "Personas con nostril, helix, conch, lóbulo, septum, ombligo y tragus usan Alicyn como apoyo puntual para limpieza externa y molestias comunes del proceso.",
+        "reviews_copy": "Personas con nostril, helix, conch, lóbulo, septum, ombligo y tragus usan Alicyn como apoyo puntual cuando aparece sensibilidad, presión, sudor o la típica duda de si lo están cuidando bien.",
         "reviews_disclaimer": "Las experiencias pueden variar. Alicyn no sustituye la valoración de un perforador profesional.",
         "story_eyebrow": "Antes / Durante / Después",
         "story_heading": "No son fotos médicas. Es la historia de aprender a cuidar mejor.",
@@ -552,8 +552,8 @@
         "faq_eyebrow": "FAQ",
         "faq_heading": "Preguntas frecuentes",
         "final_eyebrow": "Alicyn cuidado post-piercing",
-        "final_heading": "Tenlo listo para esos momentos en los que tu perforación se siente más vulnerable.",
-        "final_copy": "Cuidado post piercing puntual de uso tópico externo, pensado para limpieza responsable y sensación calmante cuando hay mayor sensibilidad, roce o exposición.",
+        "final_heading": "Ten Alicyn antes de que llegue ese momento incómodo.",
+        "final_copy": "Cuando hay roce, sudor, presión o sensibilidad común, lo peor es improvisar. Alicyn 100 ml te da un apoyo tópico externo claro para limpieza responsable y sensación calmante, sin prometer resultados médicos.",
         "final_primary_label": "Comprar Alicyn 100 ml — $350 MXN",
         "final_secondary_label": "Comprar por WhatsApp",
         "chat_title": "Alicyn por WhatsApp",
@@ -583,7 +583,9 @@
         "trust_clients_label": "clientes satisfechos",
         "trust_processes_number": "+1,000",
         "trust_processes_label": "procesos acompañados",
-        "trust_community_label": "Uso tópico externo"
+        "trust_community_label": "Uso tópico externo",
+        "product_image_cleanup": "transparent",
+        "checkout_note": "Compra segura. El envío se cotiza en checkout con Skydrop según tu dirección."
       }
     }
   },

@@ -20,7 +20,7 @@
       wrapper.classList.add("has-placeholder");
     }
 
-    if (image.complete && image.naturalWidth === 0) {
+    if (image.complete && image.naturalWidth <= 1) {
       showPlaceholder();
     }
 
@@ -31,6 +31,11 @@
 
     var probe = new Image();
     probe.onload = function () {
+      if (probe.naturalWidth <= 1) {
+        showPlaceholder();
+        return;
+      }
+
       wrapper.classList.add("has-image");
     };
     probe.onerror = showPlaceholder;

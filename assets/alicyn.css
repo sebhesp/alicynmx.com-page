@@ -1102,7 +1102,12 @@ body {
 }
 
 .alicyn-page .alicyn-pack-image-stack .alicyn-pack-product-image + .alicyn-pack-product-image {
-  margin-left: -44px;
+  margin-left: -52px;
+}
+
+.alicyn-page .alicyn-pack-visual[data-pack-count="4"] .alicyn-pack-product-image,
+.alicyn-page .alicyn-pack-visual[data-pack-count="5"] .alicyn-pack-product-image {
+  max-width: 78px;
 }
 
 .alicyn-page .alicyn-pack-visual-stacked[data-pack-count="2"] .alicyn-pack-product-image:nth-child(1) {
