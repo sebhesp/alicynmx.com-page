@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "alicyn_landing": {
@@ -191,6 +200,60 @@
             "text": "Traigo audífonos seguido y a veces se irritaba por presión. Alicyn se volvió mi apoyo puntual para limpiar alrededor cuando se sentía vulnerable."
           }
         },
+        "review_nostril_2": {
+          "type": "testimonial",
+          "settings": {
+            "initials": "L.M.",
+            "piercing": "nostril",
+            "rating": "?????",
+            "text": "Lo uso despu?s de sudar o cuando siento la zona sensible. Me gusta que no tengo que estar tocando la pieza para sentir que la estoy cuidando."
+          }
+        },
+        "review_helix_2": {
+          "type": "testimonial",
+          "settings": {
+            "initials": "R.H.",
+            "piercing": "helix",
+            "rating": "?????",
+            "text": "Mi perforador me explic? que no deb?a manipular de m?s. Alicyn me funcion? como apoyo puntual para limpiar alrededor con gasa limpia."
+          }
+        },
+        "review_ombligo": {
+          "type": "testimonial",
+          "settings": {
+            "initials": "S.T.",
+            "piercing": "ombligo",
+            "rating": "?????",
+            "text": "Con ropa ajustada a veces se sent?a inc?modo. Lo us? en momentos espec?ficos y me ayud? a mantener una rutina m?s ordenada."
+          }
+        },
+        "review_conch_2": {
+          "type": "testimonial",
+          "settings": {
+            "initials": "N.C.",
+            "piercing": "conch",
+            "rating": "?????",
+            "text": "Me gust? porque la marca explica cu?ndo s? usarlo y cu?ndo mejor consultar. Eso me dio m?s confianza que otros productos."
+          }
+        },
+        "review_lobulo_2": {
+          "type": "testimonial",
+          "settings": {
+            "initials": "E.P.",
+            "piercing": "l?bulo",
+            "rating": "?????",
+            "text": "Lo compr? para tenerlo en casa despu?s de hacerme otra perforaci?n. Se siente pr?ctico para esos momentos de roce o sensibilidad."
+          }
+        },
+        "review_nostril_3": {
+          "type": "testimonial",
+          "settings": {
+            "initials": "V.A.",
+            "piercing": "nostril",
+            "rating": "?????",
+            "text": "Me ayud? a cuidar mejor la zona sin estar probando mil cosas. Lo importante fue usarlo con calma y no mover la joyer?a."
+          }
+        },
         "story_before": {
           "type": "story_card",
           "settings": {
@@ -333,60 +396,6 @@
             "label": "Envíos",
             "message": "Hola, quiero saber si hay envío disponible para mi ciudad."
           }
-        },
-        "review_nostril_2": {
-          "type": "testimonial",
-          "settings": {
-            "initials": "L.M.",
-            "piercing": "nostril",
-            "rating": "?????",
-            "text": "Lo uso despu?s de sudar o cuando siento la zona sensible. Me gusta que no tengo que estar tocando la pieza para sentir que la estoy cuidando."
-          }
-        },
-        "review_helix_2": {
-          "type": "testimonial",
-          "settings": {
-            "initials": "R.H.",
-            "piercing": "helix",
-            "rating": "?????",
-            "text": "Mi perforador me explic? que no deb?a manipular de m?s. Alicyn me funcion? como apoyo puntual para limpiar alrededor con gasa limpia."
-          }
-        },
-        "review_ombligo": {
-          "type": "testimonial",
-          "settings": {
-            "initials": "S.T.",
-            "piercing": "ombligo",
-            "rating": "?????",
-            "text": "Con ropa ajustada a veces se sent?a inc?modo. Lo us? en momentos espec?ficos y me ayud? a mantener una rutina m?s ordenada."
-          }
-        },
-        "review_conch_2": {
-          "type": "testimonial",
-          "settings": {
-            "initials": "N.C.",
-            "piercing": "conch",
-            "rating": "?????",
-            "text": "Me gust? porque la marca explica cu?ndo s? usarlo y cu?ndo mejor consultar. Eso me dio m?s confianza que otros productos."
-          }
-        },
-        "review_lobulo_2": {
-          "type": "testimonial",
-          "settings": {
-            "initials": "E.P.",
-            "piercing": "l?bulo",
-            "rating": "?????",
-            "text": "Lo compr? para tenerlo en casa despu?s de hacerme otra perforaci?n. Se siente pr?ctico para esos momentos de roce o sensibilidad."
-          }
-        },
-        "review_nostril_3": {
-          "type": "testimonial",
-          "settings": {
-            "initials": "V.A.",
-            "piercing": "nostril",
-            "rating": "?????",
-            "text": "Me ayud? a cuidar mejor la zona sin estar probando mil cosas. Lo importante fue usarlo con calma y no mover la joyer?a."
-          }
         }
       },
       "block_order": [
@@ -456,16 +465,10 @@
         "hero_copy": "No es para tocar tu piercing todo el día. Alicyn 100 ml acompaña esos momentos reales: después de sudar, dormir sobre la pieza, recibir un jalón, cambiar joyería o notar sensibilidad común. Limpieza responsable y sensación calmante para piel sana, con la guía de tu perforador siempre al centro.",
         "primary_cta_label": "Comprar Alicyn 100 ml — $350 MXN",
         "secondary_cta_label": "Ver cómo se usa",
+        "product_image": "shopify://shop_images/Antiseptico_para_piercings_Alicyn_100ml.png",
         "product_image_alt": "Frasco de Alicyn solución antiséptica para cuidado post-piercing, 100 ml",
         "product_note_label": "Fórmula simple",
         "product_note_value": "$350 MXN",
-        "trust_years_number": "7",
-        "trust_years_label": "años acompañando procesos de perforación",
-        "trust_clients_number": "+1,000",
-        "trust_clients_label": "clientes satisfechos",
-        "trust_processes_number": "+1,000",
-        "trust_processes_label": "procesos acompañados",
-        "trust_community_label": "Confianza construida en comunidad",
         "hero_fact_1_label": "Contenido",
         "hero_fact_1_value": "100 ml",
         "hero_fact_2_label": "Uso",
@@ -483,7 +486,6 @@
         "product_single_handle": "alicyn-solucion-antiseptica",
         "product_pack_2_handle": "alicyn-pack-2",
         "product_pack_3_handle": "alicyn-pack-3",
-        "product_pack_4_handle": "alicyn-pack-4",
         "product_pack_5_handle": "alicyn-pack-5",
         "wholesale_pack_5_handle": "alicyn-mayoreo-5",
         "wholesale_pack_10_handle": "alicyn-mayoreo-10",
@@ -531,12 +533,6 @@
         "reviews_eyebrow": "Experiencias",
         "reviews_heading": "Experiencias reales de la comunidad Alicyn",
         "reviews_copy": "Personas con nostril, helix, conch, lóbulo, septum, ombligo y tragus usan Alicyn como apoyo puntual para limpieza externa y molestias comunes del proceso.",
-        "reviews_count_label": "+200",
-        "reviews_count_text": "experiencias compartidas",
-        "reviews_rating_label": "4.9/5",
-        "reviews_rating_text": "calificación promedio",
-        "reviews_years_label": "7 años",
-        "reviews_years_text": "acompañando perforaciones",
         "reviews_disclaimer": "Las experiencias pueden variar. Alicyn no sustituye la valoración de un perforador profesional.",
         "story_eyebrow": "Antes / Durante / Después",
         "story_heading": "No son fotos médicas. Es la historia de aprender a cuidar mejor.",
