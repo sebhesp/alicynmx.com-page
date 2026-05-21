@@ -15,17 +15,44 @@
       return;
     }
 
+    var fallbackSrc = image.getAttribute("data-fallback-src") || "";
+    var triedFallback = false;
+
+    function tryFallbackImage() {
+      if (!fallbackSrc || triedFallback) {
+        return false;
+      }
+
+      triedFallback = true;
+      image.src = fallbackSrc;
+      image.removeAttribute("srcset");
+      return true;
+    }
+
     function showPlaceholder() {
       image.classList.add("is-missing");
       wrapper.classList.add("has-placeholder");
     }
 
     if (image.complete && image.naturalWidth <= 1) {
-      showPlaceholder();
+      if (!tryFallbackImage()) {
+        showPlaceholder();
+      }
     }
 
-    image.addEventListener("error", showPlaceholder);
+    image.addEventListener("error", function () {
+      if (!tryFallbackImage()) {
+        showPlaceholder();
+      }
+    });
     image.addEventListener("load", function () {
+      if (image.naturalWidth <= 1) {
+        if (!tryFallbackImage()) {
+          showPlaceholder();
+        }
+        return;
+      }
+
       wrapper.classList.add("has-image");
     });
 
