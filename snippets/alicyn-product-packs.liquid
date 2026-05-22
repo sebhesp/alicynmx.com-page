@@ -22,8 +22,8 @@
     assign pack_visual_enabled = false
   endif
   assign pack_visual_image = pack_product_image
-  if pack_visual_image == blank
-    assign pack_visual_image = fallback_product_image
+  if pack_visual_image == fallback_product_image
+    assign pack_visual_image = blank
   endif
   assign pack_visual_alt = pack_product_image_alt | default: 'Alicyn solución antiséptica 100 ml para cuidado post-piercing'
   assign pack_visual_style = pack_image_style | default: 'stacked'
