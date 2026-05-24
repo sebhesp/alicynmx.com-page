@@ -1,0 +1,15 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-collection-alicyn-lab",
+      "settings": {
+        "heading": "Péptidos Aesthetic Labs",
+        "copy": "Explora compuestos y paquetes comerciales organizados por ejes de investigación beauty, wellness y señalización celular. Uso exclusivo para investigación y laboratorio.",
+        "accent_color": "#8FBFC3"
+      }
+    }
+  },
+  "order": [
+    "main"
+  ]
+}

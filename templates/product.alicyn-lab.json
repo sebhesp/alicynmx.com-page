@@ -1,0 +1,15 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-product-alicyn-lab",
+      "settings": {
+        "collection_link": "/collections/peptidos",
+        "accent_color": "#8FBFC3",
+        "show_disclaimer": true
+      }
+    }
+  },
+  "order": [
+    "main"
+  ]
+}

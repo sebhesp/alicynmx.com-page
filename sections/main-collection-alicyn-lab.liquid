@@ -1,0 +1,222 @@
+<section id="AlicynLabCollection-{{ section.id }}" class="alicyn-lab-collection">
+  <style>
+    #AlicynLabCollection-{{ section.id }} {
+      --alicyn-lab-collection-bg: #080d13;
+      --alicyn-lab-collection-surface: #0f1720;
+      --alicyn-lab-collection-line: rgba(143, 191, 195, 0.18);
+      --alicyn-lab-collection-text: #f0f3f2;
+      --alicyn-lab-collection-soft: #c3cccd;
+      --alicyn-lab-collection-muted: #87989e;
+      --alicyn-lab-collection-accent: {{ section.settings.accent_color }};
+      background: var(--alicyn-lab-collection-bg);
+      color: var(--alicyn-lab-collection-text);
+      font-family: Arial, Helvetica, sans-serif;
+      min-height: 100vh;
+      padding: clamp(34px, 7vw, 76px) 18px;
+    }
+
+    #AlicynLabCollection-{{ section.id }} * {
+      box-sizing: border-box;
+    }
+
+    #AlicynLabCollection-{{ section.id }} .alicyn-lab-collection-container {
+      margin: 0 auto;
+      max-width: 1200px;
+    }
+
+    #AlicynLabCollection-{{ section.id }} .alicyn-lab-collection-brand {
+      color: var(--alicyn-lab-collection-text);
+      display: inline-block;
+      font-size: 1rem;
+      font-weight: 700;
+      letter-spacing: 0.13em;
+      margin-bottom: clamp(36px, 6vw, 60px);
+      text-decoration: none;
+    }
+
+    #AlicynLabCollection-{{ section.id }} .alicyn-lab-collection-brand span {
+      border-left: 1px solid var(--alicyn-lab-collection-line);
+      color: var(--alicyn-lab-collection-accent);
+      margin-left: 10px;
+      padding-left: 10px;
+    }
+
+    #AlicynLabCollection-{{ section.id }} .alicyn-lab-collection-eyebrow {
+      color: var(--alicyn-lab-collection-accent);
+      font-size: 0.74rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      margin: 0 0 14px;
+      text-transform: uppercase;
+    }
+
+    #AlicynLabCollection-{{ section.id }} h1 {
+      font-size: clamp(2.1rem, 7vw, 3.5rem);
+      font-weight: 500;
+      line-height: 1.08;
+      margin: 0 0 17px;
+    }
+
+    #AlicynLabCollection-{{ section.id }} .alicyn-lab-collection-copy {
+      color: var(--alicyn-lab-collection-soft);
+      line-height: 1.72;
+      margin: 0 0 clamp(32px, 6vw, 52px);
+      max-width: 720px;
+    }
+
+    #AlicynLabCollection-{{ section.id }} .alicyn-lab-collection-grid {
+      display: grid;
+      gap: 16px;
+    }
+
+    #AlicynLabCollection-{{ section.id }} .alicyn-lab-collection-card {
+      background: var(--alicyn-lab-collection-surface);
+      border: 1px solid var(--alicyn-lab-collection-line);
+      border-radius: 8px;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      padding: 14px;
+    }
+
+    #AlicynLabCollection-{{ section.id }} .alicyn-lab-collection-media {
+      align-items: center;
+      background: linear-gradient(145deg, rgba(143, 191, 195, 0.08), rgba(15, 23, 32, 0.25));
+      border-radius: 6px;
+      display: flex;
+      height: 232px;
+      justify-content: center;
+      margin-bottom: 17px;
+      overflow: hidden;
+    }
+
+    #AlicynLabCollection-{{ section.id }} .alicyn-lab-collection-image {
+      display: block;
+      height: 100%;
+      max-width: 100%;
+      object-fit: contain;
+      padding: 18px;
+      width: 100%;
+    }
+
+    #AlicynLabCollection-{{ section.id }} .alicyn-lab-collection-placeholder {
+      color: var(--alicyn-lab-collection-muted);
+      font-size: 0.78rem;
+      letter-spacing: 0.14em;
+      text-align: center;
+    }
+
+    #AlicynLabCollection-{{ section.id }} .alicyn-lab-collection-card h2 {
+      color: var(--alicyn-lab-collection-text);
+      font-size: 1.04rem;
+      line-height: 1.38;
+      margin: 0 0 10px;
+    }
+
+    #AlicynLabCollection-{{ section.id }} .alicyn-lab-collection-price {
+      color: var(--alicyn-lab-collection-accent);
+      font-size: 1.28rem;
+      font-weight: 700;
+      margin: 0 0 18px;
+    }
+
+    #AlicynLabCollection-{{ section.id }} .alicyn-lab-collection-link {
+      align-items: center;
+      border: 1px solid var(--alicyn-lab-collection-accent);
+      border-radius: 6px;
+      color: var(--alicyn-lab-collection-text);
+      display: flex;
+      font-weight: 700;
+      justify-content: center;
+      margin-top: auto;
+      min-height: 48px;
+      padding: 12px 18px;
+      text-decoration: none;
+    }
+
+    #AlicynLabCollection-{{ section.id }} .alicyn-lab-collection-note {
+      border-top: 1px solid var(--alicyn-lab-collection-line);
+      color: var(--alicyn-lab-collection-muted);
+      line-height: 1.6;
+      margin-top: clamp(36px, 6vw, 56px);
+      padding-top: 22px;
+    }
+
+    @media (min-width: 750px) {
+      #AlicynLabCollection-{{ section.id }} {
+        padding-left: 32px;
+        padding-right: 32px;
+      }
+
+      #AlicynLabCollection-{{ section.id }} .alicyn-lab-collection-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (min-width: 990px) {
+      #AlicynLabCollection-{{ section.id }} .alicyn-lab-collection-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+    }
+  </style>
+
+  <div class="alicyn-lab-collection-container">
+    <a class="alicyn-lab-collection-brand" href="/" aria-label="Alicyn Lab">ALICYN <span>LAB</span></a>
+    <p class="alicyn-lab-collection-eyebrow">Investigación · Aesthetic Labs</p>
+    <h1>{{ collection.title | default: section.settings.heading | escape }}</h1>
+    <p class="alicyn-lab-collection-copy">{{ section.settings.copy | escape }}</p>
+
+    <div class="alicyn-lab-collection-grid">
+      {% for collection_product in collection.products %}
+        <article class="alicyn-lab-collection-card">
+          <div class="alicyn-lab-collection-media">
+            {% if collection_product.featured_image %}
+              {{ collection_product.featured_image | image_url: width: 520 | image_tag:
+                class: 'alicyn-lab-collection-image',
+                loading: 'lazy',
+                widths: '260, 380, 520',
+                sizes: '(min-width: 990px) 360px, (min-width: 750px) 46vw, 92vw',
+                alt: collection_product.title
+              }}
+            {% else %}
+              <span class="alicyn-lab-collection-placeholder">IMAGEN<br>PENDIENTE</span>
+            {% endif %}
+          </div>
+          <h2>{{ collection_product.title | escape }}</h2>
+          <p class="alicyn-lab-collection-price">{{ collection_product.price | money }}</p>
+          <a class="alicyn-lab-collection-link" href="{{ collection_product.url }}">Ver producto</a>
+        </article>
+      {% else %}
+        <p>No hay productos disponibles en esta colección por el momento.</p>
+      {% endfor %}
+    </div>
+
+    <p class="alicyn-lab-collection-note">Los productos de esta colección están destinados exclusivamente para investigación, análisis técnico o uso de laboratorio. No están destinados al consumo humano o animal.</p>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Coleccion Alicyn Lab",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Titulo alternativo",
+      "default": "Péptidos Aesthetic Labs"
+    },
+    {
+      "type": "textarea",
+      "id": "copy",
+      "label": "Texto introductorio",
+      "default": "Explora compuestos y paquetes comerciales organizados por ejes de investigación beauty, wellness y señalización celular. Uso exclusivo para investigación y laboratorio."
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "Color de acento",
+      "default": "#8FBFC3"
+    }
+  ]
+}
+{% endschema %}

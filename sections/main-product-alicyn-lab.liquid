@@ -1,0 +1,335 @@
+{% liquid
+  assign current_variant = product.selected_or_first_available_variant
+  assign product_image_alt = product.title
+  if product.featured_image and product.featured_image.alt != blank
+    assign product_image_alt = product.featured_image.alt
+  endif
+%}
+
+<section id="AlicynLabProduct-{{ section.id }}" class="alicyn-lab-product">
+  <style>
+    #AlicynLabProduct-{{ section.id }} {
+      --alicyn-lab-product-bg: #080d13;
+      --alicyn-lab-product-surface: #0f1720;
+      --alicyn-lab-product-line: rgba(143, 191, 195, 0.18);
+      --alicyn-lab-product-text: #f0f3f2;
+      --alicyn-lab-product-soft: #c3cccd;
+      --alicyn-lab-product-muted: #87989e;
+      --alicyn-lab-product-accent: {{ section.settings.accent_color }};
+      background: var(--alicyn-lab-product-bg);
+      color: var(--alicyn-lab-product-text);
+      font-family: Arial, Helvetica, sans-serif;
+      min-height: 100vh;
+      padding-bottom: 64px;
+    }
+
+    #AlicynLabProduct-{{ section.id }} *,
+    #AlicynLabProduct-{{ section.id }} *::before,
+    #AlicynLabProduct-{{ section.id }} *::after {
+      box-sizing: border-box;
+    }
+
+    #AlicynLabProduct-{{ section.id }} .alicyn-lab-product-header {
+      align-items: center;
+      border-bottom: 1px solid var(--alicyn-lab-product-line);
+      display: flex;
+      justify-content: space-between;
+      margin: 0 auto;
+      max-width: 1180px;
+      padding: 22px 18px;
+    }
+
+    #AlicynLabProduct-{{ section.id }} .alicyn-lab-product-brand {
+      color: var(--alicyn-lab-product-text);
+      font-size: 1rem;
+      font-weight: 700;
+      letter-spacing: 0.13em;
+      text-decoration: none;
+    }
+
+    #AlicynLabProduct-{{ section.id }} .alicyn-lab-product-brand span {
+      border-left: 1px solid var(--alicyn-lab-product-line);
+      color: var(--alicyn-lab-product-accent);
+      margin-left: 10px;
+      padding-left: 10px;
+    }
+
+    #AlicynLabProduct-{{ section.id }} .alicyn-lab-product-back {
+      color: var(--alicyn-lab-product-soft);
+      font-size: 0.9rem;
+      text-decoration: none;
+    }
+
+    #AlicynLabProduct-{{ section.id }} .alicyn-lab-product-layout {
+      display: grid;
+      gap: 34px;
+      margin: 0 auto;
+      max-width: 1180px;
+      padding: clamp(30px, 6vw, 70px) 18px;
+    }
+
+    #AlicynLabProduct-{{ section.id }} .alicyn-lab-product-media {
+      align-items: center;
+      background: linear-gradient(145deg, rgba(143, 191, 195, 0.1), rgba(15, 23, 32, 0.75));
+      border: 1px solid var(--alicyn-lab-product-line);
+      border-radius: 8px;
+      display: flex;
+      justify-content: center;
+      min-height: clamp(360px, 72vw, 600px);
+      overflow: hidden;
+      padding: clamp(24px, 6vw, 60px);
+    }
+
+    #AlicynLabProduct-{{ section.id }} .alicyn-lab-product-image {
+      display: block;
+      height: auto;
+      max-height: 560px;
+      max-width: 100%;
+      object-fit: contain;
+    }
+
+    #AlicynLabProduct-{{ section.id }} .alicyn-lab-product-placeholder {
+      color: var(--alicyn-lab-product-muted);
+      max-width: 280px;
+      text-align: center;
+    }
+
+    #AlicynLabProduct-{{ section.id }} .alicyn-lab-product-placeholder strong {
+      color: var(--alicyn-lab-product-accent);
+      display: block;
+      font-size: 1.1rem;
+      letter-spacing: 0.14em;
+      margin-bottom: 12px;
+    }
+
+    #AlicynLabProduct-{{ section.id }} .alicyn-lab-product-eyebrow {
+      color: var(--alicyn-lab-product-accent);
+      font-size: 0.74rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      margin: 0 0 14px;
+      text-transform: uppercase;
+    }
+
+    #AlicynLabProduct-{{ section.id }} h1 {
+      font-size: clamp(2rem, 7vw, 3.1rem);
+      font-weight: 500;
+      letter-spacing: 0;
+      line-height: 1.08;
+      margin: 0 0 18px;
+    }
+
+    #AlicynLabProduct-{{ section.id }} .alicyn-lab-product-price {
+      color: var(--alicyn-lab-product-accent);
+      font-size: clamp(1.55rem, 5vw, 2rem);
+      font-weight: 700;
+      margin: 0 0 24px;
+    }
+
+    #AlicynLabProduct-{{ section.id }} .alicyn-lab-product-description {
+      color: var(--alicyn-lab-product-soft);
+      font-size: 0.98rem;
+      line-height: 1.72;
+      margin-bottom: 28px;
+    }
+
+    #AlicynLabProduct-{{ section.id }} .alicyn-lab-product-description h2,
+    #AlicynLabProduct-{{ section.id }} .alicyn-lab-product-description h3 {
+      color: var(--alicyn-lab-product-text);
+      font-size: 1.05rem;
+      margin: 20px 0 8px;
+    }
+
+    #AlicynLabProduct-{{ section.id }} .alicyn-lab-product-field {
+      color: var(--alicyn-lab-product-soft);
+      display: grid;
+      gap: 8px;
+      font-size: 0.9rem;
+      margin: 0 0 15px;
+    }
+
+    #AlicynLabProduct-{{ section.id }} .alicyn-lab-product-field input,
+    #AlicynLabProduct-{{ section.id }} .alicyn-lab-product-field select {
+      background: var(--alicyn-lab-product-surface);
+      border: 1px solid var(--alicyn-lab-product-line);
+      border-radius: 6px;
+      color: var(--alicyn-lab-product-text);
+      font: inherit;
+      min-height: 48px;
+      padding: 11px 13px;
+      width: 100%;
+    }
+
+    #AlicynLabProduct-{{ section.id }} .alicyn-lab-product-actions {
+      display: grid;
+      gap: 11px;
+      margin-top: 20px;
+    }
+
+    #AlicynLabProduct-{{ section.id }} .alicyn-lab-product-button {
+      align-items: center;
+      border: 1px solid var(--alicyn-lab-product-accent);
+      border-radius: 6px;
+      cursor: pointer;
+      display: flex;
+      font-size: 0.96rem;
+      font-weight: 700;
+      justify-content: center;
+      min-height: 52px;
+      padding: 14px 20px;
+      text-decoration: none;
+      width: 100%;
+    }
+
+    #AlicynLabProduct-{{ section.id }} .alicyn-lab-product-button-primary {
+      background: var(--alicyn-lab-product-accent);
+      color: #071216;
+    }
+
+    #AlicynLabProduct-{{ section.id }} .alicyn-lab-product-button-secondary {
+      background: transparent;
+      color: var(--alicyn-lab-product-text);
+    }
+
+    #AlicynLabProduct-{{ section.id }} .alicyn-lab-product-button:disabled {
+      cursor: not-allowed;
+      opacity: 0.45;
+    }
+
+    #AlicynLabProduct-{{ section.id }} .alicyn-lab-product-button:focus-visible,
+    #AlicynLabProduct-{{ section.id }} a:focus-visible {
+      outline: 2px solid var(--alicyn-lab-product-accent);
+      outline-offset: 3px;
+    }
+
+    #AlicynLabProduct-{{ section.id }} .alicyn-lab-product-legal {
+      background: var(--alicyn-lab-product-surface);
+      border: 1px solid var(--alicyn-lab-product-line);
+      border-radius: 8px;
+      color: var(--alicyn-lab-product-soft);
+      line-height: 1.65;
+      margin: 0 auto;
+      max-width: 1180px;
+      padding: clamp(22px, 4vw, 32px);
+      width: calc(100% - 36px);
+    }
+
+    #AlicynLabProduct-{{ section.id }} .alicyn-lab-product-legal h2 {
+      color: var(--alicyn-lab-product-text);
+      font-size: 1.2rem;
+      margin: 0 0 12px;
+    }
+
+    @media (min-width: 900px) {
+      #AlicynLabProduct-{{ section.id }} .alicyn-lab-product-header {
+        padding-left: 32px;
+        padding-right: 32px;
+      }
+
+      #AlicynLabProduct-{{ section.id }} .alicyn-lab-product-layout {
+        align-items: start;
+        grid-template-columns: minmax(380px, 0.88fr) minmax(370px, 1fr);
+        padding-left: 32px;
+        padding-right: 32px;
+      }
+    }
+  </style>
+
+  <header class="alicyn-lab-product-header">
+    <a class="alicyn-lab-product-brand" href="/" aria-label="Alicyn Lab">ALICYN <span>LAB</span></a>
+    <a class="alicyn-lab-product-back" href="{{ section.settings.collection_link | escape }}">Volver a la colección</a>
+  </header>
+
+  <div class="alicyn-lab-product-layout">
+    <div class="alicyn-lab-product-media">
+      {% if product.featured_image %}
+        {{ product.featured_image | image_url: width: 1200 | image_tag:
+          class: 'alicyn-lab-product-image',
+          widths: '360, 560, 760, 1000, 1200',
+          sizes: '(min-width: 900px) 540px, 92vw',
+          loading: 'eager',
+          alt: product_image_alt
+        }}
+      {% else %}
+        <div class="alicyn-lab-product-placeholder">
+          <strong>AESTHETIC LABS</strong>
+          <p>Imagen pendiente. Sube la fotografía del producto desde Shopify Admin.</p>
+        </div>
+      {% endif %}
+    </div>
+
+    <div class="alicyn-lab-product-summary">
+      <p class="alicyn-lab-product-eyebrow">Investigación · Aesthetic Labs</p>
+      <h1>{{ product.title | escape }}</h1>
+      {% if current_variant %}
+        <p class="alicyn-lab-product-price">{{ current_variant.price | money }}</p>
+      {% endif %}
+
+      <div class="alicyn-lab-product-description">
+        {{ product.description }}
+      </div>
+
+      {% if current_variant %}
+        <form method="post" action="/cart/add">
+          {% if product.has_only_default_variant %}
+            <input type="hidden" name="id" value="{{ current_variant.id }}">
+          {% else %}
+            <label class="alicyn-lab-product-field" for="AlicynLabVariant-{{ section.id }}">
+              <span>Presentación</span>
+              <select id="AlicynLabVariant-{{ section.id }}" name="id">
+                {% for variant in product.variants %}
+                  <option value="{{ variant.id }}" {% if variant == current_variant %}selected{% endif %} {% unless variant.available %}disabled{% endunless %}>
+                    {{ variant.title | escape }}{% unless variant.available %} - No disponible{% endunless %}
+                  </option>
+                {% endfor %}
+              </select>
+            </label>
+          {% endif %}
+
+          <label class="alicyn-lab-product-field" for="AlicynLabQuantity-{{ section.id }}">
+            <span>Cantidad</span>
+            <input id="AlicynLabQuantity-{{ section.id }}" type="number" name="quantity" value="1" min="1">
+          </label>
+
+          <div class="alicyn-lab-product-actions">
+            <button class="alicyn-lab-product-button alicyn-lab-product-button-primary" type="submit" {% unless current_variant.available %}disabled{% endunless %}>Agregar al carrito</button>
+            <button class="alicyn-lab-product-button alicyn-lab-product-button-secondary" type="submit" name="return_to" value="/checkout" {% unless current_variant.available %}disabled{% endunless %}>Comprar ahora</button>
+          </div>
+        </form>
+      {% endif %}
+    </div>
+  </div>
+
+  {% if section.settings.show_disclaimer %}
+    <div class="alicyn-lab-product-legal">
+      <h2>Información importante</h2>
+      <p>Producto destinado exclusivamente para investigación, análisis técnico o uso de laboratorio. No es medicamento, suplemento alimenticio ni cosmético, y no está destinado al consumo humano o animal. La información presentada tiene fines educativos, descriptivos y comerciales; no constituye indicación médica, protocolo de uso, diagnóstico, tratamiento ni asesoría sanitaria.</p>
+    </div>
+  {% endif %}
+</section>
+
+{% schema %}
+{
+  "name": "Producto Alicyn Lab",
+  "settings": [
+    {
+      "type": "text",
+      "id": "collection_link",
+      "label": "Enlace para volver a colección",
+      "default": "/collections/peptidos"
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "Color de acento",
+      "default": "#8FBFC3"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_disclaimer",
+      "label": "Mostrar información importante",
+      "default": true
+    }
+  ]
+}
+{% endschema %}
