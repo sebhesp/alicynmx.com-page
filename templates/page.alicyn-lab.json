@@ -392,7 +392,9 @@
         "background_mode": "dark",
         "accent_color": "#8FBFC3",
         "show_disclaimer": true,
-        "enable_faq": true
+        "enable_faq": true,
+        "show_card_links": true,
+        "embed_as_home_section": false
       }
     }
   },

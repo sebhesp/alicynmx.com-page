@@ -587,9 +587,407 @@
         "product_image_cleanup": "transparent",
         "checkout_note": "Compra segura. El envío se cotiza en checkout con Skydrop según tu dirección."
       }
+    },
+    "alicyn_lab": {
+      "type": "alicyn-lab-peptides",
+      "blocks": {
+        "education_skin": {
+          "type": "education_step",
+          "settings": {
+            "step_title": "Piel y señalización celular",
+            "step_text": "Productos relacionados: GHK-CU, BPC-157 y TB-500."
+          }
+        },
+        "education_energy": {
+          "type": "education_step",
+          "settings": {
+            "step_title": "Energía y metabolismo celular",
+            "step_text": "Productos relacionados: NAD+, MOTS-C, AOD-9604 y HGH Fragment."
+          }
+        },
+        "education_longevity": {
+          "type": "education_step",
+          "settings": {
+            "step_title": "Longevidad y wellness avanzado",
+            "step_text": "Productos relacionados: NAD+, GHK-CU y MOTS-C."
+          }
+        },
+        "education_protocols": {
+          "type": "education_step",
+          "settings": {
+            "step_title": "Protocolos de investigación",
+            "step_text": "Stacks comerciales por eje técnico de investigación; no representan pautas para personas o animales."
+          }
+        },
+        "product_rt": {
+          "type": "product_card",
+          "settings": {
+            "product_name": "Aesthetic Labs RT-Triple Agonist 20 mg",
+            "product_price": "$3,000 MXN",
+            "product_presentation": "20 mg · Aesthetic Labs",
+            "product_focus": "Investigación metabólica avanzada",
+            "product_badge": "Metabolic research",
+            "product_description": "Compuesto presentado para análisis técnico en investigación metabólica avanzada.",
+            "product_link": "/collections/peptidos"
+          }
+        },
+        "product_bpc": {
+          "type": "product_card",
+          "settings": {
+            "product_name": "Aesthetic Labs BPC-157 10 mg",
+            "product_price": "$1,250 MXN",
+            "product_presentation": "10 mg · Aesthetic Labs",
+            "product_focus": "Respuesta tisular y señalización celular",
+            "product_badge": "Cellular signaling",
+            "product_description": "Referencia técnica para estudios experimentales de señalización y respuesta tisular.",
+            "product_link": "/collections/peptidos"
+          }
+        },
+        "product_tb": {
+          "type": "product_card",
+          "settings": {
+            "product_name": "Aesthetic Labs TB-500 10 mg",
+            "product_price": "$1,350 MXN",
+            "product_presentation": "10 mg · Aesthetic Labs",
+            "product_focus": "Respuesta tisular e investigación preclínica",
+            "product_badge": "Preclinical",
+            "product_description": "Presentación técnica para explorar ejes experimentales de respuesta tisular.",
+            "product_link": "/collections/peptidos"
+          }
+        },
+        "product_ghk": {
+          "type": "product_card",
+          "settings": {
+            "product_name": "Aesthetic Labs GHK-CU 100 mg",
+            "product_price": "$1,350 MXN",
+            "product_presentation": "100 mg · Aesthetic Labs",
+            "product_focus": "Skin wellness, colágeno y señalización celular",
+            "product_badge": "Skin science",
+            "product_description": "Asociado en investigación técnica con ejes de piel y señalización celular.",
+            "product_link": "/collections/peptidos"
+          }
+        },
+        "product_ipamorelin": {
+          "type": "product_card",
+          "settings": {
+            "product_name": "Aesthetic Labs Ipamorelin 10 mg",
+            "product_price": "$1,250 MXN",
+            "product_presentation": "10 mg · Aesthetic Labs",
+            "product_focus": "Secretagogos y señalización hormonal experimental",
+            "product_badge": "Advanced signaling",
+            "product_description": "Compuesto de catálogo para investigación técnica en señalización experimental.",
+            "product_link": "/collections/peptidos"
+          }
+        },
+        "product_cjc": {
+          "type": "product_card",
+          "settings": {
+            "product_name": "Aesthetic Labs CJC-1295 Sin DAC 10 mg",
+            "product_price": "$1,800 MXN",
+            "product_presentation": "10 mg · Aesthetic Labs",
+            "product_focus": "Secretagogos y eje GH/IGF experimental",
+            "product_badge": "Advanced signaling",
+            "product_description": "Formato para investigación técnica vinculada a señalización experimental.",
+            "product_link": "/collections/peptidos"
+          }
+        },
+        "product_igf": {
+          "type": "product_card",
+          "settings": {
+            "product_name": "Aesthetic Labs IGF1-LR3 1 mg",
+            "product_price": "$1,800 MXN",
+            "product_presentation": "1 mg · Aesthetic Labs",
+            "product_focus": "Señalización IGF e investigación celular",
+            "product_badge": "Cellular signaling",
+            "product_description": "Referencia para contextos de análisis celular y señalización IGF.",
+            "product_link": "/collections/peptidos"
+          }
+        },
+        "product_mots": {
+          "type": "product_card",
+          "settings": {
+            "product_name": "Aesthetic Labs MOTS-C 10 mg",
+            "product_price": "$1,800 MXN",
+            "product_presentation": "10 mg · Aesthetic Labs",
+            "product_focus": "Investigación mitocondrial y energía celular",
+            "product_badge": "Cellular energy",
+            "product_description": "Presentación organizada dentro del eje técnico de energía celular.",
+            "product_link": "/collections/peptidos"
+          }
+        },
+        "product_aod": {
+          "type": "product_card",
+          "settings": {
+            "product_name": "Aesthetic Labs AOD-9604 10 mg",
+            "product_price": "$1,600 MXN",
+            "product_presentation": "10 mg · Aesthetic Labs",
+            "product_focus": "Investigación metabólica y composición corporal experimental",
+            "product_badge": "Metabolic research",
+            "product_description": "Compuesto descrito para investigación metabólica de carácter experimental.",
+            "product_link": "/collections/peptidos"
+          }
+        },
+        "product_hgh": {
+          "type": "product_card",
+          "settings": {
+            "product_name": "Aesthetic Labs HGH Fragment 176-191 5 mg",
+            "product_price": "$1,250 MXN",
+            "product_presentation": "5 mg · Aesthetic Labs",
+            "product_focus": "Investigación metabólica preclínica",
+            "product_badge": "Preclinical",
+            "product_description": "Presentación técnica para investigación preclínica dentro del eje metabólico.",
+            "product_link": "/collections/peptidos"
+          }
+        },
+        "product_t3s": {
+          "type": "product_card",
+          "settings": {
+            "product_name": "Aesthetic Labs T3S@ 10",
+            "product_price": "$2,500 MXN",
+            "product_presentation": "Presentación 10 · Aesthetic Labs",
+            "product_focus": "Investigación metabólica avanzada",
+            "product_badge": "Metabolic research",
+            "product_description": "Artículo de investigación organizado para el eje metabólico avanzado.",
+            "product_link": "/collections/peptidos"
+          }
+        },
+        "product_nad": {
+          "type": "product_card",
+          "settings": {
+            "product_name": "Aesthetic Labs NAD+ 1000 mg",
+            "product_price": "$2,000 MXN",
+            "product_presentation": "1000 mg · Aesthetic Labs",
+            "product_focus": "Energía celular, mitocondria y longevidad celular",
+            "product_badge": "Cellular energy",
+            "product_description": "Compuesto ubicado en ejes educativos de energía y longevidad celular.",
+            "product_link": "/collections/peptidos"
+          }
+        },
+        "protocol_stack": {
+          "type": "protocol_card",
+          "settings": {
+            "protocol_name": "Stack BPC-157 + TB-500 Aesthetic Labs",
+            "protocol_price": "$3,600 MXN",
+            "protocol_components": "BPC-157 + TB-500",
+            "protocol_focus": "Respuesta tisular experimental",
+            "protocol_badge": "Paquete técnico",
+            "protocol_description": "Paquete comercial agrupado para investigación dentro del eje indicado.",
+            "protocol_link": "/collections/peptidos"
+          }
+        },
+        "protocol_wolverine": {
+          "type": "protocol_card",
+          "settings": {
+            "protocol_name": "Wolverine Stack BPC-157 + TB-500",
+            "protocol_price": "$2,550 MXN",
+            "protocol_components": "BPC-157 + TB-500",
+            "protocol_focus": "Investigación en respuesta tisular",
+            "protocol_badge": "Stack comercial",
+            "protocol_description": "Combinación comercial descrita únicamente por su eje de investigación.",
+            "protocol_link": "/collections/peptidos"
+          }
+        },
+        "protocol_hgh_natural": {
+          "type": "protocol_card",
+          "settings": {
+            "protocol_name": "Protocolo HGH Natural",
+            "protocol_price": "$2,850 MXN",
+            "protocol_components": "CJC-1295 + Ipamorelin",
+            "protocol_focus": "Secretagogos y señalización hormonal experimental",
+            "protocol_badge": "Advanced signaling",
+            "protocol_description": "Paquete técnico para investigación de señalización experimental.",
+            "protocol_link": "/collections/peptidos"
+          }
+        },
+        "protocol_volumen": {
+          "type": "protocol_card",
+          "settings": {
+            "protocol_name": "Protocolo Volumen",
+            "protocol_price": "$4,650 MXN",
+            "protocol_components": "IGF1-LR3 + CJC-1295 + Ipamorelin",
+            "protocol_focus": "Señalización IGF y composición corporal experimental",
+            "protocol_badge": "Stack comercial",
+            "protocol_description": "Selección comercial por eje técnico; el nombre no representa un resultado.",
+            "protocol_link": "/collections/peptidos"
+          }
+        },
+        "protocol_recuperacion": {
+          "type": "protocol_card",
+          "settings": {
+            "protocol_name": "Protocolo Recuperación Total",
+            "protocol_price": "$3,800 MXN",
+            "protocol_components": "GHK-CU + BPC-157 + TB-500",
+            "protocol_focus": "Respuesta tisular y señalización celular",
+            "protocol_badge": "Skin signaling",
+            "protocol_description": "Paquete comercial organizado para investigación de señalización celular.",
+            "protocol_link": "/collections/peptidos"
+          }
+        },
+        "protocol_skin_longevity": {
+          "type": "protocol_card",
+          "settings": {
+            "protocol_name": "Protocolo Piel y Longevidad Celular",
+            "protocol_price": "$3,150 MXN",
+            "protocol_components": "GHK-CU + NAD+",
+            "protocol_focus": "Skin wellness y longevidad celular",
+            "protocol_badge": "Skin wellness",
+            "protocol_description": "Selección de catálogo agrupada para análisis del eje skin wellness.",
+            "protocol_link": "/collections/peptidos"
+          }
+        },
+        "protocol_definicion": {
+          "type": "protocol_card",
+          "settings": {
+            "protocol_name": "Protocolo Definición",
+            "protocol_price": "$6,450 MXN",
+            "protocol_components": "HGH Fragment + AOD-9604",
+            "protocol_focus": "Investigación metabólica experimental",
+            "protocol_badge": "Metabolic research",
+            "protocol_description": "Paquete comercial para investigación metabólica de carácter experimental.",
+            "protocol_link": "/collections/peptidos"
+          }
+        },
+        "protocol_shred": {
+          "type": "protocol_card",
+          "settings": {
+            "protocol_name": "Protocolo Shred Definitivo",
+            "protocol_price": "$7,400 MXN",
+            "protocol_components": "RT3 + AOD-9604",
+            "protocol_focus": "Investigación metabólica avanzada",
+            "protocol_badge": "Metabolic research",
+            "protocol_description": "Nombre comercial del paquete; su ficha describe sólo un eje de investigación.",
+            "protocol_link": "/collections/peptidos"
+          }
+        },
+        "protocol_musculo": {
+          "type": "protocol_card",
+          "settings": {
+            "protocol_name": "Protocolo Músculo y Definición",
+            "protocol_price": "$5,200 MXN",
+            "protocol_components": "Ipamorelin + CJC-1295 + HGH Fragment",
+            "protocol_focus": "Secretagogos y composición corporal experimental",
+            "protocol_badge": "Advanced signaling",
+            "protocol_description": "Paquete técnico comercial agrupado por el eje de investigación indicado.",
+            "protocol_link": "/collections/peptidos"
+          }
+        },
+        "faq_definition": {
+          "type": "faq_item",
+          "settings": {
+            "faq_question": "¿Qué son los péptidos de investigación?",
+            "faq_answer": "Son compuestos presentados para análisis técnico y educativo en entornos de investigación. Su presencia en el catálogo no implica resultados clínicos."
+          }
+        },
+        "faq_medicine": {
+          "type": "faq_item",
+          "settings": {
+            "faq_question": "¿Los péptidos Aesthetic Labs son medicamentos?",
+            "faq_answer": "No. Se presentan exclusivamente para investigación y laboratorio; no son medicamentos, suplementos alimenticios ni cosméticos."
+          }
+        },
+        "faq_purity": {
+          "type": "faq_item",
+          "settings": {
+            "faq_question": "¿Qué significa pureza declarada?",
+            "faq_answer": "Es una especificación declarada por el proveedor o fabricante. Revisa documentación disponible, lote y criterios internos de tu laboratorio antes de comprar."
+          }
+        },
+        "faq_lyophilized": {
+          "type": "faq_item",
+          "settings": {
+            "faq_question": "¿Qué significa liofilizado?",
+            "faq_answer": "Describe un formato técnico deshidratado empleado en catálogos de investigación; no define aplicación ni resultado."
+          }
+        },
+        "faq_skin": {
+          "type": "faq_item",
+          "settings": {
+            "faq_question": "¿Qué péptidos se relacionan con investigación de piel?",
+            "faq_answer": "En esta colección, GHK-CU se agrupa en skin wellness; BPC-157 y TB-500 aparecen en ejes de señalización y respuesta tisular experimental. La agrupación es informativa."
+          }
+        },
+        "faq_wellness": {
+          "type": "faq_item",
+          "settings": {
+            "faq_question": "¿Qué péptidos se relacionan con investigación celular y wellness?",
+            "faq_answer": "NAD+ y MOTS-C se organizan en ejes de energía celular y wellness avanzado; la selección depende del objetivo técnico de investigación."
+          }
+        },
+        "faq_protocols": {
+          "type": "faq_item",
+          "settings": {
+            "faq_question": "¿Qué son los protocolos de investigación?",
+            "faq_answer": "Son paquetes comerciales que reúnen compuestos por un eje técnico común para simplificar la selección del catálogo."
+          }
+        },
+        "faq_instructions": {
+          "type": "faq_item",
+          "settings": {
+            "faq_question": "¿Los protocolos incluyen instrucciones de uso?",
+            "faq_answer": "No. Los paquetes no incluyen pautas de aplicación o consumo ni recomendaciones para personas o animales."
+          }
+        },
+        "faq_mexico": {
+          "type": "faq_item",
+          "settings": {
+            "faq_question": "¿Dónde comprar péptidos Aesthetic Labs en México?",
+            "faq_answer": "Puedes explorar la colección Aesthetic Labs en Alicyn Lab dentro de alicynmx.com y seleccionar por eje de investigación."
+          }
+        }
+      },
+      "block_order": [
+        "education_skin",
+        "education_energy",
+        "education_longevity",
+        "education_protocols",
+        "product_rt",
+        "product_bpc",
+        "product_tb",
+        "product_ghk",
+        "product_ipamorelin",
+        "product_cjc",
+        "product_igf",
+        "product_mots",
+        "product_aod",
+        "product_hgh",
+        "product_t3s",
+        "product_nad",
+        "protocol_stack",
+        "protocol_wolverine",
+        "protocol_hgh_natural",
+        "protocol_volumen",
+        "protocol_recuperacion",
+        "protocol_skin_longevity",
+        "protocol_definicion",
+        "protocol_shred",
+        "protocol_musculo",
+        "faq_definition",
+        "faq_medicine",
+        "faq_purity",
+        "faq_lyophilized",
+        "faq_skin",
+        "faq_wellness",
+        "faq_protocols",
+        "faq_instructions",
+        "faq_mexico"
+      ],
+      "settings": {
+        "heading": "Alicyn Lab: Péptidos de Investigación para Belleza, Wellness y Longevidad Celular",
+        "subheading": "Explora compuestos de investigación Aesthetic Labs orientados al estudio de la piel, el bienestar celular, la señalización biológica y la ciencia detrás del cuidado avanzado.",
+        "primary_button_label": "Ver colección de péptidos",
+        "primary_button_link": "#catalogo-peptidos-investigacion",
+        "secondary_button_label": "Conocer protocolos de investigación",
+        "background_mode": "dark",
+        "accent_color": "#8FBFC3",
+        "show_disclaimer": true,
+        "enable_faq": true,
+        "show_card_links": false,
+        "embed_as_home_section": true
+      }
     }
   },
   "order": [
-    "alicyn_landing"
+    "alicyn_landing",
+    "alicyn_lab"
   ]
 }

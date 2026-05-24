@@ -585,7 +585,11 @@
       <div class="alicyn-lab-hero-grid">
         <div>
           <p class="alicyn-lab-kicker">Colección beauty-tech de investigación</p>
-          <h1 class="alicyn-lab-hero-title">{{ section.settings.heading | escape }}</h1>
+          {% if section.settings.embed_as_home_section %}
+            <h2 class="alicyn-lab-hero-title">{{ section.settings.heading | escape }}</h2>
+          {% else %}
+            <h1 class="alicyn-lab-hero-title">{{ section.settings.heading | escape }}</h1>
+          {% endif %}
           <p class="alicyn-lab-hero-copy">{{ section.settings.subheading | escape }}</p>
           <div class="alicyn-lab-actions">
             <a class="alicyn-lab-button" href="{{ section.settings.primary_button_link | default: '/collections/peptidos' }}">{{ section.settings.primary_button_label | escape }}</a>
@@ -653,7 +657,7 @@
     </div>
   </div>
 
-  <div class="alicyn-lab-section">
+  <div id="catalogo-peptidos-investigacion" class="alicyn-lab-section">
     <div class="alicyn-lab-container">
       <p class="alicyn-lab-kicker">Colección individual</p>
       <h2 class="alicyn-lab-heading">Péptidos Aesthetic Labs para investigación beauty &amp; wellness</h2>
@@ -686,7 +690,9 @@
               <p class="alicyn-lab-presentation">{{ block.settings.product_presentation | escape }}</p>
               <p class="alicyn-lab-focus"><strong>Eje:</strong> {{ block.settings.product_focus | escape }}</p>
               <p class="alicyn-lab-description">{{ block.settings.product_description | escape }}</p>
-              <a class="alicyn-lab-button alicyn-lab-button-secondary" href="{{ block.settings.product_link | default: '/collections/peptidos' }}">Ver producto</a>
+              {% if section.settings.show_card_links %}
+                <a class="alicyn-lab-button alicyn-lab-button-secondary" href="{{ block.settings.product_link | default: '/collections/peptidos' }}">Ver producto</a>
+              {% endif %}
               <p class="alicyn-lab-microcopy">Uso exclusivo para investigación y laboratorio.</p>
             </article>
           {% endif %}
@@ -721,7 +727,9 @@
               <p class="alicyn-lab-presentation">{{ block.settings.protocol_components | escape }}</p>
               <p class="alicyn-lab-focus"><strong>Eje:</strong> {{ block.settings.protocol_focus | escape }}</p>
               <p class="alicyn-lab-description">{{ block.settings.protocol_description | escape }}</p>
-              <a class="alicyn-lab-button alicyn-lab-button-secondary" href="{{ block.settings.protocol_link | default: '/collections/peptidos' }}">Ver protocolo</a>
+              {% if section.settings.show_card_links %}
+                <a class="alicyn-lab-button alicyn-lab-button-secondary" href="{{ block.settings.protocol_link | default: '/collections/peptidos' }}">Ver protocolo</a>
+              {% endif %}
               <p class="alicyn-lab-microcopy">Paquete comercial para investigación y laboratorio.</p>
             </article>
           {% endif %}
@@ -913,6 +921,19 @@
       "id": "enable_faq",
       "label": "Mostrar preguntas frecuentes",
       "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_card_links",
+      "label": "Mostrar enlaces de productos y protocolos",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "embed_as_home_section",
+      "label": "Usar como seccion dentro de home",
+      "info": "Cambia el encabezado principal a H2 para no duplicar el H1 de la pagina de inicio.",
+      "default": false
     }
   ],
   "blocks": [
