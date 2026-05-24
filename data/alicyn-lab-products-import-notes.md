@@ -43,6 +43,7 @@ El CSV deja el inventario sin seguimiento automatico y peso en `0`, para evitar 
 - Landing/pagina: plantilla `page.alicyn-lab`.
 - Coleccion esperada: `/collections/peptidos`.
 - Los cards de la landing deben apuntar a los handles de producto del CSV al publicar.
+- Los handles deben coincidir con los URLs efectivamente generados en Shopify para las fichas activas.
 
 ## Cumplimiento de contenido
 
