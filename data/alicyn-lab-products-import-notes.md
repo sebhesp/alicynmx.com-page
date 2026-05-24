@@ -6,7 +6,7 @@ Este archivo acompana a `alicyn-lab-shopify-products.csv`, preparado para crear 
 
 - Productos con titulo, handle, SKU, precio, descripcion responsable, etiquetas SEO y estado activo.
 - Plantilla de producto asignada como `product.alicyn-lab`.
-- Imagen vacia para que se suba la fotografia real de cada producto en Shopify Admin.
+- Imagen y texto ALT vacios para que se suba la fotografia real de cada producto en Shopify Admin sin que Shopify rechace el CSV.
 - Etiqueta comun `alicyn-lab` para crear una coleccion automatica.
 - Copy limitado a investigacion, analisis tecnico y uso de laboratorio.
 
@@ -16,7 +16,7 @@ Este archivo acompana a `alicyn-lab-shopify-products.csv`, preparado para crear 
 2. Carga `data/alicyn-lab-shopify-products.csv`.
 3. Revisa la vista previa y confirma que aparezcan 21 productos nuevos, sin reemplazar productos Alicyn existentes.
 4. Ejecuta la importacion.
-5. En cada ficha, sube la imagen real correspondiente y revisa el texto ALT preparado.
+5. En cada ficha, sube la imagen real correspondiente y agrega un texto ALT descriptivo del producto.
 
 ## Coleccion de tienda
 
