@@ -169,46 +169,6 @@
 
   <main id="contenido">
     <section id="producto" class="hero section-pad" aria-labelledby="hero-title">
-      <div class="hero-copy">
-        <p class="eyebrow">{{ section.settings.hero_eyebrow | escape }}</p>
-        <h1 id="hero-title">{{ section.settings.hero_heading | escape }}</h1>
-        <p class="hero-subcopy">{{ section.settings.hero_copy | escape | newline_to_br }}</p>
-        <div class="hero-actions" aria-label="Acciones principales">
-          {% render 'alicyn-buy-actions',
-            product_handle: section.settings.product_single_handle,
-            quantity: 1,
-            primary_label: 'Agregar al carrito',
-            secondary_label: primary_cta_label,
-            fallback_url: product_url,
-            whatsapp_url: whatsapp_url,
-            checkout_url: checkout_url,
-            open_checkout_new_tab: section.settings.open_checkout_new_tab,
-            show_add_to_cart: false,
-            show_buy_now: true,
-            class_name: 'alicyn-buy-actions-inline alicyn-buy-actions-hero'
-          %}
-          <a class="button button-secondary" href="#como-usarlo">{{ section.settings.secondary_cta_label | escape }}</a>
-        </div>
-        <p class="checkout-note">{{ section.settings.checkout_note | escape }}</p>
-        {% unless direct_purchase_available %}
-          <p class="alicyn-setup-note">{{ section.settings.product_setup_notice | escape }}</p>
-        {% endunless %}
-        <dl class="hero-facts" aria-label="Resumen del producto">
-          <div>
-            <dt>{{ section.settings.hero_fact_1_label | escape }}</dt>
-            <dd>{{ section.settings.hero_fact_1_value | escape }}</dd>
-          </div>
-          <div>
-            <dt>{{ section.settings.hero_fact_2_label | escape }}</dt>
-            <dd>{{ section.settings.hero_fact_2_value | escape }}</dd>
-          </div>
-          <div>
-            <dt>{{ section.settings.hero_fact_3_label | escape }}</dt>
-            <dd>{{ section.settings.hero_fact_3_value | escape }}</dd>
-          </div>
-        </dl>
-      </div>
-
       <div class="hero-product" aria-label="Imagen de producto Alicyn">
         <!-- PRODUCT IMAGE BLOCK
           Preferred: choose the product image from the Shopify theme editor.
@@ -268,6 +228,47 @@
         </div>
         <!-- END PRODUCT IMAGE BLOCK -->
       </div>
+
+      <div class="hero-copy">
+        <p class="eyebrow">{{ section.settings.hero_eyebrow | escape }}</p>
+        <h1 id="hero-title">{{ section.settings.hero_heading | escape }}</h1>
+        <p class="hero-subcopy">{{ section.settings.hero_copy | escape | newline_to_br }}</p>
+        <div class="hero-actions" aria-label="Acciones principales">
+          {% render 'alicyn-buy-actions',
+            product_handle: section.settings.product_single_handle,
+            quantity: 1,
+            primary_label: 'Agregar al carrito',
+            secondary_label: primary_cta_label,
+            fallback_url: product_url,
+            whatsapp_url: whatsapp_url,
+            checkout_url: checkout_url,
+            open_checkout_new_tab: section.settings.open_checkout_new_tab,
+            show_add_to_cart: false,
+            show_buy_now: true,
+            class_name: 'alicyn-buy-actions-inline alicyn-buy-actions-hero'
+          %}
+          <a class="button button-secondary" href="#como-usarlo">{{ section.settings.secondary_cta_label | escape }}</a>
+        </div>
+        <p class="checkout-note">{{ section.settings.checkout_note | escape }}</p>
+        {% unless direct_purchase_available %}
+          <p class="alicyn-setup-note">{{ section.settings.product_setup_notice | escape }}</p>
+        {% endunless %}
+        <dl class="hero-facts" aria-label="Resumen del producto">
+          <div>
+            <dt>{{ section.settings.hero_fact_1_label | escape }}</dt>
+            <dd>{{ section.settings.hero_fact_1_value | escape }}</dd>
+          </div>
+          <div>
+            <dt>{{ section.settings.hero_fact_2_label | escape }}</dt>
+            <dd>{{ section.settings.hero_fact_2_value | escape }}</dd>
+          </div>
+          <div>
+            <dt>{{ section.settings.hero_fact_3_label | escape }}</dt>
+            <dd>{{ section.settings.hero_fact_3_value | escape }}</dd>
+          </div>
+        </dl>
+      </div>
+
     </section>
 
     <section class="trust-stats" aria-label="Confianza Alicyn">
