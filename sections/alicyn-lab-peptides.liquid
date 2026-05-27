@@ -530,7 +530,7 @@
     #AlicynLab-{{ section.id }} .alicyn-lab-hotspot[data-axis="skin"] { top: 116px; left: 12px; flex-direction: row-reverse; text-align: right; }
     #AlicynLab-{{ section.id }} .alicyn-lab-hotspot[data-axis="metabolic"] { top: 225px; right: 8px; }
     #AlicynLab-{{ section.id }} .alicyn-lab-hotspot[data-axis="tissue"] { bottom: 107px; left: 8px; flex-direction: row-reverse; text-align: right; }
-    #AlicynLab-{{ section.id }} .alicyn-lab-hotspot[data-axis="performance"] { bottom: 39px; right: 5px; }
+    #AlicynLab-{{ section.id }} .alicyn-lab-hotspot[data-axis="muscle"] { bottom: 39px; right: 5px; }
 
     #AlicynLab-{{ section.id }} .alicyn-lab-map-panel,
     #AlicynLab-{{ section.id }} .alicyn-lab-result-card {
@@ -1341,8 +1341,8 @@
             <button class="alicyn-lab-hotspot is-active" type="button" data-axis="energy" data-route="cell"><span class="alicyn-lab-hotspot-dot"></span><span>Energía celular</span></button>
             <button class="alicyn-lab-hotspot" type="button" data-axis="skin" data-route="skin"><span>Piel / rostro</span><span class="alicyn-lab-hotspot-dot"></span></button>
             <button class="alicyn-lab-hotspot" type="button" data-axis="metabolic" data-route="lean"><span class="alicyn-lab-hotspot-dot"></span><span>Metabolismo</span></button>
-            <button class="alicyn-lab-hotspot" type="button" data-axis="tissue" data-route="recovery"><span>Tejidos</span><span class="alicyn-lab-hotspot-dot"></span></button>
-            <button class="alicyn-lab-hotspot" type="button" data-axis="performance" data-route="performance"><span class="alicyn-lab-hotspot-dot"></span><span>Performance</span></button>
+            <button class="alicyn-lab-hotspot" type="button" data-axis="tissue" data-route="recovery"><span>Tejidos / articulaciones</span><span class="alicyn-lab-hotspot-dot"></span></button>
+            <button class="alicyn-lab-hotspot" type="button" data-axis="muscle" data-route="muscle"><span class="alicyn-lab-hotspot-dot"></span><span>Recuperación muscular</span></button>
           </div>
           <article class="alicyn-lab-map-panel alicyn-lab-glass" aria-live="polite">
             <p class="alicyn-lab-result-label">Eje seleccionado</p>
@@ -1526,6 +1526,7 @@
           <button class="alicyn-lab-filter" type="button" data-lab-filter="cell">Cell Reset</button>
           <button class="alicyn-lab-filter" type="button" data-lab-filter="lean">Lean Research</button>
           <button class="alicyn-lab-filter" type="button" data-lab-filter="recovery">Recovery Lab</button>
+          <button class="alicyn-lab-filter" type="button" data-lab-filter="muscle">Recuperación muscular</button>
           <button class="alicyn-lab-filter" type="button" data-lab-filter="skin">Skin Matrix</button>
           <button class="alicyn-lab-filter" type="button" data-lab-filter="performance">Performance</button>
         </div>
@@ -1533,6 +1534,8 @@
           {% for block in section.blocks %}
             {% if block.type == 'product_card' %}
               {% liquid
+                assign lab_variant = blank
+                assign lab_inferred_handle = blank
                 assign lab_product = block.settings.linked_product
                 if lab_product == blank and block.settings.product_handle != blank
                   assign lab_product = all_products[block.settings.product_handle]
@@ -1761,6 +1764,16 @@
           primaryUrl: '/products/aesthetic-labs-bpc-157-10-mg',
           whatsapp: 'Hola, vengo de Alicyn Lab. Me recomendó la ruta Recovery Lab con BPC-157 y TB-500. ¿Me pueden orientar?'
         },
+        muscle: {
+          name: 'Recuperación muscular',
+          primary: 'BPC-157',
+          complement: 'TB-500 + CJC-1295 sin DAC + Ipamorelin',
+          level: 'Intermedio / avanzado',
+          copy: 'Ruta para comparar investigación en respuesta tisular y señalización experimental asociada al esfuerzo.',
+          products: ['bpc', 'tb', 'cjc', 'ipa'],
+          primaryUrl: '/products/aesthetic-labs-bpc-157-10-mg',
+          whatsapp: 'Hola, vengo de Alicyn Lab. Me interesó el eje de recuperación muscular con BPC-157, TB-500, CJC-1295 e Ipamorelin. ¿Me pueden orientar?'
+        },
         skin: {
           name: 'Skin Matrix',
           primary: 'GHK-Cu 100 mg',
@@ -1796,8 +1809,8 @@
         energy: { title: 'Energía celular', copy: 'Exploración técnica asociada a energía celular, metabolismo y bienestar avanzado.', products: ['NAD+ 1000 mg', 'MOTS-C 10 mg'], route: 'cell' },
         skin: { title: 'Piel / rostro', copy: 'Skin science, colágeno y señalización celular como ejes de investigación.', products: ['GHK-Cu 100 mg', 'NAD+ 1000 mg'], route: 'skin' },
         metabolic: { title: 'Metabolismo', copy: 'Explora compuestos agrupados por investigación metabólica y composición corporal.', products: ['AOD-9604 10 mg', 'MOTS-C 10 mg'], route: 'lean' },
-        tissue: { title: 'Tejidos', copy: 'Respuesta tisular y señalización en entornos de investigación experimental.', products: ['BPC-157', 'TB-500'], route: 'recovery' },
-        performance: { title: 'Performance técnico', copy: 'Energía y señalización experimental avanzada organizadas para comparar.', products: ['MOTS-C 10 mg', 'CJC-1295 sin DAC', 'Ipamorelin'], route: 'performance' }
+        tissue: { title: 'Tejidos / articulaciones', copy: 'Respuesta tisular y señalización en entornos de investigación experimental.', products: ['BPC-157', 'TB-500'], route: 'recovery' },
+        muscle: { title: 'Recuperación muscular', copy: 'Explora señalización y respuesta tisular en contextos técnicos asociados al esfuerzo.', products: ['BPC-157', 'TB-500', 'CJC-1295 sin DAC', 'Ipamorelin'], route: 'muscle' }
       };
       var productKeys = {
         nad: 'aesthetic-labs-nad-1000-mg',
