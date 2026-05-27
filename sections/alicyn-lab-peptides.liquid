@@ -1534,10 +1534,10 @@
           </div>
         </div>
         <div class="alicyn-care-product-stage">
-          {% if care_single_product.featured_image != blank %}
-            {{ care_single_product.featured_image | image_url: width: 620 | image_tag: class: 'alicyn-care-product-image', loading: 'eager', widths: '240, 400, 620', sizes: '(min-width: 750px) 260px, 54vw', alt: 'Alicyn solución antiséptica 100 ml para cuidado post-piercing' }}
+          {% if section.settings.care_product_image != blank %}
+            {{ section.settings.care_product_image | image_url: width: 620 | image_tag: class: 'alicyn-care-product-image', loading: 'eager', widths: '240, 400, 620', sizes: '(min-width: 750px) 260px, 54vw', alt: section.settings.care_product_image_alt }}
           {% else %}
-            <img class="alicyn-care-product-image" src="{{ 'alicyn-product.png' | asset_url }}" alt="Alicyn solución antiséptica 100 ml para cuidado post-piercing" width="360" height="520" loading="eager">
+            <img class="alicyn-care-product-image" src="{{ 'alicyn-product.png' | asset_url }}" alt="{{ section.settings.care_product_image_alt | escape }}" width="360" height="520" loading="eager">
           {% endif %}
         </div>
         <div class="alicyn-care-dashboard" aria-label="Accesos rápidos de Alicyn Care">
@@ -2627,6 +2627,17 @@
       "id": "care_pack_5_handle",
       "label": "Handle pack 5",
       "default": "alicyn-pack-5"
+    },
+    {
+      "type": "image_picker",
+      "id": "care_product_image",
+      "label": "Imagen limpia de Alicyn Care"
+    },
+    {
+      "type": "text",
+      "id": "care_product_image_alt",
+      "label": "Texto alternativo de Alicyn Care",
+      "default": "Alicyn solución antiséptica 100 ml para cuidado post-piercing"
     },
     {
       "type": "image_picker",
