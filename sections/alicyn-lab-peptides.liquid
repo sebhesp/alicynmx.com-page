@@ -1082,7 +1082,7 @@
       right: 10px;
       bottom: calc(9px + env(safe-area-inset-bottom, 0px));
       left: 10px;
-      z-index: 26;
+      z-index: 90;
       display: grid;
       grid-template-columns: repeat(5, 1fr);
       gap: 2px;
@@ -1920,7 +1920,10 @@
         var peptides = !root.querySelector('[data-lab-view="peptides"]').hidden;
         var visible = Boolean(bottomNav && mobile && peptides && appInView);
         if (bottomNav) bottomNav.classList.toggle('is-visible', visible);
-        if (traditionalSticky) traditionalSticky.hidden = visible;
+        if (traditionalSticky) {
+          traditionalSticky.hidden = visible;
+          traditionalSticky.style.display = visible ? 'none' : '';
+        }
       }
 
       function showQuizStep(step) {
