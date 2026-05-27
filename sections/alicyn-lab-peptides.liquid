@@ -1,3 +1,19 @@
+{% liquid
+  assign care_single_handle = section.settings.care_single_handle | default: 'alicyn-solucion-antiseptica'
+  assign care_pack_2_handle = section.settings.care_pack_2_handle | default: 'alicyn-pack-2'
+  assign care_pack_3_handle = section.settings.care_pack_3_handle | default: 'alicyn-pack-3'
+  assign care_pack_4_handle = section.settings.care_pack_4_handle | default: 'alicyn-pack-4'
+  assign care_pack_5_handle = section.settings.care_pack_5_handle | default: 'alicyn-pack-5'
+  assign care_single_product = all_products[care_single_handle]
+  assign care_pack_2_product = all_products[care_pack_2_handle]
+  assign care_pack_3_product = all_products[care_pack_3_handle]
+  assign care_pack_4_product = all_products[care_pack_4_handle]
+  assign care_pack_5_product = all_products[care_pack_5_handle]
+  assign care_single_variant = care_single_product.selected_or_first_available_variant
+  assign care_phone = section.settings.whatsapp_number | default: '525542388056'
+  assign care_whatsapp = 'https://wa.me/' | append: care_phone | append: '?text=Hola%2C%20tengo%20una%20duda%20sobre%20Alicyn%20100%20ml.'
+%}
+
 <section
   id="AlicynLab-{{ section.id }}"
   class="alicyn-lab-root alicyn-lab-bg-{{ section.settings.background_mode }}"
@@ -122,7 +138,7 @@
       display: block;
       font-size: 1rem;
       font-weight: 750;
-      letter-spacing: 0.12em;
+      letter-spacing: 0;
     }
 
     #AlicynLab-{{ section.id }} .alicyn-lab-logotype span {
@@ -130,7 +146,7 @@
       margin-top: 3px;
       color: var(--alicyn-lab-muted);
       font-size: 0.62rem;
-      letter-spacing: 0.04em;
+      letter-spacing: 0;
       text-transform: uppercase;
     }
 
@@ -149,7 +165,19 @@
       text-decoration: none;
     }
 
-    #AlicynLab-{{ section.id }} .alicyn-lab-quick-menu a:hover {
+    #AlicynLab-{{ section.id }} .alicyn-lab-quick-menu button {
+      width: 100%;
+      border: 0;
+      color: var(--alicyn-lab-soft);
+      background: transparent;
+      cursor: pointer;
+      font-size: 0.94rem;
+      padding: 11px 13px;
+      text-align: left;
+    }
+
+    #AlicynLab-{{ section.id }} .alicyn-lab-quick-menu a:hover,
+    #AlicynLab-{{ section.id }} .alicyn-lab-quick-menu button:hover {
       color: var(--alicyn-lab-text);
       background: rgba(149, 109, 255, 0.12);
     }
@@ -163,6 +191,15 @@
       border-radius: 999px;
       background: rgba(255, 255, 255, 0.03);
       padding: 4px;
+    }
+
+    #AlicynLab-{{ section.id }} .alicyn-os-label {
+      margin: 13px auto -7px;
+      color: var(--alicyn-lab-muted);
+      font-size: 0.64rem;
+      font-weight: 700;
+      letter-spacing: 0;
+      text-align: center;
     }
 
     #AlicynLab-{{ section.id }} .alicyn-lab-switch button {
@@ -190,9 +227,11 @@
     }
 
     #AlicynLab-{{ section.id }} .alicyn-lab-care {
-      padding: 34px 20px;
+      display: grid;
+      gap: 18px;
     }
 
+    #AlicynLab-{{ section.id }} .alicyn-lab-care h1,
     #AlicynLab-{{ section.id }} .alicyn-lab-care h2,
     #AlicynLab-{{ section.id }} .alicyn-lab-hero h1,
     #AlicynLab-{{ section.id }} .alicyn-lab-hero h2,
@@ -204,6 +243,7 @@
       letter-spacing: 0;
     }
 
+    #AlicynLab-{{ section.id }} .alicyn-lab-care h1,
     #AlicynLab-{{ section.id }} .alicyn-lab-care h2 {
       font-size: clamp(1.6rem, 7vw, 2.2rem);
     }
@@ -219,6 +259,170 @@
       margin: 0 0 24px;
       color: var(--alicyn-lab-soft);
       line-height: 1.68;
+    }
+
+    #AlicynLab-{{ section.id }} .alicyn-care-panel {
+      padding: 22px 18px;
+      scroll-margin-top: 86px;
+    }
+
+    #AlicynLab-{{ section.id }} .alicyn-care-hero {
+      display: grid;
+      gap: 18px;
+      padding: 24px 18px;
+    }
+
+    #AlicynLab-{{ section.id }} .alicyn-care-hero h1 {
+      margin-bottom: 10px;
+      font-size: clamp(2rem, 9vw, 3.5rem);
+      line-height: 1.06;
+    }
+
+    #AlicynLab-{{ section.id }} .alicyn-care-hero .alicyn-lab-section-copy {
+      margin-bottom: 18px;
+    }
+
+    #AlicynLab-{{ section.id }} .alicyn-care-product-stage {
+      position: relative;
+      display: grid;
+      min-height: 270px;
+      place-items: center;
+      border-radius: 20px;
+      background: radial-gradient(circle at center, rgba(114, 214, 231, 0.15), transparent 62%);
+      overflow: hidden;
+    }
+
+    #AlicynLab-{{ section.id }} .alicyn-care-product-image {
+      display: block;
+      width: auto;
+      max-width: min(68%, 230px);
+      max-height: 270px;
+      object-fit: contain;
+      filter: drop-shadow(0 20px 26px rgba(0, 0, 0, 0.42));
+    }
+
+    #AlicynLab-{{ section.id }} .alicyn-care-price-row {
+      display: flex;
+      gap: 10px;
+      align-items: baseline;
+      margin: 0 0 18px;
+    }
+
+    #AlicynLab-{{ section.id }} .alicyn-care-price-row strong {
+      font-size: 1.45rem;
+      color: var(--alicyn-lab-text);
+    }
+
+    #AlicynLab-{{ section.id }} .alicyn-care-price-row span {
+      color: var(--alicyn-lab-muted);
+      font-size: 0.84rem;
+    }
+
+    #AlicynLab-{{ section.id }} .alicyn-care-dashboard {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    #AlicynLab-{{ section.id }} .alicyn-care-tile {
+      display: grid;
+      gap: 8px;
+      min-height: 102px;
+      border: 1px solid rgba(114, 214, 231, 0.16);
+      border-radius: 17px;
+      color: var(--alicyn-lab-text);
+      background: rgba(114, 214, 231, 0.035);
+      cursor: pointer;
+      padding: 13px 12px;
+      text-align: left;
+    }
+
+    #AlicynLab-{{ section.id }} .alicyn-care-tile .alicyn-lab-icon {
+      color: var(--alicyn-lab-cyan);
+    }
+
+    #AlicynLab-{{ section.id }} .alicyn-care-tile strong {
+      font-size: 0.9rem;
+    }
+
+    #AlicynLab-{{ section.id }} .alicyn-care-back {
+      display: inline-flex;
+      gap: 8px;
+      align-items: center;
+      border: 0;
+      color: var(--alicyn-lab-cyan);
+      background: transparent;
+      cursor: pointer;
+      font-weight: 700;
+      margin: 0 0 18px;
+      padding: 0;
+    }
+
+    #AlicynLab-{{ section.id }} .alicyn-care-list {
+      display: grid;
+      gap: 10px;
+      margin: 16px 0 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    #AlicynLab-{{ section.id }} .alicyn-care-list li {
+      display: flex;
+      gap: 10px;
+      border: 1px solid var(--alicyn-lab-border);
+      border-radius: 14px;
+      color: var(--alicyn-lab-soft);
+      padding: 12px;
+      line-height: 1.45;
+    }
+
+    #AlicynLab-{{ section.id }} .alicyn-care-list li::before {
+      flex: 0 0 8px;
+      width: 8px;
+      height: 8px;
+      margin-top: 7px;
+      border-radius: 50%;
+      background: var(--alicyn-lab-cyan);
+      content: "";
+    }
+
+    #AlicynLab-{{ section.id }} .alicyn-care-packs {
+      display: grid;
+      gap: 10px;
+    }
+
+    #AlicynLab-{{ section.id }} .alicyn-care-pack {
+      display: grid;
+      gap: 8px;
+      border: 1px solid var(--alicyn-lab-border);
+      border-radius: 16px;
+      background: rgba(255, 255, 255, 0.022);
+      padding: 14px;
+    }
+
+    #AlicynLab-{{ section.id }} .alicyn-care-pack-head {
+      display: flex;
+      gap: 10px;
+      justify-content: space-between;
+      align-items: baseline;
+    }
+
+    #AlicynLab-{{ section.id }} .alicyn-care-pack-head span {
+      color: var(--alicyn-lab-cyan);
+      font-weight: 700;
+    }
+
+    #AlicynLab-{{ section.id }} .alicyn-care-pack form,
+    #AlicynLab-{{ section.id }} .alicyn-care-purchase form {
+      margin: 0;
+    }
+
+    #AlicynLab-{{ section.id }} .alicyn-care-disclaimer {
+      border-left: 2px solid rgba(114, 214, 231, 0.65);
+      color: var(--alicyn-lab-soft);
+      font-size: 0.85rem;
+      margin-top: 17px;
+      padding: 2px 0 2px 12px;
     }
 
     #AlicynLab-{{ section.id }} .alicyn-lab-kicker {
@@ -978,8 +1182,12 @@
     }
 
     #AlicynLab-{{ section.id }} .alicyn-lab-text-link {
+      border: 0;
       color: #bcadff;
+      background: transparent;
+      cursor: pointer;
       font-weight: 700;
+      padding: 0;
       text-decoration: none;
     }
 
@@ -1130,6 +1338,19 @@
     }
 
     @media (min-width: 560px) {
+      #AlicynLab-{{ section.id }} .alicyn-care-hero {
+        grid-template-columns: minmax(0, 1fr) minmax(190px, 280px);
+      }
+
+      #AlicynLab-{{ section.id }} .alicyn-care-dashboard {
+        grid-column: 1 / -1;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      #AlicynLab-{{ section.id }} .alicyn-care-packs {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
       #AlicynLab-{{ section.id }} .alicyn-lab-result-grid {
         grid-template-columns: repeat(3, minmax(0, 1fr));
       }
@@ -1189,6 +1410,10 @@
     }
 
     @media (min-width: 990px) {
+      #AlicynLab-{{ section.id }} .alicyn-care-packs {
+        grid-template-columns: repeat(5, minmax(0, 1fr));
+      }
+
       #AlicynLab-{{ section.id }} .alicyn-lab-section {
         padding-top: 55px;
       }
@@ -1211,6 +1436,33 @@
       }
     }
 
+    @media (max-width: 559px) {
+      #AlicynLab-{{ section.id }} .alicyn-lab-objectives-grid,
+      #AlicynLab-{{ section.id }} .alicyn-lab-route-grid {
+        display: flex;
+        gap: 10px;
+        overflow-x: auto;
+        padding-bottom: 5px;
+        scroll-snap-type: x mandatory;
+        scrollbar-width: none;
+      }
+
+      #AlicynLab-{{ section.id }} .alicyn-lab-objectives-grid::-webkit-scrollbar,
+      #AlicynLab-{{ section.id }} .alicyn-lab-route-grid::-webkit-scrollbar {
+        display: none;
+      }
+
+      #AlicynLab-{{ section.id }} .alicyn-lab-objective-card {
+        flex: 0 0 86%;
+        scroll-snap-align: start;
+      }
+
+      #AlicynLab-{{ section.id }} .alicyn-lab-route-card {
+        flex: 0 0 84%;
+        scroll-snap-align: start;
+      }
+    }
+
     @media (prefers-reduced-motion: reduce) {
       #AlicynLab-{{ section.id }} *,
       #AlicynLab-{{ section.id }} *::before,
@@ -1223,44 +1475,180 @@
   </style>
 
   <div class="alicyn-lab-shell">
-    <header class="alicyn-lab-app-header" aria-label="Navegación Alicyn Lab">
+    <header class="alicyn-lab-app-header" aria-label="Navegación Alicyn OS">
       <button class="alicyn-lab-icon-button" type="button" aria-label="Abrir navegación" aria-expanded="false" data-lab-menu-toggle>
         <svg class="alicyn-lab-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
       </button>
-      <a class="alicyn-lab-logotype" href="#AlicynLab-{{ section.id }}" aria-label="Alicyn Lab inicio">
-        <strong>ALICYN LAB</strong>
-        <span>Ciencia · Bienestar · Evolución</span>
+      <a class="alicyn-lab-logotype" href="#AlicynLab-{{ section.id }}" aria-label="Alicyn OS inicio">
+        <strong data-app-brand>ALICYN CARE</strong>
+        <span data-app-tagline>Cuidado · Confianza · Claridad</span>
       </a>
       <a class="alicyn-lab-icon-button" href="{{ routes.cart_url }}" aria-label="Ver carrito">
         <svg class="alicyn-lab-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 7h13l-1.5 8h-10L6 4H3"/><circle cx="9" cy="19" r="1.5"/><circle cx="17" cy="19" r="1.5"/></svg>
       </a>
     </header>
 
-    <nav class="alicyn-lab-quick-menu alicyn-lab-glass" aria-label="Atajos Alicyn Lab" data-lab-quick-menu hidden>
-      <a href="#alicyn-lab-objetivos-{{ section.id }}" data-lab-scroll-link>Explorar objetivos</a>
-      <a href="#alicyn-lab-quiz-{{ section.id }}" data-lab-scroll-link>Encontrar mi ruta</a>
-      <a href="#catalogo-peptidos-investigacion" data-lab-scroll-link>Ver productos</a>
-      <a href="#alicyn-lab-comparador-{{ section.id }}" data-lab-scroll-link>Comparar opciones</a>
+    <nav class="alicyn-lab-quick-menu alicyn-lab-glass" aria-label="Atajos Alicyn OS" data-lab-quick-menu hidden>
+      <div data-menu-mode="care">
+        <button type="button" data-care-open="compra">Comprar Alicyn</button>
+        <button type="button" data-care-open="guia">Guía rápida</button>
+        <button type="button" data-care-open="packs">Packs</button>
+        <button type="button" data-care-open="faq">Preguntas frecuentes</button>
+      </div>
+      <div data-menu-mode="peptides" hidden>
+        <button type="button" data-lab-go="objetivos">Explorar objetivos</button>
+        <button type="button" data-lab-go="quiz">Encontrar mi ruta</button>
+        <button type="button" data-lab-go="productos">Ver productos</button>
+        <button type="button" data-lab-go="mas">Comparar opciones</button>
+      </div>
     </nav>
 
+    <p class="alicyn-os-label">ALICYN OS</p>
     <div class="alicyn-lab-switch" role="tablist" aria-label="Selecciona colección">
-      <button type="button" role="tab" aria-selected="false" aria-controls="alicyn-lab-care-view-{{ section.id }}" data-lab-view-trigger="care">Antiséptico</button>
-      <button type="button" role="tab" aria-selected="true" aria-controls="alicyn-lab-peptides-view-{{ section.id }}" data-lab-view-trigger="peptides">Péptidos</button>
+      <button type="button" role="tab" aria-selected="true" aria-controls="alicyn-lab-care-view-{{ section.id }}" data-lab-view-trigger="care">Antiséptico</button>
+      <button type="button" role="tab" aria-selected="false" aria-controls="alicyn-lab-peptides-view-{{ section.id }}" data-lab-view-trigger="peptides">Péptidos</button>
     </div>
 
-    <div id="alicyn-lab-care-view-{{ section.id }}" class="alicyn-lab-care alicyn-lab-glass" role="tabpanel" data-lab-view="care" hidden>
-      <p class="alicyn-lab-kicker">Alicyn</p>
-      <h2>Alicyn Care</h2>
-      <h3>Cuidado postprocedimiento para momentos de sensibilidad.</h3>
-      <p>Alicyn acompaña la limpieza externa y responsable en momentos clave: roce, sudor, presión, cambio de joyería o sensibilidad común.</p>
-      <div class="alicyn-lab-actions">
-        <a class="alicyn-lab-button" href="{{ section.settings.antiseptic_product_link | default: '/products/alicyn-solucion-antiseptica' }}">Comprar Alicyn</a>
-        <a class="alicyn-lab-button alicyn-lab-button-secondary" href="{{ section.settings.care_guide_link | default: '/#como-usarlo' }}">Ver cuidados</a>
-      </div>
+    <div id="alicyn-lab-care-view-{{ section.id }}" class="alicyn-lab-care" role="tabpanel" data-lab-view="care">
+      <section class="alicyn-care-hero alicyn-lab-glass" data-care-panel="inicio" aria-label="Alicyn Care">
+        <div>
+          <p class="alicyn-lab-kicker">Alicyn Care · 100 ml</p>
+          <h1>Cuida tu piercing sin moverlo de más.</h1>
+          <p class="alicyn-lab-section-copy">Para momentos de roce, sudor, presión, cambio de joyería o sensibilidad común.</p>
+          <div class="alicyn-care-price-row">
+            <strong>{% if care_single_product != blank %}{{ care_single_product.price | money }}{% else %}$350 MXN{% endif %}</strong>
+            <span>Uso tópico externo · envío por Skydrop en checkout</span>
+          </div>
+          <div class="alicyn-lab-actions alicyn-care-purchase">
+            {% if care_single_product != blank and care_single_variant.available %}
+              <form method="post" action="{{ routes.cart_add_url }}">
+                <input type="hidden" name="id" value="{{ care_single_variant.id }}">
+                <input type="hidden" name="quantity" value="1">
+                <button class="alicyn-lab-button" type="submit">Comprar Alicyn</button>
+              </form>
+            {% else %}
+              <a class="alicyn-lab-button" href="{{ section.settings.antiseptic_product_link | default: '/products/alicyn-solucion-antiseptica' }}">Comprar Alicyn</a>
+            {% endif %}
+            <button class="alicyn-lab-button alicyn-lab-button-secondary" type="button" data-care-open="guia">Ver guía rápida</button>
+            <a class="alicyn-lab-button alicyn-lab-button-tertiary" href="{{ care_whatsapp }}" target="_blank" rel="noopener">Tengo una duda</a>
+          </div>
+        </div>
+        <div class="alicyn-care-product-stage">
+          {% if care_single_product.featured_image != blank %}
+            {{ care_single_product.featured_image | image_url: width: 620 | image_tag: class: 'alicyn-care-product-image', loading: 'eager', widths: '240, 400, 620', sizes: '(min-width: 750px) 260px, 54vw', alt: 'Alicyn solución antiséptica 100 ml para cuidado post-piercing' }}
+          {% else %}
+            <img class="alicyn-care-product-image" src="{{ 'alicyn-product.png' | asset_url }}" alt="Alicyn solución antiséptica 100 ml para cuidado post-piercing" width="360" height="520" loading="eager">
+          {% endif %}
+        </div>
+        <div class="alicyn-care-dashboard" aria-label="Accesos rápidos de Alicyn Care">
+          <button class="alicyn-care-tile" type="button" data-care-open="compra"><svg class="alicyn-lab-icon" viewBox="0 0 24 24"><path d="M7 7h13l-1.5 8h-10L6 4H3"/><circle cx="9" cy="19" r="1.5"/><circle cx="17" cy="19" r="1.5"/></svg><strong>Comprar</strong></button>
+          <button class="alicyn-care-tile" type="button" data-care-open="momentos"><svg class="alicyn-lab-icon" viewBox="0 0 24 24"><path d="M12 8v5l3 2"/><circle cx="12" cy="12" r="9"/></svg><strong>Cuándo usarlo</strong></button>
+          <button class="alicyn-care-tile" type="button" data-care-open="guia"><svg class="alicyn-lab-icon" viewBox="0 0 24 24"><path d="M8 3h8v18H8zM10 8h4M10 12h4"/></svg><strong>Cómo usarlo</strong></button>
+          <button class="alicyn-care-tile" type="button" data-care-open="senales"><svg class="alicyn-lab-icon" viewBox="0 0 24 24"><path d="m12 3 9 17H3l9-17ZM12 10v4M12 17h.1"/></svg><strong>Señales para consultar</strong></button>
+          <button class="alicyn-care-tile" type="button" data-care-open="packs"><svg class="alicyn-lab-icon" viewBox="0 0 24 24"><path d="m4 7 8-4 8 4-8 4-8-4ZM4 7v10l8 4 8-4V7"/></svg><strong>Packs</strong></button>
+          <button class="alicyn-care-tile" type="button" data-care-open="faq"><svg class="alicyn-lab-icon" viewBox="0 0 24 24"><path d="M12 21a9 9 0 1 0-9-9 9 9 0 0 0 9 9ZM10 9a2 2 0 0 1 4 1c0 1.5-2 1.6-2 3M12 17h.1"/></svg><strong>FAQ</strong></button>
+        </div>
+      </section>
+
+      <section class="alicyn-care-panel alicyn-lab-glass" data-care-panel="compra" hidden>
+        <button class="alicyn-care-back" type="button" data-care-open="inicio">← Volver</button>
+        <p class="alicyn-lab-kicker">Compra segura</p>
+        <h2>Alicyn 100 ml</h2>
+        <p>Solución antiséptica para cuidado puntual post-piercing en piel sana.</p>
+        <div class="alicyn-care-price-row"><strong>{% if care_single_product != blank %}{{ care_single_product.price | money }}{% else %}$350 MXN{% endif %}</strong><span>Envío cotizado en checkout con Skydrop.</span></div>
+        <div class="alicyn-lab-actions alicyn-care-purchase">
+          {% if care_single_product != blank and care_single_variant.available %}
+            <form method="post" action="{{ routes.cart_add_url }}"><input type="hidden" name="id" value="{{ care_single_variant.id }}"><input type="hidden" name="quantity" value="1"><button class="alicyn-lab-button" type="submit">Agregar al carrito</button></form>
+          {% endif %}
+          <a class="alicyn-lab-button alicyn-lab-button-secondary" href="{{ section.settings.antiseptic_product_link | default: '/products/alicyn-solucion-antiseptica' }}">Ver producto</a>
+          <button class="alicyn-lab-button alicyn-lab-button-tertiary" type="button" data-care-open="packs">Ver packs</button>
+        </div>
+      </section>
+
+      <section class="alicyn-care-panel alicyn-lab-glass" data-care-panel="momentos" hidden>
+        <button class="alicyn-care-back" type="button" data-care-open="inicio">← Volver</button>
+        <p class="alicyn-lab-kicker">Uso puntual</p>
+        <h2>Cuándo usarlo</h2>
+        <ul class="alicyn-care-list">
+          <li>Cuando hubo roce, jalón o golpe leve.</li>
+          <li>Después de dormir sobre el piercing.</li>
+          <li>Tras sudor, polvo o ambientes no controlados.</li>
+          <li>Cuando notas sensibilidad o incomodidad común.</li>
+          <li>Cuando tu perforador lo recomienda como apoyo puntual.</li>
+        </ul>
+        <p class="alicyn-care-disclaimer">Alicyn está pensado para piel sana y molestias comunes del proceso. No sustituye valoración profesional ante signos de infección.</p>
+      </section>
+
+      <section class="alicyn-care-panel alicyn-lab-glass" data-care-panel="guia" hidden>
+        <button class="alicyn-care-back" type="button" data-care-open="inicio">← Volver</button>
+        <p class="alicyn-lab-kicker">Guía rápida</p>
+        <h2>Cómo usarlo</h2>
+        <ul class="alicyn-care-list">
+          <li>Lava tus manos antes de acercarte al piercing.</li>
+          <li>Aplica Alicyn en gasa o cotonete limpio.</li>
+          <li>Limpia alrededor sin girar ni mover de más la joyería.</li>
+          <li>Deja secar o termina con gasa limpia.</li>
+        </ul>
+        <p class="alicyn-care-disclaimer">Uso externo. Evita ojos y mucosas. Consulta a tu perforador o a un profesional si los síntomas empeoran o persisten.</p>
+      </section>
+
+      <section class="alicyn-care-panel alicyn-lab-glass" data-care-panel="senales" hidden>
+        <button class="alicyn-care-back" type="button" data-care-open="inicio">← Volver</button>
+        <p class="alicyn-lab-kicker">Cuida con criterio</p>
+        <h2>Señales para consultar</h2>
+        <p>La sensibilidad ligera puede aparecer en el proceso. Busca orientación si notas:</p>
+        <ul class="alicyn-care-list">
+          <li>Dolor intenso o creciente, calor fuerte o inflamación que empeora.</li>
+          <li>Secreción abundante, espesa, con color intenso o mal olor.</li>
+          <li>Fiebre, líneas rojas, sangrado persistente o reacción severa.</li>
+          <li>Joyería que parece incrustarse.</li>
+        </ul>
+        <a class="alicyn-lab-button alicyn-lab-button-secondary" href="{{ care_whatsapp }}" target="_blank" rel="noopener">Preguntar por WhatsApp</a>
+      </section>
+
+      <section class="alicyn-care-panel alicyn-lab-glass" data-care-panel="packs" hidden>
+        <button class="alicyn-care-back" type="button" data-care-open="inicio">← Volver</button>
+        <p class="alicyn-lab-kicker">Compra individual o en grupo</p>
+        <h2>Packs Alicyn</h2>
+        <p>Comparte tu pedido o ten un repuesto. El envío se cotiza en checkout con Skydrop.</p>
+        <div class="alicyn-care-packs">
+          <article class="alicyn-care-pack">
+            <div class="alicyn-care-pack-head"><strong>1 pieza</strong><span>{% if care_single_product != blank %}{{ care_single_product.price | money }}{% else %}$350 MXN{% endif %}</span></div>
+            {% if care_single_product != blank and care_single_variant.available %}<form method="post" action="{{ routes.cart_add_url }}"><input type="hidden" name="id" value="{{ care_single_variant.id }}"><button class="alicyn-lab-button" type="submit">Agregar</button></form>{% endif %}
+          </article>
+          <article class="alicyn-care-pack">
+            <div class="alicyn-care-pack-head"><strong>2 piezas</strong><span>{% if care_pack_2_product != blank %}{{ care_pack_2_product.price | money }}{% else %}$665 MXN{% endif %}</span></div>
+            {% if care_pack_2_product != blank and care_pack_2_product.selected_or_first_available_variant.available %}<form method="post" action="{{ routes.cart_add_url }}"><input type="hidden" name="id" value="{{ care_pack_2_product.selected_or_first_available_variant.id }}"><button class="alicyn-lab-button" type="submit">Agregar</button></form>{% else %}<a class="alicyn-lab-text-link" href="/products/alicyn-pack-2">Ver pack</a>{% endif %}
+          </article>
+          <article class="alicyn-care-pack">
+            <div class="alicyn-care-pack-head"><strong>3 piezas</strong><span>{% if care_pack_3_product != blank %}{{ care_pack_3_product.price | money }}{% else %}$945 MXN{% endif %}</span></div>
+            {% if care_pack_3_product != blank and care_pack_3_product.selected_or_first_available_variant.available %}<form method="post" action="{{ routes.cart_add_url }}"><input type="hidden" name="id" value="{{ care_pack_3_product.selected_or_first_available_variant.id }}"><button class="alicyn-lab-button" type="submit">Agregar</button></form>{% else %}<a class="alicyn-lab-text-link" href="/products/alicyn-pack-3">Ver pack</a>{% endif %}
+          </article>
+          <article class="alicyn-care-pack">
+            <div class="alicyn-care-pack-head"><strong>4 piezas</strong><span>{% if care_pack_4_product != blank %}{{ care_pack_4_product.price | money }}{% else %}$1,220 MXN{% endif %}</span></div>
+            {% if care_pack_4_product != blank and care_pack_4_product.selected_or_first_available_variant.available %}<form method="post" action="{{ routes.cart_add_url }}"><input type="hidden" name="id" value="{{ care_pack_4_product.selected_or_first_available_variant.id }}"><button class="alicyn-lab-button" type="submit">Agregar</button></form>{% else %}<a class="alicyn-lab-text-link" href="/products/alicyn-pack-4">Ver pack</a>{% endif %}
+          </article>
+          <article class="alicyn-care-pack">
+            <div class="alicyn-care-pack-head"><strong>5 piezas</strong><span>{% if care_pack_5_product != blank %}{{ care_pack_5_product.price | money }}{% else %}$1,500 MXN{% endif %}</span></div>
+            {% if care_pack_5_product != blank and care_pack_5_product.selected_or_first_available_variant.available %}<form method="post" action="{{ routes.cart_add_url }}"><input type="hidden" name="id" value="{{ care_pack_5_product.selected_or_first_available_variant.id }}"><button class="alicyn-lab-button" type="submit">Agregar</button></form>{% else %}<a class="alicyn-lab-text-link" href="/products/alicyn-pack-5">Ver pack</a>{% endif %}
+          </article>
+        </div>
+      </section>
+
+      <section class="alicyn-care-panel alicyn-lab-glass" data-care-panel="faq" hidden>
+        <button class="alicyn-care-back" type="button" data-care-open="inicio">← Volver</button>
+        <p class="alicyn-lab-kicker">Dudas comunes</p>
+        <h2>Preguntas frecuentes</h2>
+        <div class="alicyn-lab-faq-list">
+          <div class="alicyn-lab-faq-item"><button class="alicyn-lab-faq-button" type="button" aria-expanded="false" aria-controls="CareFaq-{{ section.id }}-1" data-alicyn-lab-faq-button><span>¿Alicyn es para uso diario?</span><span aria-hidden="true">+</span></button><div id="CareFaq-{{ section.id }}-1" class="alicyn-lab-faq-answer" hidden><p>No necesariamente. Está pensado para momentos puntuales de sensibilidad, roce o exposición.</p></div></div>
+          <div class="alicyn-lab-faq-item"><button class="alicyn-lab-faq-button" type="button" aria-expanded="false" aria-controls="CareFaq-{{ section.id }}-2" data-alicyn-lab-faq-button><span>¿Puedo usarlo si creo que hay infección?</span><span aria-hidden="true">+</span></button><div id="CareFaq-{{ section.id }}-2" class="alicyn-lab-faq-answer" hidden><p>No lo uses como sustituto de valoración profesional. Consulta si observas señales de alerta.</p></div></div>
+          <div class="alicyn-lab-faq-item"><button class="alicyn-lab-faq-button" type="button" aria-expanded="false" aria-controls="CareFaq-{{ section.id }}-3" data-alicyn-lab-faq-button><span>¿Hacen envíos?</span><span aria-hidden="true">+</span></button><div id="CareFaq-{{ section.id }}-3" class="alicyn-lab-faq-answer" hidden><p>Enviamos a México. El costo se cotiza al finalizar la compra con Skydrop según cobertura disponible.</p></div></div>
+        </div>
+      </section>
     </div>
 
-    <div id="alicyn-lab-peptides-view-{{ section.id }}" role="tabpanel" data-lab-view="peptides">
-      <div id="alicyn-lab-inicio-{{ section.id }}" class="alicyn-lab-hero" data-lab-nav-section="inicio">
+    <div id="alicyn-lab-peptides-view-{{ section.id }}" role="tabpanel" data-lab-view="peptides" hidden>
+      <div id="alicyn-lab-inicio-{{ section.id }}" class="alicyn-lab-hero" data-lab-nav-section="inicio" data-lab-screen="inicio">
         <div class="alicyn-lab-hero-copy alicyn-lab-glass">
           <p class="alicyn-lab-kicker">Aesthetic Labs · Investigación</p>
           {% if section.settings.embed_as_home_section %}
@@ -1268,7 +1656,7 @@
           {% else %}
             <h1 class="alicyn-lab-hero-title">{{ section.settings.heading | escape }}</h1>
           {% endif %}
-          <p class="alicyn-lab-hero-text">{{ section.settings.subheading | escape }}</p>
+          <p class="alicyn-lab-hero-text">Elige tu objetivo y Alicyn Lab te guía hacia una ruta de investigación clara.</p>
           <div class="alicyn-lab-actions">
             <button class="alicyn-lab-button" type="button" data-lab-go="quiz">Encontrar mi péptido</button>
             <button class="alicyn-lab-button alicyn-lab-button-secondary" type="button" data-lab-go="objetivos">Explorar por objetivo</button>
@@ -1280,6 +1668,7 @@
             <span class="alicyn-lab-badge">Aesthetic Labs</span>
           </div>
           <p class="alicyn-lab-compliance">Productos destinados exclusivamente a investigación, análisis técnico o laboratorio. No aptos para consumo humano o animal.</p>
+          <p class="alicyn-lab-hero-hint">No necesitas saber el nombre del péptido. Empieza por lo que quieres comparar.</p>
         </div>
         <div class="alicyn-lab-hero-media alicyn-lab-glass">
           {% if section.settings.hero_image != blank %}
@@ -1302,7 +1691,7 @@
         </div>
       </div>
 
-      <div class="alicyn-lab-trust-grid" aria-label="Confianza Alicyn Lab">
+      <div class="alicyn-lab-trust-grid" aria-label="Confianza Alicyn Lab" data-lab-screen="inicio">
         <article class="alicyn-lab-trust-card">
           <svg class="alicyn-lab-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M10 2v6l-5 9a3 3 0 0 0 2.6 4.5h8.8A3 3 0 0 0 19 17l-5-9V2M8 2h8M8 15h8"/></svg>
           <strong>Investigación organizada</strong>
@@ -1325,7 +1714,7 @@
         </article>
       </div>
 
-      <div id="alicyn-lab-mapa-{{ section.id }}" class="alicyn-lab-section">
+      <div id="alicyn-lab-mapa-{{ section.id }}" class="alicyn-lab-section" data-lab-screen="inicio">
         <p class="alicyn-lab-kicker">Mapa interactivo</p>
         <h2 class="alicyn-lab-heading">Mapa de ejes</h2>
         <p class="alicyn-lab-section-copy">Explora ejes de investigación asociados con esta zona de interés.</p>
@@ -1352,15 +1741,16 @@
               <span class="alicyn-lab-chip">NAD+ 1000 mg</span><span class="alicyn-lab-chip">MOTS-C 10 mg</span>
             </div>
             <div class="alicyn-lab-inline-actions">
-              <button class="alicyn-lab-button" type="button" data-lab-map-products-action>Ver productos</button>
+              <button class="alicyn-lab-button" type="button" data-lab-map-products-action>Ver ruta</button>
               <button class="alicyn-lab-button alicyn-lab-button-secondary" type="button" data-lab-go="comparar">Comparar</button>
               <button class="alicyn-lab-button alicyn-lab-button-tertiary" type="button" data-lab-go="quiz">Hacer quiz</button>
+              <button class="alicyn-lab-button alicyn-lab-button-tertiary" type="button" data-lab-go="inicio">Cerrar</button>
             </div>
           </article>
         </div>
       </div>
 
-      <div id="alicyn-lab-objetivos-{{ section.id }}" class="alicyn-lab-section" data-lab-nav-section="objetivos">
+      <div id="alicyn-lab-objetivos-{{ section.id }}" class="alicyn-lab-section" data-lab-nav-section="objetivos" data-lab-screen="objetivos" hidden>
         <p class="alicyn-lab-kicker">Explora por objetivo</p>
         <h2 class="alicyn-lab-heading">Elige tu eje de investigación</h2>
         <p class="alicyn-lab-section-copy">Selecciona un eje para ordenar los productos relacionados. Puedes cambiar tu ruta cuando quieras.</p>
@@ -1407,35 +1797,36 @@
             <button class="alicyn-lab-button alicyn-lab-button-secondary" type="button" data-lab-reset-route>Cambiar objetivo</button>
             <button class="alicyn-lab-button alicyn-lab-button-tertiary" type="button" data-lab-go="quiz">Volver al quiz</button>
             <a class="alicyn-lab-button alicyn-lab-button-secondary" data-lab-result-whatsapp target="_blank" rel="noopener" href="https://wa.me/525542388056">WhatsApp</a>
+            <button class="alicyn-lab-button alicyn-lab-button-tertiary" type="button" data-lab-go="inicio">Volver</button>
           </div>
         </article>
       </div>
 
-      <div id="alicyn-lab-quiz-{{ section.id }}" class="alicyn-lab-section" data-lab-nav-section="quiz">
+      <div id="alicyn-lab-quiz-{{ section.id }}" class="alicyn-lab-section" data-lab-nav-section="quiz" data-lab-screen="quiz" hidden>
           <p class="alicyn-lab-kicker">Guía interactiva</p>
           <h2 class="alicyn-lab-heading">Encuentra una ruta para comparar</h2>
           <p class="alicyn-lab-section-copy">Cuatro preguntas organizan el catálogo según tu interés técnico. El resultado es informativo y puedes modificarlo en cualquier momento.</p>
           <form class="alicyn-lab-quiz alicyn-lab-glass" data-lab-quiz novalidate>
-            <div class="alicyn-lab-progress-head"><span data-lab-quiz-step-label>Pregunta 1 de 4</span><button class="alicyn-lab-text-link" type="button" data-lab-clear-quiz>Cambiar respuestas</button></div>
+            <div class="alicyn-lab-progress-head"><span data-lab-quiz-step-label>Pregunta 1 de 4</span><button class="alicyn-lab-text-link" type="button" data-lab-clear-quiz>Cambiar respuestas</button><button class="alicyn-lab-text-link" type="button" data-lab-go="objetivos">Cerrar quiz</button></div>
             <div class="alicyn-lab-progress" aria-hidden="true"><span data-lab-progress></span></div>
 
             <fieldset class="alicyn-lab-question" data-question="objective">
-              <legend>¿Cuál es tu objetivo principal?</legend>
+              <legend>¿Qué quieres explorar?</legend>
               <div class="alicyn-lab-choice-grid">
-                <label class="alicyn-lab-choice"><input type="radio" name="objective" value="cell">Energía y longevidad celular</label>
-                <label class="alicyn-lab-choice"><input type="radio" name="objective" value="lean">Composición corporal</label>
-                <label class="alicyn-lab-choice"><input type="radio" name="objective" value="recovery">Respuesta tisular</label>
-                <label class="alicyn-lab-choice"><input type="radio" name="objective" value="skin">Piel y estética</label>
-                <label class="alicyn-lab-choice"><input type="radio" name="objective" value="performance">Performance técnico</label>
-                <label class="alicyn-lab-choice"><input type="radio" name="objective" value="starter">No estoy seguro</label>
+                <label class="alicyn-lab-choice"><input type="radio" name="objective" value="cell">Energía</label>
+                <label class="alicyn-lab-choice"><input type="radio" name="objective" value="lean">Definición</label>
+                <label class="alicyn-lab-choice"><input type="radio" name="objective" value="recovery">Recuperación</label>
+                <label class="alicyn-lab-choice"><input type="radio" name="objective" value="skin">Piel</label>
+                <label class="alicyn-lab-choice"><input type="radio" name="objective" value="performance">Performance</label>
+                <label class="alicyn-lab-choice"><input type="radio" name="objective" value="starter">No sé</label>
               </div>
             </fieldset>
             <fieldset class="alicyn-lab-question" data-question="experience" hidden>
-              <legend>¿Qué nivel de experiencia tienes con péptidos?</legend>
+              <legend>¿Cuánto sabes de péptidos?</legend>
               <div class="alicyn-lab-choice-grid">
-                <label class="alicyn-lab-choice"><input type="radio" name="experience" value="beginner">Estoy empezando</label>
-                <label class="alicyn-lab-choice"><input type="radio" name="experience" value="aware">Ya conozco algunos</label>
-                <label class="alicyn-lab-choice"><input type="radio" name="experience" value="advanced">Busco un paquete técnico avanzado</label>
+                <label class="alicyn-lab-choice"><input type="radio" name="experience" value="beginner">Nada, quiero guía simple</label>
+                <label class="alicyn-lab-choice"><input type="radio" name="experience" value="aware">Algo, quiero comparar</label>
+                <label class="alicyn-lab-choice"><input type="radio" name="experience" value="advanced">Ya tengo experiencia</label>
               </div>
             </fieldset>
             <fieldset class="alicyn-lab-question" data-question="format" hidden>
@@ -1463,7 +1854,8 @@
           </form>
       </div>
 
-      <div id="alicyn-lab-rutas-{{ section.id }}" class="alicyn-lab-section">
+      <div id="alicyn-lab-rutas-{{ section.id }}" class="alicyn-lab-section" data-lab-screen="mas" hidden>
+        <button class="alicyn-care-back" type="button" data-lab-go="objetivos">← Volver al resultado</button>
         <p class="alicyn-lab-kicker">Rutas sugeridas</p>
         <h2 class="alicyn-lab-heading">Compara rutas de investigación</h2>
         <p class="alicyn-lab-section-copy">Paquetes de exploración organizados por eje técnico. No constituyen instrucciones ni recomendaciones de consumo.</p>
@@ -1471,32 +1863,32 @@
           <article class="alicyn-lab-route-card is-active" data-lab-route-card="cell">
             <div class="alicyn-lab-route-top"><span class="alicyn-lab-objective-icon"><svg class="alicyn-lab-icon" viewBox="0 0 24 24"><path d="M8 3c8 4 8 14 0 18M16 3c-8 4-8 14 0 18M8 7h8M8 17h8"/></svg></span><div><h3>Cell Reset</h3><span class="alicyn-lab-route-level">Inicial / intermedio</span></div></div>
             <p>NAD+ 1000 mg + MOTS-C 10 mg<br>Energía celular y metabolismo.</p>
-            <div class="alicyn-lab-inline-actions"><button class="alicyn-lab-button alicyn-lab-button-secondary" type="button" data-lab-route="cell">Ver ruta</button><a class="alicyn-lab-text-link" data-lab-whatsapp-route="cell" href="https://wa.me/{{ section.settings.whatsapp_number | default: '525542388056' }}?text=Hola%2C%20vengo%20de%20Alicyn%20Lab.%20Quiero%20orientaci%C3%B3n%20sobre%20Cell%20Reset." target="_blank" rel="noopener">WhatsApp</a></div>
+            <div class="alicyn-lab-inline-actions"><button class="alicyn-lab-button alicyn-lab-button-secondary" type="button" data-lab-route="cell">Ver ruta</button><button class="alicyn-lab-text-link" type="button" data-lab-go="comparar">Comparar</button><a class="alicyn-lab-text-link" data-lab-whatsapp-route="cell" href="https://wa.me/{{ section.settings.whatsapp_number | default: '525542388056' }}?text=Hola%2C%20vengo%20de%20Alicyn%20Lab.%20Quiero%20orientaci%C3%B3n%20sobre%20Cell%20Reset." target="_blank" rel="noopener">WhatsApp</a></div>
           </article>
           <article class="alicyn-lab-route-card" data-lab-route-card="lean">
             <div class="alicyn-lab-route-top"><span class="alicyn-lab-objective-icon"><svg class="alicyn-lab-icon" viewBox="0 0 24 24"><path d="M12 4c-2 0-3 2-3 4v3l-2 8M12 4c2 0 3 2 3 4v3l2 8"/></svg></span><div><h3>Lean Research</h3><span class="alicyn-lab-route-level">Inicial / intermedio</span></div></div>
             <p>AOD-9604 10 mg + MOTS-C 10 mg<br>Composición corporal en investigación.</p>
-            <div class="alicyn-lab-inline-actions"><button class="alicyn-lab-button alicyn-lab-button-secondary" type="button" data-lab-route="lean">Ver ruta</button><a class="alicyn-lab-text-link" data-lab-whatsapp-route="lean" href="https://wa.me/{{ section.settings.whatsapp_number | default: '525542388056' }}?text=Hola%2C%20vengo%20de%20Alicyn%20Lab.%20Quiero%20orientaci%C3%B3n%20sobre%20Lean%20Research." target="_blank" rel="noopener">WhatsApp</a></div>
+            <div class="alicyn-lab-inline-actions"><button class="alicyn-lab-button alicyn-lab-button-secondary" type="button" data-lab-route="lean">Ver ruta</button><button class="alicyn-lab-text-link" type="button" data-lab-go="comparar">Comparar</button><a class="alicyn-lab-text-link" data-lab-whatsapp-route="lean" href="https://wa.me/{{ section.settings.whatsapp_number | default: '525542388056' }}?text=Hola%2C%20vengo%20de%20Alicyn%20Lab.%20Quiero%20orientaci%C3%B3n%20sobre%20Lean%20Research." target="_blank" rel="noopener">WhatsApp</a></div>
           </article>
           <article class="alicyn-lab-route-card" data-lab-route-card="recovery">
             <div class="alicyn-lab-route-top"><span class="alicyn-lab-objective-icon"><svg class="alicyn-lab-icon" viewBox="0 0 24 24"><path d="M8 4v7a4 4 0 0 0 8 0V4M8 18h8M12 15v6"/></svg></span><div><h3>Recovery Lab</h3><span class="alicyn-lab-route-level">Intermedio</span></div></div>
             <p>BPC-157 + TB-500<br>Respuesta tisular experimental.</p>
-            <div class="alicyn-lab-inline-actions"><button class="alicyn-lab-button alicyn-lab-button-secondary" type="button" data-lab-route="recovery">Ver ruta</button><a class="alicyn-lab-text-link" data-lab-whatsapp-route="recovery" href="https://wa.me/{{ section.settings.whatsapp_number | default: '525542388056' }}?text=Hola%2C%20vengo%20de%20Alicyn%20Lab.%20Quiero%20orientaci%C3%B3n%20sobre%20Recovery%20Lab." target="_blank" rel="noopener">WhatsApp</a></div>
+            <div class="alicyn-lab-inline-actions"><button class="alicyn-lab-button alicyn-lab-button-secondary" type="button" data-lab-route="recovery">Ver ruta</button><button class="alicyn-lab-text-link" type="button" data-lab-go="comparar">Comparar</button><a class="alicyn-lab-text-link" data-lab-whatsapp-route="recovery" href="https://wa.me/{{ section.settings.whatsapp_number | default: '525542388056' }}?text=Hola%2C%20vengo%20de%20Alicyn%20Lab.%20Quiero%20orientaci%C3%B3n%20sobre%20Recovery%20Lab." target="_blank" rel="noopener">WhatsApp</a></div>
           </article>
           <article class="alicyn-lab-route-card" data-lab-route-card="skin">
             <div class="alicyn-lab-route-top"><span class="alicyn-lab-objective-icon"><svg class="alicyn-lab-icon" viewBox="0 0 24 24"><path d="M12 3c5 0 8 4 8 9s-3 9-8 9-8-4-8-9 3-9 8-9ZM9 11h.1M15 11h.1"/></svg></span><div><h3>Skin Matrix</h3><span class="alicyn-lab-route-level">Inicial / intermedio</span></div></div>
             <p>GHK-Cu 100 mg + NAD+ 1000 mg<br>Skin science y señalización.</p>
-            <div class="alicyn-lab-inline-actions"><button class="alicyn-lab-button alicyn-lab-button-secondary" type="button" data-lab-route="skin">Ver ruta</button><a class="alicyn-lab-text-link" data-lab-whatsapp-route="skin" href="https://wa.me/{{ section.settings.whatsapp_number | default: '525542388056' }}?text=Hola%2C%20vengo%20de%20Alicyn%20Lab.%20Quiero%20orientaci%C3%B3n%20sobre%20Skin%20Matrix." target="_blank" rel="noopener">WhatsApp</a></div>
+            <div class="alicyn-lab-inline-actions"><button class="alicyn-lab-button alicyn-lab-button-secondary" type="button" data-lab-route="skin">Ver ruta</button><button class="alicyn-lab-text-link" type="button" data-lab-go="comparar">Comparar</button><a class="alicyn-lab-text-link" data-lab-whatsapp-route="skin" href="https://wa.me/{{ section.settings.whatsapp_number | default: '525542388056' }}?text=Hola%2C%20vengo%20de%20Alicyn%20Lab.%20Quiero%20orientaci%C3%B3n%20sobre%20Skin%20Matrix." target="_blank" rel="noopener">WhatsApp</a></div>
           </article>
           <article class="alicyn-lab-route-card" data-lab-route-card="performance">
             <div class="alicyn-lab-route-top"><span class="alicyn-lab-objective-icon"><svg class="alicyn-lab-icon" viewBox="0 0 24 24"><path d="m13 2-8 12h7l-1 8 8-12h-7l1-8Z"/></svg></span><div><h3>Performance Axis</h3><span class="alicyn-lab-route-level">Avanzado</span></div></div>
             <p>MOTS-C + CJC-1295 sin DAC + Ipamorelin<br>Señalización experimental avanzada.</p>
-            <div class="alicyn-lab-inline-actions"><button class="alicyn-lab-button alicyn-lab-button-secondary" type="button" data-lab-route="performance">Ver ruta</button><a class="alicyn-lab-text-link" data-lab-whatsapp-route="performance" href="https://wa.me/{{ section.settings.whatsapp_number | default: '525542388056' }}?text=Hola%2C%20vengo%20de%20Alicyn%20Lab.%20Quiero%20orientaci%C3%B3n%20sobre%20Performance%20Axis." target="_blank" rel="noopener">WhatsApp</a></div>
+            <div class="alicyn-lab-inline-actions"><button class="alicyn-lab-button alicyn-lab-button-secondary" type="button" data-lab-route="performance">Ver ruta</button><button class="alicyn-lab-text-link" type="button" data-lab-go="comparar">Comparar</button><a class="alicyn-lab-text-link" data-lab-whatsapp-route="performance" href="https://wa.me/{{ section.settings.whatsapp_number | default: '525542388056' }}?text=Hola%2C%20vengo%20de%20Alicyn%20Lab.%20Quiero%20orientaci%C3%B3n%20sobre%20Performance%20Axis." target="_blank" rel="noopener">WhatsApp</a></div>
           </article>
         </div>
       </div>
 
-      <div id="alicyn-lab-comparador-{{ section.id }}" class="alicyn-lab-section" data-lab-nav-section="comparar">
+      <div id="alicyn-lab-comparador-{{ section.id }}" class="alicyn-lab-section" data-lab-nav-section="mas" data-lab-screen="mas" hidden>
         <p class="alicyn-lab-kicker">Comparador</p>
         <h2 class="alicyn-lab-heading">Compara antes de elegir</h2>
         <p class="alicyn-lab-section-copy">Los productos relacionados con tu ruta aparecen resaltados.</p>
@@ -1517,7 +1909,8 @@
         </div>
       </div>
 
-      <div id="catalogo-peptidos-investigacion" class="alicyn-lab-section" data-lab-nav-section="productos">
+      <div id="catalogo-peptidos-investigacion" class="alicyn-lab-section" data-lab-nav-section="productos" data-lab-screen="productos" hidden>
+        <button class="alicyn-care-back" type="button" data-lab-go="objetivos">← Volver a mi ruta</button>
         <p class="alicyn-lab-kicker">Colección individual</p>
         <h2 class="alicyn-lab-heading">Péptidos Aesthetic Labs</h2>
         <p class="alicyn-lab-section-copy">Explora presentaciones reales por eje técnico. Las compras disponibles se procesan mediante el carrito de Shopify.</p>
@@ -1549,6 +1942,12 @@
                   assign lab_product_url = lab_product.url
                   assign lab_variant = lab_product.selected_or_first_available_variant
                 endif
+                assign lab_level = 'Avanzado'
+                if lab_product_url contains 'nad-1000' or lab_product_url contains 'ghk-cu' or lab_product_url contains 'aod-9604'
+                  assign lab_level = 'Inicial / intermedio'
+                elsif lab_product_url contains 'mots-c' or lab_product_url contains 'bpc-157' or lab_product_url contains 'tb-500'
+                  assign lab_level = 'Intermedio'
+                endif
               %}
               <article
                 class="alicyn-lab-card"
@@ -1575,6 +1974,7 @@
                 </p>
                 <p class="alicyn-lab-presentation">{{ block.settings.product_presentation | escape }}</p>
                 <p class="alicyn-lab-focus"><strong>Eje:</strong> {{ block.settings.product_focus | escape }}</p>
+                <p class="alicyn-lab-focus"><strong>Nivel:</strong> {{ lab_level }}</p>
                 <p class="alicyn-lab-description">{{ block.settings.product_description | escape }}</p>
                 <div class="alicyn-lab-card-actions">
                   {% if section.settings.show_card_links %}
@@ -1598,7 +1998,7 @@
         </div>
       </div>
 
-      <div id="protocolos-investigacion" class="alicyn-lab-section">
+      <div id="protocolos-investigacion" class="alicyn-lab-section" data-lab-screen="mas" hidden>
         <p class="alicyn-lab-kicker">Paquetes técnicos</p>
         <h2 class="alicyn-lab-heading">Protocolos de investigación</h2>
         <p class="alicyn-lab-section-copy">Paquetes comerciales organizados por eje. No son instrucciones, cantidades ni recomendaciones para personas o animales.</p>
@@ -1626,7 +2026,7 @@
         </div>
       </div>
 
-      <div class="alicyn-lab-section">
+      <div class="alicyn-lab-section" data-lab-screen="mas" hidden>
         <p class="alicyn-lab-kicker">Información educativa</p>
         <h2 class="alicyn-lab-heading">Del interés técnico a la comparación</h2>
         <p class="alicyn-lab-section-copy">Una secuencia clara para leer la colección sin confundir contexto comercial con aplicación.</p>
@@ -1646,17 +2046,17 @@
       </div>
 
       {% if section.settings.show_disclaimer %}
-        <div class="alicyn-lab-section">
+        <div class="alicyn-lab-section" data-lab-screen="mas" hidden>
           <div class="alicyn-lab-warning-box">
             <p class="alicyn-lab-kicker">Información importante</p>
             <h2 class="alicyn-lab-heading">Antes de comprar</h2>
-            <p>Los péptidos aquí presentados son productos de investigación. La información es educativa, descriptiva y comercial. No sustituye orientación profesional. No se realizan promesas de diagnóstico, tratamiento, cura o prevención de enfermedades. No usar como indicación médica ni protocolo de consumo. Productos no destinados al consumo humano o animal.</p>
+            <p>Los péptidos aquí presentados son productos de investigación. La información es educativa, descriptiva y comercial. No sustituye la orientación de un profesional de la salud. No constituye diagnóstico, tratamiento, cura, prevención ni protocolo de uso. No destinados al consumo humano o animal.</p>
           </div>
         </div>
       {% endif %}
 
       {% if section.settings.enable_faq %}
-        <div id="alicyn-lab-faq-{{ section.id }}" class="alicyn-lab-section">
+        <div id="alicyn-lab-faq-{{ section.id }}" class="alicyn-lab-section" data-lab-screen="mas" hidden>
           <p class="alicyn-lab-kicker">Dudas de compra</p>
           <h2 class="alicyn-lab-heading">Preguntas frecuentes</h2>
           <div class="alicyn-lab-faq-list">
@@ -1694,7 +2094,7 @@
         </div>
       {% endif %}
 
-      <div class="alicyn-lab-final">
+      <div class="alicyn-lab-final" data-lab-screen="mas" hidden>
         <div class="alicyn-lab-final-card alicyn-lab-glass">
           <h2>Explora Alicyn Lab con claridad</h2>
           <p>Compara productos por eje de investigación o consulta una ruta antes de comprar.</p>
@@ -1708,12 +2108,17 @@
   </div>
 
   {% if section.settings.show_bottom_navigation %}
-    <nav class="alicyn-lab-bottom-nav" aria-label="Navegación rápida de Alicyn Lab" data-lab-bottom-nav>
-      <button class="is-active" type="button" data-lab-nav="inicio"><svg class="alicyn-lab-icon" viewBox="0 0 24 24"><path d="m4 11 8-7 8 7v9H4v-9ZM9 20v-6h6v6"/></svg><span>Inicio</span></button>
-      <button type="button" data-lab-nav="objetivos"><svg class="alicyn-lab-icon" viewBox="0 0 24 24"><path d="M12 21a9 9 0 1 0-9-9 9 9 0 0 0 9 9Z"/><path d="m14.5 9.5-1.5 3-3 1.5 1.5-3 3-1.5Z"/></svg><span>Objetivos</span></button>
-      <button type="button" data-lab-nav="quiz"><svg class="alicyn-lab-icon" viewBox="0 0 24 24"><path d="M9 4h6l1 2h3v15H5V6h3l1-2Z"/><path d="M9 11h6M9 15h4"/></svg><span>Quiz</span></button>
-      <button type="button" data-lab-nav="productos"><svg class="alicyn-lab-icon" viewBox="0 0 24 24"><path d="M7 7h13l-1.5 8h-10L6 4H3"/><circle cx="9" cy="19" r="1.5"/><circle cx="17" cy="19" r="1.5"/></svg><span>Productos</span></button>
-      <button type="button" data-lab-nav="comparar"><svg class="alicyn-lab-icon" viewBox="0 0 24 24"><path d="M7 4v16M17 4v16M4 8h6M14 13h6"/></svg><span>Más</span></button>
+    <nav class="alicyn-lab-bottom-nav" aria-label="Navegación rápida de Alicyn OS" data-lab-bottom-nav>
+      <button class="is-active" type="button" data-mode-nav="care" data-care-open="inicio"><svg class="alicyn-lab-icon" viewBox="0 0 24 24"><path d="m4 11 8-7 8 7v9H4v-9ZM9 20v-6h6v6"/></svg><span>Inicio</span></button>
+      <button type="button" data-mode-nav="care" data-care-open="guia"><svg class="alicyn-lab-icon" viewBox="0 0 24 24"><path d="M8 3h8v18H8zM10 8h4M10 12h4"/></svg><span>Guía</span></button>
+      <button type="button" data-mode-nav="care" data-care-open="packs"><svg class="alicyn-lab-icon" viewBox="0 0 24 24"><path d="m4 7 8-4 8 4-8 4-8-4ZM4 7v10l8 4 8-4V7"/></svg><span>Packs</span></button>
+      <button type="button" data-mode-nav="care" data-care-open="faq"><svg class="alicyn-lab-icon" viewBox="0 0 24 24"><path d="M12 21a9 9 0 1 0-9-9 9 9 0 0 0 9 9ZM10 9a2 2 0 0 1 4 1c0 1.5-2 1.6-2 3M12 17h.1"/></svg><span>FAQ</span></button>
+      <button type="button" data-mode-nav="care" data-care-open="compra"><svg class="alicyn-lab-icon" viewBox="0 0 24 24"><path d="M7 7h13l-1.5 8h-10L6 4H3"/><circle cx="9" cy="19" r="1.5"/><circle cx="17" cy="19" r="1.5"/></svg><span>Comprar</span></button>
+      <button class="is-active" type="button" data-mode-nav="peptides" data-lab-nav="inicio" hidden><svg class="alicyn-lab-icon" viewBox="0 0 24 24"><path d="m4 11 8-7 8 7v9H4v-9ZM9 20v-6h6v6"/></svg><span>Inicio</span></button>
+      <button type="button" data-mode-nav="peptides" data-lab-nav="objetivos" hidden><svg class="alicyn-lab-icon" viewBox="0 0 24 24"><path d="M12 21a9 9 0 1 0-9-9 9 9 0 0 0 9 9Z"/><path d="m14.5 9.5-1.5 3-3 1.5 1.5-3 3-1.5Z"/></svg><span>Objetivos</span></button>
+      <button type="button" data-mode-nav="peptides" data-lab-nav="quiz" hidden><svg class="alicyn-lab-icon" viewBox="0 0 24 24"><path d="M9 4h6l1 2h3v15H5V6h3l1-2Z"/><path d="M9 11h6M9 15h4"/></svg><span>Quiz</span></button>
+      <button type="button" data-mode-nav="peptides" data-lab-nav="productos" hidden><svg class="alicyn-lab-icon" viewBox="0 0 24 24"><path d="M7 7h13l-1.5 8h-10L6 4H3"/><circle cx="9" cy="19" r="1.5"/><circle cx="17" cy="19" r="1.5"/></svg><span>Productos</span></button>
+      <button type="button" data-mode-nav="peptides" data-lab-nav="mas" hidden><svg class="alicyn-lab-icon" viewBox="0 0 24 24"><path d="M7 4v16M17 4v16M4 8h6M14 13h6"/></svg><span>Más</span></button>
     </nav>
   {% endif %}
   </div>
@@ -1731,6 +2136,7 @@
         objetivos: '#alicyn-lab-objetivos-{{ section.id }}',
         quiz: '#alicyn-lab-quiz-{{ section.id }}',
         productos: '#catalogo-peptidos-investigacion',
+        mas: '#alicyn-lab-rutas-{{ section.id }}',
         comparar: '#alicyn-lab-comparador-{{ section.id }}'
       };
       var routes = {
@@ -1739,7 +2145,7 @@
           primary: 'NAD+ 1000 mg',
           complement: 'MOTS-C 10 mg',
           level: 'Inicial / intermedio',
-          copy: 'Ruta para explorar investigación sobre energía celular, metabolismo y bienestar avanzado.',
+          copy: 'Ruta de investigación organizada para comparar energía celular y metabolismo.',
           products: ['nad', 'mots'],
           primaryUrl: '/products/aesthetic-labs-nad-1000-mg',
           whatsapp: 'Hola, vengo de Alicyn Lab. Me recomendó la ruta Cell Reset con NAD+ y MOTS-C. ¿Me pueden orientar?'
@@ -1749,7 +2155,7 @@
           primary: 'AOD-9604 10 mg',
           complement: 'MOTS-C 10 mg',
           level: 'Inicial / intermedio',
-          copy: 'Ruta para explorar investigación sobre metabolismo y composición corporal desde un enfoque técnico.',
+          copy: 'Ruta de investigación organizada para comparar metabolismo y composición corporal.',
           products: ['aod', 'mots'],
           primaryUrl: '/products/aesthetic-labs-aod-9604-10-mg',
           whatsapp: 'Hola, vengo de Alicyn Lab. Me recomendó la ruta Lean Research con AOD-9604 y MOTS-C. ¿Me pueden orientar?'
@@ -1759,7 +2165,7 @@
           primary: 'BPC-157',
           complement: 'TB-500',
           level: 'Intermedio',
-          copy: 'Ruta enfocada en investigación sobre respuesta tisular y señalización en contextos técnicos.',
+          copy: 'Ruta de investigación organizada para comparar respuesta tisular y señalización.',
           products: ['bpc', 'tb'],
           primaryUrl: '/products/aesthetic-labs-bpc-157-10-mg',
           whatsapp: 'Hola, vengo de Alicyn Lab. Me recomendó la ruta Recovery Lab con BPC-157 y TB-500. ¿Me pueden orientar?'
@@ -1769,7 +2175,7 @@
           primary: 'BPC-157',
           complement: 'TB-500 + CJC-1295 sin DAC + Ipamorelin',
           level: 'Intermedio / avanzado',
-          copy: 'Ruta para comparar investigación en respuesta tisular y señalización experimental asociada al esfuerzo.',
+          copy: 'Ruta de investigación para comparar respuesta tisular y señalización asociada al esfuerzo.',
           products: ['bpc', 'tb', 'cjc', 'ipa'],
           primaryUrl: '/products/aesthetic-labs-bpc-157-10-mg',
           whatsapp: 'Hola, vengo de Alicyn Lab. Me interesó el eje de recuperación muscular con BPC-157, TB-500, CJC-1295 e Ipamorelin. ¿Me pueden orientar?'
@@ -1779,7 +2185,7 @@
           primary: 'GHK-Cu 100 mg',
           complement: 'NAD+ 1000 mg',
           level: 'Inicial / intermedio',
-          copy: 'Ruta para explorar investigación en piel, colágeno, señalización celular y estética avanzada.',
+          copy: 'Ruta de investigación organizada para comparar skin science y señalización celular.',
           products: ['ghk', 'nad'],
           primaryUrl: '/products/aesthetic-labs-ghk-cu-100-mg',
           whatsapp: 'Hola, vengo de Alicyn Lab. Me recomendó la ruta Skin Matrix con GHK-Cu y NAD+. ¿Me pueden orientar?'
@@ -1789,7 +2195,7 @@
           primary: 'MOTS-C 10 mg',
           complement: 'CJC-1295 sin DAC + Ipamorelin',
           level: 'Avanzado',
-          copy: 'Ruta para comparar señalización experimental avanzada, energía celular y metabolismo.',
+          copy: 'Ruta de investigación organizada para comparar señalización y energía celular.',
           products: ['mots', 'cjc', 'ipa'],
           primaryUrl: '/products/aesthetic-labs-mots-c-10-mg',
           whatsapp: 'Hola, vengo de Alicyn Lab. Me recomendó la ruta Performance Axis con MOTS-C, CJC-1295 e Ipamorelin. ¿Me pueden orientar?'
@@ -1799,7 +2205,7 @@
           primary: 'NAD+ 1000 mg',
           complement: 'MOTS-C 10 mg',
           level: 'Inicial',
-          copy: 'Ruta inicial para explorar energía celular y metabolismo con información educativa antes de elegir.',
+          copy: 'Empieza simple: compara energía celular y metabolismo antes de elegir.',
           products: ['nad', 'mots'],
           primaryUrl: '/products/aesthetic-labs-nad-1000-mg',
           whatsapp: 'Hola, vengo de Alicyn Lab. Quiero comenzar con la ruta Starter Lab y comparar NAD+ con MOTS-C. ¿Me pueden orientar?'
@@ -1824,6 +2230,9 @@
       };
       var activeRoute = 'cell';
       var activeFilter = 'all';
+      var activeMode = 'care';
+      var activeLabScreen = 'inicio';
+      var activeCarePanel = 'inicio';
       var quizStep = 0;
       var quizFields = root.querySelectorAll('[data-question]');
       var bottomNav = root.querySelector('[data-lab-bottom-nav]');
@@ -1831,9 +2240,39 @@
       var traditionalChat = document.querySelector('.alicyn-page .chat-widget');
       var appInView = false;
 
-      function scrollToArea(key) {
-        var target = root.querySelector(destinations[key]);
+      function scrollTo(target) {
         if (target) target.scrollIntoView({ behavior: reducedMotion ? 'auto' : 'smooth', block: 'start' });
+      }
+
+      function showLabScreen(key, shouldScroll) {
+        var screen = key === 'comparar' ? 'mas' : key;
+        if (!destinations[screen]) screen = 'inicio';
+        activeLabScreen = screen;
+        root.querySelectorAll('[data-lab-screen]').forEach(function (panel) {
+          panel.hidden = panel.dataset.labScreen !== screen;
+        });
+        root.querySelectorAll('[data-lab-nav]').forEach(function (button) {
+          button.classList.toggle('is-active', button.dataset.labNav === screen);
+        });
+        var target = root.querySelector(destinations[key] || destinations[screen]);
+        if (shouldScroll !== false) scrollTo(target);
+      }
+
+      function showCarePanel(key, shouldScroll) {
+        activeCarePanel = key || 'inicio';
+        root.querySelectorAll('[data-care-panel]').forEach(function (panel) {
+          panel.hidden = panel.dataset.carePanel !== activeCarePanel;
+        });
+        root.querySelectorAll('[data-care-open]').forEach(function (button) {
+          if (button.hasAttribute('data-mode-nav')) {
+            button.classList.toggle('is-active', button.dataset.careOpen === activeCarePanel);
+          }
+        });
+        if (shouldScroll !== false) scrollTo(root.querySelector('[data-care-panel="' + activeCarePanel + '"]'));
+      }
+
+      function scrollToArea(key) {
+        showLabScreen(key);
       }
 
       function whatsApp(message) {
@@ -1913,33 +2352,43 @@
         });
         root.querySelector('[data-lab-map-products-action]').onclick = function () {
           setRoute(axis.route, true);
-          scrollToArea('productos');
+          showLabScreen('objetivos');
         };
       }
 
-      function selectView(viewKey) {
+      function selectView(viewKey, shouldScroll) {
+        activeMode = viewKey === 'peptides' ? 'peptides' : 'care';
         root.querySelectorAll('[data-lab-view-trigger]').forEach(function (button) {
-          var selected = button.dataset.labViewTrigger === viewKey;
+          var selected = button.dataset.labViewTrigger === activeMode;
           button.setAttribute('aria-selected', String(selected));
         });
         root.querySelectorAll('[data-lab-view]').forEach(function (panel) {
-          panel.hidden = panel.dataset.labView !== viewKey;
+          panel.hidden = panel.dataset.labView !== activeMode;
         });
+        root.querySelectorAll('[data-menu-mode]').forEach(function (menu) {
+          menu.hidden = menu.dataset.menuMode !== activeMode;
+        });
+        root.querySelectorAll('[data-mode-nav]').forEach(function (button) {
+          button.hidden = button.dataset.modeNav !== activeMode;
+        });
+        root.querySelector('[data-app-brand]').textContent = activeMode === 'care' ? 'ALICYN CARE' : 'ALICYN LAB';
+        root.querySelector('[data-app-tagline]').textContent = activeMode === 'care' ? 'Cuidado · Confianza · Claridad' : 'Ciencia · Bienestar · Evolución';
+        if (activeMode === 'care') showCarePanel(activeCarePanel, shouldScroll);
+        else showLabScreen(activeLabScreen, shouldScroll);
         syncBottomNav();
-        try { window.localStorage.setItem('alicynLabCollection', viewKey); } catch (error) {}
+        try { window.localStorage.setItem('alicynOSMode', activeMode); } catch (error) {}
       }
 
       function syncBottomNav() {
         var mobile = window.matchMedia && window.matchMedia('(max-width: 749px)').matches;
-        var peptides = !root.querySelector('[data-lab-view="peptides"]').hidden;
-        var labVisible = Boolean(peptides && appInView);
-        var visible = Boolean(bottomNav && mobile && labVisible);
+        var appVisible = Boolean(appInView);
+        var visible = Boolean(bottomNav && mobile && appVisible);
         if (bottomNav) bottomNav.classList.toggle('is-visible', visible);
         if (traditionalSticky) {
           traditionalSticky.hidden = visible;
           traditionalSticky.style.display = visible ? 'none' : '';
         }
-        if (traditionalChat) traditionalChat.style.display = labVisible ? 'none' : '';
+        if (traditionalChat) traditionalChat.style.display = appVisible ? 'none' : '';
       }
 
       function showQuizStep(step) {
@@ -1970,11 +2419,19 @@
         } else {
           note.hidden = true;
         }
-        scrollToArea('objetivos');
+        showLabScreen('objetivos');
       }
 
       root.querySelectorAll('[data-lab-view-trigger]').forEach(function (button) {
         button.addEventListener('click', function () { selectView(button.dataset.labViewTrigger); });
+      });
+
+      root.querySelectorAll('[data-care-open]').forEach(function (button) {
+        button.addEventListener('click', function () {
+          showCarePanel(button.dataset.careOpen);
+          root.querySelector('[data-lab-quick-menu]').hidden = true;
+          root.querySelector('[data-lab-menu-toggle]').setAttribute('aria-expanded', 'false');
+        });
       });
 
       root.querySelector('[data-lab-menu-toggle]').addEventListener('click', function (event) {
@@ -1992,13 +2449,17 @@
       });
 
       root.querySelectorAll('[data-lab-go]').forEach(function (button) {
-        button.addEventListener('click', function () { scrollToArea(button.dataset.labGo); });
+        button.addEventListener('click', function () {
+          showLabScreen(button.dataset.labGo);
+          root.querySelector('[data-lab-quick-menu]').hidden = true;
+          root.querySelector('[data-lab-menu-toggle]').setAttribute('aria-expanded', 'false');
+        });
       });
 
       root.querySelectorAll('[data-lab-route]').forEach(function (button) {
         button.addEventListener('click', function () {
           setRoute(button.dataset.labRoute, true);
-          if (button.closest('[data-lab-route-card]')) scrollToArea('objetivos');
+          if (button.closest('[data-lab-route-card]')) showLabScreen('objetivos');
         });
       });
 
@@ -2046,7 +2507,7 @@
       });
 
       root.querySelectorAll('[data-lab-nav]').forEach(function (button) {
-        button.addEventListener('click', function () { scrollToArea(button.dataset.labNav); });
+        button.addEventListener('click', function () { showLabScreen(button.dataset.labNav); });
       });
 
       if ('IntersectionObserver' in window) {
@@ -2056,25 +2517,17 @@
         }, { rootMargin: '0px 0px -10% 0px', threshold: 0.02 });
         appObserver.observe(root);
 
-        var observer = new IntersectionObserver(function (entries) {
-          entries.forEach(function (entry) {
-            if (!entry.isIntersecting) return;
-            var key = entry.target.dataset.labNavSection;
-            root.querySelectorAll('[data-lab-nav]').forEach(function (button) {
-              button.classList.toggle('is-active', button.dataset.labNav === key);
-            });
-          });
-        }, { rootMargin: '-20% 0px -65% 0px', threshold: 0.05 });
-        root.querySelectorAll('[data-lab-nav-section]').forEach(function (section) { observer.observe(section); });
       } else {
         appInView = true;
         syncBottomNav();
       }
       window.addEventListener('resize', syncBottomNav);
 
-      var savedView = 'peptides';
-      try { savedView = window.localStorage.getItem('alicynLabCollection') || 'peptides'; } catch (error) {}
-      selectView(savedView === 'care' ? 'care' : 'peptides');
+      var savedView = '{{ section.settings.default_mode | default: "care" }}';
+      try { savedView = window.localStorage.getItem('alicynOSMode') || savedView; } catch (error) {}
+      showCarePanel('inicio', false);
+      showLabScreen('inicio', false);
+      selectView(savedView === 'peptides' ? 'peptides' : 'care', false);
       setAxis('energy');
       setRoute('cell', false);
       updateWhatsApp('cell');
@@ -2084,7 +2537,7 @@
 
 {% schema %}
 {
-  "name": "Alicyn Lab Péptidos",
+  "name": "Alicyn OS",
   "max_blocks": 50,
   "settings": [
     {
@@ -2124,6 +2577,16 @@
       "default": "525542388056"
     },
     {
+      "type": "select",
+      "id": "default_mode",
+      "label": "Modo inicial para nuevos visitantes",
+      "default": "care",
+      "options": [
+        { "value": "care", "label": "Antiséptico / Alicyn Care" },
+        { "value": "peptides", "label": "Péptidos / Alicyn Lab" }
+      ]
+    },
+    {
       "type": "text",
       "id": "antiseptic_product_link",
       "label": "Enlace de Alicyn antiséptico",
@@ -2134,6 +2597,36 @@
       "id": "care_guide_link",
       "label": "Enlace guía de cuidado",
       "default": "/#como-usarlo"
+    },
+    {
+      "type": "text",
+      "id": "care_single_handle",
+      "label": "Handle Alicyn 100 ml",
+      "default": "alicyn-solucion-antiseptica"
+    },
+    {
+      "type": "text",
+      "id": "care_pack_2_handle",
+      "label": "Handle pack 2",
+      "default": "alicyn-pack-2"
+    },
+    {
+      "type": "text",
+      "id": "care_pack_3_handle",
+      "label": "Handle pack 3",
+      "default": "alicyn-pack-3"
+    },
+    {
+      "type": "text",
+      "id": "care_pack_4_handle",
+      "label": "Handle pack 4",
+      "default": "alicyn-pack-4"
+    },
+    {
+      "type": "text",
+      "id": "care_pack_5_handle",
+      "label": "Handle pack 5",
+      "default": "alicyn-pack-5"
     },
     {
       "type": "image_picker",
@@ -2240,7 +2733,7 @@
   ],
   "presets": [
     {
-      "name": "Alicyn Lab Péptidos"
+      "name": "Alicyn OS"
     }
   ]
 }

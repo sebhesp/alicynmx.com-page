@@ -11,6 +11,7 @@
   "sections": {
     "alicyn_landing": {
       "type": "alicyn-landing",
+      "disabled": true,
       "blocks": {
         "trust_formula": {
           "type": "trust_badge",
@@ -978,8 +979,14 @@
         "primary_button_link": "/collections/peptidos",
         "secondary_button_label": "Explorar por objetivo",
         "whatsapp_number": "525542388056",
+        "default_mode": "care",
         "antiseptic_product_link": "/products/alicyn-solucion-antiseptica",
         "care_guide_link": "/#como-usarlo",
+        "care_single_handle": "alicyn-solucion-antiseptica",
+        "care_pack_2_handle": "alicyn-pack-2",
+        "care_pack_3_handle": "alicyn-pack-3",
+        "care_pack_4_handle": "alicyn-pack-4",
+        "care_pack_5_handle": "alicyn-pack-5",
         "background_mode": "dark",
         "accent_color": "#956DFF",
         "show_disclaimer": true,
