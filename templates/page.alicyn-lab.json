@@ -384,15 +384,19 @@
         "faq_mexico"
       ],
       "settings": {
-        "heading": "Alicyn Lab: Péptidos de Investigación para Belleza, Wellness y Longevidad Celular",
-        "subheading": "Explora compuestos de investigación Aesthetic Labs orientados al estudio de la piel, el bienestar celular, la señalización biológica y el cuidado avanzado desde una perspectiva técnica.",
+        "heading": "Encuentra tu eje de investigación celular",
+        "subheading": "Explora péptidos Aesthetic Labs según ejes de energía, composición corporal, respuesta tisular, skin science y bienestar avanzado.",
         "primary_button_label": "Ver colección de péptidos",
         "primary_button_link": "/collections/peptidos",
-        "secondary_button_label": "Conocer protocolos de investigación",
+        "secondary_button_label": "Explorar por objetivo",
+        "whatsapp_number": "525542388056",
+        "antiseptic_product_link": "/products/alicyn-solucion-antiseptica",
+        "care_guide_link": "/#como-usarlo",
         "background_mode": "dark",
-        "accent_color": "#8FBFC3",
+        "accent_color": "#956DFF",
         "show_disclaimer": true,
         "enable_faq": true,
+        "show_bottom_navigation": true,
         "show_card_links": true,
         "embed_as_home_section": false
       }
