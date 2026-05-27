@@ -272,6 +272,11 @@
       padding: 24px 18px;
     }
 
+    #AlicynLab-{{ section.id }} .alicyn-care-copy,
+    #AlicynLab-{{ section.id }} .alicyn-care-purchase-block {
+      min-width: 0;
+    }
+
     #AlicynLab-{{ section.id }} .alicyn-care-hero h1 {
       margin-bottom: 10px;
       font-size: clamp(2rem, 9vw, 3.5rem);
@@ -285,7 +290,7 @@
     #AlicynLab-{{ section.id }} .alicyn-care-product-stage {
       position: relative;
       display: grid;
-      min-height: 270px;
+      min-height: 215px;
       place-items: center;
       border-radius: 20px;
       background: radial-gradient(circle at center, rgba(114, 214, 231, 0.15), transparent 62%);
@@ -296,7 +301,7 @@
       display: block;
       width: auto;
       max-width: min(68%, 230px);
-      max-height: 270px;
+      max-height: 215px;
       object-fit: contain;
       filter: drop-shadow(0 20px 26px rgba(0, 0, 0, 0.42));
     }
@@ -1340,10 +1345,33 @@
     @media (min-width: 560px) {
       #AlicynLab-{{ section.id }} .alicyn-care-hero {
         grid-template-columns: minmax(0, 1fr) minmax(190px, 280px);
+        grid-template-areas:
+          "copy visual"
+          "purchase visual"
+          "dashboard dashboard";
+        align-items: center;
+      }
+
+      #AlicynLab-{{ section.id }} .alicyn-care-copy {
+        grid-area: copy;
+      }
+
+      #AlicynLab-{{ section.id }} .alicyn-care-purchase-block {
+        grid-area: purchase;
+      }
+
+      #AlicynLab-{{ section.id }} .alicyn-care-product-stage {
+        grid-area: visual;
+        min-height: 300px;
+      }
+
+      #AlicynLab-{{ section.id }} .alicyn-care-product-image {
+        max-height: 300px;
       }
 
       #AlicynLab-{{ section.id }} .alicyn-care-dashboard {
         grid-column: 1 / -1;
+        grid-area: dashboard;
         grid-template-columns: repeat(3, minmax(0, 1fr));
       }
 
@@ -1511,10 +1539,19 @@
 
     <div id="alicyn-lab-care-view-{{ section.id }}" class="alicyn-lab-care" role="tabpanel" data-lab-view="care">
       <section class="alicyn-care-hero alicyn-lab-glass" data-care-panel="inicio" aria-label="Alicyn Care">
-        <div>
+        <div class="alicyn-care-copy">
           <p class="alicyn-lab-kicker">Alicyn Care · 100 ml</p>
           <h1>Cuida tu piercing sin moverlo de más.</h1>
           <p class="alicyn-lab-section-copy">Para momentos de roce, sudor, presión, cambio de joyería o sensibilidad común.</p>
+        </div>
+        <div class="alicyn-care-product-stage">
+          {% if section.settings.care_product_image != blank %}
+            {{ section.settings.care_product_image | image_url: width: 620 | image_tag: class: 'alicyn-care-product-image', loading: 'eager', widths: '240, 400, 620', sizes: '(min-width: 750px) 260px, 54vw', alt: section.settings.care_product_image_alt }}
+          {% else %}
+            <img class="alicyn-care-product-image" src="{{ 'alicyn-product.png' | asset_url }}" alt="{{ section.settings.care_product_image_alt | escape }}" width="360" height="520" loading="eager">
+          {% endif %}
+        </div>
+        <div class="alicyn-care-purchase-block">
           <div class="alicyn-care-price-row">
             <strong>{% if care_single_product != blank %}{{ care_single_product.price | money }}{% else %}$350 MXN{% endif %}</strong>
             <span>Uso tópico externo · envío por Skydrop en checkout</span>
@@ -1532,13 +1569,6 @@
             <button class="alicyn-lab-button alicyn-lab-button-secondary" type="button" data-care-open="guia">Ver guía rápida</button>
             <a class="alicyn-lab-button alicyn-lab-button-tertiary" href="{{ care_whatsapp }}" target="_blank" rel="noopener">Tengo una duda</a>
           </div>
-        </div>
-        <div class="alicyn-care-product-stage">
-          {% if section.settings.care_product_image != blank %}
-            {{ section.settings.care_product_image | image_url: width: 620 | image_tag: class: 'alicyn-care-product-image', loading: 'eager', widths: '240, 400, 620', sizes: '(min-width: 750px) 260px, 54vw', alt: section.settings.care_product_image_alt }}
-          {% else %}
-            <img class="alicyn-care-product-image" src="{{ 'alicyn-product.png' | asset_url }}" alt="{{ section.settings.care_product_image_alt | escape }}" width="360" height="520" loading="eager">
-          {% endif %}
         </div>
         <div class="alicyn-care-dashboard" aria-label="Accesos rápidos de Alicyn Care">
           <button class="alicyn-care-tile" type="button" data-care-open="compra"><svg class="alicyn-lab-icon" viewBox="0 0 24 24"><path d="M7 7h13l-1.5 8h-10L6 4H3"/><circle cx="9" cy="19" r="1.5"/><circle cx="17" cy="19" r="1.5"/></svg><strong>Comprar</strong></button>
