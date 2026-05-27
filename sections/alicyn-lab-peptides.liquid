@@ -1710,7 +1710,7 @@
       <button type="button" data-lab-nav="objetivos"><svg class="alicyn-lab-icon" viewBox="0 0 24 24"><path d="M12 21a9 9 0 1 0-9-9 9 9 0 0 0 9 9Z"/><path d="m14.5 9.5-1.5 3-3 1.5 1.5-3 3-1.5Z"/></svg><span>Objetivos</span></button>
       <button type="button" data-lab-nav="quiz"><svg class="alicyn-lab-icon" viewBox="0 0 24 24"><path d="M9 4h6l1 2h3v15H5V6h3l1-2Z"/><path d="M9 11h6M9 15h4"/></svg><span>Quiz</span></button>
       <button type="button" data-lab-nav="productos"><svg class="alicyn-lab-icon" viewBox="0 0 24 24"><path d="M7 7h13l-1.5 8h-10L6 4H3"/><circle cx="9" cy="19" r="1.5"/><circle cx="17" cy="19" r="1.5"/></svg><span>Productos</span></button>
-      <button type="button" data-lab-nav="comparar"><svg class="alicyn-lab-icon" viewBox="0 0 24 24"><path d="M7 4v16M17 4v16M4 8h6M14 13h6"/></svg><span>Comparar</span></button>
+      <button type="button" data-lab-nav="comparar"><svg class="alicyn-lab-icon" viewBox="0 0 24 24"><path d="M7 4v16M17 4v16M4 8h6M14 13h6"/></svg><span>Más</span></button>
     </nav>
   {% endif %}
   </div>
@@ -1815,6 +1815,7 @@
       var quizFields = root.querySelectorAll('[data-question]');
       var bottomNav = root.querySelector('[data-lab-bottom-nav]');
       var traditionalSticky = document.querySelector('.alicyn-page .sticky-mobile-cta');
+      var traditionalChat = document.querySelector('.alicyn-page .chat-widget');
       var appInView = false;
 
       function scrollToArea(key) {
@@ -1918,12 +1919,14 @@
       function syncBottomNav() {
         var mobile = window.matchMedia && window.matchMedia('(max-width: 749px)').matches;
         var peptides = !root.querySelector('[data-lab-view="peptides"]').hidden;
-        var visible = Boolean(bottomNav && mobile && peptides && appInView);
+        var labVisible = Boolean(peptides && appInView);
+        var visible = Boolean(bottomNav && mobile && labVisible);
         if (bottomNav) bottomNav.classList.toggle('is-visible', visible);
         if (traditionalSticky) {
           traditionalSticky.hidden = visible;
           traditionalSticky.style.display = visible ? 'none' : '';
         }
+        if (traditionalChat) traditionalChat.style.display = labVisible ? 'none' : '';
       }
 
       function showQuizStep(step) {
