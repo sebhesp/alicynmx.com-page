@@ -1,0 +1,154 @@
+{{ 'alicyn-lab.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'alicyn-lab.js' | asset_url }}" defer="defer"></script>
+
+{% liquid
+  assign p_nad = section.settings.product_nad
+  assign p_motsc = section.settings.product_motsc
+  assign p_aod = section.settings.product_aod
+  assign p_bpc157 = section.settings.product_bpc157
+  assign p_tb500 = section.settings.product_tb500
+  assign p_ghkcu = section.settings.product_ghkcu
+  assign p_cjc1295 = section.settings.product_cjc1295
+  assign p_ipamorelin = section.settings.product_ipamorelin
+  assign antiseptic_product = section.settings.antiseptic_product
+  assign antiseptic_url = section.settings.antiseptic_link
+  if antiseptic_product != blank
+    assign antiseptic_url = antiseptic_product.url
+  endif
+%}
+
+<section
+  class="aln"
+  id="AlicynLabNavigator-{{ section.id }}"
+  data-aln
+  data-section-id="{{ section.id }}"
+  data-default-view="{{ section.settings.default_view }}"
+  style="--aln-accent: {{ section.settings.accent_color }}; --aln-accent-2: {{ section.settings.accent_secondary }}; --aln-bg: {{ section.settings.background_color }};"
+>
+  <header class="aln-header" id="aln-inicio-{{ section.id }}">
+    <div class="aln-shell aln-appbar">
+      <button class="aln-menu" type="button" aria-label="Ir a objetivos" data-aln-scroll="objectives"><span></span><span></span><span></span></button>
+      <a href="{{ routes.root_url }}" class="aln-wordmark" aria-label="Alicyn Lab">
+        <strong>ALICYN <span>LAB</span></strong>
+        <small>CIENCIA <i></i> BIENESTAR <i></i> EVOLUCIÓN</small>
+      </a>
+      <a class="aln-bag" href="{{ routes.cart_url }}" aria-label="Ver carrito">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 8h12l1 13H5L6 8Zm3 0V6a3 3 0 0 1 6 0v2"/></svg>
+      </a>
+    </div>
+    <div class="aln-shell">
+      <div class="aln-mode-switch" role="tablist" aria-label="Seleccionar experiencia Alicyn">
+        <button type="button" role="tab" data-aln-view-button="antiseptic" aria-controls="aln-antiseptic-{{ section.id }}">Antiséptico</button>
+        <button type="button" role="tab" data-aln-view-button="peptides" aria-controls="aln-peptides-{{ section.id }}">Péptidos</button>
+        <span aria-hidden="true"></span>
+      </div>
+    </div>
+  </header>
+
+  <div id="aln-antiseptic-{{ section.id }}" class="aln-view aln-antiseptic" data-aln-view="antiseptic" role="tabpanel">
+    <div class="aln-shell aln-antiseptic-grid">
+      <div class="aln-antiseptic-visual">
+        {% if antiseptic_product.featured_image != blank %}
+          {{ antiseptic_product.featured_image | image_url: width: 720 | image_tag: loading: 'lazy', widths: '360,540,720', alt: antiseptic_product.title }}
+        {% else %}
+          <div class="aln-bottle" aria-hidden="true"><span>ALICYN</span></div>
+        {% endif %}
+      </div>
+      <div class="aln-antiseptic-copy">
+        <p class="aln-eyebrow">Alicyn · Cuidado especializado</p>
+        <h2>{{ section.settings.antiseptic_heading | escape }}</h2>
+        <p>{{ section.settings.antiseptic_copy | escape }}</p>
+        <ul class="aln-checklist">
+          <li>Cuidado postprocedimiento.</li>
+          <li>Limpieza profunda y cuidadosa.</li>
+          <li>Alivio de molestias comunes.</li>
+          <li>Uso antes y después de procedimientos.</li>
+        </ul>
+        <div class="aln-actions">
+          <a class="aln-btn aln-btn-primary" href="{{ antiseptic_url | default: '/collections/all' }}">Comprar Alicyn</a>
+          <a class="aln-btn aln-btn-secondary" href="{{ section.settings.antiseptic_care_link }}">Ver cuidados por zona</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="aln-peptides-{{ section.id }}" class="aln-view" data-aln-view="peptides" role="tabpanel">
+    <div class="aln-shell">
+      <section class="aln-hero" aria-labelledby="aln-title-{{ section.id }}">
+        <div class="aln-hero-grid">
+          <div class="aln-hero-copyblock">
+            <h1 id="aln-title-{{ section.id }}"><span>{{ section.settings.lab_heading_intro | escape }}</span><em>{{ section.settings.lab_heading_focus | escape }}</em></h1>
+            <p class="aln-hero-copy">{{ section.settings.lab_copy | escape }}</p>
+            <div class="aln-actions">
+              <button class="aln-btn aln-btn-primary" type="button" data-aln-scroll="quiz">Encontrar mi péptido <span>→</span></button>
+              <button class="aln-btn aln-btn-secondary" type="button" data-aln-scroll="objectives">Explorar por objetivo <span>→</span></button>
+            </div>
+          </div>
+          <div class="aln-axis-menu" aria-label="Menú interactivo de ejes Alicyn Lab">
+            <div class="aln-axis-tabs" role="list" aria-label="Selecciona un eje de investigación">
+              <button class="aln-axis-tab" type="button" data-aln-axis="energy"><span>{% render 'alicyn-lab-icon', name: 'dna' %}</span><strong>Longevidad</strong><small>NAD+ · MOTS-C</small></button>
+              <button class="aln-axis-tab" type="button" data-aln-axis="skin"><span>{% render 'alicyn-lab-icon', name: 'skin' %}</span><strong>Skin science</strong><small>GHK-Cu · NAD+</small></button>
+              <button class="aln-axis-tab" type="button" data-aln-axis="metabolism"><span>{% render 'alicyn-lab-icon', name: 'body' %}</span><strong>Metabolismo</strong><small>AOD · MOTS-C</small></button>
+              <button class="aln-axis-tab" type="button" data-aln-axis="recovery"><span>{% render 'alicyn-lab-icon', name: 'joint' %}</span><strong>Recuperación</strong><small>BPC · TB-500</small></button>
+              <button class="aln-axis-tab" type="button" data-aln-axis="performance"><span>{% render 'alicyn-lab-icon', name: 'bolt' %}</span><strong>Performance</strong><small>MOTS-C · CJC</small></button>
+            </div>
+            <div class="aln-axis-explorer">
+              <div class="aln-body-map" id="aln-map-{{ section.id }}" aria-label="Selecciona una zona de interés">
+                {% if section.settings.navigator_body_image != blank %}
+                  {{ section.settings.navigator_body_image | image_url: width: 700 | image_tag: class: 'aln-body-image', loading: 'eager', widths: '360,520,700', alt: 'Mapa digital Alicyn Lab' }}
+                {% else %}
+                  <svg viewBox="0 0 220 420" class="aln-figure" aria-hidden="true"><circle cx="110" cy="45" r="28"/><path d="M83 80c-19 22-28 58-22 102l14 78m62-180c19 22 28 58 22 102l-14 78M89 88c-4 56 1 94 21 121 20-27 25-65 21-121M94 205l-20 170m52-170 20 170"/><path class="aln-figure-core" d="M110 75v136M96 120h28M90 154h40"/></svg>
+                {% endif %}
+                <button type="button" class="aln-node aln-node-energy" data-aln-map="energy"><span></span>Energía celular</button>
+                <button type="button" class="aln-node aln-node-skin" data-aln-map="skin"><span></span>Piel / Rostro</button>
+                <button type="button" class="aln-node aln-node-metabolism" data-aln-map="metabolism"><span></span>Metabolismo</button>
+                <button type="button" class="aln-node aln-node-tissue" data-aln-map="recovery"><span></span>Tejidos / Articulaciones</button>
+                <button type="button" class="aln-node aln-node-performance" data-aln-map="performance"><span></span>Recuperación muscular</button>
+              </div>
+              <aside class="aln-map-result aln-axis-card is-open" data-aln-map-result aria-live="polite">
+                <div class="aln-axis-card-head"><p class="aln-eyebrow">Eje seleccionado</p><span data-aln-map-route>Cell Reset</span></div>
+                <h3>Energía celular</h3>
+                <p class="aln-map-description">Explora opciones organizadas por interés técnico.</p>
+                <div class="aln-mini-block"><span>Funciones</span><div class="aln-mini-chips" data-aln-map-functions></div></div>
+                <div class="aln-mini-block"><span>Productos</span><div class="aln-product-pills" data-aln-map-product-buttons></div></div>
+                <p class="aln-map-products" hidden></p>
+                <div class="aln-actions aln-actions-compact">
+                  <button class="aln-btn aln-btn-primary" type="button" data-aln-map-route-button>Ver ruta</button>
+                  <button class="aln-btn aln-btn-secondary" type="button" data-aln-map-compare>Comparar</button>
+                  <button class="aln-link" type="button" data-aln-scroll="quiz">Hacer quiz</button>
+                  <button class="aln-link" type="button" data-aln-show-products>Ver todos</button>
+                </div>
+              </aside>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="aln-dashboard aln-panel" id="aln-dashboard-{{ section.id }}">
+      <section class="aln-objectives" id="aln-objectives-{{ section.id }}" data-aln-anchor="objectives" aria-labelledby="aln-objectives-title-{{ section.id }}">
+        <div class="aln-section-head"><h2 id="aln-objectives-title-{{ section.id }}">Elige tu objetivo principal</h2><button class="aln-link" type="button" data-aln-show-products>Ver todos</button></div>
+        <div class="aln-objective-track">
+          <button class="aln-objective" type="button" data-aln-objective="energy"><span class="aln-icon">{% render 'alicyn-lab-icon', name: 'dna' %}</span><strong>Longevidad celular</strong><small>Energía, metabolismo y longevidad experimental</small></button>
+          <button class="aln-objective" type="button" data-aln-objective="metabolism"><span class="aln-icon">{% render 'alicyn-lab-icon', name: 'body' %}</span><strong>Composición corporal</strong><small>Metabolismo celular experimental</small></button>
+          <button class="aln-objective" type="button" data-aln-objective="recovery"><span class="aln-icon">{% render 'alicyn-lab-icon', name: 'joint' %}</span><strong>Recuperación</strong><small>Tejidos y señalización celular</small></button>
+          <button class="aln-objective" type="button" data-aln-objective="skin"><span class="aln-icon">{% render 'alicyn-lab-icon', name: 'skin' %}</span><strong>Skin science</strong><small>Piel, colágeno y bienestar estético</small></button>
+          <button class="aln-objective" type="button" data-aln-objective="performance"><span class="aln-icon">{% render 'alicyn-lab-icon', name: 'bolt' %}</span><strong>Performance</strong><small>Energía y señalización avanzada</small></button>
+        </div>
+      </section>
+      <article class="aln-quiz-promo"><div><h3>¿No sabes cuál elegir?</h3><p>Responde 4 preguntas y te guiamos hacia el eje de investigación más compatible con tu objetivo.</p><button class="aln-btn aln-btn-primary" type="button" data-aln-scroll="quiz">Comenzar quiz <span>→</span></button></div><div class="aln-promo-vials" aria-hidden="true"><span></span><span></span><span></span><b>INVESTIGACIÓN<br>AVANZADA</b></div></article>
+      <section class="aln-routes" aria-labelledby="aln-routes-title-{{ section.id }}"><div class="aln-section-head"><h2 id="aln-routes-title-{{ section.id }}">Rutas recomendadas</h2><button class="aln-link" type="button" data-aln-scroll="products">Ver todas</button></div><div class="aln-route-track"><article class="aln-route" data-route="energy"><h3>Cell Reset</h3><strong>NAD+ + MOTS-C</strong><small>Energía celular y metabolismo</small><div class="aln-route-actions"><button type="button" class="aln-card-link" data-aln-route-view="energy">Ver ruta →</button><a class="aln-card-link" data-aln-route-direct="energy">WhatsApp</a></div></article><article class="aln-route" data-route="metabolism"><h3>Lean Research</h3><strong>AOD-9604 + MOTS-C</strong><small>Metabolismo celular experimental</small><div class="aln-route-actions"><button type="button" class="aln-card-link" data-aln-route-view="metabolism">Ver ruta →</button><a class="aln-card-link" data-aln-route-direct="metabolism">WhatsApp</a></div></article><article class="aln-route" data-route="recovery"><h3>Recovery Lab</h3><strong>BPC-157 + TB-500</strong><small>Respuesta tisular experimental</small><div class="aln-route-actions"><button type="button" class="aln-card-link" data-aln-route-view="recovery">Ver ruta →</button><a class="aln-card-link" data-aln-route-direct="recovery">WhatsApp</a></div></article><article class="aln-route" data-route="skin"><h3>Skin Matrix</h3><strong>GHK-Cu + NAD+</strong><small>Skin science experimental</small><div class="aln-route-actions"><button type="button" class="aln-card-link" data-aln-route-view="skin">Ver ruta →</button><a class="aln-card-link" data-aln-route-direct="skin">WhatsApp</a></div></article><article class="aln-route" data-route="performance"><h3>Performance Axis</h3><strong>MOTS-C + CJC-1295</strong><small>Señalización avanzada</small><div class="aln-route-actions"><button type="button" class="aln-card-link" data-aln-route-view="performance">Ver ruta →</button><a class="aln-card-link" data-aln-route-direct="performance">WhatsApp</a></div></article></div></section>
+      </section>
+      <section class="aln-recommendation aln-panel" data-aln-recommendation hidden aria-live="polite"><div class="aln-route-pill">Ruta recomendada <strong data-aln-route-name></strong></div><div class="aln-result-grid"><div><p class="aln-caption">Producto principal</p><h3 data-aln-primary></h3></div><div><p class="aln-caption">Complemento opcional</p><h3 data-aln-complement></h3></div></div><p data-aln-result-description></p><p class="aln-disclaimer-inline">Ruta educativa para productos de investigación; no representa indicación sanitaria.</p><div class="aln-actions"><a class="aln-btn aln-btn-primary" data-aln-primary-link>Ver producto</a><button class="aln-btn aln-btn-secondary" type="button" data-aln-result-compare>Comparar</button><button class="aln-link" type="button" data-aln-scroll="objectives">Cambiar objetivo</button><a class="aln-btn aln-btn-whatsapp" target="_blank" rel="noopener noreferrer" data-aln-route-whatsapp>WhatsApp</a></div></section>
+      <section class="aln-quiz aln-panel" id="aln-quiz-{{ section.id }}" data-aln-anchor="quiz" aria-labelledby="aln-quiz-title-{{ section.id }}"><div class="aln-section-head"><div><p class="aln-eyebrow">Guía personalizada</p><h2 id="aln-quiz-title-{{ section.id }}">Encuentra tu ruta</h2></div><span class="aln-progress-label" data-aln-progress>1 / 4</span></div><div class="aln-progress"><span data-aln-progress-bar></span></div><form data-aln-quiz><fieldset class="aln-question" data-aln-question="0"><legend>¿Cuál es tu objetivo principal?</legend><div class="aln-options"><button type="button" data-answer="energy">Energía y longevidad</button><button type="button" data-answer="metabolism">Composición corporal</button><button type="button" data-answer="recovery">Recuperación</button><button type="button" data-answer="skin">Piel y estética</button><button type="button" data-answer="performance">Performance</button><button type="button" data-answer="starter">No estoy seguro</button></div></fieldset><fieldset class="aln-question" data-aln-question="1" hidden><legend>¿Qué nivel de experiencia tienes con péptidos?</legend><div class="aln-options"><button type="button" data-answer="starter">Estoy empezando</button><button type="button" data-answer="familiar">Ya conozco algunos</button><button type="button" data-answer="advanced">Busco una ruta avanzada</button></div></fieldset><fieldset class="aln-question" data-aln-question="2" hidden><legend>¿Qué prefieres explorar?</legend><div class="aln-options"><button type="button" data-answer="single">Un producto individual</button><button type="button" data-answer="pair">Una combinación sencilla</button><button type="button" data-answer="complete">Una ruta completa</button><button type="button" data-answer="learn">Primero entender opciones</button></div></fieldset><fieldset class="aln-question" data-aln-question="3" hidden><legend>¿Qué tipo de guía necesitas?</legend><div class="aln-options"><button type="button" data-answer="simple">Algo simple y directo</button><button type="button" data-answer="compare">Comparar opciones</button><button type="button" data-answer="whatsapp">Hablar por WhatsApp</button><button type="button" data-answer="details">Ver información completa</button></div></fieldset><div class="aln-quiz-nav"><button class="aln-link" type="button" data-aln-back disabled>Regresar</button><button class="aln-btn aln-btn-primary" type="button" data-aln-finish hidden>Ver resultado</button></div></form><div class="aln-quiz-result" data-aln-quiz-result hidden><p class="aln-eyebrow">Tu resultado</p><h3 data-aln-quiz-route></h3><div class="aln-result-grid"><div><p class="aln-caption">Producto principal</p><strong data-aln-quiz-primary></strong></div><div><p class="aln-caption">Complemento opcional</p><strong data-aln-quiz-complement></strong></div><div><p class="aln-caption">Nivel sugerido</p><strong data-aln-quiz-level></strong></div></div><p data-aln-quiz-description></p><p class="aln-disclaimer-inline">Tu recomendación no es definitiva: puedes explorar otras opciones. Productos para investigación y laboratorio.</p><div class="aln-actions"><a class="aln-btn aln-btn-primary" data-aln-quiz-product>Ver producto</a><button class="aln-btn aln-btn-secondary" type="button" data-aln-quiz-compare>Comparar</button><button class="aln-link" type="button" data-aln-scroll="objectives">Cambiar objetivo</button><button class="aln-link" type="button" data-aln-restart>Volver al quiz</button><a class="aln-btn aln-btn-whatsapp" target="_blank" rel="noopener noreferrer" data-aln-quiz-whatsapp>WhatsApp</a></div></div></section>
+      <section class="aln-compare aln-panel" id="aln-compare-{{ section.id }}" data-aln-anchor="compare" aria-labelledby="aln-compare-title-{{ section.id }}"><div class="aln-section-head"><div><p class="aln-eyebrow">Comparador</p><h2 id="aln-compare-title-{{ section.id }}">Compara antes de elegir</h2></div><button class="aln-link" type="button" data-aln-show-products>Ver todos los productos</button></div><div class="aln-compare-scroll"><table><thead><tr><th>Péptido</th><th>Eje principal</th><th>Ideal para investigación de</th><th>Nivel</th><th>Ruta</th><th></th></tr></thead><tbody><tr data-aln-compare-row="nad"><th>NAD+ 1000 mg</th><td>Longevidad celular</td><td>Energía celular y wellness avanzado</td><td>Inicial / intermedio</td><td>Cell Reset</td><td><button data-aln-focus-product="nad">Ver</button></td></tr><tr data-aln-compare-row="motsc"><th>MOTS-C 10 mg</th><td>Metabolismo / performance</td><td>Energía y metabolismo celular</td><td>Intermedio</td><td>Cell Reset / Lean Research</td><td><button data-aln-focus-product="motsc">Ver</button></td></tr><tr data-aln-compare-row="aod"><th>AOD-9604 10 mg</th><td>Composición corporal</td><td>Metabolismo experimental</td><td>Inicial / intermedio</td><td>Lean Research</td><td><button data-aln-focus-product="aod">Ver</button></td></tr><tr data-aln-compare-row="bpc157"><th>BPC-157</th><td>Respuesta tisular</td><td>Señalización y tejidos</td><td>Intermedio</td><td>Recovery Lab</td><td><button data-aln-focus-product="bpc157">Ver</button></td></tr><tr data-aln-compare-row="tb500"><th>TB-500</th><td>Respuesta tisular avanzada</td><td>Modelos experimentales de movilidad</td><td>Intermedio / avanzado</td><td>Recovery Lab</td><td><button data-aln-focus-product="tb500">Ver</button></td></tr><tr data-aln-compare-row="ghkcu"><th>GHK-Cu 100 mg</th><td>Skin science</td><td>Piel y bienestar estético</td><td>Inicial / intermedio</td><td>Skin Matrix</td><td><button data-aln-focus-product="ghkcu">Ver</button></td></tr><tr data-aln-compare-row="cjc1295"><th>CJC-1295 sin DAC</th><td>Señalización avanzada</td><td>Ejes experimentales avanzados</td><td>Avanzado</td><td>Performance Axis</td><td><button data-aln-focus-product="cjc1295">Ver</button></td></tr><tr data-aln-compare-row="ipamorelin"><th>Ipamorelin</th><td>Señalización avanzada</td><td>Protocolos técnicos avanzados</td><td>Avanzado</td><td>Performance Axis</td><td><button data-aln-focus-product="ipamorelin">Ver</button></td></tr></tbody></table></div></section>
+      <section class="aln-products" id="aln-products-{{ section.id }}" data-aln-anchor="products" aria-labelledby="aln-products-title-{{ section.id }}"><div class="aln-section-head"><div><p class="aln-eyebrow">Aesthetic Labs</p><h2 id="aln-products-title-{{ section.id }}">Productos de investigación</h2></div><p>Selecciona, compara o consulta disponibilidad.</p></div><div class="aln-product-grid">{% render 'alicyn-lab-product-card', product: p_nad, key: 'nad', fallback_title: 'Aesthetic Labs NAD+ 1000 mg', fallback_price: '$2,000 MXN', axis: 'Longevidad celular', description: 'Energía celular y bienestar avanzado en investigación.', level: 'Inicial / intermedio', route_key: 'energy', section_id: section.id %}{% render 'alicyn-lab-product-card', product: p_motsc, key: 'motsc', fallback_title: 'Aesthetic Labs MOTS-C 10 mg', fallback_price: '$1,800 MXN', axis: 'Metabolismo celular', description: 'Investigación mitocondrial y energía celular.', level: 'Intermedio', route_key: 'energy', section_id: section.id %}{% render 'alicyn-lab-product-card', product: p_aod, key: 'aod', fallback_title: 'Aesthetic Labs AOD-9604 10 mg', fallback_price: '$1,600 MXN', axis: 'Metabolismo experimental', description: 'Análisis técnico en composición corporal experimental.', level: 'Inicial / intermedio', route_key: 'metabolism', section_id: section.id %}{% render 'alicyn-lab-product-card', product: p_bpc157, key: 'bpc157', fallback_title: 'Aesthetic Labs BPC-157 10 mg', fallback_price: '$1,250 MXN', axis: 'Respuesta tisular', description: 'Señalización celular y respuesta tisular en investigación.', level: 'Intermedio', route_key: 'recovery', section_id: section.id %}{% render 'alicyn-lab-product-card', product: p_tb500, key: 'tb500', fallback_title: 'Aesthetic Labs TB-500 10 mg', fallback_price: '$1,350 MXN', axis: 'Respuesta tisular', description: 'Análisis preclínico de señalización experimental.', level: 'Intermedio / avanzado', route_key: 'recovery', section_id: section.id %}{% render 'alicyn-lab-product-card', product: p_ghkcu, key: 'ghkcu', fallback_title: 'Aesthetic Labs GHK-Cu 100 mg', fallback_price: '$1,350 MXN', axis: 'Skin science', description: 'Piel, colágeno y señalización celular experimental.', level: 'Inicial / intermedio', route_key: 'skin', section_id: section.id %}{% render 'alicyn-lab-product-card', product: p_cjc1295, key: 'cjc1295', fallback_title: 'Aesthetic Labs CJC-1295 sin DAC 10 mg', fallback_price: '$1,800 MXN', axis: 'Señalización avanzada', description: 'Ejes técnicos de señalización experimental.', level: 'Avanzado', route_key: 'performance', section_id: section.id %}{% render 'alicyn-lab-product-card', product: p_ipamorelin, key: 'ipamorelin', fallback_title: 'Aesthetic Labs Ipamorelin 10 mg', fallback_price: '$1,250 MXN', axis: 'Señalización avanzada', description: 'Compuesto para análisis técnico especializado.', level: 'Avanzado', route_key: 'performance', section_id: section.id %}</div></section>
+      <section class="aln-confidence" aria-label="Confianza Alicyn Lab"><article><span>{% render 'alicyn-lab-icon', name: 'flask' %}</span><h3>Investigación avanzada</h3><p>Información organizada por ejes de interés para comparar claramente.</p></article><article><span>{% render 'alicyn-lab-icon', name: 'vial' %}</span><h3>Productos Aesthetic Labs</h3><p>Selección de compuestos con alta pureza declarada para investigación.</p></article><article><span>{% render 'alicyn-lab-icon', name: 'dna' %}</span><h3>Guía personalizada</h3><p>Responde pocas preguntas y explora una ruta compatible con tu objetivo.</p></article><article><span>{% render 'alicyn-lab-icon', name: 'bolt' %}</span><h3>Atención por WhatsApp</h3><p>Habla con nosotros antes de decidir tu compra técnica.</p></article></section>
+      <section class="aln-more aln-panel" id="aln-more-{{ section.id }}" data-aln-anchor="more"><details><summary>Más información educativa</summary><p>Los péptidos son compuestos estudiados en contextos científicos por su relación con señalización y metabolismo celular. Alicyn Lab organiza el catálogo por ejes descriptivos para facilitar la exploración técnica.</p></details><details><summary>¿Qué representan las rutas?</summary><p>Son agrupaciones comerciales por eje de investigación. No incluyen instrucciones de administración, pautas de consumo ni recomendaciones para personas o animales.</p></details><details><summary>Pureza declarada y presentación</summary><p>La pureza declarada corresponde a información del proveedor. Verifica la documentación disponible y requerimientos de tu laboratorio.</p></details></section>
+      <footer class="aln-legal" id="aln-contact-{{ section.id }}"><h2>Alicyn Lab</h2><p>{{ section.settings.legal_text | escape }}</p><p class="aln-legal-strong">Producto exclusivo para investigación y laboratorio. No apto para consumo humano o animal.</p><a class="aln-btn aln-btn-whatsapp" data-aln-general-whatsapp target="_blank" rel="noopener noreferrer">Hablar por WhatsApp</a></footer>
+    </div>
+    <nav class="aln-bottom-nav" aria-label="Navegación Alicyn Lab"><button data-aln-scroll="inicio"><span>{% render 'alicyn-lab-icon', name: 'home' %}</span>Inicio</button><button data-aln-scroll="objectives"><span>{% render 'alicyn-lab-icon', name: 'skin' %}</span>Objetivos</button><button data-aln-scroll="quiz"><span>{% render 'alicyn-lab-icon', name: 'flask' %}</span>Quiz</button><button data-aln-scroll="products"><span>{% render 'alicyn-lab-icon', name: 'vial' %}</span>Productos</button><button data-aln-scroll="more"><span>{% render 'alicyn-lab-icon', name: 'more' %}</span>Más</button></nav>
+  </div>
+  <script type="application/json" data-aln-config>{"whatsapp": {{ section.settings.whatsapp_number | json }},"products":{"nad":{"name":"NAD+ 1000 mg","url":{% if p_nad != blank %}{{ p_nad.url | json }}{% else %}"#aln-product-nad-{{ section.id }}"{% endif %}},"motsc":{"name":"MOTS-C 10 mg","url":{% if p_motsc != blank %}{{ p_motsc.url | json }}{% else %}"#aln-product-motsc-{{ section.id }}"{% endif %}},"aod":{"name":"AOD-9604 10 mg","url":{% if p_aod != blank %}{{ p_aod.url | json }}{% else %}"#aln-product-aod-{{ section.id }}"{% endif %}},"bpc157":{"name":"BPC-157","url":{% if p_bpc157 != blank %}{{ p_bpc157.url | json }}{% else %}"#aln-product-bpc157-{{ section.id }}"{% endif %}},"tb500":{"name":"TB-500","url":{% if p_tb500 != blank %}{{ p_tb500.url | json }}{% else %}"#aln-product-tb500-{{ section.id }}"{% endif %}},"ghkcu":{"name":"GHK-Cu 100 mg","url":{% if p_ghkcu != blank %}{{ p_ghkcu.url | json }}{% else %}"#aln-product-ghkcu-{{ section.id }}"{% endif %}},"cjc1295":{"name":"CJC-1295 sin DAC","url":{% if p_cjc1295 != blank %}{{ p_cjc1295.url | json }}{% else %}"#aln-product-cjc1295-{{ section.id }}"{% endif %}},"ipamorelin":{"name":"Ipamorelin","url":{% if p_ipamorelin != blank %}{{ p_ipamorelin.url | json }}{% else %}"#aln-product-ipamorelin-{{ section.id }}"{% endif %}}}}</script>
+</section>
+{% schema %}
+{"name":"Alicyn Lab Navigator","tag":"section","class":"section-alicyn-lab-navigator","settings":[{"type":"header","content":"Vista y estilo"},{"type":"select","id":"default_view","label":"Vista inicial","default":"peptides","options":[{"value":"peptides","label":"Péptidos"},{"value":"antiseptic","label":"Antiséptico"}]},{"type":"color","id":"background_color","label":"Fondo","default":"#080914"},{"type":"color","id":"accent_color","label":"Acento principal","default":"#9877ff"},{"type":"color","id":"accent_secondary","label":"Acento secundario","default":"#51d9e8"},{"type":"header","content":"Alicyn Lab"},{"type":"image_picker","id":"navigator_body_image","label":"Imagen mapa humano digital (opcional)"},{"type":"text","id":"lab_heading_intro","label":"Headline línea inicial","default":"Encuentra tu"},{"type":"text","id":"lab_heading_focus","label":"Headline destacado","default":"eje de investigación celular"},{"type":"textarea","id":"lab_copy","label":"Texto hero","default":"Explora péptidos Aesthetic Labs según tus objetivos: energía, composición corporal experimental, recuperación, skin science y bienestar avanzado."},{"type":"text","id":"whatsapp_number","label":"WhatsApp (código país + número)","default":"525542388056"},{"type":"textarea","id":"legal_text","label":"Disclaimer legal","default":"Los péptidos aquí presentados son productos de investigación. La información es educativa y no sustituye la orientación de un profesional de la salud. No se realizan promesas de diagnóstico, tratamiento, cura o prevención de enfermedades."},{"type":"header","content":"Vista Antiséptico"},{"type":"product","id":"antiseptic_product","label":"Producto Alicyn antiséptico"},{"type":"text","id":"antiseptic_heading","label":"Título","default":"Cuidado postprocedimiento Alicyn"},{"type":"textarea","id":"antiseptic_copy","label":"Descripción","default":"Cuidado externo diseñado para acompañar tu rutina antes y después de procedimientos."},{"type":"url","id":"antiseptic_link","label":"Enlace alterno de compra"},{"type":"url","id":"antiseptic_care_link","label":"Enlace cuidados por zona"},{"type":"header","content":"Productos Aesthetic Labs"},{"type":"product","id":"product_nad","label":"NAD+ 1000 mg"},{"type":"product","id":"product_motsc","label":"MOTS-C 10 mg"},{"type":"product","id":"product_aod","label":"AOD-9604 10 mg"},{"type":"product","id":"product_bpc157","label":"BPC-157"},{"type":"product","id":"product_tb500","label":"TB-500"},{"type":"product","id":"product_ghkcu","label":"GHK-Cu 100 mg"},{"type":"product","id":"product_cjc1295","label":"CJC-1295 sin DAC"},{"type":"product","id":"product_ipamorelin","label":"Ipamorelin"}],"presets":[{"name":"Alicyn Lab Navigator"}]}
+{% endschema %}
