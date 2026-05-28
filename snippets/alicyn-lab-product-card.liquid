@@ -2,25 +2,19 @@
   assign display_title = fallback_title
   assign display_url = ''
   assign display_price = fallback_price
-  assign display_image = blank
   assign available_variant = blank
   if product != blank
     assign display_title = product.title
     assign display_url = product.url
     assign display_price = product.price | money
-    assign display_image = product.featured_image
     if product.available and product.selected_or_first_available_variant.available
       assign available_variant = product.selected_or_first_available_variant
     endif
   endif
 %}
 <article class="aln-product-card" id="aln-product-{{ key }}-{{ section_id }}" data-aln-product-card="{{ key }}" data-aln-route="{{ route_key }}">
-  <div class="aln-product-media">
-    {% if display_image != blank %}
-      {{ display_image | image_url: width: 540 | image_tag: loading: 'lazy', widths: '240,360,540', sizes: '(max-width: 749px) 70vw, 270px', alt: display_title }}
-    {% else %}
-      <span class="aln-vial" aria-hidden="true"><span></span>{% render 'alicyn-lab-icon', name: 'vial' %}</span>
-    {% endif %}
+  <div class="aln-product-media aln-product-media-codeonly">
+    <span class="aln-vial" aria-hidden="true"><span></span>{% render 'alicyn-lab-icon', name: 'vial' %}</span>
     <span class="aln-product-badge">{{ level | escape }}</span>
   </div>
   <div class="aln-product-body">
