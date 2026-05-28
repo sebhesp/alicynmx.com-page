@@ -1,0 +1,284 @@
+/* Alicyn Lab Navigator — code-only visual layer. */
+/* Code-only interactive map: no image dependency, app-like controls */
+.aln-axis-menu {
+  position: relative;
+  background:
+    radial-gradient(circle at 18% 18%, rgba(81,217,232,.13), transparent 28%),
+    radial-gradient(circle at 80% 8%, rgba(151,119,255,.22), transparent 31%),
+    linear-gradient(145deg, rgba(15,18,35,.9), rgba(5,11,25,.72));
+  isolation: isolate;
+}
+.aln-axis-menu::before {
+  background: linear-gradient(120deg, rgba(255,255,255,.13), transparent 24%, transparent 72%, rgba(151,119,255,.13));
+  border-radius: inherit;
+  content: "";
+  inset: 0;
+  pointer-events: none;
+  position: absolute;
+  z-index: -1;
+}
+.aln-axis-tabs { padding-bottom: 12px; }
+.aln-axis-tab {
+  backdrop-filter: blur(12px);
+  border-radius: 18px;
+  position: relative;
+}
+.aln-axis-tab::after {
+  background: var(--aln-accent-2);
+  border-radius: 999px;
+  bottom: 9px;
+  content: "";
+  height: 3px;
+  left: 45px;
+  opacity: 0;
+  position: absolute;
+  transform: scaleX(.45);
+  transform-origin: left;
+  transition: opacity .2s ease, transform .2s ease;
+  width: 34px;
+}
+.aln-axis-tab[aria-pressed="true"]::after { opacity: 1; transform: scaleX(1); }
+.aln-axis-explorer { align-items: stretch; }
+.aln-body-map {
+  aspect-ratio: 1 / 1;
+  background:
+    radial-gradient(circle at 50% 50%, rgba(151,119,255,.16), transparent 28%),
+    radial-gradient(circle at 52% 56%, rgba(81,217,232,.1), transparent 46%),
+    linear-gradient(135deg, rgba(255,255,255,.05) 1px, transparent 1px),
+    rgba(6,10,23,.48);
+  background-size: auto, auto, 24px 24px, auto;
+  border: 1px solid rgba(181,171,255,.12);
+  border-radius: 24px;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.06), inset 0 0 58px rgba(151,119,255,.08), 0 18px 40px rgba(0,0,0,.28);
+  height: auto;
+  max-width: none;
+  min-height: 335px;
+  overflow: hidden;
+  width: 100%;
+}
+.aln-body-map::before,
+.aln-body-map::after {
+  content: "";
+  pointer-events: none;
+  position: absolute;
+}
+.aln-body-map::before {
+  background: linear-gradient(90deg, transparent, rgba(81,217,232,.35), transparent);
+  height: 1px;
+  left: 8%;
+  right: 8%;
+  top: 50%;
+}
+.aln-body-map::after {
+  background: linear-gradient(180deg, transparent, rgba(151,119,255,.24), transparent);
+  bottom: 8%;
+  left: 50%;
+  top: 8%;
+  width: 1px;
+}
+.aln-code-map { inset: 9%; position: absolute; }
+.aln-orbit {
+  border: 1px solid rgba(181,171,255,.16);
+  border-radius: 50%;
+  inset: 5%;
+  position: absolute;
+}
+.aln-orbit-one { animation: aln-orbit-breathe 5s ease-in-out infinite; }
+.aln-orbit-two { border-style: dashed; inset: 20%; opacity: .74; transform: rotate(18deg); }
+.aln-scanline {
+  background: linear-gradient(180deg, transparent, rgba(81,217,232,.28), transparent);
+  height: 48%;
+  left: 50%;
+  opacity: .75;
+  position: absolute;
+  top: 26%;
+  transform: translateX(-50%);
+  width: 1px;
+}
+.aln-network {
+  filter: drop-shadow(0 0 18px rgba(151,119,255,.45));
+  height: 100%;
+  inset: 0;
+  position: absolute;
+  width: 100%;
+}
+.aln-network path,
+.aln-network circle {
+  fill: none;
+  stroke: rgba(190,171,255,.78);
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.7;
+}
+.aln-network .aln-network-line {
+  opacity: .48;
+  stroke-dasharray: 4 9;
+}
+.aln-map-core {
+  align-items: center;
+  background: radial-gradient(circle at 50% 30%, rgba(255,255,255,.14), rgba(151,119,255,.22) 46%, rgba(7,12,28,.86));
+  border: 1px solid rgba(211,198,255,.24);
+  border-radius: 50%;
+  box-shadow: 0 0 32px rgba(151,119,255,.34), inset 0 0 22px rgba(81,217,232,.12);
+  display: flex;
+  flex-direction: column;
+  height: 88px;
+  justify-content: center;
+  left: 50%;
+  letter-spacing: .22em;
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 88px;
+}
+.aln-map-core b { color: #fff; font-size: .74rem; font-weight: 600; }
+.aln-map-core small { color: #c9b7ff; font-size: .56rem; margin-top: 4px; }
+.aln-node {
+  align-items: center;
+  background: rgba(12,17,36,.78);
+  border: 1px solid rgba(181,171,255,.17);
+  border-radius: 18px;
+  box-shadow: 0 12px 28px rgba(0,0,0,.24), inset 0 1px 0 rgba(255,255,255,.05);
+  display: grid;
+  gap: 1px 9px;
+  grid-template-columns: 34px minmax(0,1fr);
+  max-width: 168px;
+  min-height: 58px;
+  padding: 9px 11px;
+  text-align: left;
+  transition: background .2s ease, border-color .2s ease, box-shadow .2s ease, transform .2s ease;
+  white-space: normal;
+  z-index: 2;
+}
+.aln-node::before {
+  background: linear-gradient(90deg, rgba(81,217,232,.55), rgba(151,119,255,.2));
+  content: "";
+  height: 1px;
+  opacity: .7;
+  position: absolute;
+  right: 100%;
+  top: 50%;
+  width: 34px;
+}
+.aln-node-icon {
+  align-items: center;
+  animation: aln-pulse 2.6s ease-in-out infinite;
+  background: radial-gradient(circle, rgba(255,255,255,.96), rgba(151,119,255,.78));
+  border: 1px solid rgba(255,255,255,.72);
+  border-radius: 50%;
+  box-shadow: 0 0 0 7px rgba(151,119,255,.15), 0 0 22px rgba(151,119,255,.48);
+  color: #1a1134;
+  display: flex;
+  grid-row: 1 / span 2;
+  height: 31px;
+  justify-content: center;
+  margin: 0;
+  padding: 7px;
+  width: 31px;
+}
+.aln-node strong { color: #fff; font-size: .76rem; line-height: 1.12; }
+.aln-node small { color: #b9b5c9; display: block; font-size: .64rem; line-height: 1.15; }
+.aln-node:hover,
+.aln-node[aria-pressed="true"] {
+  background: linear-gradient(135deg, rgba(151,119,255,.28), rgba(81,217,232,.09));
+  border-color: rgba(203,184,255,.62);
+  box-shadow: 0 0 30px rgba(151,119,255,.22), inset 0 1px 0 rgba(255,255,255,.08);
+  color: #fff;
+  transform: translateY(-2px);
+}
+.aln-node[aria-pressed="true"] .aln-node-icon { background: radial-gradient(circle, #ffffff, #79eff7); color: #10152a; }
+.aln-node-energy { left: 50%; top: 4%; transform: translateX(-50%); }
+.aln-node-energy:hover,
+.aln-node-energy[aria-pressed="true"] { transform: translateX(-50%) translateY(-2px); }
+.aln-node-skin { right: 4%; top: 25%; }
+.aln-node-metabolism { right: 4%; top: 58%; }
+.aln-node-tissue { left: 4%; top: 58%; }
+.aln-node-tissue::before { left: 100%; right: auto; }
+.aln-node-performance { left: 4%; top: 25%; }
+.aln-node-performance::before { left: 100%; right: auto; }
+.aln-axis-card {
+  border-radius: 24px;
+  position: relative;
+}
+.aln-axis-card::before {
+  background: radial-gradient(circle at 18% 0%, rgba(81,217,232,.12), transparent 30%), radial-gradient(circle at 92% 10%, rgba(151,119,255,.18), transparent 26%);
+  border-radius: inherit;
+  content: "";
+  inset: 0;
+  pointer-events: none;
+  position: absolute;
+}
+.aln-map-result > * { position: relative; }
+.aln-product-pills button::after { content: " →"; color: var(--aln-accent-2); }
+@keyframes aln-orbit-breathe { 50% { box-shadow: 0 0 34px rgba(151,119,255,.18); transform: scale(1.03); } }
+@media (min-width: 700px) {
+  .aln-axis-explorer { grid-template-columns: minmax(330px, 1fr) minmax(270px, .82fr); }
+  .aln-axis-explorer .aln-body-map { min-height: 390px; }
+}
+@media (max-width: 699px) {
+  .aln-body-map { min-height: 360px; }
+  .aln-axis-explorer .aln-body-map { height: auto; min-height: 360px; }
+  .aln-node { border-radius: 16px; max-width: 145px; min-height: 54px; padding: 8px 9px; }
+  .aln-node strong { font-size: .71rem; }
+  .aln-node small { font-size: .58rem; }
+  .aln-node-icon { height: 28px; padding: 6px; width: 28px; }
+  .aln-map-core { height: 74px; width: 74px; }
+  .aln-map-core b { font-size: .62rem; }
+  .aln-node-energy { top: 5%; }
+  .aln-node-skin { right: 3%; top: 25%; }
+  .aln-node-metabolism { right: 3%; top: 59%; }
+  .aln-node-tissue { left: 3%; top: 59%; }
+  .aln-node-performance { left: 3%; top: 25%; }
+}
+@media (max-width: 430px) {
+  .aln-body-map { min-height: 330px; }
+  .aln-axis-explorer .aln-body-map { min-height: 330px; }
+  .aln-node { max-width: 128px; }
+  .aln-node small { display: none; }
+  .aln-node::before { width: 20px; }
+  .aln-code-map { inset: 13%; }
+  .aln-map-core { height: 64px; width: 64px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .aln-orbit-one,
+  .aln-node-icon { animation: none; }
+}
+
+/* Specificity guard against legacy dot styles: nodes are full code/SVG controls. */
+.aln-node span.aln-node-icon {
+  align-items: center;
+  background: radial-gradient(circle, rgba(255,255,255,.96), rgba(151,119,255,.78));
+  border: 1px solid rgba(255,255,255,.72);
+  border-radius: 50%;
+  box-shadow: 0 0 0 7px rgba(151,119,255,.15), 0 0 22px rgba(151,119,255,.48);
+  color: #1a1134;
+  display: flex;
+  grid-row: 1 / span 2;
+  height: 31px;
+  justify-content: center;
+  margin: 0;
+  padding: 7px;
+  vertical-align: initial;
+  width: 31px;
+}
+.aln-node[aria-pressed="true"] span.aln-node-icon {
+  background: radial-gradient(circle, #ffffff, #79eff7);
+  color: #10152a;
+}
+.aln-product-media-codeonly::before {
+  background: radial-gradient(circle, rgba(81,217,232,.22), transparent 54%);
+  border: 1px solid rgba(181,171,255,.14);
+  border-radius: 50%;
+  content: "";
+  height: 118px;
+  position: absolute;
+  width: 118px;
+}
+.aln-product-media-codeonly .aln-vial { z-index: 1; }
+.aln-product-media-codeonly .aln-product-badge { z-index: 2; }
+@media (max-width: 699px) {
+  .aln-node span.aln-node-icon { height: 28px; padding: 6px; width: 28px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .aln-node span.aln-node-icon { animation: none; }
+}
