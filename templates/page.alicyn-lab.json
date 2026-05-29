@@ -11,7 +11,7 @@
         "lab_heading_focus": "eje de investigación celular",
         "lab_copy": "Explora péptidos Aesthetic Labs según tus objetivos: energía, composición corporal experimental, recuperación, skin science y bienestar avanzado.",
         "whatsapp_number": "525542388056",
-        "legal_text": "Los péptidos aquí presentados son productos de investigación. La información es educativa y no sustituye la orientación de un profesional de la salud. No se realizan promesas de diagnóstico, tratamiento, cura o prevención de enfermedades.",
+        "legal_text": "Los péptidos aquí presentados son productos de investigación. La información es educativa y no sustituye la orientación de un profesional de la salud. No se realizan promesas sanitarias ni de prevención de enfermedades.",
         "antiseptic_product": "alicyn-solucion-antiseptica",
         "antiseptic_heading": "Cuidado postprocedimiento Alicyn",
         "antiseptic_copy": "Cuidado externo diseñado para acompañar tu rutina antes y después de procedimientos.",
@@ -24,9 +24,86 @@
         "product_tb500": "aesthetic-labs-tb-500-10-mg",
         "product_ghkcu": "aesthetic-labs-ghk-cu-100-mg",
         "product_cjc1295": "aesthetic-labs-cjc-1295-sin-dac-10-mg",
-        "product_ipamorelin": "aesthetic-labs-ipamorelin-10-mg"
-      }
+        "product_ipamorelin": "aesthetic-labs-ipamorelin-10-mg",
+        "axis_heading": "Elige tu eje de wellness avanzado",
+        "axis_subheading": "Selecciona lo que quieres trabajar y descubre qué productos o protocolos hacen más sentido para ti.",
+        "axis_microcopy": "Menos confusión. Más intención. Alicyn Lab organiza cada producto por objetivo para que puedas elegir con claridad.",
+        "axis_background_mode": "dark",
+        "axis_accent_color": "#9877ff",
+        "axis_enable_guides": true
+      },
+      "blocks": {
+        "axis_skin": {
+          "type": "axis_card",
+          "settings": {
+            "axis_name": "Skin Wellness",
+            "axis_key": "skin",
+            "description": "Piel, glow, colágeno y belleza celular.",
+            "products": "GHK-CU 100 mg, NAD+ 1000 mg, BPC-157 10 mg",
+            "suggested_protocol": "Protocolo Piel y Longevidad Celular",
+            "guide_text": "Este eje está pensado para quienes buscan una rutina más avanzada alrededor de piel, glow, colágeno, belleza celular y longevidad estética. Aquí conviven productos como GHK-CU, NAD+ y BPC-157 dentro de una lógica de cuidado premium y wellness celular.",
+            "button_label": "Ver Skin Wellness"
+          }
+        },
+        "axis_energy": {
+          "type": "axis_card",
+          "settings": {
+            "axis_name": "Cellular Energy",
+            "axis_key": "energy",
+            "description": "Energía celular, mitocondria y vitalidad.",
+            "products": "NAD+ 1000 mg, MOTS-C 10 mg",
+            "suggested_protocol": "Cell Reset",
+            "guide_text": "Este eje conecta con energía celular, mitocondria, metabolismo energético y vitalidad. Es ideal para quienes quieren empezar por una visión más profunda del bienestar: cómo se siente el cuerpo cuando hay más intención detrás de la rutina.",
+            "button_label": "Ver Cellular Energy"
+          }
+        },
+        "axis_metabolic": {
+          "type": "axis_card",
+          "settings": {
+            "axis_name": "Metabolic Wellness",
+            "axis_key": "metabolic",
+            "description": "Definición, metabolismo y composición corporal.",
+            "products": "AOD-9604 10 mg, HGH Fragment 176-191, RT-Triple Agonist",
+            "suggested_protocol": "Protocolo Definición",
+            "guide_text": "Este eje está pensado para quienes buscan una relación más estratégica con metabolismo, composición corporal, definición y control estético. Conecta especialmente con usuarios fit decididos y personas wellness que quieren cuidar su cuerpo con mayor precisión.",
+            "button_label": "Ver Metabolic Wellness"
+          }
+        },
+        "axis_recovery": {
+          "type": "axis_card",
+          "settings": {
+            "axis_name": "Recovery & Mobility",
+            "axis_key": "recovery",
+            "description": "Constancia, recuperación y cuerpo funcional.",
+            "products": "BPC-157 10 mg, TB-500 10 mg, GHK-CU 100 mg",
+            "suggested_protocol": "Recovery Lab",
+            "guide_text": "Este eje se enfoca en constancia, movilidad, respuesta corporal y cuidado físico avanzado. Es ideal para personas activas que quieren sostener mejor su rutina y cuidar el cuerpo con una lógica más completa.",
+            "button_label": "Ver Recovery"
+          }
+        },
+        "axis_performance": {
+          "type": "axis_card",
+          "settings": {
+            "axis_name": "Advanced Performance",
+            "axis_key": "performance",
+            "description": "Señalización, performance y composición corporal.",
+            "products": "CJC-1295 Sin DAC, Ipamorelin, IGF1-LR3",
+            "suggested_protocol": "Performance Axis",
+            "guide_text": "Este eje reúne productos asociados con señalización avanzada, performance inteligente y composición corporal. Está pensado para usuarios más decididos, con objetivos claros y una visión más técnica de su rutina.",
+            "button_label": "Ver Performance"
+          }
+        }
+      },
+      "block_order": [
+        "axis_skin",
+        "axis_energy",
+        "axis_metabolic",
+        "axis_recovery",
+        "axis_performance"
+      ]
     }
   },
-  "order": ["main"]
+  "order": [
+    "main"
+  ]
 }
