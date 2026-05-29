@@ -1,5 +1,9 @@
 /* Alicyn Lab Navigator — purchase-oriented code-only visual layer. */
 /* Purchase-oriented axis selector replacing the abstract body map */
+
+.aln .aln-axis-menu {
+  display: none !important;
+}
 .aln .aln-hero-grid {
   grid-template-columns: minmax(0, 760px);
   min-height: initial;
@@ -318,6 +322,8 @@
   .alicyn-axis-modal { align-items: flex-end; padding: 14px; }
   .alicyn-axis-modal__dialog { border-radius: 22px; padding: 24px 18px 18px; }
 }
+
+
 .aln-product-media-codeonly::before {
   background: radial-gradient(circle, rgba(81,217,232,.22), transparent 54%);
   border: 1px solid rgba(181,171,255,.14);
