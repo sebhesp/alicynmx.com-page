@@ -12,22 +12,46 @@
       return;
     }
 
+    var moments = [
+      {
+        label: "Después de dormir de lado",
+        text: "Hay días en que lo importante es tener una rutina simple, clara y sin mover la pieza de más.",
+        tag: "Calma cotidiana"
+      },
+      {
+        label: "Roce de cabello o ropa",
+        text: "Cuando aparece sensibilidad común por el roce, Alicyn ayuda a que el cuidado se sienta más intencional.",
+        tag: "Cuidado puntual"
+      },
+      {
+        label: "Sudor, calle o rutina activa",
+        text: "Un paso rápido de limpieza puede hacer que el proceso se sienta más acompañado durante el día.",
+        tag: "Rutina práctica"
+      },
+      {
+        label: "Cambio de joyería con cuidado",
+        text: "La confianza también se construye con pequeños hábitos que hacen que todo se sienta más ordenado.",
+        tag: "Confianza"
+      }
+    ];
+
     var style = document.createElement("style");
     style.textContent = "\
       .alicyn-emotion{margin:20px 0 18px;padding:clamp(18px,4vw,30px);border:1px solid rgba(157,132,255,.22);border-radius:26px;background:radial-gradient(circle at 12% 10%,rgba(149,109,255,.18),transparent 31%),radial-gradient(circle at 88% 8%,rgba(114,214,231,.11),transparent 30%),linear-gradient(145deg,rgba(255,255,255,.055),rgba(255,255,255,.018));box-shadow:0 22px 62px rgba(3,3,12,.34);overflow:hidden;position:relative}\
       .alicyn-emotion:before{content:'';position:absolute;inset:0 22px auto;height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.18),transparent)}\
       .alicyn-emotion-head{display:grid;gap:8px;max-width:760px;margin-bottom:18px}.alicyn-emotion-head h2{color:#fff;font-size:clamp(1.45rem,4.4vw,2.35rem);line-height:1.05;letter-spacing:-.045em;margin:0}.alicyn-emotion-head p{color:#d8d4e8;font-size:.96rem;line-height:1.55;margin:0}.alicyn-emotion-head small{color:#aaa5bd;font-size:.76rem;line-height:1.45}\
-      .alicyn-emotion-stats{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:18px 0}.alicyn-emotion-stat{border:1px solid rgba(204,190,255,.16);border-radius:18px;background:rgba(255,255,255,.035);padding:15px}.alicyn-emotion-stat strong{display:block;color:#fff;font-size:clamp(1.5rem,6vw,2.4rem);letter-spacing:-.04em;line-height:1}.alicyn-emotion-stat span{display:block;color:#c8c2da;font-size:.76rem;line-height:1.35;margin-top:7px}.alicyn-emotion-stat small{display:block;color:#8f8aa3;font-size:.65rem;margin-top:6px}\
-      .alicyn-review-gen{display:grid;gap:16px;margin-top:18px;border:1px solid rgba(204,190,255,.16);border-radius:22px;background:rgba(8,10,22,.58);padding:16px}.alicyn-review-gen h3{color:#fff;font-size:1.12rem;margin:0 0 6px}.alicyn-review-gen p{color:#cfcade;font-size:.86rem;line-height:1.48;margin:0}.alicyn-review-fields{display:grid;gap:9px}.alicyn-review-field{display:grid;gap:6px}.alicyn-review-field label{color:#9f99b5;font-size:.68rem;font-weight:800;letter-spacing:.13em;text-transform:uppercase}.alicyn-review-field select{width:100%;min-height:46px;border:1px solid rgba(204,190,255,.18);border-radius:14px;background:#111425;color:#fff;padding:0 12px}.alicyn-review-output{display:grid;gap:10px}.alicyn-review-output textarea{width:100%;min-height:132px;border:1px solid rgba(204,190,255,.18);border-radius:16px;background:rgba(255,255,255,.035);color:#f6f3ff;font:inherit;font-size:.9rem;line-height:1.5;padding:13px;resize:vertical}.alicyn-review-actions{display:grid;gap:9px}.alicyn-review-note{color:#918ba7!important;font-size:.72rem!important}.alicyn-review-toast{color:#82dec8;font-size:.78rem;font-weight:800;min-height:1em}\
-      @media (min-width:760px){.alicyn-emotion-stats{grid-template-columns:repeat(4,minmax(0,1fr))}.alicyn-review-gen{grid-template-columns:minmax(0,.72fr) minmax(320px,1fr);align-items:start}.alicyn-review-fields{grid-template-columns:repeat(3,minmax(0,1fr))}.alicyn-review-output{grid-column:1/-1}.alicyn-review-actions{grid-template-columns:max-content max-content}}\
-      @media (max-width:559px){.alicyn-emotion{border-radius:22px;margin:16px 0;padding:17px}.alicyn-emotion-stats{grid-template-columns:1fr 1fr}.alicyn-review-actions .alicyn-lab-button{width:100%}}\
+      .alicyn-emotion-grid{display:grid;gap:14px}.alicyn-emotion-stats{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.alicyn-emotion-stat{border:1px solid rgba(204,190,255,.16);border-radius:18px;background:rgba(255,255,255,.035);padding:15px}.alicyn-emotion-stat strong{display:block;color:#fff;font-size:clamp(1.5rem,6vw,2.4rem);letter-spacing:-.04em;line-height:1}.alicyn-emotion-stat span{display:block;color:#c8c2da;font-size:.76rem;line-height:1.35;margin-top:7px}.alicyn-emotion-stat small{display:block;color:#8f8aa3;font-size:.65rem;margin-top:6px}\
+      .alicyn-proof{border:1px solid rgba(204,190,255,.16);border-radius:22px;background:linear-gradient(145deg,rgba(8,10,22,.72),rgba(255,255,255,.035));padding:16px;position:relative;overflow:hidden;min-height:252px}.alicyn-proof:before{content:'';position:absolute;right:-48px;top:-52px;width:170px;height:170px;border-radius:999px;background:radial-gradient(circle,rgba(151,98,255,.28),transparent 68%);filter:blur(2px)}.alicyn-proof-top{display:flex;align-items:center;justify-content:space-between;gap:12px;position:relative}.alicyn-proof h3{color:#fff;font-size:1.18rem;line-height:1.1;margin:8px 0 12px;letter-spacing:-.03em}.alicyn-proof-card{display:grid;gap:12px;position:relative;transition:opacity .22s ease,transform .22s ease}.alicyn-proof-chip{display:inline-flex;width:max-content;align-items:center;gap:7px;color:#fff;background:rgba(157,132,255,.16);border:1px solid rgba(204,190,255,.2);border-radius:999px;padding:8px 11px;font-size:.72rem;font-weight:850;letter-spacing:.03em}.alicyn-proof-chip:before{content:'';width:7px;height:7px;border-radius:999px;background:#a98cff;box-shadow:0 0 16px rgba(169,140,255,.85)}.alicyn-proof-card blockquote{color:#f7f3ff;font-size:clamp(1.02rem,3.4vw,1.34rem);line-height:1.35;margin:0;letter-spacing:-.025em}.alicyn-proof-card p{color:#bfb8d5;font-size:.86rem;line-height:1.5;margin:0}.alicyn-proof-dots{display:flex;gap:7px;margin-top:16px}.alicyn-proof-dot{width:8px;height:8px;border:0;border-radius:999px;background:rgba(255,255,255,.28);padding:0;cursor:pointer}.alicyn-proof-dot.is-active{width:24px;background:linear-gradient(90deg,#8d5dff,#5a82ff)}.alicyn-proof-actions{display:grid;grid-template-columns:1fr;gap:9px;margin-top:16px}.alicyn-proof-actions .alicyn-lab-button{width:100%;justify-content:center}.alicyn-proof-note{color:#918ba7!important;font-size:.72rem!important;margin-top:12px!important}\
+      @media (min-width:760px){.alicyn-emotion-grid{grid-template-columns:minmax(0,1fr) minmax(310px,.7fr);align-items:stretch}.alicyn-emotion-stats{grid-template-columns:repeat(2,minmax(0,1fr))}.alicyn-proof{min-height:auto}.alicyn-proof-actions{grid-template-columns:max-content max-content}.alicyn-proof-actions .alicyn-lab-button{width:auto}}\
+      @media (min-width:1040px){.alicyn-emotion-stats{grid-template-columns:repeat(4,minmax(0,1fr));grid-column:1/-1}.alicyn-proof{grid-column:1/-1}.alicyn-proof-card blockquote{max-width:780px}}\
+      @media (max-width:559px){.alicyn-emotion{border-radius:22px;margin:16px 0;padding:17px}.alicyn-emotion-stats{grid-template-columns:1fr 1fr}.alicyn-proof{border-radius:20px}}\
     ";
     document.head.appendChild(style);
 
     var section = document.createElement("section");
     section.className = "alicyn-emotion alicyn-lab-glass";
     section.setAttribute("data-alicyn-emotion", "");
-    section.innerHTML = '<div class="alicyn-emotion-head"><p class="alicyn-lab-kicker">Historias Alicyn</p><h2>Pequeños momentos de calma que se sienten enormes.</h2><p>Alicyn acompaña esos días de roce, sudor, presión o sensibilidad común con una rutina clara y fácil de seguir.</p><small>Datos de comunidad y experiencias compartidas. No sustituye la orientación de tu perforador.</small></div><div class="alicyn-emotion-stats" aria-label="Comunidad Alicyn"><article class="alicyn-emotion-stat"><strong data-emotion-count="1000" data-prefix="+">0</strong><span>Piercings acompañados</span><small>en momentos de cuidado</small></article><article class="alicyn-emotion-stat"><strong data-emotion-count="1000" data-prefix="+">0</strong><span>Procesos acompañados</span><small>con limpieza puntual</small></article><article class="alicyn-emotion-stat"><strong data-emotion-count="7">0</strong><span>Años de confianza</span><small>junto a la comunidad</small></article><article class="alicyn-emotion-stat"><strong data-emotion-count="6" data-prefix="+">0</strong><span>Momentos clave</span><small>para cuidar sin improvisar</small></article></div><div class="alicyn-review-gen"><div><p class="alicyn-lab-kicker">Generador de reseñas</p><h3>Convierte tu experiencia en una reseña bonita.</h3><p>Elige tu piercing y el momento. Te damos un texto listo para copiar, editar y compartir sólo si refleja tu experiencia real.</p></div><div class="alicyn-review-fields"><div class="alicyn-review-field"><label for="alicyn-review-piercing">Piercing</label><select id="alicyn-review-piercing" data-review-piercing><option value="nostril">Nostril</option><option value="helix">Helix</option><option value="conch">Conch</option><option value="lóbulo">Lóbulo</option><option value="ombligo">Ombligo</option><option value="tragus">Tragus</option><option value="ceja">Ceja</option></select></div><div class="alicyn-review-field"><label for="alicyn-review-moment">Momento</label><select id="alicyn-review-moment" data-review-moment><option value="después de sudar o salir a la calle">Sudor o calle</option><option value="después de dormir de lado">Dormir de lado</option><option value="por roce de cabello, ropa o accesorios">Roce cotidiano</option><option value="después de cambiar joyería con cuidado">Cambio de joyería</option><option value="cuando lo sentí sensible">Sensibilidad común</option></select></div><div class="alicyn-review-field"><label for="alicyn-review-tone">Tono</label><select id="alicyn-review-tone" data-review-tone><option value="tranquilo">Tranquilo</option><option value="emocional">Emocional</option><option value="directo">Directo</option></select></div></div><div class="alicyn-review-output"><textarea data-review-output readonly></textarea><div class="alicyn-review-actions"><button class="alicyn-lab-button" type="button" data-review-generate>Generar reseña</button><button class="alicyn-lab-button alicyn-lab-button-secondary" type="button" data-review-copy>Copiar texto</button><a class="alicyn-lab-button alicyn-lab-button-tertiary" data-review-whatsapp target="_blank" rel="noopener">Compartir por WhatsApp</a></div><span class="alicyn-review-toast" data-review-toast></span><p class="alicyn-review-note">Tip: edita el texto para que suene como tú. Las experiencias personales pueden variar.</p></div></div>';
+    section.innerHTML = '<div class="alicyn-emotion-head"><p class="alicyn-lab-kicker">Historias Alicyn</p><h2>Pequeños momentos de calma que se sienten enormes.</h2><p>Alicyn acompaña esos días de roce, sudor, presión o sensibilidad común con una rutina clara y fácil de seguir.</p><small>Datos de comunidad y experiencias compartidas. No sustituye la orientación de tu perforador.</small></div><div class="alicyn-emotion-grid"><div class="alicyn-emotion-stats" aria-label="Comunidad Alicyn"><article class="alicyn-emotion-stat"><strong data-emotion-count="1000" data-prefix="+">0</strong><span>Piercings acompañados</span><small>en momentos de cuidado</small></article><article class="alicyn-emotion-stat"><strong data-emotion-count="1000" data-prefix="+">0</strong><span>Procesos acompañados</span><small>con limpieza puntual</small></article><article class="alicyn-emotion-stat"><strong data-emotion-count="7">0</strong><span>Años de confianza</span><small>junto a la comunidad</small></article><article class="alicyn-emotion-stat"><strong data-emotion-count="6" data-prefix="+">0</strong><span>Momentos clave</span><small>para cuidar sin improvisar</small></article></div><div class="alicyn-proof" data-alicyn-proof><div class="alicyn-proof-top"><p class="alicyn-lab-kicker">Conexión real</p><span class="alicyn-proof-chip" data-proof-tag>Calma cotidiana</span></div><h3>Lo que una buena rutina hace sentir.</h3><div class="alicyn-proof-card" aria-live="polite"><span class="alicyn-proof-chip" data-proof-label>Después de dormir de lado</span><blockquote data-proof-text>Hay días en que lo importante es tener una rutina simple, clara y sin mover la pieza de más.</blockquote><p>Mensajes breves inspirados en momentos comunes del proceso de cuidado.</p></div><div class="alicyn-proof-dots" data-proof-dots aria-label="Momentos Alicyn"></div><div class="alicyn-proof-actions"><a class="alicyn-lab-button" href="/products/alicyn-solucion-antiseptica">Comprar Alicyn</a><a class="alicyn-lab-button alicyn-lab-button-secondary" href="https://wa.me/525542388056?text=Hola%2C%20vengo%20de%20Alicyn%20y%20quiero%20orientaci%C3%B3n%20para%20cuidar%20mi%20piercing." target="_blank" rel="noopener">Preguntar por WhatsApp</a></div><p class="alicyn-proof-note">Cada experiencia puede variar. Sigue las indicaciones de tu perforador.</p></div></div>';
 
     hero.insertAdjacentElement("afterend", section);
 
@@ -68,50 +92,53 @@
       animateCounters();
     }
 
-    var piercing = section.querySelector("[data-review-piercing]");
-    var moment = section.querySelector("[data-review-moment]");
-    var tone = section.querySelector("[data-review-tone]");
-    var output = section.querySelector("[data-review-output]");
-    var whatsapp = section.querySelector("[data-review-whatsapp]");
-    var toast = section.querySelector("[data-review-toast]");
+    var label = section.querySelector("[data-proof-label]");
+    var tag = section.querySelector("[data-proof-tag]");
+    var text = section.querySelector("[data-proof-text]");
+    var dotsWrap = section.querySelector("[data-proof-dots]");
+    var proofCard = section.querySelector(".alicyn-proof-card");
+    var activeMoment = 0;
+    var autoTimer = null;
 
-    function buildReview() {
-      var intro = "";
-      if (tone.value === "emocional") {
-        intro = "Me dio mucha tranquilidad tener algo claro para cuidar mi " + piercing.value + " ";
-      } else if (tone.value === "directo") {
-        intro = "Usé Alicyn en mi " + piercing.value + " ";
-      } else {
-        intro = "Mi " + piercing.value + " se sentía sensible " ;
-      }
-
-      var text = intro + moment.value + ". Me gustó porque pude hacer una limpieza puntual sin mover la pieza de más. La sensación fue fresca, simple y me ayudó a sentir más confianza con mi rutina.";
-      output.value = text;
-      whatsapp.href = "https://wa.me/525542388056?text=" + encodeURIComponent("Hola, quiero compartir mi reseña de Alicyn: " + text);
-      toast.textContent = "";
+    function renderMoment(index) {
+      activeMoment = (index + moments.length) % moments.length;
+      var moment = moments[activeMoment];
+      proofCard.style.opacity = "0";
+      proofCard.style.transform = "translateY(6px)";
+      window.setTimeout(function () {
+        label.textContent = moment.label;
+        tag.textContent = moment.tag;
+        text.textContent = moment.text;
+        dotsWrap.querySelectorAll("button").forEach(function (dot, dotIndex) {
+          dot.classList.toggle("is-active", dotIndex === activeMoment);
+          dot.setAttribute("aria-pressed", dotIndex === activeMoment ? "true" : "false");
+        });
+        proofCard.style.opacity = "1";
+        proofCard.style.transform = "translateY(0)";
+      }, 140);
     }
 
-    section.querySelector("[data-review-generate]").addEventListener("click", buildReview);
-    section.querySelector("[data-review-copy]").addEventListener("click", function () {
-      buildReview();
-      if (navigator.clipboard && navigator.clipboard.writeText) {
-        navigator.clipboard.writeText(output.value).then(function () {
-          toast.textContent = "Texto copiado.";
-        }).catch(function () {
-          output.select();
-          document.execCommand("copy");
-          toast.textContent = "Texto copiado.";
-        });
-      } else {
-        output.select();
-        document.execCommand("copy");
-        toast.textContent = "Texto copiado.";
-      }
+    function startAutoMoments() {
+      window.clearInterval(autoTimer);
+      autoTimer = window.setInterval(function () {
+        renderMoment(activeMoment + 1);
+      }, 4200);
+    }
+
+    moments.forEach(function (moment, index) {
+      var dot = document.createElement("button");
+      dot.className = "alicyn-proof-dot";
+      dot.type = "button";
+      dot.setAttribute("aria-label", "Ver momento " + moment.label);
+      dot.addEventListener("click", function () {
+        renderMoment(index);
+        startAutoMoments();
+      });
+      dotsWrap.appendChild(dot);
     });
-    [piercing, moment, tone].forEach(function (field) {
-      field.addEventListener("change", buildReview);
-    });
-    buildReview();
+
+    renderMoment(0);
+    startAutoMoments();
   }
 
   document.addEventListener("DOMContentLoaded", setupAlicynCareEmotionLayer);
