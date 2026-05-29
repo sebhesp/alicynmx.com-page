@@ -46,37 +46,19 @@
       message: 'Hola, vengo de Alicyn Lab. Me recomendó la ruta Starter Lab con NAD+ y MOTS-C. ¿Me pueden orientar?'
     }
   };
-  const mapDefinitions = {
-    energy: {
-      name: 'Energía celular',
-      text: 'Energía, metabolismo y bienestar avanzado.',
-      route: 'energy',
-      functions: ['Longevidad celular', 'Metabolismo', 'Bienestar avanzado']
-    },
-    skin: {
-      name: 'Piel / Rostro',
-      text: 'Skin science, colágeno y bienestar estético.',
-      route: 'skin',
-      functions: ['Skin science', 'Colágeno', 'Señalización celular']
-    },
-    metabolism: {
-      name: 'Metabolismo',
-      text: 'Composición corporal y metabolismo celular experimental.',
-      route: 'metabolism',
-      functions: ['Composición corporal', 'Metabolismo', 'Definición']
-    },
-    recovery: {
-      name: 'Tejidos / Articulaciones',
-      text: 'Respuesta tisular y señalización celular.',
-      route: 'recovery',
-      functions: ['Tejidos', 'Articulaciones', 'Recuperación']
-    },
-    performance: {
-      name: 'Performance',
-      text: 'Energía, señalización avanzada y recuperación técnica.',
-      route: 'performance',
-      functions: ['Energía', 'Performance', 'Ruta avanzada']
-    }
+  const wellnessAxisProducts = {
+    skin: ['ghkcu', 'nad', 'bpc157'],
+    energy: ['nad', 'motsc'],
+    metabolic: ['aod'],
+    recovery: ['bpc157', 'tb500', 'ghkcu'],
+    performance: ['cjc1295', 'ipamorelin']
+  };
+  const wellnessAxisRoutes = {
+    skin: 'skin',
+    energy: 'energy',
+    metabolic: 'metabolism',
+    recovery: 'recovery',
+    performance: 'performance'
   };
 
   function init(root) {
@@ -167,30 +149,119 @@
       link.href = wa(route.message); link.target = '_blank'; link.rel = 'noopener noreferrer';
     });
 
-    const mapResult = qs(root, '[data-aln-map-result]');
-    function selectAxis(axisKey, scrollPanel) {
-      const definition = mapDefinitions[axisKey] || mapDefinitions.energy;
-      const route = routeDefinitions[definition.route];
-      state.map = definition.route;
-      qsa(root, '[data-aln-map]').forEach(item => item.setAttribute('aria-pressed', String(item.dataset.alnMap === axisKey)));
-      qsa(root, '[data-aln-axis]').forEach(item => item.setAttribute('aria-pressed', String(item.dataset.alnAxis === axisKey)));
-      qs(mapResult, 'h3').textContent = definition.name;
-      qs(mapResult, '.aln-map-description').textContent = definition.text;
-      qs(mapResult, '[data-aln-map-route]').textContent = route.name;
-      qs(mapResult, '.aln-map-products').textContent = route.products.map(key => product(key).name).join(' · ');
-      const functionsEl = qs(mapResult, '[data-aln-map-functions]');
-      functionsEl.innerHTML = definition.functions.map(item => `<span>${item}</span>`).join('');
-      const productsEl = qs(mapResult, '[data-aln-map-product-buttons]');
-      productsEl.innerHTML = route.products.map(key => `<button type="button" data-axis-product="${key}">${product(key).name}</button>`).join('');
-      qsa(productsEl, '[data-axis-product]').forEach(button => button.addEventListener('click', () => highlightProducts([button.dataset.axisProduct], false)));
-      mapResult.classList.add('is-open');
-      if (scrollPanel) mapResult.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'nearest' });
+    function productKeysForAxis(axisKey) {
+      return wellnessAxisProducts[axisKey] || [];
     }
-    qsa(root, '[data-aln-map]').forEach(point => point.addEventListener('click', () => selectAxis(point.dataset.alnMap, true)));
-    qsa(root, '[data-aln-axis]').forEach(tab => tab.addEventListener('click', () => selectAxis(tab.dataset.alnAxis, true)));
-    qs(root, '[data-aln-map-route-button]').addEventListener('click', () => showRoute(state.map || 'energy', false));
-    qs(root, '[data-aln-map-compare]').addEventListener('click', () => highlightProducts(routeDefinitions[state.map || 'energy'].products, true));
-    selectAxis('energy', false);
+    function routeKeyForAxis(axisKey) {
+      return wellnessAxisRoutes[axisKey] || axisKey || 'skin';
+    }
+    function focusProductsForAxis(axisKey) {
+      const key = axisKey || 'skin';
+      root.dataset.selectedAxis = key;
+      safeSet('alicynLabNavigator.axis', key);
+      const externalFilter = qs(root, `[data-axis-filter="${key}"], button[data-axis="${key}"], [role="button"][data-axis="${key}"]`);
+      if (externalFilter && typeof externalFilter.click === 'function') {
+        externalFilter.click();
+        scrollToAnchor('products');
+        return;
+      }
+      const keys = productKeysForAxis(key);
+      if (keys.length) {
+        highlightProducts(keys, false);
+      } else {
+        scrollToAnchor('products');
+      }
+    }
+    function initWellnessAxisSelector() {
+      const axisSection = qs(root, '[data-alicyn-axis-section]');
+      if (!axisSection) return;
+      const cards = qsa(axisSection, '[data-alicyn-axis-card]');
+      const panel = qs(axisSection, '[data-alicyn-axis-panel]');
+      const modal = qs(axisSection, '[data-alicyn-axis-modal]');
+      const selected = { data: null };
+      const splitProducts = value => String(value || '').split(',').map(item => item.trim()).filter(Boolean);
+      const cardData = card => ({
+        key: card.dataset.axisKey || 'skin',
+        name: card.dataset.axisName || 'Skin Wellness',
+        description: card.dataset.axisDescription || '',
+        products: splitProducts(card.dataset.axisProducts),
+        protocol: card.dataset.axisProtocol || 'Explora productos individuales',
+        guide: card.dataset.axisGuide || '',
+        buttonLabel: card.dataset.axisButtonLabel || 'Ver productos'
+      });
+      function updatePanel(data) {
+        selected.data = data;
+        axisSection.dataset.axisSelected = data.key;
+        safeSet('alicynLabNavigator.axis', data.key);
+        const title = qs(panel, '[data-alicyn-axis-title]');
+        const description = qs(panel, '[data-alicyn-axis-description]');
+        const protocolTop = qs(panel, '[data-alicyn-axis-protocol]');
+        const protocolText = qs(panel, '[data-alicyn-axis-protocol-text]');
+        const productsWrap = qs(panel, '[data-alicyn-axis-products]');
+        const productButton = qs(panel, '[data-alicyn-axis-products-button]');
+        if (title) title.textContent = `Eje seleccionado: ${data.name}`;
+        if (description) description.textContent = data.description;
+        if (protocolTop) protocolTop.textContent = data.protocol;
+        if (protocolText) protocolText.textContent = data.protocol;
+        if (productsWrap) {
+          productsWrap.innerHTML = '';
+          data.products.forEach(name => {
+            const chip = document.createElement('span');
+            chip.className = 'alicyn-axis-chip';
+            chip.textContent = name;
+            productsWrap.appendChild(chip);
+          });
+        }
+        if (productButton) productButton.textContent = 'Ver productos de este eje';
+      }
+      function selectCard(card) {
+        const data = cardData(card);
+        cards.forEach(item => {
+          const active = item === card;
+          item.classList.toggle('alicyn-axis-card--active', active);
+          item.setAttribute('aria-pressed', String(active));
+        });
+        updatePanel(data);
+      }
+      function openGuide() {
+        if (!modal || !selected.data) return;
+        const title = qs(modal, '[data-alicyn-axis-modal-title]');
+        const text = qs(modal, '[data-alicyn-axis-modal-text]');
+        if (title) title.textContent = selected.data.name;
+        if (text) text.textContent = selected.data.guide;
+        modal.hidden = false;
+        const close = qs(modal, '[data-alicyn-axis-close]');
+        if (close) close.focus({ preventScroll: true });
+      }
+      function closeGuide() {
+        if (modal) modal.hidden = true;
+      }
+      cards.forEach(card => card.addEventListener('click', () => selectCard(card)));
+      const productButton = qs(axisSection, '[data-alicyn-axis-products-button]');
+      if (productButton) productButton.addEventListener('click', () => {
+        const key = selected.data ? selected.data.key : axisSection.dataset.axisSelected;
+        focusProductsForAxis(key);
+        const routeKey = routeKeyForAxis(key);
+        if (routeDefinitions[routeKey]) showRoute(routeKey, false);
+      });
+      const guideButton = qs(axisSection, '[data-alicyn-axis-guide-button]');
+      if (guideButton) guideButton.addEventListener('click', openGuide);
+      if (modal) {
+        qsa(modal, '[data-alicyn-axis-close]').forEach(button => button.addEventListener('click', closeGuide));
+        const modalProducts = qs(modal, '[data-alicyn-axis-modal-products]');
+        if (modalProducts) modalProducts.addEventListener('click', () => {
+          closeGuide();
+          focusProductsForAxis(selected.data ? selected.data.key : axisSection.dataset.axisSelected);
+        });
+      }
+      document.addEventListener('keydown', event => {
+        if (event.key === 'Escape' && modal && !modal.hidden) closeGuide();
+      });
+      const storedAxis = safeGet('alicynLabNavigator.axis');
+      const initial = cards.find(card => card.dataset.axisKey === storedAxis) || cards[0];
+      if (initial) selectCard(initial);
+    }
+    initWellnessAxisSelector();
     qsa(root, '[data-aln-focus-product]').forEach(button => button.addEventListener('click', () => highlightProducts([button.dataset.alnFocusProduct], false)));
     qsa(root, '[data-aln-show-products]').forEach(button => button.addEventListener('click', () => scrollToAnchor('products')));
 
