@@ -1,0 +1,129 @@
+{{ 'alicyn-lab-codeonly.css' | asset_url | stylesheet_tag }}
+
+<section class="alicyn-axis-section alicyn-axis-section--{{ section.settings.background_mode }}" id="alicyn-axis-{{ section.id }}" data-alicyn-axis-portal data-axis-selected="skin" data-guides-enabled="{{ section.settings.enable_guides }}" style="--alicyn-axis-accent: {{ section.settings.accent_color }};" aria-labelledby="alicyn-axis-title-{{ section.id }}">
+  <div class="alicyn-axis-header">
+    <p class="aln-eyebrow">Wellness avanzado</p>
+    <h2 id="alicyn-axis-title-{{ section.id }}">{{ section.settings.heading | escape }}</h2>
+    <p>{{ section.settings.subheading | escape }}</p>
+    <small>{{ section.settings.microcopy | escape }}</small>
+  </div>
+
+  <div class="alicyn-axis-layout">
+    <div class="alicyn-axis-grid" role="list" aria-label="Ejes de wellness avanzado">
+      {% for block in section.blocks %}
+        <button class="alicyn-axis-card{% if forloop.first %} alicyn-axis-card--active{% endif %}" type="button" role="listitem" data-alicyn-axis-card data-axis-key="{{ block.settings.axis_key | escape }}" data-axis-name="{{ block.settings.axis_name | escape }}" data-axis-description="{{ block.settings.description | escape }}" data-axis-products="{{ block.settings.products | escape }}" data-axis-protocol="{{ block.settings.suggested_protocol | escape }}" data-axis-guide="{{ block.settings.guide_text | escape }}" {% if forloop.first %}aria-pressed="true"{% else %}aria-pressed="false"{% endif %} {{ block.shopify_attributes }}>
+          <span class="alicyn-axis-card__icon" aria-hidden="true">
+            {% case block.settings.axis_key %}
+              {% when 'skin' %}{% render 'alicyn-lab-icon', name: 'skin' %}
+              {% when 'energy' %}{% render 'alicyn-lab-icon', name: 'dna' %}
+              {% when 'metabolic' %}{% render 'alicyn-lab-icon', name: 'body' %}
+              {% when 'recovery' %}{% render 'alicyn-lab-icon', name: 'joint' %}
+              {% when 'performance' %}{% render 'alicyn-lab-icon', name: 'bolt' %}
+              {% else %}{% render 'alicyn-lab-icon', name: 'flask' %}
+            {% endcase %}
+          </span>
+          <span class="alicyn-axis-card__copy"><strong>{{ block.settings.axis_name | escape }}</strong><small>{{ block.settings.description | escape }}</small></span>
+          <span class="alicyn-axis-card__cta">{{ block.settings.button_label | escape }} →</span>
+        </button>
+      {% endfor %}
+    </div>
+
+    <aside class="alicyn-axis-panel" data-alicyn-axis-panel aria-live="polite">
+      <div class="alicyn-axis-panel__topline"><span>Selección curada</span><b data-alicyn-axis-protocol></b></div>
+      <h3 data-alicyn-axis-title></h3>
+      <p data-alicyn-axis-description></p>
+      <div class="alicyn-axis-panel__group"><span>Productos recomendados</span><div class="alicyn-axis-chip-list" data-alicyn-axis-products></div></div>
+      <div class="alicyn-axis-panel__group"><span>Protocolo sugerido</span><strong data-alicyn-axis-protocol-text></strong></div>
+      <div class="alicyn-axis-actions">
+        <button class="alicyn-axis-button alicyn-axis-button--primary" type="button" data-alicyn-axis-products-button>Ver productos de este eje</button>
+        {% if section.settings.enable_guides %}<button class="alicyn-axis-button alicyn-axis-button--secondary" type="button" data-alicyn-axis-guide-button>Ver guía rápida</button>{% endif %}
+      </div>
+    </aside>
+  </div>
+
+  {% if section.settings.enable_guides %}
+    <div class="alicyn-axis-modal" data-alicyn-axis-modal hidden>
+      <div class="alicyn-axis-modal__overlay" data-alicyn-axis-close></div>
+      <div class="alicyn-axis-modal__dialog" role="dialog" aria-modal="true" aria-labelledby="alicyn-axis-modal-title-{{ section.id }}">
+        <button class="alicyn-axis-modal__close" type="button" data-alicyn-axis-close aria-label="Cerrar guía">×</button>
+        <p class="aln-eyebrow">Guía rápida</p>
+        <h3 id="alicyn-axis-modal-title-{{ section.id }}" data-alicyn-axis-modal-title></h3>
+        <p data-alicyn-axis-modal-text></p>
+        <button class="alicyn-axis-button alicyn-axis-button--primary" type="button" data-alicyn-axis-modal-products>Ver productos de este eje</button>
+      </div>
+    </div>
+  {% endif %}
+</section>
+
+<script>
+(() => {
+  const section = document.getElementById('alicyn-axis-{{ section.id }}');
+  if (!section) return;
+  const productMap = { skin:['ghkcu','nad','bpc157'], energy:['nad','motsc'], metabolic:['aod'], recovery:['bpc157','tb500','ghkcu'], performance:['cjc1295','ipamorelin'] };
+  const routeMap = { skin:'skin', energy:'energy', metabolic:'metabolism', recovery:'recovery', performance:'performance' };
+  const cards = [...section.querySelectorAll('[data-alicyn-axis-card]')];
+  const panel = section.querySelector('[data-alicyn-axis-panel]');
+  const modal = section.querySelector('[data-alicyn-axis-modal]');
+  let current = null;
+  const $ = (s, r = section) => r.querySelector(s);
+  const chips = value => String(value || '').split(',').map(v => v.trim()).filter(Boolean);
+  function placeSection() {
+    const root = document.querySelector('[data-aln]');
+    const hero = root && root.querySelector('.aln-hero');
+    const oldMap = root && root.querySelector('.aln-axis-menu');
+    if (oldMap) oldMap.remove();
+    if (hero && hero.parentNode && section.parentNode !== hero.parentNode) hero.insertAdjacentElement('afterend', section);
+  }
+  function dataFrom(card) {
+    return { key: card.dataset.axisKey, name: card.dataset.axisName, description: card.dataset.axisDescription, products: card.dataset.axisProducts, protocol: card.dataset.axisProtocol || 'Explora productos individuales', guide: card.dataset.axisGuide };
+  }
+  function select(card) {
+    current = dataFrom(card);
+    section.dataset.axisSelected = current.key;
+    try { localStorage.setItem('alicynLabNavigator.axis', current.key); } catch(e) {}
+    cards.forEach(c => { const active = c === card; c.classList.toggle('alicyn-axis-card--active', active); c.setAttribute('aria-pressed', active ? 'true' : 'false'); });
+    $('[data-alicyn-axis-title]', panel).textContent = `Eje seleccionado: ${current.name}`;
+    $('[data-alicyn-axis-description]', panel).textContent = current.description;
+    $('[data-alicyn-axis-protocol]', panel).textContent = current.protocol;
+    $('[data-alicyn-axis-protocol-text]', panel).textContent = current.protocol;
+    const wrap = $('[data-alicyn-axis-products]', panel); wrap.innerHTML = '';
+    chips(current.products).forEach(p => { const span = document.createElement('span'); span.className = 'alicyn-axis-chip'; span.textContent = p; wrap.appendChild(span); });
+  }
+  function showProducts() {
+    const key = current ? current.key : section.dataset.axisSelected;
+    section.dataset.axisSelected = key;
+    try { localStorage.setItem('alicynLabNavigator.axis', key); } catch(e) {}
+    const external = document.querySelector(`[data-axis-filter="${key}"], button[data-axis="${key}"], [role="button"][data-axis="${key}"]`);
+    if (external && external !== section) { external.click(); return; }
+    const root = document.querySelector('[data-aln]');
+    const products = root && root.querySelector('[data-aln-anchor="products"]');
+    if (products) {
+      products.dataset.selectedAxis = key;
+      products.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      const ids = productMap[key] || [];
+      root.querySelectorAll('[data-aln-product-card]').forEach(card => { card.classList.toggle('is-highlighted', ids.includes(card.dataset.alnProductCard)); });
+      setTimeout(() => root.querySelectorAll('[data-aln-product-card]').forEach(card => card.classList.remove('is-highlighted')), 1800);
+    }
+    const routeButton = root && root.querySelector(`[data-aln-route-view="${routeMap[key]}"]`);
+    if (routeButton) routeButton.click();
+  }
+  function openGuide() {
+    if (!modal || !current) return;
+    $('[data-alicyn-axis-modal-title]', modal).textContent = current.name;
+    $('[data-alicyn-axis-modal-text]', modal).textContent = current.guide;
+    modal.hidden = false;
+    const close = $('[data-alicyn-axis-close]', modal); if (close) close.focus({ preventScroll: true });
+  }
+  function closeGuide() { if (modal) modal.hidden = true; }
+  placeSection();
+  cards.forEach(card => card.addEventListener('click', () => select(card)));
+  $('[data-alicyn-axis-products-button]').addEventListener('click', showProducts);
+  const guideButton = $('[data-alicyn-axis-guide-button]'); if (guideButton) guideButton.addEventListener('click', openGuide);
+  if (modal) { modal.querySelectorAll('[data-alicyn-axis-close]').forEach(b => b.addEventListener('click', closeGuide)); $('[data-alicyn-axis-modal-products]', modal).addEventListener('click', () => { closeGuide(); showProducts(); }); document.addEventListener('keydown', e => { if (e.key === 'Escape') closeGuide(); }); }
+  select(cards[0]);
+})();
+</script>
+
+{% schema %}
+{"name":"Alicyn Axis Selector","tag":"section","class":"section-alicyn-axis-selector","settings":[{"type":"text","id":"heading","label":"Título","default":"Elige tu eje de wellness avanzado"},{"type":"textarea","id":"subheading","label":"Subtítulo","default":"Selecciona lo que quieres trabajar y descubre qué productos o protocolos hacen más sentido para ti."},{"type":"textarea","id":"microcopy","label":"Microcopy","default":"Menos confusión. Más intención. Alicyn Lab organiza cada producto por objetivo para que puedas elegir con claridad."},{"type":"select","id":"background_mode","label":"Fondo","default":"dark","options":[{"value":"dark","label":"Oscuro"},{"value":"soft","label":"Suave"}]},{"type":"color","id":"accent_color","label":"Acento","default":"#9877ff"},{"type":"checkbox","id":"enable_guides","label":"Activar guías rápidas","default":true}],"blocks":[{"type":"axis_card","name":"Eje wellness","settings":[{"type":"text","id":"axis_name","label":"Nombre","default":"Skin Wellness"},{"type":"text","id":"axis_key","label":"Key","default":"skin"},{"type":"textarea","id":"description","label":"Descripción","default":"Piel, glow, colágeno y belleza celular."},{"type":"textarea","id":"products","label":"Productos","default":"GHK-CU 100 mg, NAD+ 1000 mg, BPC-157 10 mg"},{"type":"text","id":"suggested_protocol","label":"Protocolo sugerido","default":"Protocolo Piel y Longevidad Celular"},{"type":"textarea","id":"guide_text","label":"Guía rápida","default":"Este eje está pensado para quienes buscan una rutina más avanzada alrededor de piel, glow, colágeno, belleza celular y longevidad estética. Aquí conviven productos como GHK-CU, NAD+ y BPC-157 dentro de una lógica de cuidado premium y wellness celular."},{"type":"text","id":"button_label","label":"CTA","default":"Ver Skin Wellness"}]}],"presets":[{"name":"Alicyn Axis Selector","blocks":[{"type":"axis_card","settings":{"axis_name":"Skin Wellness","axis_key":"skin","description":"Piel, glow, colágeno y belleza celular.","products":"GHK-CU 100 mg, NAD+ 1000 mg, BPC-157 10 mg","suggested_protocol":"Protocolo Piel y Longevidad Celular","guide_text":"Este eje está pensado para quienes buscan una rutina más avanzada alrededor de piel, glow, colágeno, belleza celular y longevidad estética. Aquí conviven productos como GHK-CU, NAD+ y BPC-157 dentro de una lógica de cuidado premium y wellness celular.","button_label":"Ver Skin Wellness"}},{"type":"axis_card","settings":{"axis_name":"Cellular Energy","axis_key":"energy","description":"Energía celular, mitocondria y vitalidad.","products":"NAD+ 1000 mg, MOTS-C 10 mg","suggested_protocol":"Cell Reset","guide_text":"Este eje conecta con energía celular, mitocondria, metabolismo energético y vitalidad. Es ideal para quienes quieren empezar por una visión más profunda del bienestar: cómo se siente el cuerpo cuando hay más intención detrás de la rutina.","button_label":"Ver Cellular Energy"}},{"type":"axis_card","settings":{"axis_name":"Metabolic Wellness","axis_key":"metabolic","description":"Definición, metabolismo y composición corporal.","products":"AOD-9604 10 mg, HGH Fragment 176-191, RT-Triple Agonist","suggested_protocol":"Protocolo Definición","guide_text":"Este eje está pensado para quienes buscan una relación más estratégica con metabolismo, composición corporal, definición y control estético. Conecta especialmente con usuarios fit decididos y personas wellness que quieren cuidar su cuerpo con mayor precisión.","button_label":"Ver Metabolic Wellness"}},{"type":"axis_card","settings":{"axis_name":"Recovery & Mobility","axis_key":"recovery","description":"Constancia, recuperación y cuerpo funcional.","products":"BPC-157 10 mg, TB-500 10 mg, GHK-CU 100 mg","suggested_protocol":"Recovery Lab","guide_text":"Este eje se enfoca en constancia, movilidad, respuesta corporal y cuidado físico avanzado. Es ideal para personas activas que quieren sostener mejor su rutina y cuidar el cuerpo con una lógica más completa.","button_label":"Ver Recovery"}},{"type":"axis_card","settings":{"axis_name":"Advanced Performance","axis_key":"performance","description":"Señalización, performance y composición corporal.","products":"CJC-1295 Sin DAC, Ipamorelin, IGF1-LR3","suggested_protocol":"Performance Axis","guide_text":"Este eje reúne productos asociados con señalización avanzada, performance inteligente y composición corporal. Está pensado para usuarios más decididos, con objetivos claros y una visión más técnica de su rutina.","button_label":"Ver Performance"}}]}],"max_blocks":8}
+{% endschema %}
