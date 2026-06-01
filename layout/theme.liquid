@@ -37,6 +37,23 @@
     <meta name="twitter:image" content="{{ social_image }}">
 
     {{ 'alicyn.css' | asset_url | stylesheet_tag }}
+    <style>
+      [data-alicyn-lab-app] [data-lab-view="peptides"] .alicyn-lab-badges,
+      [data-alicyn-lab-app] [data-lab-view="peptides"] .alicyn-lab-compliance,
+      [data-alicyn-lab-app] [data-lab-view="peptides"] .alicyn-lab-hero-hint,
+      [data-alicyn-lab-app] [data-lab-view="peptides"] .alicyn-lab-hero-media,
+      [data-alicyn-lab-app] [data-lab-view="peptides"] .alicyn-lab-trust-grid,
+      [data-alicyn-lab-app] [data-lab-view="peptides"] [id^="alicyn-lab-mapa-"] {
+        display: none !important;
+      }
+      [data-alicyn-lab-app] [data-lab-view="peptides"] .alicyn-lab-hero {
+        grid-template-columns: 1fr !important;
+      }
+      [data-alicyn-lab-app] [data-lab-view="peptides"] .alicyn-lab-hero-copy {
+        max-width: 780px;
+        width: 100%;
+      }
+    </style>
     {{ content_for_header }}
   </head>
   <body>
