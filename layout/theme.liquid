@@ -47,11 +47,40 @@
         display: none !important;
       }
       [data-alicyn-lab-app] [data-lab-view="peptides"] .alicyn-lab-hero {
+        background: radial-gradient(circle at 50% 35%, rgba(130, 222, 200, 0.16), transparent 34rem), radial-gradient(circle at 82% 20%, rgba(149, 109, 255, 0.16), transparent 28rem) !important;
+        border: 0 !important;
+        box-shadow: none !important;
         grid-template-columns: 1fr !important;
+        padding: clamp(24px, 7vw, 72px) 0 clamp(10px, 3vw, 22px) !important;
       }
       [data-alicyn-lab-app] [data-lab-view="peptides"] .alicyn-lab-hero-copy {
-        max-width: 780px;
+        background: transparent !important;
+        border: 0 !important;
+        box-shadow: none !important;
+        -webkit-backdrop-filter: none !important;
+        backdrop-filter: none !important;
+        max-width: 980px !important;
+        padding: 0 !important;
+        text-align: center;
         width: 100%;
+      }
+      [data-alicyn-lab-app] [data-lab-view="peptides"] .alicyn-lab-hero-copy .alicyn-lab-kicker,
+      [data-alicyn-lab-app] [data-lab-view="peptides"] .alicyn-lab-hero-text,
+      [data-alicyn-lab-app] [data-lab-view="peptides"] .alicyn-lab-actions {
+        display: none !important;
+      }
+      [data-alicyn-lab-app] [data-lab-view="peptides"] .alicyn-lab-hero-title {
+        background: linear-gradient(105deg, #ffffff 0%, #d7fff1 34%, #9ff2d5 58%, #b99cff 100%);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent !important;
+        display: block;
+        font-size: clamp(4.8rem, 20vw, 13rem) !important;
+        font-weight: 900 !important;
+        letter-spacing: -0.12em !important;
+        line-height: 0.78 !important;
+        margin: 0 !important;
+        text-transform: uppercase;
       }
     </style>
     {{ content_for_header }}

@@ -122,13 +122,14 @@
       id + "{overflow-x:hidden;}" +
       id + " *," + id + " *::before," + id + " *::after{box-sizing:border-box;}" +
       id + " .alicyn-lab-orbit," + id + " .alicyn-lab-orbit-core," + id + " .alicyn-goal-legacy-hidden{display:none!important;}" +
+      id + " [data-lab-view='peptides'] .alicyn-lab-badges," + id + " [data-lab-view='peptides'] .alicyn-lab-compliance," + id + " [data-lab-view='peptides'] .alicyn-lab-hero-hint," + id + " [data-lab-view='peptides'] .alicyn-lab-hero-media," + id + " [data-lab-view='peptides'] .alicyn-lab-trust-grid{display:none!important;}" +
       id + " [data-lab-view='peptides']{gap:0;}" +
-      id + " [data-lab-view='peptides'] .alicyn-lab-hero{align-items:center;margin-bottom:clamp(18px,4vw,34px);min-height:auto;padding:clamp(20px,5vw,42px);}" +
-      id + " [data-lab-view='peptides'] .alicyn-lab-hero-title{font-size:clamp(2.45rem,11vw,5rem)!important;letter-spacing:-.08em!important;line-height:.95!important;margin:0 0 14px!important;}" +
-      id + " [data-lab-view='peptides'] .alicyn-lab-hero-text{color:#dedbf0;font-size:clamp(1rem,3.1vw,1.2rem);line-height:1.42;max-width:650px!important;margin:0 0 12px!important;}" +
-      id + " [data-lab-view='peptides'] .alicyn-lab-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px;}" +
-      id + " .alicyn-goal-hero-cta{align-items:center;background:rgba(255,255,255,.055);border:1px solid rgba(196,255,236,.24);border-radius:999px;color:#f7fff9;display:inline-flex;font-size:.88rem;font-weight:800;min-height:44px;padding:0 16px;text-decoration:none;}" +
-      id + " .alicyn-goal-mini-line{color:#9ff2d5;font-size:.82rem;font-weight:800;letter-spacing:.08em;margin:8px 0 0;text-transform:uppercase;}" +
+      id + " [data-lab-view='peptides'] .alicyn-lab-hero{align-items:center;background:radial-gradient(circle at 50% 35%,rgba(130,222,200,.16),transparent 34rem),radial-gradient(circle at 82% 20%,rgba(149,109,255,.16),transparent 28rem)!important;border:0!important;box-shadow:none!important;grid-template-columns:1fr!important;margin:0 0 clamp(10px,3vw,22px);min-height:auto;padding:clamp(24px,7vw,72px) 0 clamp(10px,3vw,22px)!important;}" +
+      id + " [data-lab-view='peptides'] .alicyn-lab-hero-copy{background:transparent!important;border:0!important;box-shadow:none!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important;margin:0 auto;max-width:980px!important;padding:0!important;text-align:center;width:100%;}" +
+      id + " [data-lab-view='peptides'] .alicyn-lab-hero-copy .alicyn-lab-kicker," + id + " [data-lab-view='peptides'] .alicyn-lab-hero-text," + id + " [data-lab-view='peptides'] .alicyn-lab-actions," + id + " [data-lab-view='peptides'] .alicyn-goal-mini-line{display:none!important;}" +
+      id + " [data-lab-view='peptides'] .alicyn-lab-hero-title{background:linear-gradient(105deg,#ffffff 0%,#d7fff1 34%,#9ff2d5 58%,#b99cff 100%);-webkit-background-clip:text;background-clip:text;color:transparent!important;display:block;font-size:clamp(4.8rem,20vw,13rem)!important;font-weight:900!important;letter-spacing:-.12em!important;line-height:.78!important;margin:0!important;text-transform:uppercase;text-shadow:0 30px 90px rgba(130,222,200,.18);}" +
+      id + " .alicyn-goal-hero-cta{display:none!important;}" +
+      id + " .alicyn-goal-mini-line{display:none!important;}" +
       id + " .alicyn-goal-section{--goal-accent:#82dec8;background:radial-gradient(circle at 0% 0%,rgba(130,222,200,.16),transparent 31%),radial-gradient(circle at 100% 12%,rgba(149,109,255,.18),transparent 30%),linear-gradient(180deg,rgba(9,12,24,.88),rgba(4,7,15,.72));border:1px solid rgba(210,255,241,.14);border-radius:clamp(24px,4vw,36px);box-shadow:0 32px 90px rgba(0,0,0,.34);margin:clamp(18px,4vw,34px) 0 clamp(34px,6vw,64px);overflow:hidden;padding:clamp(16px,3vw,28px);position:relative;}" +
       id + " .alicyn-goal-header{display:grid;gap:8px;margin-bottom:clamp(16px,3vw,26px);max-width:780px;}" +
       id + " .alicyn-goal-kicker{color:#9ff2d5;font-size:.72rem;font-weight:900;letter-spacing:.18em;margin:0;text-transform:uppercase;}" +
@@ -197,7 +198,7 @@
       id + " .alicyn-goal-drawer__actions{display:grid;gap:10px;margin-top:14px;}" +
       "@media(min-width:560px){" + id + " .alicyn-goal-grid{grid-template-columns:repeat(2,minmax(0,1fr));}" + id + " .alicyn-goal-products," + id + " .alicyn-goal-protocols{grid-template-columns:repeat(2,minmax(0,1fr));}" + id + " .alicyn-goal-drawer__actions{grid-template-columns:max-content max-content;}" + "}" +
       "@media(min-width:900px){" + id + " .alicyn-goal-grid{grid-template-columns:repeat(3,minmax(0,1fr));}" + id + " .alicyn-goal-products{grid-template-columns:repeat(3,minmax(0,1fr));}" + id + " .alicyn-goal-protocols{grid-template-columns:repeat(3,minmax(0,1fr));}" + id + " .alicyn-goal-detail{grid-template-columns:minmax(0,1fr) 360px;align-items:center;}" + id + " .alicyn-goal-actions{grid-template-columns:1fr;max-width:360px;}" + id + " .alicyn-goal-compare-row{grid-template-columns:1.1fr 1fr 1.2fr;align-items:center;}" + "}" +
-      "@media(max-width:749px){" + id + " .alicyn-lab-shell{padding-left:14px;padding-right:14px;}" + id + " [data-lab-view='peptides'] .alicyn-lab-hero{border-radius:24px;padding:20px 16px;}" + id + " [data-lab-view='peptides'] .alicyn-lab-hero-visual{display:none!important;}" + id + " .alicyn-goal-section{margin-left:-2px;margin-right:-2px;padding:14px;border-radius:26px;}" + id + " .alicyn-goal-card{grid-template-columns:72px minmax(0,1fr);min-height:154px;padding:14px;}" + id + " .alicyn-goal-card__image{aspect-ratio:1;height:72px;}" + id + " .alicyn-goal-card__button{grid-column:2;}" + id + " .alicyn-goal-product-card__actions{grid-template-columns:1fr;}" + id + " .alicyn-goal-button{min-height:50px;}" + id + " .alicyn-goal-drawer__panel{border-radius:24px 24px 16px 16px;}" + "}" +
+      "@media(max-width:749px){" + id + " .alicyn-lab-shell{padding-left:14px;padding-right:14px;}" + id + " [data-lab-view='peptides'] .alicyn-lab-hero{border-radius:0!important;padding:clamp(34px,16vw,72px) 0 clamp(8px,4vw,18px)!important;}" + id + " [data-lab-view='peptides'] .alicyn-lab-hero-visual{display:none!important;}" + id + " .alicyn-goal-section{margin-left:-2px;margin-right:-2px;padding:14px;border-radius:26px;}" + id + " .alicyn-goal-card{grid-template-columns:72px minmax(0,1fr);min-height:154px;padding:14px;}" + id + " .alicyn-goal-card__image{aspect-ratio:1;height:72px;}" + id + " .alicyn-goal-card__button{grid-column:2;}" + id + " .alicyn-goal-product-card__actions{grid-template-columns:1fr;}" + id + " .alicyn-goal-button{min-height:50px;}" + id + " .alicyn-goal-drawer__panel{border-radius:24px 24px 16px 16px;}" + "}" +
       "@media(max-width:390px){" + id + " .alicyn-goal-card{grid-template-columns:1fr;}" + id + " .alicyn-goal-card__image{height:auto;width:78px;}" + id + " .alicyn-goal-card__button{grid-column:1;}" + id + " .alicyn-goal-product-card__top{display:grid;}" + id + " .alicyn-goal-product-card__price{white-space:normal;}" + "}" +
       "@media(prefers-reduced-motion:reduce){" + id + " .alicyn-goal-card{transition:none;}" + "}";
     root.appendChild(style);
@@ -209,12 +210,12 @@
     var title = q(peptide, ".alicyn-lab-hero-title, .alicyn-lab-hero h1");
     var text = q(peptide, ".alicyn-lab-hero-text, .alicyn-lab-section-copy");
     var copy = q(peptide, ".alicyn-lab-hero-copy") || q(peptide, ".alicyn-lab-hero");
-    if (title) title.textContent = "Alicyn Lab";
-    if (text) text.textContent = "Elige tu objetivo y encuentra una ruta más clara para tu cuerpo, tu piel y tu energía.";
+    if (title) title.textContent = "Péptidos";
+    if (text) text.textContent = "";
     qa(peptide, ".alicyn-lab-orbit, .alicyn-lab-orbit-core").forEach(function (node) { node.remove(); });
     var actions = q(peptide, ".alicyn-lab-actions");
     if (actions) {
-      actions.innerHTML = '<a class="alicyn-goal-hero-cta" href="' + COLLECTION_URL + '">Ver todos los péptidos →</a>';
+      actions.innerHTML = '';
     }
     if (copy && !q(copy, ".alicyn-goal-mini-line")) {
       var mini = document.createElement("p");
