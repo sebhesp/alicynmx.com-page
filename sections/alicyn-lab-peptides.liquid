@@ -564,6 +564,195 @@
       padding: 11px 13px;
     }
 
+    #AlicynLab-{{ section.id }} .alicyn-lab-assistant {
+      display: grid;
+      gap: 16px;
+      padding-top: 10px;
+    }
+
+    #AlicynLab-{{ section.id }} .alicyn-lab-assistant-intro {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 62px;
+      gap: 15px;
+      align-items: center;
+      padding: 21px 18px;
+    }
+
+    #AlicynLab-{{ section.id }} .alicyn-lab-assistant-intro .alicyn-lab-kicker {
+      margin-bottom: 8px;
+      text-transform: none;
+    }
+
+    #AlicynLab-{{ section.id }} .alicyn-lab-assistant-title {
+      margin: 0 0 7px;
+      font-size: clamp(1.65rem, 7.3vw, 2.55rem);
+      line-height: 1.08;
+    }
+
+    #AlicynLab-{{ section.id }} .alicyn-lab-assistant-copy {
+      margin: 0;
+      color: var(--alicyn-lab-soft);
+      font-size: 0.91rem;
+      line-height: 1.5;
+    }
+
+    #AlicynLab-{{ section.id }} .alicyn-lab-signal {
+      width: 60px;
+      height: 60px;
+      color: var(--alicyn-lab-violet);
+      filter: drop-shadow(0 0 14px rgba(149, 109, 255, 0.5));
+    }
+
+    #AlicynLab-{{ section.id }} .alicyn-lab-goals {
+      scroll-margin-top: 82px;
+    }
+
+    #AlicynLab-{{ section.id }} .alicyn-lab-goals-heading {
+      margin: 0 0 12px;
+      color: var(--alicyn-lab-soft);
+      font-size: 0.8rem;
+      font-weight: 700;
+    }
+
+    #AlicynLab-{{ section.id }} .alicyn-lab-objectives-grid.is-assistant {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+      margin: 0 0 14px;
+    }
+
+    #AlicynLab-{{ section.id }} .alicyn-lab-objectives-grid.is-assistant .alicyn-lab-objective-card {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 9px;
+      align-content: start;
+      min-height: 132px;
+      padding: 13px 10px 12px;
+      text-align: center;
+    }
+
+    #AlicynLab-{{ section.id }} .alicyn-lab-objectives-grid.is-assistant .alicyn-lab-objective-icon {
+      width: 46px;
+      height: 46px;
+      margin: 0 auto;
+      border-radius: 50%;
+    }
+
+    #AlicynLab-{{ section.id }} .alicyn-lab-objectives-grid.is-assistant .alicyn-lab-objective-card h3 {
+      margin: 0;
+      font-size: 0.79rem;
+      line-height: 1.35;
+    }
+
+    #AlicynLab-{{ section.id }} .alicyn-lab-objectives-grid.is-assistant .alicyn-lab-objective-card p {
+      margin: 0;
+      color: var(--alicyn-lab-muted);
+      font-size: 0.66rem;
+      line-height: 1.32;
+    }
+
+    #AlicynLab-{{ section.id }} .alicyn-lab-objectives-grid.is-assistant .alicyn-lab-arrow {
+      display: none;
+    }
+
+    #AlicynLab-{{ section.id }} .alicyn-lab-objectives-grid.is-assistant .alicyn-lab-objective-card.is-active {
+      box-shadow: 0 0 0 1px rgba(138, 96, 255, 0.34), 0 10px 28px rgba(92, 53, 221, 0.26);
+    }
+
+    #AlicynLab-{{ section.id }} .alicyn-lab-free-shipping {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: max-content;
+      max-width: 100%;
+      margin: 0 0 10px;
+      border: 1px solid rgba(130, 222, 200, 0.36);
+      border-radius: 999px;
+      color: #c8fff1;
+      background: rgba(130, 222, 200, 0.1);
+      box-shadow: 0 0 22px rgba(130, 222, 200, 0.08);
+      font-size: 0.72rem;
+      font-weight: 800;
+      padding: 8px 11px;
+      text-transform: uppercase;
+    }
+
+    #AlicynLab-{{ section.id }} .alicyn-lab-mini-copy {
+      margin: 9px 0 0;
+      color: var(--alicyn-lab-muted);
+      font-size: 0.78rem;
+      line-height: 1.45;
+    }
+
+    #AlicynLab-{{ section.id }} .alicyn-lab-cta-row {
+      display: grid;
+      gap: 9px;
+      margin-top: 14px;
+    }
+
+    #AlicynLab-{{ section.id }} .alicyn-lab-result-objective {
+      display: flex;
+      gap: 14px;
+      justify-content: space-between;
+      align-items: start;
+    }
+
+    #AlicynLab-{{ section.id }} .alicyn-lab-result-symbol {
+      display: grid;
+      flex: 0 0 52px;
+      width: 52px;
+      height: 52px;
+      place-items: center;
+      border: 1px solid var(--alicyn-lab-border-strong);
+      border-radius: 50%;
+      color: #c9baff;
+      background: rgba(133, 94, 251, 0.12);
+    }
+
+    #AlicynLab-{{ section.id }} .alicyn-lab-selected-products {
+      margin: 0 0 17px;
+    }
+
+    #AlicynLab-{{ section.id }} .alicyn-lab-selected-products > span {
+      display: block;
+      margin-bottom: 9px;
+      color: #bcadff;
+      font-size: 0.69rem;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+
+    #AlicynLab-{{ section.id }} .alicyn-lab-quiz-callout {
+      display: grid;
+      gap: 13px;
+      align-items: center;
+      margin-top: 14px;
+      padding: 17px 16px;
+    }
+
+    #AlicynLab-{{ section.id }} .alicyn-lab-quiz-callout h3 {
+      margin: 0 0 5px;
+      font-size: 1rem;
+    }
+
+    #AlicynLab-{{ section.id }} .alicyn-lab-quiz-callout p {
+      margin: 0;
+      color: var(--alicyn-lab-muted);
+      font-size: 0.8rem;
+      line-height: 1.45;
+    }
+
+    #AlicynLab-{{ section.id }} .alicyn-lab-inline-disclaimer {
+      margin: 16px 0 0;
+      border: 1px solid var(--alicyn-lab-border);
+      border-radius: 15px;
+      color: var(--alicyn-lab-muted);
+      background: rgba(112, 91, 208, 0.08);
+      font-size: 0.73rem;
+      line-height: 1.55;
+      padding: 11px 12px;
+    }
+
     #AlicynLab-{{ section.id }} .alicyn-lab-hero-media {
       position: relative;
       display: grid;
@@ -734,12 +923,6 @@
       background: var(--alicyn-lab-cyan);
       box-shadow: 0 0 0 8px rgba(114, 214, 231, 0.15), 0 0 25px var(--alicyn-lab-cyan);
     }
-
-    #AlicynLab-{{ section.id }} .alicyn-lab-hotspot[data-axis="energy"] { top: 58px; right: 15px; }
-    #AlicynLab-{{ section.id }} .alicyn-lab-hotspot[data-axis="skin"] { top: 116px; left: 12px; flex-direction: row-reverse; text-align: right; }
-    #AlicynLab-{{ section.id }} .alicyn-lab-hotspot[data-axis="metabolic"] { top: 225px; right: 8px; }
-    #AlicynLab-{{ section.id }} .alicyn-lab-hotspot[data-axis="tissue"] { bottom: 107px; left: 8px; flex-direction: row-reverse; text-align: right; }
-    #AlicynLab-{{ section.id }} .alicyn-lab-hotspot[data-axis="muscle"] { bottom: 39px; right: 5px; }
 
     #AlicynLab-{{ section.id }} .alicyn-lab-map-panel,
     #AlicynLab-{{ section.id }} .alicyn-lab-result-card {
@@ -1099,6 +1282,18 @@
       padding: 6px 9px;
     }
 
+    #AlicynLab-{{ section.id }} .alicyn-lab-shipping-chip {
+      display: inline-flex;
+      align-self: flex-start;
+      margin: 0 0 9px;
+      border-radius: 999px;
+      color: #cafff1;
+      background: rgba(130, 222, 200, 0.12);
+      font-size: 0.66rem;
+      font-weight: 800;
+      padding: 6px 9px;
+    }
+
     #AlicynLab-{{ section.id }} .alicyn-lab-card h3 {
       margin: 0 0 7px;
       font-size: 0.97rem;
@@ -1158,6 +1353,64 @@
       border: 1px solid var(--alicyn-lab-border);
       border-radius: 18px;
       background: rgba(255, 255, 255, 0.02);
+    }
+
+    #AlicynLab-{{ section.id }} .alicyn-lab-seo-brief {
+      padding-top: 34px;
+    }
+
+    #AlicynLab-{{ section.id }} .alicyn-lab-compare-cards {
+      display: flex;
+      gap: 10px;
+      overflow-x: auto;
+      padding: 2px 0 8px;
+      scroll-snap-type: x mandatory;
+      scrollbar-width: none;
+    }
+
+    #AlicynLab-{{ section.id }} .alicyn-lab-compare-cards::-webkit-scrollbar {
+      display: none;
+    }
+
+    #AlicynLab-{{ section.id }} .alicyn-lab-compare-card {
+      flex: 0 0 min(82%, 285px);
+      display: grid;
+      gap: 10px;
+      border: 1px solid var(--alicyn-lab-border);
+      border-radius: 18px;
+      background: rgba(255, 255, 255, 0.025);
+      padding: 15px 14px;
+      scroll-snap-align: start;
+    }
+
+    #AlicynLab-{{ section.id }} .alicyn-lab-compare-card.is-related {
+      border-color: var(--alicyn-lab-border-strong);
+      background: rgba(132, 91, 250, 0.1);
+    }
+
+    #AlicynLab-{{ section.id }} .alicyn-lab-compare-card h3 {
+      margin: 0;
+      font-size: 1rem;
+    }
+
+    #AlicynLab-{{ section.id }} .alicyn-lab-compare-card dl {
+      display: grid;
+      gap: 8px;
+      margin: 0;
+    }
+
+    #AlicynLab-{{ section.id }} .alicyn-lab-compare-card dt {
+      color: var(--alicyn-lab-muted);
+      font-size: 0.65rem;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+
+    #AlicynLab-{{ section.id }} .alicyn-lab-compare-card dd {
+      margin: 2px 0 0;
+      color: var(--alicyn-lab-soft);
+      font-size: 0.77rem;
+      line-height: 1.45;
     }
 
     #AlicynLab-{{ section.id }} .alicyn-lab-compare-table {
@@ -1343,6 +1596,10 @@
     }
 
     @media (min-width: 560px) {
+      #AlicynLab-{{ section.id }} .alicyn-lab-quiz-callout {
+        grid-template-columns: minmax(0, 1fr) auto;
+      }
+
       #AlicynLab-{{ section.id }} .alicyn-care-hero {
         grid-template-columns: minmax(0, 1fr) minmax(190px, 280px);
         grid-template-areas:
@@ -1411,13 +1668,28 @@
         margin: 12px auto 28px;
       }
 
-      #AlicynLab-{{ section.id }} .alicyn-lab-hero {
-        grid-template-columns: minmax(400px, 1fr) minmax(300px, 0.7fr);
-        gap: 18px;
+      #AlicynLab-{{ section.id }} .alicyn-lab-assistant {
+        gap: 22px;
       }
 
-      #AlicynLab-{{ section.id }} .alicyn-lab-hero-copy {
-        padding: 38px 34px;
+      #AlicynLab-{{ section.id }} .alicyn-lab-assistant-intro {
+        grid-template-columns: minmax(0, 1fr) 86px;
+        padding: 28px 26px;
+      }
+
+      #AlicynLab-{{ section.id }} .alicyn-lab-signal {
+        width: 82px;
+        height: 82px;
+      }
+
+      #AlicynLab-{{ section.id }} .alicyn-lab-objectives-grid.is-assistant {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        margin-right: 0;
+        margin-left: 0;
+      }
+
+      #AlicynLab-{{ section.id }} .alicyn-lab-result-card {
+        padding: 27px 25px;
       }
 
       #AlicynLab-{{ section.id }} .alicyn-lab-actions {
@@ -1446,8 +1718,17 @@
         padding-top: 55px;
       }
 
-      #AlicynLab-{{ section.id }} .alicyn-lab-objectives-grid {
+      #AlicynLab-{{ section.id }} .alicyn-lab-objectives-grid:not(.is-assistant) {
         grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      #AlicynLab-{{ section.id }} .alicyn-lab-objectives-grid.is-assistant {
+        grid-template-columns: repeat(6, minmax(0, 1fr));
+      }
+
+      #AlicynLab-{{ section.id }} .alicyn-lab-cta-row {
+        grid-template-columns: auto auto;
+        justify-content: start;
       }
 
       #AlicynLab-{{ section.id }} .alicyn-lab-route-grid {
@@ -1462,10 +1743,20 @@
       #AlicynLab-{{ section.id }} .alicyn-lab-journey-grid {
         grid-template-columns: repeat(4, minmax(0, 1fr));
       }
+
+      #AlicynLab-{{ section.id }} .alicyn-lab-compare-cards {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        overflow: visible;
+      }
+
+      #AlicynLab-{{ section.id }} .alicyn-lab-compare-card {
+        min-width: 0;
+      }
     }
 
     @media (max-width: 559px) {
-      #AlicynLab-{{ section.id }} .alicyn-lab-objectives-grid,
+      #AlicynLab-{{ section.id }} .alicyn-lab-objectives-grid:not(.is-assistant),
       #AlicynLab-{{ section.id }} .alicyn-lab-route-grid {
         display: flex;
         gap: 10px;
@@ -1475,12 +1766,12 @@
         scrollbar-width: none;
       }
 
-      #AlicynLab-{{ section.id }} .alicyn-lab-objectives-grid::-webkit-scrollbar,
+      #AlicynLab-{{ section.id }} .alicyn-lab-objectives-grid:not(.is-assistant)::-webkit-scrollbar,
       #AlicynLab-{{ section.id }} .alicyn-lab-route-grid::-webkit-scrollbar {
         display: none;
       }
 
-      #AlicynLab-{{ section.id }} .alicyn-lab-objective-card {
+      #AlicynLab-{{ section.id }} .alicyn-lab-objectives-grid:not(.is-assistant) .alicyn-lab-objective-card {
         flex: 0 0 86%;
         scroll-snap-align: start;
       }
@@ -1503,11 +1794,11 @@
   </style>
 
   <div class="alicyn-lab-shell">
-    <header class="alicyn-lab-app-header" aria-label="Navegación Alicyn OS">
+    <header class="alicyn-lab-app-header" aria-label="Navegación Alicyn">
       <button class="alicyn-lab-icon-button" type="button" aria-label="Abrir navegación" aria-expanded="false" data-lab-menu-toggle>
         <svg class="alicyn-lab-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
       </button>
-      <a class="alicyn-lab-logotype" href="#AlicynLab-{{ section.id }}" aria-label="Alicyn OS inicio">
+      <a class="alicyn-lab-logotype" href="#AlicynLab-{{ section.id }}" aria-label="Alicyn inicio">
         <strong data-app-brand>ALICYN CARE</strong>
         <span data-app-tagline>Cuidado · Confianza · Claridad</span>
       </a>
@@ -1516,7 +1807,7 @@
       </a>
     </header>
 
-    <nav class="alicyn-lab-quick-menu alicyn-lab-glass" aria-label="Atajos Alicyn OS" data-lab-quick-menu hidden>
+    <nav class="alicyn-lab-quick-menu alicyn-lab-glass" aria-label="Atajos Alicyn" data-lab-quick-menu hidden>
       <div data-menu-mode="care">
         <button type="button" data-care-open="compra">Comprar Alicyn</button>
         <button type="button" data-care-open="guia">Guía rápida</button>
@@ -1531,7 +1822,6 @@
       </div>
     </nav>
 
-    <p class="alicyn-os-label">ALICYN OS</p>
     <div class="alicyn-lab-switch" role="tablist" aria-label="Selecciona colección">
       <button type="button" role="tab" aria-selected="true" aria-controls="alicyn-lab-care-view-{{ section.id }}" data-lab-view-trigger="care">Antiséptico</button>
       <button type="button" role="tab" aria-selected="false" aria-controls="alicyn-lab-peptides-view-{{ section.id }}" data-lab-view-trigger="peptides">Péptidos</button>
@@ -1678,203 +1968,138 @@
     </div>
 
     <div id="alicyn-lab-peptides-view-{{ section.id }}" role="tabpanel" data-lab-view="peptides" hidden>
-      <div id="alicyn-lab-inicio-{{ section.id }}" class="alicyn-lab-hero" data-lab-nav-section="inicio" data-lab-screen="inicio">
-        <div class="alicyn-lab-hero-copy alicyn-lab-glass">
-          <p class="alicyn-lab-kicker">Aesthetic Labs · Investigación</p>
-          {% if section.settings.embed_as_home_section %}
-            <h2 class="alicyn-lab-hero-title">{{ section.settings.heading | escape }}</h2>
-          {% else %}
-            <h1 class="alicyn-lab-hero-title">{{ section.settings.heading | escape }}</h1>
-          {% endif %}
-          <p class="alicyn-lab-hero-text">Elige tu objetivo y Alicyn Lab te guía hacia una ruta de investigación clara.</p>
-          <div class="alicyn-lab-actions">
-            <button class="alicyn-lab-button" type="button" data-lab-go="quiz">Encontrar mi péptido</button>
-            <button class="alicyn-lab-button alicyn-lab-button-secondary" type="button" data-lab-go="objetivos">Explorar por objetivo</button>
-          </div>
-          <div class="alicyn-lab-badges" aria-label="Ejes de la colección">
-            <span class="alicyn-lab-badge">Investigación</span>
-            <span class="alicyn-lab-badge">Wellness celular</span>
-            <span class="alicyn-lab-badge">Skin science</span>
-            <span class="alicyn-lab-badge">Aesthetic Labs</span>
-          </div>
-          <p class="alicyn-lab-compliance">Productos destinados exclusivamente a investigación, análisis técnico o laboratorio. No aptos para consumo humano o animal.</p>
-          <p class="alicyn-lab-hero-hint">No necesitas saber el nombre del péptido. Empieza por lo que quieres comparar.</p>
-        </div>
-        <div class="alicyn-lab-hero-media alicyn-lab-glass">
-          {% if section.settings.hero_image != blank %}
-            {{ section.settings.hero_image | image_url: width: 1000 | image_tag:
-              class: 'alicyn-lab-hero-image',
-              loading: 'eager',
-              widths: '360, 540, 760, 1000',
-              sizes: '(min-width: 750px) 38vw, 100vw',
-              alt: 'Alicyn Lab, colección Aesthetic Labs de investigación'
-            }}
-          {% else %}
-            <div class="alicyn-lab-orbit" aria-hidden="true">
-              <span class="alicyn-lab-orbit-core">CELL<br>LAB</span>
-              <span class="alicyn-lab-orbit-node"></span>
-              <span class="alicyn-lab-orbit-node"></span>
-              <span class="alicyn-lab-orbit-node"></span>
-              <span class="alicyn-lab-orbit-node"></span>
+      <div id="alicyn-lab-inicio-{{ section.id }}" class="alicyn-lab-assistant" data-lab-nav-section="inicio" data-lab-screen="inicio">
+        <section class="alicyn-lab-assistant-intro alicyn-lab-glass">
+          <div>
+            <p class="alicyn-lab-kicker">Péptidos Aesthetic Labs</p>
+            {% if section.settings.embed_as_home_section %}
+              <h2 class="alicyn-lab-assistant-title">¿Qué quieres trabajar?</h2>
+            {% else %}
+              <h1 class="alicyn-lab-assistant-title">¿Qué quieres trabajar?</h1>
+            {% endif %}
+            <span class="alicyn-lab-free-shipping">Envío gratis en todos los péptidos</span>
+            <p class="alicyn-lab-assistant-copy">Explora por objetivo y encuentra tus péptidos con envío gratis.</p>
+            <p class="alicyn-lab-mini-copy">Skin. Energía. Metabolismo. Recovery. Performance.</p>
+            <div class="alicyn-lab-cta-row">
+              <a class="alicyn-lab-button" href="/collections/peptidos">Ver péptidos con envío gratis</a>
+              <button class="alicyn-lab-button alicyn-lab-button-secondary" type="button" data-lab-go="objetivos">Elegir objetivo</button>
             </div>
-          {% endif %}
-        </div>
-      </div>
+          </div>
+          <svg class="alicyn-lab-signal" viewBox="0 0 64 64" fill="none" aria-hidden="true">
+            <path d="M10 32h9l5-12 8 26 8-19 5 5h9" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M32 7v7M32 50v7M7 32h7M50 32h7" stroke="currentColor" stroke-width="1.5" opacity=".45"/>
+          </svg>
+        </section>
 
-      <div class="alicyn-lab-trust-grid" aria-label="Confianza Alicyn Lab" data-lab-screen="inicio">
-        <article class="alicyn-lab-trust-card">
-          <svg class="alicyn-lab-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M10 2v6l-5 9a3 3 0 0 0 2.6 4.5h8.8A3 3 0 0 0 19 17l-5-9V2M8 2h8M8 15h8"/></svg>
-          <strong>Investigación organizada</strong>
-          <p>Información por ejes para comparar con claridad.</p>
-        </article>
-        <article class="alicyn-lab-trust-card">
-          <svg class="alicyn-lab-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 4 6v6c0 5 3.4 8.5 8 10 4.6-1.5 8-5 8-10V6l-8-4Z"/><path d="M9 12h6M12 9v6"/></svg>
-          <strong>Aesthetic Labs</strong>
-          <p>Presentaciones técnicas para laboratorio.</p>
-        </article>
-        <article class="alicyn-lab-trust-card">
-          <svg class="alicyn-lab-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a7 7 0 0 0-4 12.7V20h8v-4.3A7 7 0 0 0 12 3ZM9 23h6"/></svg>
-          <strong>Guía personalizada</strong>
-          <p>Responde cuatro preguntas y explora una ruta.</p>
-        </article>
-        <article class="alicyn-lab-trust-card">
-          <svg class="alicyn-lab-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 11.5a8.5 8.5 0 0 1-12.5 7.5L3 21l2-5.2A8.5 8.5 0 1 1 21 11.5Z"/><path d="M8.5 10.5c1 2 2 3 4 4"/></svg>
-          <strong>Atención por WhatsApp</strong>
-          <p>Pregunta antes de elegir un producto.</p>
-        </article>
-      </div>
-
-      <div id="alicyn-lab-mapa-{{ section.id }}" class="alicyn-lab-section" data-lab-screen="inicio">
-        <p class="alicyn-lab-kicker">Mapa interactivo</p>
-        <h2 class="alicyn-lab-heading">Mapa de ejes</h2>
-        <p class="alicyn-lab-section-copy">Explora ejes de investigación asociados con esta zona de interés.</p>
-        <div class="alicyn-lab-map">
-          <div class="alicyn-lab-map-stage alicyn-lab-glass">
-            <div class="alicyn-lab-figure" aria-hidden="true">
-              <svg viewBox="0 0 170 430" fill="none">
-                <circle cx="85" cy="38" r="26" stroke="currentColor" stroke-width="2"/>
-                <path d="M67 68c-17 8-24 26-22 57l10 79-17 102m65-238c17 8 24 26 22 57l-10 79 17 102M55 127l30 24 30-24M85 69v162m0 0-31 147m31-147 31 147M49 191h72M47 301h76" stroke="currentColor" stroke-width="2"/>
-                <path d="M85 80v128M62 127h46M65 210h40" stroke="rgba(114,214,231,.45)" stroke-width="1" stroke-dasharray="3 5"/>
-              </svg>
-            </div>
-            <button class="alicyn-lab-hotspot is-active" type="button" data-axis="energy" data-route="cell"><span class="alicyn-lab-hotspot-dot"></span><span>Energía celular</span></button>
-            <button class="alicyn-lab-hotspot" type="button" data-axis="skin" data-route="skin"><span>Piel / rostro</span><span class="alicyn-lab-hotspot-dot"></span></button>
-            <button class="alicyn-lab-hotspot" type="button" data-axis="metabolic" data-route="lean"><span class="alicyn-lab-hotspot-dot"></span><span>Metabolismo</span></button>
-            <button class="alicyn-lab-hotspot" type="button" data-axis="tissue" data-route="recovery"><span>Tejidos / articulaciones</span><span class="alicyn-lab-hotspot-dot"></span></button>
-            <button class="alicyn-lab-hotspot" type="button" data-axis="muscle" data-route="muscle"><span class="alicyn-lab-hotspot-dot"></span><span>Recuperación muscular</span></button>
+        <section id="alicyn-lab-objetivos-{{ section.id }}" class="alicyn-lab-goals" data-lab-nav-section="objetivos">
+          <p class="alicyn-lab-goals-heading">Empieza por lo que quieres optimizar.</p>
+          <div class="alicyn-lab-objectives-grid is-assistant">
+            <button class="alicyn-lab-objective-card is-active" type="button" data-lab-route="skin" aria-label="Skin Glow">
+              <span class="alicyn-lab-objective-icon"><svg class="alicyn-lab-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 3 1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8L12 3Z"/><path d="m18 15 .9 2.1L21 18l-2.1.9L18 21l-.9-2.1L15 18l2.1-.9L18 15Z"/></svg></span>
+              <span><h3>Skin / Glow</h3><p>Piel · Colágeno · Glow</p></span>
+            </button>
+            <button class="alicyn-lab-objective-card" type="button" data-lab-route="cell" aria-label="Energía">
+              <span class="alicyn-lab-objective-icon"><svg class="alicyn-lab-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m13 2-8 12h7l-1 8 8-12h-7l1-8Z"/></svg></span>
+              <span><h3>Energía</h3><p>Vitalidad · Mitocondria</p></span>
+            </button>
+            <button class="alicyn-lab-objective-card" type="button" data-lab-route="metabolic" aria-label="Metabolismo">
+              <span class="alicyn-lab-objective-icon"><svg class="alicyn-lab-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 7c4-4 12-1 12 5 0 5-5 8-9 6"/><path d="M10 18H5v-5M17 17c-4 4-12 1-12-5 0-5 5-8 9-6"/><path d="M14 6h5v5"/></svg></span>
+              <span><h3>Metabolismo</h3><p>Control · Composición</p></span>
+            </button>
+            <button class="alicyn-lab-objective-card" type="button" data-lab-route="recovery" aria-label="Recuperación">
+              <span class="alicyn-lab-objective-icon"><svg class="alicyn-lab-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4a8 8 0 1 1-7.2 11.5"/><path d="M5 19v-5h5M12 8v4l3 2"/></svg></span>
+              <span><h3>Recovery</h3><p>Movilidad · Continuidad</p></span>
+            </button>
+            <button class="alicyn-lab-objective-card" type="button" data-lab-route="performance" aria-label="Performance">
+              <span class="alicyn-lab-objective-icon"><svg class="alicyn-lab-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 17 10 11l4 4 6-8"/><path d="M16 7h4v4"/></svg></span>
+              <span><h3>Performance</h3><p>Fuerza · Presencia</p></span>
+            </button>
+            <button class="alicyn-lab-objective-card" type="button" data-lab-route="definition" aria-label="Definición">
+              <span class="alicyn-lab-objective-icon"><svg class="alicyn-lab-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 20 8v8l-8 5-8-5V8l8-5Z"/><path d="M12 3v18M4 8l8 5 8-5"/></svg></span>
+              <span><h3>Definición</h3><p>Silueta · Precisión</p></span>
+            </button>
           </div>
-          <article class="alicyn-lab-map-panel alicyn-lab-glass" aria-live="polite">
-            <p class="alicyn-lab-result-label">Eje seleccionado</p>
-            <h3 data-lab-map-title>Energía celular</h3>
-            <p data-lab-map-copy>Exploración técnica asociada a energía celular, metabolismo y bienestar avanzado.</p>
-            <div class="alicyn-lab-chip-row" data-lab-map-products>
-              <span class="alicyn-lab-chip">NAD+ 1000 mg</span><span class="alicyn-lab-chip">MOTS-C 10 mg</span>
+
+          <article id="alicyn-lab-route-detail" class="alicyn-lab-result-card alicyn-lab-glass" data-lab-result aria-live="polite">
+            <div class="alicyn-lab-result-objective">
+              <div>
+                <p class="alicyn-lab-result-label">Objetivo seleccionado</p>
+                <h3 data-lab-result-objective>Skin / Glow</h3>
+                <p data-lab-result-copy>Para quienes buscan piel, glow, colágeno y belleza celular desde una lógica de wellness avanzado.</p>
+              </div>
+              <span class="alicyn-lab-result-symbol"><svg class="alicyn-lab-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h4l2-5 3 10 2-5h3"/><circle cx="5" cy="12" r="1"/><circle cx="19" cy="12" r="1"/></svg></span>
             </div>
+            <div class="alicyn-lab-result-grid">
+              <div class="alicyn-lab-result-meta"><span>Ruta sugerida</span><strong data-lab-result-route>Skin / Glow</strong></div>
+              <div class="alicyn-lab-result-meta"><span>Nivel</span><strong data-lab-result-level>Inicial / intermedio</strong></div>
+            </div>
+            <div class="alicyn-lab-selected-products">
+              <span>Productos recomendados</span>
+              <div class="alicyn-lab-chip-row">
+                <span class="alicyn-lab-chip" data-lab-result-primary>GHK-Cu 100 mg</span>
+                <span class="alicyn-lab-chip" data-lab-result-complement>NAD+ 1000 mg</span>
+              </div>
+            </div>
+            <p data-lab-experience-note hidden></p>
             <div class="alicyn-lab-inline-actions">
-              <button class="alicyn-lab-button" type="button" data-lab-map-products-action>Ver ruta</button>
+              <button class="alicyn-lab-button" type="button" data-lab-view-route>Ver productos</button>
+              <button class="alicyn-lab-button alicyn-lab-button-secondary" type="button" data-lab-go="protocolos">Ver protocolo</button>
               <button class="alicyn-lab-button alicyn-lab-button-secondary" type="button" data-lab-go="comparar">Comparar</button>
-              <button class="alicyn-lab-button alicyn-lab-button-tertiary" type="button" data-lab-go="quiz">Hacer quiz</button>
-              <button class="alicyn-lab-button alicyn-lab-button-tertiary" type="button" data-lab-go="inicio">Cerrar</button>
+              <a class="alicyn-lab-button alicyn-lab-button-secondary" data-lab-result-whatsapp target="_blank" rel="noopener" href="https://wa.me/525542388056">WhatsApp</a>
+              <button class="alicyn-lab-button alicyn-lab-button-tertiary" type="button" data-lab-reset-route>Cambiar objetivo</button>
             </div>
           </article>
-        </div>
+
+          <article class="alicyn-lab-quiz-callout alicyn-lab-glass">
+            <div>
+              <h3>¿No sabes cuál elegir?</h3>
+              <p>Responde 3 preguntas y encuentra una ruta clara.</p>
+            </div>
+            <button class="alicyn-lab-button" type="button" data-lab-go="quiz">Comenzar quiz</button>
+          </article>
+        </section>
       </div>
 
-      <div id="alicyn-lab-objetivos-{{ section.id }}" class="alicyn-lab-section" data-lab-nav-section="objetivos" data-lab-screen="objetivos" hidden>
-        <p class="alicyn-lab-kicker">Explora por objetivo</p>
-        <h2 class="alicyn-lab-heading">Elige tu eje de investigación</h2>
-        <p class="alicyn-lab-section-copy">Selecciona un eje para ordenar los productos relacionados. Puedes cambiar tu ruta cuando quieras.</p>
-        <div class="alicyn-lab-objectives-grid">
-          <button class="alicyn-lab-objective-card is-active" type="button" data-lab-route="cell">
-            <span class="alicyn-lab-objective-icon"><svg class="alicyn-lab-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 3c8 4 8 14 0 18M16 3c-8 4-8 14 0 18M8 7h8M7 12h10M8 17h8"/></svg></span>
-            <span><h3>Longevidad celular</h3><p>Energía y metabolismo celular en investigación.</p></span><span class="alicyn-lab-arrow">›</span>
-          </button>
-          <button class="alicyn-lab-objective-card" type="button" data-lab-route="lean">
-            <span class="alicyn-lab-objective-icon"><svg class="alicyn-lab-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4c-2 0-3 2-3 4v3l-2 8M12 4c2 0 3 2 3 4v3l2 8M9 11h6"/></svg></span>
-            <span><h3>Composición corporal</h3><p>Metabolismo y definición como ejes técnicos.</p></span><span class="alicyn-lab-arrow">›</span>
-          </button>
-          <button class="alicyn-lab-objective-card" type="button" data-lab-route="recovery">
-            <span class="alicyn-lab-objective-icon"><svg class="alicyn-lab-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 4v7a4 4 0 0 0 8 0V4M8 18h8M12 15v6"/></svg></span>
-            <span><h3>Respuesta tisular</h3><p>Investigación de tejidos y señalización.</p></span><span class="alicyn-lab-arrow">›</span>
-          </button>
-          <button class="alicyn-lab-objective-card" type="button" data-lab-route="skin">
-            <span class="alicyn-lab-objective-icon"><svg class="alicyn-lab-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3c5 0 8 4 8 9s-3 9-8 9-8-4-8-9 3-9 8-9Z"/><path d="M9 11h.1M15 11h.1M10 16c1 .6 3 .6 4 0"/></svg></span>
-            <span><h3>Skin science</h3><p>Piel, colágeno y señalización estética.</p></span><span class="alicyn-lab-arrow">›</span>
-          </button>
-          <button class="alicyn-lab-objective-card" type="button" data-lab-route="performance">
-            <span class="alicyn-lab-objective-icon"><svg class="alicyn-lab-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m13 2-8 12h7l-1 8 8-12h-7l1-8Z"/></svg></span>
-            <span><h3>Performance técnico</h3><p>Energía y señalización experimental avanzada.</p></span><span class="alicyn-lab-arrow">›</span>
-          </button>
-          <button class="alicyn-lab-objective-card" type="button" data-lab-go="quiz">
-            <span class="alicyn-lab-objective-icon"><svg class="alicyn-lab-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21a9 9 0 1 0-9-9 9 9 0 0 0 9 9Z"/><path d="m14.5 9.5-1.5 3-3 1.5 1.5-3 3-1.5Z"/></svg></span>
-            <span><h3>No sé por dónde empezar</h3><p>Responde 4 preguntas y encuentra una ruta.</p></span><span class="alicyn-lab-arrow">›</span>
-          </button>
-        </div>
-
-        <article class="alicyn-lab-result-card alicyn-lab-glass" data-lab-result aria-live="polite">
-          <p class="alicyn-lab-result-label">Tu ruta sugerida</p>
-          <h3 data-lab-result-route>Cell Reset</h3>
-          <p data-lab-result-copy>Ruta para explorar investigación sobre energía celular, metabolismo y bienestar avanzado.</p>
-          <div class="alicyn-lab-result-grid">
-            <div class="alicyn-lab-result-meta"><span>Producto principal</span><strong data-lab-result-primary>NAD+ 1000 mg</strong></div>
-            <div class="alicyn-lab-result-meta"><span>Complemento opcional</span><strong data-lab-result-complement>MOTS-C 10 mg</strong></div>
-            <div class="alicyn-lab-result-meta"><span>Nivel</span><strong data-lab-result-level>Inicial / intermedio</strong></div>
-          </div>
-          <p data-lab-experience-note hidden></p>
-          <div class="alicyn-lab-inline-actions">
-            <a class="alicyn-lab-button" data-lab-result-product href="/products/aesthetic-labs-nad-1000-mg">Ver producto</a>
-            <button class="alicyn-lab-button alicyn-lab-button-secondary" type="button" data-lab-go="comparar">Comparar</button>
-            <button class="alicyn-lab-button alicyn-lab-button-secondary" type="button" data-lab-reset-route>Cambiar objetivo</button>
-            <button class="alicyn-lab-button alicyn-lab-button-tertiary" type="button" data-lab-go="quiz">Volver al quiz</button>
-            <a class="alicyn-lab-button alicyn-lab-button-secondary" data-lab-result-whatsapp target="_blank" rel="noopener" href="https://wa.me/525542388056">WhatsApp</a>
-            <button class="alicyn-lab-button alicyn-lab-button-tertiary" type="button" data-lab-go="inicio">Volver</button>
-          </div>
-        </article>
+      <div class="alicyn-lab-trust-grid" aria-label="Confianza Alicyn Lab" data-lab-screen="mas" hidden>
+        <article class="alicyn-lab-trust-card"><svg class="alicyn-lab-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M10 2v6l-5 9a3 3 0 0 0 2.6 4.5h8.8A3 3 0 0 0 19 17l-5-9V2M8 2h8M8 15h8"/></svg><strong>Investigación organizada</strong><p>Información por ejes para comparar con claridad.</p></article>
+        <article class="alicyn-lab-trust-card"><svg class="alicyn-lab-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 4 6v6c0 5 3.4 8.5 8 10 4.6-1.5 8-5 8-10V6l-8-4Z"/><path d="M9 12h6M12 9v6"/></svg><strong>Aesthetic Labs</strong><p>Presentaciones técnicas para laboratorio.</p></article>
+        <article class="alicyn-lab-trust-card"><svg class="alicyn-lab-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a7 7 0 0 0-4 12.7V20h8v-4.3A7 7 0 0 0 12 3ZM9 23h6"/></svg><strong>Guía personalizada</strong><p>Responde tres preguntas y explora una ruta.</p></article>
+        <article class="alicyn-lab-trust-card"><svg class="alicyn-lab-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 11.5a8.5 8.5 0 0 1-12.5 7.5L3 21l2-5.2A8.5 8.5 0 1 1 21 11.5Z"/><path d="M8.5 10.5c1 2 2 3 4 4"/></svg><strong>Atención por WhatsApp</strong><p>Pregunta antes de elegir un producto.</p></article>
       </div>
 
       <div id="alicyn-lab-quiz-{{ section.id }}" class="alicyn-lab-section" data-lab-nav-section="quiz" data-lab-screen="quiz" hidden>
           <p class="alicyn-lab-kicker">Guía interactiva</p>
           <h2 class="alicyn-lab-heading">Encuentra una ruta para comparar</h2>
-          <p class="alicyn-lab-section-copy">Cuatro preguntas organizan el catálogo según tu interés técnico. El resultado es informativo y puedes modificarlo en cualquier momento.</p>
+          <p class="alicyn-lab-section-copy">Tres preguntas organizan el catálogo según tu interés. Puedes cambiar tus respuestas cuando quieras.</p>
           <form class="alicyn-lab-quiz alicyn-lab-glass" data-lab-quiz novalidate>
-            <div class="alicyn-lab-progress-head"><span data-lab-quiz-step-label>Pregunta 1 de 4</span><button class="alicyn-lab-text-link" type="button" data-lab-clear-quiz>Cambiar respuestas</button><button class="alicyn-lab-text-link" type="button" data-lab-go="objetivos">Cerrar quiz</button></div>
+            <div class="alicyn-lab-progress-head"><span data-lab-quiz-step-label>Pregunta 1 de 3</span><button class="alicyn-lab-text-link" type="button" data-lab-clear-quiz>Cambiar respuestas</button><button class="alicyn-lab-text-link" type="button" data-lab-go="objetivos">Cerrar</button></div>
             <div class="alicyn-lab-progress" aria-hidden="true"><span data-lab-progress></span></div>
 
             <fieldset class="alicyn-lab-question" data-question="objective">
-              <legend>¿Qué quieres explorar?</legend>
+              <legend>¿Qué quieres optimizar primero?</legend>
               <div class="alicyn-lab-choice-grid">
-                <label class="alicyn-lab-choice"><input type="radio" name="objective" value="cell">Energía</label>
-                <label class="alicyn-lab-choice"><input type="radio" name="objective" value="lean">Definición</label>
+                <label class="alicyn-lab-choice"><input type="radio" name="objective" value="cell">Sentirme con más energía</label>
+                <label class="alicyn-lab-choice"><input type="radio" name="objective" value="definition">Explorar composición corporal</label>
                 <label class="alicyn-lab-choice"><input type="radio" name="objective" value="recovery">Recuperación</label>
-                <label class="alicyn-lab-choice"><input type="radio" name="objective" value="skin">Piel</label>
+                <label class="alicyn-lab-choice"><input type="radio" name="objective" value="skin">Piel y estética</label>
                 <label class="alicyn-lab-choice"><input type="radio" name="objective" value="performance">Performance</label>
-                <label class="alicyn-lab-choice"><input type="radio" name="objective" value="starter">No sé</label>
+                <label class="alicyn-lab-choice"><input type="radio" name="objective" value="starter">No estoy seguro</label>
               </div>
             </fieldset>
             <fieldset class="alicyn-lab-question" data-question="experience" hidden>
-              <legend>¿Cuánto sabes de péptidos?</legend>
+              <legend>¿Qué tan familiarizado estás con péptidos?</legend>
               <div class="alicyn-lab-choice-grid">
-                <label class="alicyn-lab-choice"><input type="radio" name="experience" value="beginner">Nada, quiero guía simple</label>
+                <label class="alicyn-lab-choice"><input type="radio" name="experience" value="beginner">Nada, quiero algo simple</label>
                 <label class="alicyn-lab-choice"><input type="radio" name="experience" value="aware">Algo, quiero comparar</label>
                 <label class="alicyn-lab-choice"><input type="radio" name="experience" value="advanced">Ya tengo experiencia</label>
               </div>
             </fieldset>
-            <fieldset class="alicyn-lab-question" data-question="format" hidden>
-              <legend>¿Qué prefieres comparar?</legend>
-              <div class="alicyn-lab-choice-grid">
-                <label class="alicyn-lab-choice"><input type="radio" name="format" value="single">Un producto individual</label>
-                <label class="alicyn-lab-choice"><input type="radio" name="format" value="pair">Una combinación sencilla</label>
-                <label class="alicyn-lab-choice"><input type="radio" name="format" value="protocol">Un paquete técnico completo</label>
-                <label class="alicyn-lab-choice"><input type="radio" name="format" value="learn">Primero quiero entender opciones</label>
-              </div>
-            </fieldset>
             <fieldset class="alicyn-lab-question" data-question="guide" hidden>
-              <legend>¿Qué tipo de guía necesitas?</legend>
+              <legend>¿Cómo prefieres avanzar?</legend>
               <div class="alicyn-lab-choice-grid">
-                <label class="alicyn-lab-choice"><input type="radio" name="guide" value="simple">Algo simple y directo</label>
+                <label class="alicyn-lab-choice"><input type="radio" name="guide" value="simple">Ver una recomendación</label>
                 <label class="alicyn-lab-choice"><input type="radio" name="guide" value="compare">Comparar opciones</label>
                 <label class="alicyn-lab-choice"><input type="radio" name="guide" value="whatsapp">Hablar por WhatsApp</label>
-                <label class="alicyn-lab-choice"><input type="radio" name="guide" value="full">Ver información más completa</label>
               </div>
             </fieldset>
             <div class="alicyn-lab-quiz-nav">
@@ -1884,74 +2109,84 @@
           </form>
       </div>
 
-      <div id="alicyn-lab-rutas-{{ section.id }}" class="alicyn-lab-section" data-lab-screen="mas" hidden>
-        <button class="alicyn-care-back" type="button" data-lab-go="objetivos">← Volver al resultado</button>
+      <div id="alicyn-lab-rutas-{{ section.id }}" class="alicyn-lab-section" data-lab-screen="inicio">
         <p class="alicyn-lab-kicker">Rutas sugeridas</p>
-        <h2 class="alicyn-lab-heading">Compara rutas de investigación</h2>
-        <p class="alicyn-lab-section-copy">Paquetes de exploración organizados por eje técnico. No constituyen instrucciones ni recomendaciones de consumo.</p>
+        <h2 class="alicyn-lab-heading">Rutas por objetivo</h2>
+        <p class="alicyn-lab-section-copy">Compra por objetivo. Todos incluyen envío gratis.</p>
         <div class="alicyn-lab-route-grid">
-          <article class="alicyn-lab-route-card is-active" data-lab-route-card="cell">
-            <div class="alicyn-lab-route-top"><span class="alicyn-lab-objective-icon"><svg class="alicyn-lab-icon" viewBox="0 0 24 24"><path d="M8 3c8 4 8 14 0 18M16 3c-8 4-8 14 0 18M8 7h8M8 17h8"/></svg></span><div><h3>Cell Reset</h3><span class="alicyn-lab-route-level">Inicial / intermedio</span></div></div>
-            <p>NAD+ 1000 mg + MOTS-C 10 mg<br>Energía celular y metabolismo.</p>
-            <div class="alicyn-lab-inline-actions"><button class="alicyn-lab-button alicyn-lab-button-secondary" type="button" data-lab-route="cell">Ver ruta</button><button class="alicyn-lab-text-link" type="button" data-lab-go="comparar">Comparar</button><a class="alicyn-lab-text-link" data-lab-whatsapp-route="cell" href="https://wa.me/{{ section.settings.whatsapp_number | default: '525542388056' }}?text=Hola%2C%20vengo%20de%20Alicyn%20Lab.%20Quiero%20orientaci%C3%B3n%20sobre%20Cell%20Reset." target="_blank" rel="noopener">WhatsApp</a></div>
+          <article class="alicyn-lab-route-card is-active" data-lab-route-card="skin">
+            <div class="alicyn-lab-route-top"><span class="alicyn-lab-objective-icon"><svg class="alicyn-lab-icon" viewBox="0 0 24 24"><path d="m12 3 1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8L12 3Z"/></svg></span><div><h3>Skin / Glow</h3><span class="alicyn-lab-route-level">Inicial / intermedio</span></div></div>
+            <p>GHK-Cu + NAD+<br>Piel, glow, colágeno y belleza celular.</p>
+            <div class="alicyn-lab-inline-actions"><button class="alicyn-lab-button alicyn-lab-button-secondary" type="button" data-lab-route="skin">Ver ruta</button><button class="alicyn-lab-text-link" type="button" data-lab-go="comparar">Comparar</button><a class="alicyn-lab-text-link" data-lab-whatsapp-route="skin" href="https://wa.me/{{ section.settings.whatsapp_number | default: '525542388056' }}" target="_blank" rel="noopener">WhatsApp</a></div>
           </article>
-          <article class="alicyn-lab-route-card" data-lab-route-card="lean">
-            <div class="alicyn-lab-route-top"><span class="alicyn-lab-objective-icon"><svg class="alicyn-lab-icon" viewBox="0 0 24 24"><path d="M12 4c-2 0-3 2-3 4v3l-2 8M12 4c2 0 3 2 3 4v3l2 8"/></svg></span><div><h3>Lean Research</h3><span class="alicyn-lab-route-level">Inicial / intermedio</span></div></div>
-            <p>AOD-9604 10 mg + MOTS-C 10 mg<br>Composición corporal en investigación.</p>
-            <div class="alicyn-lab-inline-actions"><button class="alicyn-lab-button alicyn-lab-button-secondary" type="button" data-lab-route="lean">Ver ruta</button><button class="alicyn-lab-text-link" type="button" data-lab-go="comparar">Comparar</button><a class="alicyn-lab-text-link" data-lab-whatsapp-route="lean" href="https://wa.me/{{ section.settings.whatsapp_number | default: '525542388056' }}?text=Hola%2C%20vengo%20de%20Alicyn%20Lab.%20Quiero%20orientaci%C3%B3n%20sobre%20Lean%20Research." target="_blank" rel="noopener">WhatsApp</a></div>
+          <article class="alicyn-lab-route-card" data-lab-route-card="cell">
+            <div class="alicyn-lab-route-top"><span class="alicyn-lab-objective-icon"><svg class="alicyn-lab-icon" viewBox="0 0 24 24"><path d="m13 2-8 12h7l-1 8 8-12h-7l1-8Z"/></svg></span><div><h3>Energía</h3><span class="alicyn-lab-route-level">Inicial / intermedio</span></div></div>
+            <p>NAD+ 1000 mg + MOTS-C 10 mg<br>Energía celular y metabolismo.</p>
+            <div class="alicyn-lab-inline-actions"><button class="alicyn-lab-button alicyn-lab-button-secondary" type="button" data-lab-route="cell">Ver ruta</button><button class="alicyn-lab-text-link" type="button" data-lab-go="comparar">Comparar</button><a class="alicyn-lab-text-link" data-lab-whatsapp-route="cell" href="https://wa.me/{{ section.settings.whatsapp_number | default: '525542388056' }}" target="_blank" rel="noopener">WhatsApp</a></div>
+          </article>
+          <article class="alicyn-lab-route-card" data-lab-route-card="metabolic">
+            <div class="alicyn-lab-route-top"><span class="alicyn-lab-objective-icon"><svg class="alicyn-lab-icon" viewBox="0 0 24 24"><path d="M7 7c4-4 12-1 12 5 0 5-5 8-9 6"/><path d="M10 18H5v-5M17 17c-4 4-12 1-12-5 0-5 5-8 9-6"/><path d="M14 6h5v5"/></svg></span><div><h3>Metabolismo</h3><span class="alicyn-lab-route-level">Avanzado</span></div></div>
+            <p>AOD-9604 + HGH Fragment + RT-Triple Agonist<br>Control corporal y composición con más intención.</p>
+            <div class="alicyn-lab-inline-actions"><button class="alicyn-lab-button alicyn-lab-button-secondary" type="button" data-lab-route="metabolic">Ver ruta</button><button class="alicyn-lab-text-link" type="button" data-lab-go="comparar">Comparar</button><a class="alicyn-lab-text-link" data-lab-whatsapp-route="metabolic" href="https://wa.me/{{ section.settings.whatsapp_number | default: '525542388056' }}" target="_blank" rel="noopener">WhatsApp</a></div>
           </article>
           <article class="alicyn-lab-route-card" data-lab-route-card="recovery">
-            <div class="alicyn-lab-route-top"><span class="alicyn-lab-objective-icon"><svg class="alicyn-lab-icon" viewBox="0 0 24 24"><path d="M8 4v7a4 4 0 0 0 8 0V4M8 18h8M12 15v6"/></svg></span><div><h3>Recovery Lab</h3><span class="alicyn-lab-route-level">Intermedio</span></div></div>
-            <p>BPC-157 + TB-500<br>Respuesta tisular experimental.</p>
-            <div class="alicyn-lab-inline-actions"><button class="alicyn-lab-button alicyn-lab-button-secondary" type="button" data-lab-route="recovery">Ver ruta</button><button class="alicyn-lab-text-link" type="button" data-lab-go="comparar">Comparar</button><a class="alicyn-lab-text-link" data-lab-whatsapp-route="recovery" href="https://wa.me/{{ section.settings.whatsapp_number | default: '525542388056' }}?text=Hola%2C%20vengo%20de%20Alicyn%20Lab.%20Quiero%20orientaci%C3%B3n%20sobre%20Recovery%20Lab." target="_blank" rel="noopener">WhatsApp</a></div>
-          </article>
-          <article class="alicyn-lab-route-card" data-lab-route-card="skin">
-            <div class="alicyn-lab-route-top"><span class="alicyn-lab-objective-icon"><svg class="alicyn-lab-icon" viewBox="0 0 24 24"><path d="M12 3c5 0 8 4 8 9s-3 9-8 9-8-4-8-9 3-9 8-9ZM9 11h.1M15 11h.1"/></svg></span><div><h3>Skin Matrix</h3><span class="alicyn-lab-route-level">Inicial / intermedio</span></div></div>
-            <p>GHK-Cu 100 mg + NAD+ 1000 mg<br>Skin science y señalización.</p>
-            <div class="alicyn-lab-inline-actions"><button class="alicyn-lab-button alicyn-lab-button-secondary" type="button" data-lab-route="skin">Ver ruta</button><button class="alicyn-lab-text-link" type="button" data-lab-go="comparar">Comparar</button><a class="alicyn-lab-text-link" data-lab-whatsapp-route="skin" href="https://wa.me/{{ section.settings.whatsapp_number | default: '525542388056' }}?text=Hola%2C%20vengo%20de%20Alicyn%20Lab.%20Quiero%20orientaci%C3%B3n%20sobre%20Skin%20Matrix." target="_blank" rel="noopener">WhatsApp</a></div>
+            <div class="alicyn-lab-route-top"><span class="alicyn-lab-objective-icon"><svg class="alicyn-lab-icon" viewBox="0 0 24 24"><path d="M12 4a8 8 0 1 1-7.2 11.5"/><path d="M5 19v-5h5M12 8v4l3 2"/></svg></span><div><h3>Recovery</h3><span class="alicyn-lab-route-level">Intermedio</span></div></div>
+            <p>BPC-157 + TB-500<br>Continuidad, movilidad y cuidado corporal avanzado.</p>
+            <div class="alicyn-lab-inline-actions"><button class="alicyn-lab-button alicyn-lab-button-secondary" type="button" data-lab-route="recovery">Ver ruta</button><button class="alicyn-lab-text-link" type="button" data-lab-go="comparar">Comparar</button><a class="alicyn-lab-text-link" data-lab-whatsapp-route="recovery" href="https://wa.me/{{ section.settings.whatsapp_number | default: '525542388056' }}" target="_blank" rel="noopener">WhatsApp</a></div>
           </article>
           <article class="alicyn-lab-route-card" data-lab-route-card="performance">
-            <div class="alicyn-lab-route-top"><span class="alicyn-lab-objective-icon"><svg class="alicyn-lab-icon" viewBox="0 0 24 24"><path d="m13 2-8 12h7l-1 8 8-12h-7l1-8Z"/></svg></span><div><h3>Performance Axis</h3><span class="alicyn-lab-route-level">Avanzado</span></div></div>
-            <p>MOTS-C + CJC-1295 sin DAC + Ipamorelin<br>Señalización experimental avanzada.</p>
-            <div class="alicyn-lab-inline-actions"><button class="alicyn-lab-button alicyn-lab-button-secondary" type="button" data-lab-route="performance">Ver ruta</button><button class="alicyn-lab-text-link" type="button" data-lab-go="comparar">Comparar</button><a class="alicyn-lab-text-link" data-lab-whatsapp-route="performance" href="https://wa.me/{{ section.settings.whatsapp_number | default: '525542388056' }}?text=Hola%2C%20vengo%20de%20Alicyn%20Lab.%20Quiero%20orientaci%C3%B3n%20sobre%20Performance%20Axis." target="_blank" rel="noopener">WhatsApp</a></div>
+            <div class="alicyn-lab-route-top"><span class="alicyn-lab-objective-icon"><svg class="alicyn-lab-icon" viewBox="0 0 24 24"><path d="M4 17 10 11l4 4 6-8"/><path d="M16 7h4v4"/></svg></span><div><h3>Performance</h3><span class="alicyn-lab-route-level">Avanzado</span></div></div>
+            <p>CJC-1295 + Ipamorelin + IGF1-LR3<br>Fuerza, presencia física y performance inteligente.</p>
+            <div class="alicyn-lab-inline-actions"><button class="alicyn-lab-button alicyn-lab-button-secondary" type="button" data-lab-route="performance">Ver ruta</button><button class="alicyn-lab-text-link" type="button" data-lab-go="comparar">Comparar</button><a class="alicyn-lab-text-link" data-lab-whatsapp-route="performance" href="https://wa.me/{{ section.settings.whatsapp_number | default: '525542388056' }}" target="_blank" rel="noopener">WhatsApp</a></div>
+          </article>
+          <article class="alicyn-lab-route-card" data-lab-route-card="definition">
+            <div class="alicyn-lab-route-top"><span class="alicyn-lab-objective-icon"><svg class="alicyn-lab-icon" viewBox="0 0 24 24"><path d="M12 3 20 8v8l-8 5-8-5V8l8-5Z"/><path d="M12 3v18M4 8l8 5 8-5"/></svg></span><div><h3>Definición</h3><span class="alicyn-lab-route-level">Inicial / intermedio</span></div></div>
+            <p>AOD-9604 + HGH Fragment + RT-Triple Agonist<br>Silueta, precisión y metabolismo.</p>
+            <div class="alicyn-lab-inline-actions"><button class="alicyn-lab-button alicyn-lab-button-secondary" type="button" data-lab-route="definition">Ver ruta</button><button class="alicyn-lab-text-link" type="button" data-lab-go="comparar">Comparar</button><a class="alicyn-lab-text-link" data-lab-whatsapp-route="definition" href="https://wa.me/{{ section.settings.whatsapp_number | default: '525542388056' }}" target="_blank" rel="noopener">WhatsApp</a></div>
           </article>
         </div>
+        <p class="alicyn-lab-inline-disclaimer">Los péptidos aquí presentados son productos de investigación. La información es educativa, descriptiva y comercial. No sustituye orientación profesional ni constituye diagnóstico, cura, prevención o protocolo de uso.</p>
       </div>
 
       <div id="alicyn-lab-comparador-{{ section.id }}" class="alicyn-lab-section" data-lab-nav-section="mas" data-lab-screen="mas" hidden>
         <p class="alicyn-lab-kicker">Comparador</p>
         <h2 class="alicyn-lab-heading">Compara antes de elegir</h2>
         <p class="alicyn-lab-section-copy">Los productos relacionados con tu ruta aparecen resaltados.</p>
-        <div class="alicyn-lab-compare-wrap">
-          <table class="alicyn-lab-compare-table">
-            <thead><tr><th>Péptido</th><th>Eje principal</th><th>Contexto de investigación</th><th>Nivel</th><th>Ruta</th><th>Acción</th></tr></thead>
-            <tbody>
-              <tr data-lab-compare-product="nad"><td>NAD+ 1000 mg</td><td>Longevidad celular</td><td>Energía celular y metabolismo.</td><td>Inicial / intermedio</td><td>Cell Reset</td><td><a class="alicyn-lab-text-link" href="/products/aesthetic-labs-nad-1000-mg">Ver producto</a></td></tr>
-              <tr data-lab-compare-product="mots"><td>MOTS-C 10 mg</td><td>Metabolismo</td><td>Energía y performance técnico.</td><td>Intermedio</td><td>Cell Reset · Lean Research</td><td><a class="alicyn-lab-text-link" href="/products/aesthetic-labs-mots-c-10-mg">Ver producto</a></td></tr>
-              <tr data-lab-compare-product="aod"><td>AOD-9604 10 mg</td><td>Composición corporal</td><td>Metabolismo y definición como ejes técnicos.</td><td>Inicial / intermedio</td><td>Lean Research</td><td><a class="alicyn-lab-text-link" href="/products/aesthetic-labs-aod-9604-10-mg">Ver producto</a></td></tr>
-              <tr data-lab-compare-product="bpc"><td>BPC-157</td><td>Respuesta tisular</td><td>Señalización y respuesta tisular experimental.</td><td>Intermedio</td><td>Recovery Lab</td><td><a class="alicyn-lab-text-link" href="/products/aesthetic-labs-bpc-157-10-mg">Ver producto</a></td></tr>
-              <tr data-lab-compare-product="tb"><td>TB-500</td><td>Respuesta tisular avanzada</td><td>Investigación preclínica de respuesta tisular.</td><td>Intermedio / avanzado</td><td>Recovery Lab</td><td><a class="alicyn-lab-text-link" href="/products/aesthetic-labs-tb-500-10-mg">Ver producto</a></td></tr>
-              <tr data-lab-compare-product="ghk"><td>GHK-Cu 100 mg</td><td>Skin science</td><td>Piel, colágeno y señalización estética.</td><td>Inicial / intermedio</td><td>Skin Matrix</td><td><a class="alicyn-lab-text-link" href="/products/aesthetic-labs-ghk-cu-100-mg">Ver producto</a></td></tr>
-              <tr data-lab-compare-product="cjc"><td>CJC-1295 sin DAC</td><td>Performance técnico</td><td>Señalización experimental avanzada.</td><td>Avanzado</td><td>Performance Axis</td><td><a class="alicyn-lab-text-link" href="/products/aesthetic-labs-cjc-1295-sin-dac-10-mg">Ver producto</a></td></tr>
-              <tr data-lab-compare-product="ipa"><td>Ipamorelin</td><td>Performance técnico</td><td>Señalización experimental y composición corporal.</td><td>Avanzado</td><td>Performance Axis</td><td><a class="alicyn-lab-text-link" href="/products/aesthetic-labs-ipamorelin-10-mg">Ver producto</a></td></tr>
-            </tbody>
-          </table>
+        <div class="alicyn-lab-compare-cards">
+          <article class="alicyn-lab-compare-card" data-lab-compare-product="ghk"><h3>GHK-Cu 100 mg</h3><dl><div><dt>Eje</dt><dd>Skin / Glow</dd></div><div><dt>Ideal para comparar</dt><dd>Piel, colágeno y bienestar estético.</dd></div><div><dt>Nivel · Ruta</dt><dd>Inicial / intermedio · Skin / Glow</dd></div></dl><a class="alicyn-lab-text-link" href="/products/aesthetic-labs-ghk-cu-100-mg">Ver producto</a></article>
+          <article class="alicyn-lab-compare-card" data-lab-compare-product="nad"><h3>NAD+ 1000 mg</h3><dl><div><dt>Eje</dt><dd>Energía</dd></div><div><dt>Ideal para comparar</dt><dd>Vitalidad, mitocondria y longevidad estética.</dd></div><div><dt>Nivel · Ruta</dt><dd>Inicial / intermedio · Energía</dd></div></dl><a class="alicyn-lab-text-link" href="/products/aesthetic-labs-nad-1000-mg">Ver producto</a></article>
+          <article class="alicyn-lab-compare-card" data-lab-compare-product="mots"><h3>MOTS-C 10 mg</h3><dl><div><dt>Eje</dt><dd>Energía / metabolismo</dd></div><div><dt>Ideal para comparar</dt><dd>Constancia, composición corporal y rendimiento.</dd></div><div><dt>Nivel · Ruta</dt><dd>Intermedio · Energía / Metabolismo</dd></div></dl><a class="alicyn-lab-text-link" href="/products/aesthetic-labs-mots-c-10-mg">Ver producto</a></article>
+          <article class="alicyn-lab-compare-card" data-lab-compare-product="aod"><h3>AOD-9604 10 mg</h3><dl><div><dt>Eje</dt><dd>Definición</dd></div><div><dt>Ideal para comparar</dt><dd>Composición corporal y control estético.</dd></div><div><dt>Nivel · Ruta</dt><dd>Inicial / intermedio · Definición</dd></div></dl><a class="alicyn-lab-text-link" href="/products/aesthetic-labs-aod-9604-10-mg">Ver producto</a></article>
+          <article class="alicyn-lab-compare-card" data-lab-compare-product="hgh"><h3>HGH Fragment 176-191</h3><dl><div><dt>Eje</dt><dd>Metabolismo / definición</dd></div><div><dt>Ideal para comparar</dt><dd>Silueta, metabolismo y composición corporal.</dd></div><div><dt>Nivel · Ruta</dt><dd>Inicial / intermedio · Definición</dd></div></dl><a class="alicyn-lab-text-link" href="/products/aesthetic-labs-hgh-fragment-176-191-5-mg">Ver producto</a></article>
+          <article class="alicyn-lab-compare-card" data-lab-compare-product="rt"><h3>RT-Triple Agonist</h3><dl><div><dt>Eje</dt><dd>Metabolismo</dd></div><div><dt>Ideal para comparar</dt><dd>Precisión, control corporal y estrategia decidida.</dd></div><div><dt>Nivel · Ruta</dt><dd>Avanzado · Metabolismo</dd></div></dl><a class="alicyn-lab-text-link" href="/products/aesthetic-labs-rt-triple-agonist-20-mg">Ver producto</a></article>
+          <article class="alicyn-lab-compare-card" data-lab-compare-product="bpc"><h3>BPC-157</h3><dl><div><dt>Eje</dt><dd>Recovery</dd></div><div><dt>Ideal para comparar</dt><dd>Constancia y cuidado corporal avanzado.</dd></div><div><dt>Nivel · Ruta</dt><dd>Intermedio · Recovery</dd></div></dl><a class="alicyn-lab-text-link" href="/products/aesthetic-labs-bpc-157-10-mg">Ver producto</a></article>
+          <article class="alicyn-lab-compare-card" data-lab-compare-product="tb"><h3>TB-500</h3><dl><div><dt>Eje</dt><dd>Recovery</dd></div><div><dt>Ideal para comparar</dt><dd>Movilidad, respuesta corporal y continuidad física.</dd></div><div><dt>Nivel · Ruta</dt><dd>Intermedio / avanzado · Recovery</dd></div></dl><a class="alicyn-lab-text-link" href="/products/aesthetic-labs-tb-500-10-mg">Ver producto</a></article>
+          <article class="alicyn-lab-compare-card" data-lab-compare-product="cjc"><h3>CJC-1295 sin DAC</h3><dl><div><dt>Eje</dt><dd>Performance</dd></div><div><dt>Ideal para comparar</dt><dd>Señalización avanzada y composición corporal.</dd></div><div><dt>Nivel · Ruta</dt><dd>Avanzado · Performance</dd></div></dl><a class="alicyn-lab-text-link" href="/products/aesthetic-labs-cjc-1295-sin-dac-10-mg">Ver producto</a></article>
+          <article class="alicyn-lab-compare-card" data-lab-compare-product="ipa"><h3>Ipamorelin</h3><dl><div><dt>Eje</dt><dd>Performance</dd></div><div><dt>Ideal para comparar</dt><dd>Descanso y composición corporal inteligente.</dd></div><div><dt>Nivel · Ruta</dt><dd>Avanzado · Performance</dd></div></dl><a class="alicyn-lab-text-link" href="/products/aesthetic-labs-ipamorelin-10-mg">Ver producto</a></article>
+          <article class="alicyn-lab-compare-card" data-lab-compare-product="igf"><h3>IGF1-LR3</h3><dl><div><dt>Eje</dt><dd>Performance</dd></div><div><dt>Ideal para comparar</dt><dd>Presencia física y performance avanzada.</dd></div><div><dt>Nivel · Ruta</dt><dd>Avanzado · Performance</dd></div></dl><a class="alicyn-lab-text-link" href="/products/aesthetic-labs-igf1-lr3-1-mg">Ver producto</a></article>
+          <article class="alicyn-lab-compare-card" data-lab-compare-product="t3s"><h3>T3S@ 10</h3><dl><div><dt>Eje</dt><dd>Metabolismo</dd></div><div><dt>Ideal para comparar</dt><dd>Energía, control corporal y metabolismo avanzado.</dd></div><div><dt>Nivel · Ruta</dt><dd>Avanzado · Metabolismo</dd></div></dl><a class="alicyn-lab-text-link" href="/products/aesthetic-labs-t3s-10">Ver producto</a></article>
         </div>
+      </div>
+
+      <div id="alicyn-lab-seo-peptidos-{{ section.id }}" class="alicyn-lab-section alicyn-lab-seo-brief" data-lab-screen="productos" hidden>
+        <p class="alicyn-lab-kicker">México · Aesthetic Labs</p>
+        <h2 class="alicyn-lab-heading">Comprar péptidos Aesthetic Labs en México</h2>
+        <p class="alicyn-lab-section-copy">Explora péptidos y protocolos Aesthetic Labs organizados por objetivo: skin wellness, energía celular, metabolismo, recovery, performance y definición. En Alicyn Lab puedes comparar presentaciones, precios, rutas y comprar con envío gratis en México.</p>
       </div>
 
       <div id="catalogo-peptidos-investigacion" class="alicyn-lab-section" data-lab-nav-section="productos" data-lab-screen="productos" hidden>
         <button class="alicyn-care-back" type="button" data-lab-go="objetivos">← Volver a mi ruta</button>
         <p class="alicyn-lab-kicker">Colección individual</p>
         <h2 class="alicyn-lab-heading">Péptidos Aesthetic Labs</h2>
-        <p class="alicyn-lab-section-copy">Explora presentaciones reales por eje técnico. Las compras disponibles se procesan mediante el carrito de Shopify.</p>
+        <p class="alicyn-lab-section-copy">Explora presentaciones reales por eje técnico. Envío gratis en todos los péptidos.</p>
         <div class="alicyn-lab-filter-row" aria-label="Filtrar productos">
           <button class="alicyn-lab-filter is-active" type="button" data-lab-filter="all">Todos</button>
-          <button class="alicyn-lab-filter" type="button" data-lab-filter="cell">Cell Reset</button>
-          <button class="alicyn-lab-filter" type="button" data-lab-filter="lean">Lean Research</button>
-          <button class="alicyn-lab-filter" type="button" data-lab-filter="recovery">Recovery Lab</button>
-          <button class="alicyn-lab-filter" type="button" data-lab-filter="muscle">Recuperación muscular</button>
-          <button class="alicyn-lab-filter" type="button" data-lab-filter="skin">Skin Matrix</button>
+          <button class="alicyn-lab-filter" type="button" data-lab-filter="skin">Skin / Glow</button>
+          <button class="alicyn-lab-filter" type="button" data-lab-filter="cell">Energía</button>
+          <button class="alicyn-lab-filter" type="button" data-lab-filter="metabolic">Metabolismo</button>
+          <button class="alicyn-lab-filter" type="button" data-lab-filter="recovery">Recovery</button>
           <button class="alicyn-lab-filter" type="button" data-lab-filter="performance">Performance</button>
+          <button class="alicyn-lab-filter" type="button" data-lab-filter="definition">Definición</button>
         </div>
         <div class="alicyn-lab-products-grid">
           {% for block in section.blocks %}
@@ -1978,6 +2213,58 @@
                 elsif lab_product_url contains 'mots-c' or lab_product_url contains 'bpc-157' or lab_product_url contains 'tb-500'
                   assign lab_level = 'Intermedio'
                 endif
+                assign lab_product_badge = block.settings.product_badge
+                assign lab_product_focus = block.settings.product_focus
+                assign lab_product_description = block.settings.product_description
+                if lab_product_url contains 'rt-triple'
+                  assign lab_product_badge = 'Metabolismo'
+                  assign lab_product_focus = 'Metabolismo y definición'
+                  assign lab_product_description = 'Ruta metabólica avanzada para precisión, control corporal y estrategia decidida.'
+                elsif lab_product_url contains 'bpc-157'
+                  assign lab_product_badge = 'Recovery'
+                  assign lab_product_focus = 'Recovery y continuidad'
+                  assign lab_product_description = 'Recovery, constancia y cuidado corporal avanzado para rutinas activas.'
+                elsif lab_product_url contains 'tb-500'
+                  assign lab_product_badge = 'Recovery'
+                  assign lab_product_focus = 'Recovery y movilidad'
+                  assign lab_product_description = 'Movilidad, respuesta corporal y continuidad física dentro del eje recovery.'
+                elsif lab_product_url contains 'ghk-cu'
+                  assign lab_product_badge = 'Skin / Glow'
+                  assign lab_product_focus = 'Skin wellness'
+                  assign lab_product_description = 'Skin wellness, glow, colágeno y belleza celular.'
+                elsif lab_product_url contains 'ipamorelin'
+                  assign lab_product_badge = 'Performance'
+                  assign lab_product_focus = 'Performance y composición'
+                  assign lab_product_description = 'Performance, descanso y composición corporal inteligente.'
+                elsif lab_product_url contains 'cjc-1295'
+                  assign lab_product_badge = 'Performance'
+                  assign lab_product_focus = 'Performance avanzado'
+                  assign lab_product_description = 'Señalización avanzada, performance y composición corporal.'
+                elsif lab_product_url contains 'igf1-lr3'
+                  assign lab_product_badge = 'Performance'
+                  assign lab_product_focus = 'Señalización IGF'
+                  assign lab_product_description = 'Señalización IGF, presencia física y performance avanzada.'
+                elsif lab_product_url contains 'mots-c'
+                  assign lab_product_badge = 'Energía'
+                  assign lab_product_focus = 'Energía y metabolismo'
+                  assign lab_product_description = 'Energía celular, metabolismo y constancia.'
+                elsif lab_product_url contains 'aod-9604'
+                  assign lab_product_badge = 'Definición'
+                  assign lab_product_focus = 'Definición y composición'
+                  assign lab_product_description = 'Definición, composición corporal y control estético.'
+                elsif lab_product_url contains 'hgh-fragment'
+                  assign lab_product_badge = 'Definición'
+                  assign lab_product_focus = 'Silueta y metabolismo'
+                  assign lab_product_description = 'Silueta, metabolismo y composición corporal.'
+                elsif lab_product_url contains 't3s'
+                  assign lab_product_badge = 'Metabolismo'
+                  assign lab_product_focus = 'Metabolismo avanzado'
+                  assign lab_product_description = 'Energía, control corporal y metabolismo avanzado.'
+                elsif lab_product_url contains 'nad-1000'
+                  assign lab_product_badge = 'Energía'
+                  assign lab_product_focus = 'Energía y longevidad estética'
+                  assign lab_product_description = 'Energía celular, vitalidad y longevidad estética.'
+                endif
               %}
               <article
                 class="alicyn-lab-card"
@@ -1996,16 +2283,17 @@
                     <span class="alicyn-lab-card-placeholder">AESTHETIC<br>LABS</span>
                   {% endif %}
                 </div>
-                <span class="alicyn-lab-card-badge">{{ block.settings.product_badge | escape }}</span>
+                <span class="alicyn-lab-card-badge">{{ lab_product_badge | escape }}</span>
+                <span class="alicyn-lab-shipping-chip">Envío gratis</span>
                 <h3>{{ block.settings.product_name | escape }}</h3>
                 <p class="alicyn-lab-price">
                   {% if lab_product != blank %}{{ lab_product.price | money }}{% else %}{{ block.settings.product_price | escape }}{% endif %}
                   {% if block.settings.product_compare_at_price != blank %}<span class="alicyn-lab-compare">{{ block.settings.product_compare_at_price | escape }}</span>{% endif %}
                 </p>
                 <p class="alicyn-lab-presentation">{{ block.settings.product_presentation | escape }}</p>
-                <p class="alicyn-lab-focus"><strong>Eje:</strong> {{ block.settings.product_focus | escape }}</p>
+                <p class="alicyn-lab-focus"><strong>Eje:</strong> {{ lab_product_focus | escape }}</p>
                 <p class="alicyn-lab-focus"><strong>Nivel:</strong> {{ lab_level }}</p>
-                <p class="alicyn-lab-description">{{ block.settings.product_description | escape }}</p>
+                <p class="alicyn-lab-description">{{ lab_product_description | escape }}</p>
                 <div class="alicyn-lab-card-actions">
                   {% if section.settings.show_card_links %}
                     <a class="alicyn-lab-button alicyn-lab-button-secondary" href="{{ lab_product_url }}">Ver producto</a>
@@ -2030,21 +2318,54 @@
 
       <div id="protocolos-investigacion" class="alicyn-lab-section" data-lab-screen="mas" hidden>
         <p class="alicyn-lab-kicker">Paquetes técnicos</p>
-        <h2 class="alicyn-lab-heading">Protocolos de investigación</h2>
-        <p class="alicyn-lab-section-copy">Paquetes comerciales organizados por eje. No son instrucciones, cantidades ni recomendaciones para personas o animales.</p>
+        <h2 class="alicyn-lab-heading">Protocolos de péptidos por objetivo</h2>
+        <p class="alicyn-lab-section-copy">Guías de compra para elegir tus péptidos con menos confusión, más intención y envío gratis.</p>
         <div class="alicyn-lab-protocols-grid">
           {% for block in section.blocks %}
             {% if block.type == 'protocol_card' %}
+              {% liquid
+                assign lab_protocol_badge = block.settings.protocol_badge
+                assign lab_protocol_description = block.settings.protocol_description
+                if block.settings.protocol_name contains 'Stack BPC-157 + TB-500 Aesthetic'
+                  assign lab_protocol_badge = 'Envío gratis'
+                  assign lab_protocol_description = 'Ruta recovery para continuidad física, movilidad y cuidado corporal avanzado.'
+                elsif block.settings.protocol_name contains 'Wolverine'
+                  assign lab_protocol_badge = 'Envío gratis'
+                  assign lab_protocol_description = 'Stack de recovery para comparar BPC-157 y TB-500 en una misma ruta.'
+                elsif block.settings.protocol_name contains 'HGH Natural'
+                  assign lab_protocol_badge = 'Envío gratis'
+                  assign lab_protocol_description = 'Ruta de performance para señalización, descanso y composición corporal inteligente.'
+                elsif block.settings.protocol_name contains 'Volumen'
+                  assign lab_protocol_badge = 'Envío gratis'
+                  assign lab_protocol_description = 'Guía de compra para presencia física, performance y composición corporal.'
+                elsif block.settings.protocol_name contains 'Recuperación Total'
+                  assign lab_protocol_badge = 'Envío gratis'
+                  assign lab_protocol_description = 'Ruta completa entre recovery, piel y cuidado corporal avanzado.'
+                elsif block.settings.protocol_name contains 'Piel y Longevidad'
+                  assign lab_protocol_badge = 'Envío gratis'
+                  assign lab_protocol_description = 'Ruta beauty-tech para piel, glow, energía celular y longevidad estética.'
+                elsif block.settings.protocol_name contains 'Definición'
+                  assign lab_protocol_badge = 'Envío gratis'
+                  assign lab_protocol_description = 'Ruta metabólica para definición, composición corporal y control estético.'
+                elsif block.settings.protocol_name contains 'Shred'
+                  assign lab_protocol_badge = 'Envío gratis'
+                  assign lab_protocol_description = 'Ruta avanzada para metabolismo, definición y precisión corporal.'
+                elsif block.settings.protocol_name contains 'Músculo'
+                  assign lab_protocol_badge = 'Envío gratis'
+                  assign lab_protocol_description = 'Ruta híbrida para performance, composición corporal y definición estética.'
+                endif
+              %}
               <article class="alicyn-lab-card" {{ block.shopify_attributes }}>
                 {% if block.settings.protocol_image != blank %}
                   <div class="alicyn-lab-card-media">{{ block.settings.protocol_image | image_url: width: 480 | image_tag: class: 'alicyn-lab-card-image', loading: 'lazy', widths: '240, 360, 480', sizes: '(min-width: 990px) 30vw, 100vw', alt: block.settings.protocol_name }}</div>
                 {% endif %}
-                <span class="alicyn-lab-card-badge">{{ block.settings.protocol_badge | escape }}</span>
+                <span class="alicyn-lab-card-badge">{{ lab_protocol_badge | escape }}</span>
+                <span class="alicyn-lab-shipping-chip">Envío gratis</span>
                 <h3>{{ block.settings.protocol_name | escape }}</h3>
                 <p class="alicyn-lab-price">{{ block.settings.protocol_price | escape }}</p>
                 <p class="alicyn-lab-presentation">{{ block.settings.protocol_components | escape }}</p>
                 <p class="alicyn-lab-focus"><strong>Eje:</strong> {{ block.settings.protocol_focus | escape }}</p>
-                <p class="alicyn-lab-description">{{ block.settings.protocol_description | escape }}</p>
+                <p class="alicyn-lab-description">{{ lab_protocol_description | escape }}</p>
                 <div class="alicyn-lab-card-actions">
                   {% if section.settings.show_card_links %}<a class="alicyn-lab-button alicyn-lab-button-secondary" href="{{ block.settings.protocol_link | default: '/collections/peptidos' }}">Ver paquete</a>{% endif %}
                   <a class="alicyn-lab-text-link" data-lab-protocol-whatsapp data-name="{{ block.settings.protocol_name | escape }}" href="https://wa.me/{{ section.settings.whatsapp_number | default: '525542388056' }}?text=Hola%2C%20vengo%20de%20Alicyn%20Lab.%20Quiero%20orientaci%C3%B3n%20sobre%20un%20paquete%20t%C3%A9cnico." target="_blank" rel="noopener">Preguntar por WhatsApp</a>
@@ -2080,7 +2401,7 @@
           <div class="alicyn-lab-warning-box">
             <p class="alicyn-lab-kicker">Información importante</p>
             <h2 class="alicyn-lab-heading">Antes de comprar</h2>
-            <p>Los péptidos aquí presentados son productos de investigación. La información es educativa, descriptiva y comercial. No sustituye la orientación de un profesional de la salud. No constituye diagnóstico, tratamiento, cura, prevención ni protocolo de uso. No destinados al consumo humano o animal.</p>
+            <p>Los péptidos aquí presentados son productos de investigación. La información es educativa, descriptiva y comercial. No sustituye la orientación de un profesional de la salud. No constituye diagnóstico, cura, prevención ni protocolo de uso. No destinados al consumo humano o animal.</p>
           </div>
         </div>
       {% endif %}
@@ -2127,9 +2448,9 @@
       <div class="alicyn-lab-final" data-lab-screen="mas" hidden>
         <div class="alicyn-lab-final-card alicyn-lab-glass">
           <h2>Explora Alicyn Lab con claridad</h2>
-          <p>Compara productos por eje de investigación o consulta una ruta antes de comprar.</p>
+          <p>Compara productos por objetivo o consulta una ruta antes de comprar. Envío gratis en todos los péptidos.</p>
           <div class="alicyn-lab-actions">
-            <a class="alicyn-lab-button" href="{{ section.settings.primary_button_link | default: '/collections/peptidos' }}">{{ section.settings.primary_button_label | escape }}</a>
+            <a class="alicyn-lab-button" href="/collections/peptidos">Ver péptidos con envío gratis</a>
             <a class="alicyn-lab-button alicyn-lab-button-secondary" data-lab-result-whatsapp target="_blank" rel="noopener" href="https://wa.me/{{ section.settings.whatsapp_number | default: '525542388056' }}">Hablar por WhatsApp</a>
           </div>
         </div>
@@ -2138,7 +2459,7 @@
   </div>
 
   {% if section.settings.show_bottom_navigation %}
-    <nav class="alicyn-lab-bottom-nav" aria-label="Navegación rápida de Alicyn OS" data-lab-bottom-nav>
+    <nav class="alicyn-lab-bottom-nav" aria-label="Navegación rápida de Alicyn" data-lab-bottom-nav>
       <button class="is-active" type="button" data-mode-nav="care" data-care-open="inicio"><svg class="alicyn-lab-icon" viewBox="0 0 24 24"><path d="m4 11 8-7 8 7v9H4v-9ZM9 20v-6h6v6"/></svg><span>Inicio</span></button>
       <button type="button" data-mode-nav="care" data-care-open="guia"><svg class="alicyn-lab-icon" viewBox="0 0 24 24"><path d="M8 3h8v18H8zM10 8h4M10 12h4"/></svg><span>Guía</span></button>
       <button type="button" data-mode-nav="care" data-care-open="packs"><svg class="alicyn-lab-icon" viewBox="0 0 24 24"><path d="m4 7 8-4 8 4-8 4-8-4ZM4 7v10l8 4 8-4V7"/></svg><span>Packs</span></button>
@@ -2165,100 +2486,105 @@
         inicio: '#alicyn-lab-inicio-{{ section.id }}',
         objetivos: '#alicyn-lab-objetivos-{{ section.id }}',
         quiz: '#alicyn-lab-quiz-{{ section.id }}',
-        productos: '#catalogo-peptidos-investigacion',
-        mas: '#alicyn-lab-rutas-{{ section.id }}',
-        comparar: '#alicyn-lab-comparador-{{ section.id }}'
+        productos: '#alicyn-lab-seo-peptidos-{{ section.id }}',
+        mas: '#alicyn-lab-comparador-{{ section.id }}',
+        comparar: '#alicyn-lab-comparador-{{ section.id }}',
+        protocolos: '#protocolos-investigacion'
       };
       var routes = {
-        cell: {
-          name: 'Cell Reset',
-          primary: 'NAD+ 1000 mg',
-          complement: 'MOTS-C 10 mg',
-          level: 'Inicial / intermedio',
-          copy: 'Ruta de investigación organizada para comparar energía celular y metabolismo.',
-          products: ['nad', 'mots'],
-          primaryUrl: '/products/aesthetic-labs-nad-1000-mg',
-          whatsapp: 'Hola, vengo de Alicyn Lab. Me recomendó la ruta Cell Reset con NAD+ y MOTS-C. ¿Me pueden orientar?'
-        },
-        lean: {
-          name: 'Lean Research',
-          primary: 'AOD-9604 10 mg',
-          complement: 'MOTS-C 10 mg',
-          level: 'Inicial / intermedio',
-          copy: 'Ruta de investigación organizada para comparar metabolismo y composición corporal.',
-          products: ['aod', 'mots'],
-          primaryUrl: '/products/aesthetic-labs-aod-9604-10-mg',
-          whatsapp: 'Hola, vengo de Alicyn Lab. Me recomendó la ruta Lean Research con AOD-9604 y MOTS-C. ¿Me pueden orientar?'
-        },
-        recovery: {
-          name: 'Recovery Lab',
-          primary: 'BPC-157',
-          complement: 'TB-500',
-          level: 'Intermedio',
-          copy: 'Ruta de investigación organizada para comparar respuesta tisular y señalización.',
-          products: ['bpc', 'tb'],
-          primaryUrl: '/products/aesthetic-labs-bpc-157-10-mg',
-          whatsapp: 'Hola, vengo de Alicyn Lab. Me recomendó la ruta Recovery Lab con BPC-157 y TB-500. ¿Me pueden orientar?'
-        },
-        muscle: {
-          name: 'Recuperación muscular',
-          primary: 'BPC-157',
-          complement: 'TB-500 + CJC-1295 sin DAC + Ipamorelin',
-          level: 'Intermedio / avanzado',
-          copy: 'Ruta de investigación para comparar respuesta tisular y señalización asociada al esfuerzo.',
-          products: ['bpc', 'tb', 'cjc', 'ipa'],
-          primaryUrl: '/products/aesthetic-labs-bpc-157-10-mg',
-          whatsapp: 'Hola, vengo de Alicyn Lab. Me interesó el eje de recuperación muscular con BPC-157, TB-500, CJC-1295 e Ipamorelin. ¿Me pueden orientar?'
-        },
         skin: {
-          name: 'Skin Matrix',
+          objective: 'Skin / Glow',
+          name: 'Skin / Glow',
           primary: 'GHK-Cu 100 mg',
           complement: 'NAD+ 1000 mg',
           level: 'Inicial / intermedio',
-          copy: 'Ruta de investigación organizada para comparar skin science y señalización celular.',
-          products: ['ghk', 'nad'],
+          copy: 'Para quienes buscan piel, glow, colágeno y belleza celular desde una lógica de wellness avanzado.',
+          products: ['ghk', 'nad', 'bpc'],
           primaryUrl: '/products/aesthetic-labs-ghk-cu-100-mg',
-          whatsapp: 'Hola, vengo de Alicyn Lab. Me recomendó la ruta Skin Matrix con GHK-Cu y NAD+. ¿Me pueden orientar?'
+          whatsapp: 'Hola, vengo de Alicyn Lab. Me interesa la ruta Skin / Glow con GHK-Cu y NAD+. ¿Me pueden orientar?'
+        },
+        cell: {
+          objective: 'Energía',
+          name: 'Energía',
+          primary: 'NAD+ 1000 mg',
+          complement: 'MOTS-C 10 mg',
+          level: 'Inicial / intermedio',
+          copy: 'Para quienes buscan vitalidad, energía celular, mitocondria y longevidad.',
+          products: ['nad', 'mots'],
+          primaryUrl: '/products/aesthetic-labs-nad-1000-mg',
+          whatsapp: 'Hola, vengo de Alicyn Lab. Me interesa la ruta Energía con NAD+ y MOTS-C. ¿Me pueden orientar?'
+        },
+        metabolic: {
+          objective: 'Metabolismo',
+          name: 'Metabolismo',
+          primary: 'AOD-9604 10 mg',
+          complement: 'HGH Fragment + RT-Triple Agonist',
+          level: 'Avanzado',
+          copy: 'Para quienes buscan definición, control corporal y composición con más intención.',
+          products: ['aod', 'hgh', 'rt', 't3s'],
+          primaryUrl: '/products/aesthetic-labs-aod-9604-10-mg',
+          whatsapp: 'Hola, vengo de Alicyn Lab. Me interesa la ruta Metabolismo con AOD-9604, HGH Fragment y RT-Triple Agonist. ¿Me pueden orientar?'
+        },
+        recovery: {
+          objective: 'Recovery',
+          name: 'Recovery',
+          primary: 'BPC-157',
+          complement: 'TB-500',
+          level: 'Intermedio',
+          copy: 'Para quienes buscan continuidad, movilidad y cuidado corporal avanzado.',
+          products: ['bpc', 'tb', 'ghk'],
+          primaryUrl: '/products/aesthetic-labs-bpc-157-10-mg',
+          whatsapp: 'Hola, vengo de Alicyn Lab. Me interesa la ruta Recovery con BPC-157 y TB-500. ¿Me pueden orientar?'
         },
         performance: {
-          name: 'Performance Axis',
-          primary: 'MOTS-C 10 mg',
-          complement: 'CJC-1295 sin DAC + Ipamorelin',
+          objective: 'Performance',
+          name: 'Performance',
+          primary: 'CJC-1295 sin DAC',
+          complement: 'Ipamorelin + IGF1-LR3',
           level: 'Avanzado',
-          copy: 'Ruta de investigación organizada para comparar señalización y energía celular.',
-          products: ['mots', 'cjc', 'ipa'],
-          primaryUrl: '/products/aesthetic-labs-mots-c-10-mg',
-          whatsapp: 'Hola, vengo de Alicyn Lab. Me recomendó la ruta Performance Axis con MOTS-C, CJC-1295 e Ipamorelin. ¿Me pueden orientar?'
+          copy: 'Para quienes buscan fuerza, presencia física y performance inteligente.',
+          products: ['cjc', 'ipa', 'igf'],
+          primaryUrl: '/products/aesthetic-labs-cjc-1295-sin-dac-10-mg',
+          whatsapp: 'Hola, vengo de Alicyn Lab. Me interesa la ruta Performance con CJC-1295, Ipamorelin e IGF1-LR3. ¿Me pueden orientar?'
+        },
+        definition: {
+          objective: 'Definición',
+          name: 'Definición',
+          primary: 'AOD-9604 10 mg',
+          complement: 'HGH Fragment + RT-Triple Agonist',
+          level: 'Inicial / intermedio',
+          copy: 'Para quienes buscan silueta, precisión y metabolismo.',
+          products: ['aod', 'hgh', 'rt'],
+          primaryUrl: '/products/aesthetic-labs-aod-9604-10-mg',
+          whatsapp: 'Hola, vengo de Alicyn Lab. Me interesa la ruta Definición con AOD-9604, HGH Fragment y RT-Triple Agonist. ¿Me pueden orientar?'
         },
         starter: {
-          name: 'Starter Lab',
+          objective: 'No sé por dónde empezar',
+          name: 'Energía',
           primary: 'NAD+ 1000 mg',
           complement: 'MOTS-C 10 mg',
           level: 'Inicial',
-          copy: 'Empieza simple: compara energía celular y metabolismo antes de elegir.',
+          copy: 'Empieza simple: compara una ruta clara antes de elegir un producto.',
           products: ['nad', 'mots'],
           primaryUrl: '/products/aesthetic-labs-nad-1000-mg',
-          whatsapp: 'Hola, vengo de Alicyn Lab. Quiero comenzar con la ruta Starter Lab y comparar NAD+ con MOTS-C. ¿Me pueden orientar?'
+          whatsapp: 'Hola, vengo de Alicyn Lab. No sé por dónde empezar y quiero comparar NAD+ con MOTS-C. ¿Me pueden orientar?'
         }
-      };
-      var axes = {
-        energy: { title: 'Energía celular', copy: 'Exploración técnica asociada a energía celular, metabolismo y bienestar avanzado.', products: ['NAD+ 1000 mg', 'MOTS-C 10 mg'], route: 'cell' },
-        skin: { title: 'Piel / rostro', copy: 'Skin science, colágeno y señalización celular como ejes de investigación.', products: ['GHK-Cu 100 mg', 'NAD+ 1000 mg'], route: 'skin' },
-        metabolic: { title: 'Metabolismo', copy: 'Explora compuestos agrupados por investigación metabólica y composición corporal.', products: ['AOD-9604 10 mg', 'MOTS-C 10 mg'], route: 'lean' },
-        tissue: { title: 'Tejidos / articulaciones', copy: 'Respuesta tisular y señalización en entornos de investigación experimental.', products: ['BPC-157', 'TB-500'], route: 'recovery' },
-        muscle: { title: 'Recuperación muscular', copy: 'Explora señalización y respuesta tisular en contextos técnicos asociados al esfuerzo.', products: ['BPC-157', 'TB-500', 'CJC-1295 sin DAC', 'Ipamorelin'], route: 'muscle' }
       };
       var productKeys = {
         nad: 'aesthetic-labs-nad-1000-mg',
         mots: 'aesthetic-labs-mots-c-10-mg',
         aod: 'aesthetic-labs-aod-9604-10-mg',
+        hgh: 'aesthetic-labs-hgh-fragment-176-191-5-mg',
+        rt: 'aesthetic-labs-rt-triple-agonist-20-mg',
+        t3s: 'aesthetic-labs-t3s-10',
         bpc: 'aesthetic-labs-bpc-157-10-mg',
         tb: 'aesthetic-labs-tb-500-10-mg',
         ghk: 'aesthetic-labs-ghk-cu-100-mg',
         cjc: 'aesthetic-labs-cjc-1295-sin-dac-10-mg',
-        ipa: 'aesthetic-labs-ipamorelin-10-mg'
+        ipa: 'aesthetic-labs-ipamorelin-10-mg',
+        igf: 'aesthetic-labs-igf1-lr3-1-mg'
       };
-      var activeRoute = 'cell';
+      var activeRoute = 'skin';
       var activeFilter = 'all';
       var activeMode = 'care';
       var activeLabScreen = 'inicio';
@@ -2275,14 +2601,15 @@
       }
 
       function showLabScreen(key, shouldScroll) {
-        var screen = key === 'comparar' ? 'mas' : key;
+        var screen = key === 'objetivos' ? 'inicio' : (key === 'comparar' || key === 'protocolos') ? 'mas' : key;
         if (!destinations[screen]) screen = 'inicio';
         activeLabScreen = screen;
         root.querySelectorAll('[data-lab-screen]').forEach(function (panel) {
           panel.hidden = panel.dataset.labScreen !== screen;
         });
         root.querySelectorAll('[data-lab-nav]').forEach(function (button) {
-          button.classList.toggle('is-active', button.dataset.labNav === screen);
+          var activeNavigation = (key === 'comparar' || key === 'protocolos') ? 'mas' : key;
+          button.classList.toggle('is-active', button.dataset.labNav === activeNavigation);
         });
         var target = root.querySelector(destinations[key] || destinations[screen]);
         if (shouldScroll !== false) scrollTo(target);
@@ -2329,7 +2656,9 @@
 
       function isProductInRoute(card, route) {
         var url = card.dataset.productUrl || '';
-        return route.products.some(function (key) { return url.indexOf(productKeys[key]) !== -1; });
+        return route.products.some(function (key) {
+          return productKeys[key] && url.indexOf(productKeys[key]) !== -1;
+        });
       }
 
       function applyFilter(filterKey) {
@@ -2345,15 +2674,15 @@
       }
 
       function setRoute(routeKey, shouldFilter) {
-        var route = routes[routeKey] || routes.cell;
-        activeRoute = routeKey in routes ? routeKey : 'cell';
+        var route = routes[routeKey] || routes.skin;
+        activeRoute = routeKey in routes ? routeKey : 'skin';
+        root.querySelector('[data-lab-result]').hidden = false;
+        root.querySelector('[data-lab-result-objective]').textContent = route.objective;
         root.querySelector('[data-lab-result-route]').textContent = route.name;
         root.querySelector('[data-lab-result-copy]').textContent = route.copy;
         root.querySelector('[data-lab-result-primary]').textContent = route.primary;
         root.querySelector('[data-lab-result-complement]').textContent = route.complement;
         root.querySelector('[data-lab-result-level]').textContent = route.level;
-        root.querySelector('[data-lab-result-product]').href = route.primaryUrl;
-        root.querySelector('[data-lab-result-product]').textContent = 'Ver ' + route.primary;
         root.querySelectorAll('[data-lab-route]').forEach(function (button) {
           button.closest('.alicyn-lab-objective-card') && button.closest('.alicyn-lab-objective-card').classList.toggle('is-active', button.dataset.labRoute === activeRoute);
         });
@@ -2368,22 +2697,6 @@
         });
         if (shouldFilter) applyFilter(activeRoute);
         updateWhatsApp(activeRoute);
-      }
-
-      function setAxis(axisKey) {
-        var axis = axes[axisKey] || axes.energy;
-        root.querySelector('[data-lab-map-title]').textContent = axis.title;
-        root.querySelector('[data-lab-map-copy]').textContent = axis.copy;
-        root.querySelector('[data-lab-map-products]').innerHTML = axis.products.map(function (name) {
-          return '<span class="alicyn-lab-chip">' + name + '</span>';
-        }).join('');
-        root.querySelectorAll('[data-axis]').forEach(function (button) {
-          button.classList.toggle('is-active', button.dataset.axis === axisKey);
-        });
-        root.querySelector('[data-lab-map-products-action]').onclick = function () {
-          setRoute(axis.route, true);
-          showLabScreen('objetivos');
-        };
       }
 
       function selectView(viewKey, shouldScroll) {
@@ -2489,12 +2802,18 @@
       root.querySelectorAll('[data-lab-route]').forEach(function (button) {
         button.addEventListener('click', function () {
           setRoute(button.dataset.labRoute, true);
-          if (button.closest('[data-lab-route-card]')) showLabScreen('objetivos');
+          if (button.closest('[data-lab-route-card]')) {
+            showLabScreen('objetivos', false);
+            scrollTo(root.querySelector('[data-lab-result]'));
+          } else if (button.closest('.alicyn-lab-objectives-grid')) {
+            scrollTo(root.querySelector('#alicyn-lab-route-detail'));
+          }
         });
       });
 
-      root.querySelectorAll('[data-axis]').forEach(function (button) {
-        button.addEventListener('click', function () { setAxis(button.dataset.axis); setRoute(button.dataset.route, false); });
+      root.querySelector('[data-lab-view-route]').addEventListener('click', function () {
+        applyFilter(activeRoute);
+        showLabScreen('productos');
       });
 
       root.querySelectorAll('[data-lab-filter]').forEach(function (button) {
@@ -2504,6 +2823,8 @@
       root.querySelector('[data-lab-reset-route]').addEventListener('click', function () {
         applyFilter('all');
         root.querySelectorAll('.alicyn-lab-objective-card').forEach(function (card) { card.classList.remove('is-active'); });
+        root.querySelector('[data-lab-result]').hidden = true;
+        scrollTo(root.querySelector('#alicyn-lab-objetivos-{{ section.id }}'));
       });
 
       if (root.querySelector('[data-lab-quiz]')) {
@@ -2558,35 +2879,34 @@
       showCarePanel('inicio', false);
       showLabScreen('inicio', false);
       selectView(savedView === 'peptides' ? 'peptides' : 'care', false);
-      setAxis('energy');
-      setRoute('cell', false);
-      updateWhatsApp('cell');
+      setRoute('skin', false);
+      updateWhatsApp('skin');
     })();
   </script>
 </section>
 
 {% schema %}
 {
-  "name": "Alicyn OS",
+  "name": "Alicyn",
   "max_blocks": 50,
   "settings": [
     {
       "type": "text",
       "id": "heading",
       "label": "Título principal",
-      "default": "Encuentra tu eje de investigación celular"
+      "default": "¿Qué quieres trabajar?"
     },
     {
       "type": "textarea",
       "id": "subheading",
       "label": "Subtítulo",
-      "default": "Explora péptidos Aesthetic Labs según ejes de energía, composición corporal, respuesta tisular, skin science y bienestar avanzado."
+      "default": "Explora por objetivo y encuentra tus péptidos con envío gratis."
     },
     {
       "type": "text",
       "id": "primary_button_label",
       "label": "Texto del botón final",
-      "default": "Ver colección de péptidos"
+      "default": "Ver péptidos con envío gratis"
     },
     {
       "type": "text",
@@ -2774,7 +3094,7 @@
   ],
   "presets": [
     {
-      "name": "Alicyn OS"
+      "name": "Alicyn"
     }
   ]
 }
