@@ -572,10 +572,9 @@
 
     #AlicynLab-{{ section.id }} .alicyn-lab-assistant-intro {
       display: grid;
-      grid-template-columns: minmax(0, 1fr) 62px;
-      gap: 15px;
+      gap: 14px;
       align-items: center;
-      padding: 21px 18px;
+      padding: 20px 17px 18px;
     }
 
     #AlicynLab-{{ section.id }} .alicyn-lab-assistant-intro .alicyn-lab-kicker {
@@ -596,11 +595,63 @@
       line-height: 1.5;
     }
 
-    #AlicynLab-{{ section.id }} .alicyn-lab-signal {
-      width: 60px;
-      height: 60px;
-      color: var(--alicyn-lab-violet);
-      filter: drop-shadow(0 0 14px rgba(149, 109, 255, 0.5));
+    #AlicynLab-{{ section.id }} .alicyn-lab-peptide-visual {
+      position: relative;
+      display: grid;
+      min-height: clamp(118px, 31vw, 250px);
+      place-items: center;
+      overflow: hidden;
+      border: 1px solid rgba(149, 109, 255, 0.22);
+      border-radius: 24px;
+      background:
+        radial-gradient(circle at 18% 22%, rgba(114, 214, 231, 0.22), transparent 32%),
+        radial-gradient(circle at 80% 20%, rgba(149, 109, 255, 0.34), transparent 34%),
+        linear-gradient(135deg, rgba(255, 255, 255, 0.055), rgba(255, 255, 255, 0.015));
+      box-shadow: inset 0 0 42px rgba(149, 109, 255, 0.1), 0 22px 58px rgba(0, 0, 0, 0.24);
+      isolation: isolate;
+    }
+
+    #AlicynLab-{{ section.id }} .alicyn-lab-peptide-visual::before,
+    #AlicynLab-{{ section.id }} .alicyn-lab-peptide-visual::after {
+      content: "";
+      position: absolute;
+      border-radius: 999px;
+      pointer-events: none;
+    }
+
+    #AlicynLab-{{ section.id }} .alicyn-lab-peptide-visual::before {
+      width: 54%;
+      height: 150%;
+      border: 1px solid rgba(196, 178, 255, 0.18);
+      transform: rotate(-27deg);
+    }
+
+    #AlicynLab-{{ section.id }} .alicyn-lab-peptide-visual::after {
+      width: 72%;
+      height: 72%;
+      background: radial-gradient(circle, rgba(149, 109, 255, 0.28), transparent 68%);
+      filter: blur(20px);
+      opacity: 0.8;
+    }
+
+    #AlicynLab-{{ section.id }} .alicyn-lab-peptide-word {
+      position: relative;
+      z-index: 1;
+      color: rgba(255, 255, 255, 0.94);
+      font-size: clamp(2.05rem, 10vw, 7rem);
+      font-weight: 900;
+      letter-spacing: 0.04em;
+      line-height: 1;
+      text-align: center;
+      text-shadow: 0 0 28px rgba(149, 109, 255, 0.46);
+    }
+
+    #AlicynLab-{{ section.id }} .alicyn-lab-peptide-visual span[aria-hidden="true"] {
+      position: absolute;
+      inset: auto 9% 13%;
+      z-index: 1;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(114, 214, 231, 0.75), transparent);
     }
 
     #AlicynLab-{{ section.id }} .alicyn-lab-goals {
@@ -608,10 +659,18 @@
     }
 
     #AlicynLab-{{ section.id }} .alicyn-lab-goals-heading {
-      margin: 0 0 12px;
+      margin: 0 0 6px;
       color: var(--alicyn-lab-soft);
-      font-size: 0.8rem;
+      font-size: clamp(1.35rem, 6vw, 2.1rem);
       font-weight: 700;
+      line-height: 1.12;
+    }
+
+    #AlicynLab-{{ section.id }} .alicyn-lab-goals-copy {
+      margin: 0 0 14px;
+      color: var(--alicyn-lab-muted);
+      font-size: 0.85rem;
+      line-height: 1.45;
     }
 
     #AlicynLab-{{ section.id }} .alicyn-lab-objectives-grid.is-assistant {
@@ -1673,13 +1732,8 @@
       }
 
       #AlicynLab-{{ section.id }} .alicyn-lab-assistant-intro {
-        grid-template-columns: minmax(0, 1fr) 86px;
+        grid-template-columns: minmax(0, 0.76fr) minmax(340px, 1fr);
         padding: 28px 26px;
-      }
-
-      #AlicynLab-{{ section.id }} .alicyn-lab-signal {
-        width: 82px;
-        height: 82px;
       }
 
       #AlicynLab-{{ section.id }} .alicyn-lab-objectives-grid.is-assistant {
@@ -1973,26 +2027,27 @@
           <div>
             <p class="alicyn-lab-kicker">Péptidos Aesthetic Labs</p>
             {% if section.settings.embed_as_home_section %}
-              <h2 class="alicyn-lab-assistant-title">¿Qué quieres trabajar?</h2>
+              <h2 class="alicyn-lab-assistant-title">Péptidos Aesthetic Labs</h2>
             {% else %}
-              <h1 class="alicyn-lab-assistant-title">¿Qué quieres trabajar?</h1>
+              <h1 class="alicyn-lab-assistant-title">Péptidos Aesthetic Labs</h1>
             {% endif %}
             <span class="alicyn-lab-free-shipping">Envío gratis en todos los péptidos</span>
-            <p class="alicyn-lab-assistant-copy">Explora por objetivo y encuentra tus péptidos con envío gratis.</p>
-            <p class="alicyn-lab-mini-copy">Skin. Energía. Metabolismo. Recovery. Performance.</p>
+            <p class="alicyn-lab-assistant-copy">Elige tu objetivo y encuentra tu ruta.</p>
+            <p class="alicyn-lab-mini-copy">Compara productos Aesthetic Labs por piel, energía, metabolismo, recovery, performance o definición.</p>
             <div class="alicyn-lab-cta-row">
-              <a class="alicyn-lab-button" href="/collections/peptidos">Ver péptidos con envío gratis</a>
+              <a class="alicyn-lab-button" href="/collections/peptidos">Ver péptidos Aesthetic Labs con envío gratis</a>
               <button class="alicyn-lab-button alicyn-lab-button-secondary" type="button" data-lab-go="objetivos">Elegir objetivo</button>
             </div>
           </div>
-          <svg class="alicyn-lab-signal" viewBox="0 0 64 64" fill="none" aria-hidden="true">
-            <path d="M10 32h9l5-12 8 26 8-19 5 5h9" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
-            <path d="M32 7v7M32 50v7M7 32h7M50 32h7" stroke="currentColor" stroke-width="1.5" opacity=".45"/>
-          </svg>
+          <div class="alicyn-lab-peptide-visual" aria-hidden="true">
+            <strong class="alicyn-lab-peptide-word">PEPTIDOS</strong>
+            <span aria-hidden="true"></span>
+          </div>
         </section>
 
         <section id="alicyn-lab-objetivos-{{ section.id }}" class="alicyn-lab-goals" data-lab-nav-section="objetivos">
-          <p class="alicyn-lab-goals-heading">Empieza por lo que quieres optimizar.</p>
+          <h2 class="alicyn-lab-goals-heading">¿Qué quieres trabajar?</h2>
+          <p class="alicyn-lab-goals-copy">Elige un objetivo y filtra tus péptidos Aesthetic Labs.</p>
           <div class="alicyn-lab-objectives-grid is-assistant">
             <button class="alicyn-lab-objective-card is-active" type="button" data-lab-route="skin" aria-label="Skin Glow">
               <span class="alicyn-lab-objective-icon"><svg class="alicyn-lab-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 3 1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8L12 3Z"/><path d="m18 15 .9 2.1L21 18l-2.1.9L18 21l-.9-2.1L15 18l2.1-.9L18 15Z"/></svg></span>
@@ -2060,9 +2115,9 @@
         </section>
       </div>
 
-      <div class="alicyn-lab-trust-grid" aria-label="Confianza Alicyn Lab" data-lab-screen="mas" hidden>
+      <div class="alicyn-lab-trust-grid" aria-label="Confianza Aesthetic Labs en Alicyn" data-lab-screen="mas" hidden>
         <article class="alicyn-lab-trust-card"><svg class="alicyn-lab-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M10 2v6l-5 9a3 3 0 0 0 2.6 4.5h8.8A3 3 0 0 0 19 17l-5-9V2M8 2h8M8 15h8"/></svg><strong>Investigación organizada</strong><p>Información por ejes para comparar con claridad.</p></article>
-        <article class="alicyn-lab-trust-card"><svg class="alicyn-lab-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 4 6v6c0 5 3.4 8.5 8 10 4.6-1.5 8-5 8-10V6l-8-4Z"/><path d="M9 12h6M12 9v6"/></svg><strong>Aesthetic Labs</strong><p>Presentaciones técnicas para laboratorio.</p></article>
+        <article class="alicyn-lab-trust-card"><svg class="alicyn-lab-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 4 6v6c0 5 3.4 8.5 8 10 4.6-1.5 8-5 8-10V6l-8-4Z"/><path d="M9 12h6M12 9v6"/></svg><strong>Aesthetic Labs</strong><p>Selección organizada para comparar antes de comprar.</p></article>
         <article class="alicyn-lab-trust-card"><svg class="alicyn-lab-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a7 7 0 0 0-4 12.7V20h8v-4.3A7 7 0 0 0 12 3ZM9 23h6"/></svg><strong>Guía personalizada</strong><p>Responde tres preguntas y explora una ruta.</p></article>
         <article class="alicyn-lab-trust-card"><svg class="alicyn-lab-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 11.5a8.5 8.5 0 0 1-12.5 7.5L3 21l2-5.2A8.5 8.5 0 1 1 21 11.5Z"/><path d="M8.5 10.5c1 2 2 3 4 4"/></svg><strong>Atención por WhatsApp</strong><p>Pregunta antes de elegir un producto.</p></article>
       </div>
@@ -2145,7 +2200,7 @@
             <div class="alicyn-lab-inline-actions"><button class="alicyn-lab-button alicyn-lab-button-secondary" type="button" data-lab-route="definition">Ver ruta</button><button class="alicyn-lab-text-link" type="button" data-lab-go="comparar">Comparar</button><a class="alicyn-lab-text-link" data-lab-whatsapp-route="definition" href="https://wa.me/{{ section.settings.whatsapp_number | default: '525542388056' }}" target="_blank" rel="noopener">WhatsApp</a></div>
           </article>
         </div>
-        <p class="alicyn-lab-inline-disclaimer">Los péptidos aquí presentados son productos de investigación. La información es educativa, descriptiva y comercial. No sustituye orientación profesional ni constituye diagnóstico, cura, prevención o protocolo de uso.</p>
+        <p class="alicyn-lab-inline-disclaimer">Los péptidos aquí presentados son productos de investigación. La información es educativa, descriptiva y comercial. No sustituye orientación profesional ni funciona como promesa de resultado o protocolo de uso.</p>
       </div>
 
       <div id="alicyn-lab-comparador-{{ section.id }}" class="alicyn-lab-section" data-lab-nav-section="mas" data-lab-screen="mas" hidden>
@@ -2171,14 +2226,14 @@
       <div id="alicyn-lab-seo-peptidos-{{ section.id }}" class="alicyn-lab-section alicyn-lab-seo-brief" data-lab-screen="productos" hidden>
         <p class="alicyn-lab-kicker">México · Aesthetic Labs</p>
         <h2 class="alicyn-lab-heading">Comprar péptidos Aesthetic Labs en México</h2>
-        <p class="alicyn-lab-section-copy">Explora péptidos y protocolos Aesthetic Labs organizados por objetivo: skin wellness, energía celular, metabolismo, recovery, performance y definición. En Alicyn Lab puedes comparar presentaciones, precios, rutas y comprar con envío gratis en México.</p>
+        <p class="alicyn-lab-section-copy">Explora péptidos y protocolos Aesthetic Labs organizados por objetivo: skin wellness, energía celular, metabolismo, recovery, performance y definición. En Alicyn puedes comparar presentaciones, precios, rutas y comprar con envío gratis en México.</p>
       </div>
 
       <div id="catalogo-peptidos-investigacion" class="alicyn-lab-section" data-lab-nav-section="productos" data-lab-screen="productos" hidden>
         <button class="alicyn-care-back" type="button" data-lab-go="objetivos">← Volver a mi ruta</button>
         <p class="alicyn-lab-kicker">Colección individual</p>
         <h2 class="alicyn-lab-heading">Péptidos Aesthetic Labs</h2>
-        <p class="alicyn-lab-section-copy">Explora presentaciones reales por eje técnico. Envío gratis en todos los péptidos.</p>
+        <p class="alicyn-lab-section-copy">Explora productos Aesthetic Labs por objetivo. Envío gratis en todos los péptidos.</p>
         <div class="alicyn-lab-filter-row" aria-label="Filtrar productos">
           <button class="alicyn-lab-filter is-active" type="button" data-lab-filter="all">Todos</button>
           <button class="alicyn-lab-filter" type="button" data-lab-filter="skin">Skin / Glow</button>
@@ -2271,7 +2326,7 @@
                 data-lab-product-card
                 data-product-url="{{ lab_product_url | escape }}"
                 data-product-name="{{ block.settings.product_name | escape }}"
-                data-product-question="Hola, vengo de Alicyn Lab. Estoy interesado en {{ block.settings.product_name | escape }}. ¿Me pueden orientar?"
+                data-product-question="Hola, vengo de Alicyn. Estoy interesado en {{ block.settings.product_name | escape }} de Aesthetic Labs. ¿Me pueden orientar?"
                 {{ block.shopify_attributes }}
               >
                 <div class="alicyn-lab-card-media">
@@ -2317,9 +2372,9 @@
       </div>
 
       <div id="protocolos-investigacion" class="alicyn-lab-section" data-lab-screen="mas" hidden>
-        <p class="alicyn-lab-kicker">Paquetes técnicos</p>
-        <h2 class="alicyn-lab-heading">Protocolos de péptidos por objetivo</h2>
-        <p class="alicyn-lab-section-copy">Guías de compra para elegir tus péptidos con menos confusión, más intención y envío gratis.</p>
+        <p class="alicyn-lab-kicker">Guías de compra</p>
+        <h2 class="alicyn-lab-heading">Protocolos Aesthetic Labs por objetivo</h2>
+        <p class="alicyn-lab-section-copy">Guías de compra para elegir tus péptidos Aesthetic Labs con menos confusión, más intención y envío gratis.</p>
         <div class="alicyn-lab-protocols-grid">
           {% for block in section.blocks %}
             {% if block.type == 'protocol_card' %}
@@ -2367,10 +2422,10 @@
                 <p class="alicyn-lab-focus"><strong>Eje:</strong> {{ block.settings.protocol_focus | escape }}</p>
                 <p class="alicyn-lab-description">{{ lab_protocol_description | escape }}</p>
                 <div class="alicyn-lab-card-actions">
-                  {% if section.settings.show_card_links %}<a class="alicyn-lab-button alicyn-lab-button-secondary" href="{{ block.settings.protocol_link | default: '/collections/peptidos' }}">Ver paquete</a>{% endif %}
-                  <a class="alicyn-lab-text-link" data-lab-protocol-whatsapp data-name="{{ block.settings.protocol_name | escape }}" href="https://wa.me/{{ section.settings.whatsapp_number | default: '525542388056' }}?text=Hola%2C%20vengo%20de%20Alicyn%20Lab.%20Quiero%20orientaci%C3%B3n%20sobre%20un%20paquete%20t%C3%A9cnico." target="_blank" rel="noopener">Preguntar por WhatsApp</a>
+                  {% if section.settings.show_card_links %}<a class="alicyn-lab-button alicyn-lab-button-secondary" href="{{ block.settings.protocol_link | default: '/collections/peptidos' }}">Ver guía</a>{% endif %}
+                  <a class="alicyn-lab-text-link" data-lab-protocol-whatsapp data-name="{{ block.settings.protocol_name | escape }}" href="https://wa.me/{{ section.settings.whatsapp_number | default: '525542388056' }}?text=Hola%2C%20vengo%20de%20Alicyn.%20Quiero%20orientaci%C3%B3n%20sobre%20un%20protocolo%20Aesthetic%20Labs." target="_blank" rel="noopener">Preguntar por WhatsApp</a>
                 </div>
-                <p class="alicyn-lab-microcopy">Paquete comercial exclusivo para investigación y laboratorio.</p>
+                <p class="alicyn-lab-microcopy">Selección Aesthetic Labs organizada por objetivo.</p>
               </article>
             {% endif %}
           {% endfor %}
@@ -2379,8 +2434,8 @@
 
       <div class="alicyn-lab-section" data-lab-screen="mas" hidden>
         <p class="alicyn-lab-kicker">Información educativa</p>
-        <h2 class="alicyn-lab-heading">Del interés técnico a la comparación</h2>
-        <p class="alicyn-lab-section-copy">Una secuencia clara para leer la colección sin confundir contexto comercial con aplicación.</p>
+        <h2 class="alicyn-lab-heading">De tu objetivo a la comparación</h2>
+        <p class="alicyn-lab-section-copy">Una secuencia clara para leer la colección y comparar opciones Aesthetic Labs antes de comprar.</p>
         <div class="alicyn-lab-journey-grid">
           {% assign alicyn_lab_step_index = 0 %}
           {% for block in section.blocks %}
@@ -2401,7 +2456,7 @@
           <div class="alicyn-lab-warning-box">
             <p class="alicyn-lab-kicker">Información importante</p>
             <h2 class="alicyn-lab-heading">Antes de comprar</h2>
-            <p>Los péptidos aquí presentados son productos de investigación. La información es educativa, descriptiva y comercial. No sustituye la orientación de un profesional de la salud. No constituye diagnóstico, cura, prevención ni protocolo de uso. No destinados al consumo humano o animal.</p>
+            <p>Todos los péptidos y protocolos Aesthetic Labs incluyen envío gratis. Revisa disponibilidad, precio y ficha individual antes de comprar. Información educativa y comercial; no sustituye orientación profesional ni funciona como promesa de resultado.</p>
           </div>
         </div>
       {% endif %}
@@ -2409,19 +2464,19 @@
       {% if section.settings.enable_faq %}
         <div id="alicyn-lab-faq-{{ section.id }}" class="alicyn-lab-section" data-lab-screen="mas" hidden>
           <p class="alicyn-lab-kicker">Dudas de compra</p>
-          <h2 class="alicyn-lab-heading">Preguntas frecuentes</h2>
+          <h2 class="alicyn-lab-heading">Preguntas frecuentes sobre péptidos Aesthetic Labs</h2>
           <div class="alicyn-lab-faq-list">
             <div class="alicyn-lab-faq-item">
               <button class="alicyn-lab-faq-button" type="button" aria-expanded="false" aria-controls="AlicynLabBehaviorFaq-{{ section.id }}-1" data-alicyn-lab-faq-button><span>No sé qué péptido elegir, ¿por dónde empiezo?</span><span aria-hidden="true">+</span></button>
-              <div id="AlicynLabBehaviorFaq-{{ section.id }}-1" class="alicyn-lab-faq-answer" hidden><p>Empieza por tu objetivo. Alicyn Lab organiza los productos por ejes de investigación para que compares rutas antes de comprar.</p></div>
+              <div id="AlicynLabBehaviorFaq-{{ section.id }}-1" class="alicyn-lab-faq-answer" hidden><p>Empieza por tu objetivo. En Alicyn puedes comparar péptidos Aesthetic Labs por ruta antes de comprar.</p></div>
             </div>
             <div class="alicyn-lab-faq-item">
               <button class="alicyn-lab-faq-button" type="button" aria-expanded="false" aria-controls="AlicynLabBehaviorFaq-{{ section.id }}-2" data-alicyn-lab-faq-button><span>¿Puedo cambiar de ruta si el resultado no me convence?</span><span aria-hidden="true">+</span></button>
               <div id="AlicynLabBehaviorFaq-{{ section.id }}-2" class="alicyn-lab-faq-answer" hidden><p>Sí. El resultado es orientativo; puedes volver al quiz, seleccionar otro eje o abrir el comparador cuando quieras.</p></div>
             </div>
             <div class="alicyn-lab-faq-item">
-              <button class="alicyn-lab-faq-button" type="button" aria-expanded="false" aria-controls="AlicynLabBehaviorFaq-{{ section.id }}-3" data-alicyn-lab-faq-button><span>¿Producto individual o paquete técnico?</span><span aria-hidden="true">+</span></button>
-              <div id="AlicynLabBehaviorFaq-{{ section.id }}-3" class="alicyn-lab-faq-answer" hidden><p>Si estás empezando, puedes comparar primero un producto principal. Si conoces el catálogo, revisa paquetes técnicos por eje de investigación.</p></div>
+              <button class="alicyn-lab-faq-button" type="button" aria-expanded="false" aria-controls="AlicynLabBehaviorFaq-{{ section.id }}-3" data-alicyn-lab-faq-button><span>¿Producto individual o protocolo Aesthetic Labs?</span><span aria-hidden="true">+</span></button>
+              <div id="AlicynLabBehaviorFaq-{{ section.id }}-3" class="alicyn-lab-faq-answer" hidden><p>Si estás empezando, puedes comparar primero un producto principal. Si ya conoces el catálogo, revisa protocolos Aesthetic Labs por objetivo.</p></div>
             </div>
             <div class="alicyn-lab-faq-item">
               <button class="alicyn-lab-faq-button" type="button" aria-expanded="false" aria-controls="AlicynLabBehaviorFaq-{{ section.id }}-4" data-alicyn-lab-faq-button><span>¿Puedo preguntar antes de comprar?</span><span aria-hidden="true">+</span></button>
@@ -2447,7 +2502,7 @@
 
       <div class="alicyn-lab-final" data-lab-screen="mas" hidden>
         <div class="alicyn-lab-final-card alicyn-lab-glass">
-          <h2>Explora Alicyn Lab con claridad</h2>
+          <h2>Explora péptidos Aesthetic Labs con claridad</h2>
           <p>Compara productos por objetivo o consulta una ruta antes de comprar. Envío gratis en todos los péptidos.</p>
           <div class="alicyn-lab-actions">
             <a class="alicyn-lab-button" href="/collections/peptidos">Ver péptidos con envío gratis</a>
@@ -2501,7 +2556,7 @@
           copy: 'Para quienes buscan piel, glow, colágeno y belleza celular desde una lógica de wellness avanzado.',
           products: ['ghk', 'nad', 'bpc'],
           primaryUrl: '/products/aesthetic-labs-ghk-cu-100-mg',
-          whatsapp: 'Hola, vengo de Alicyn Lab. Me interesa la ruta Skin / Glow con GHK-Cu y NAD+. ¿Me pueden orientar?'
+          whatsapp: 'Hola, vengo de Alicyn. Me interesa la ruta Skin / Glow de Aesthetic Labs con GHK-Cu y NAD+. ¿Me pueden orientar?'
         },
         cell: {
           objective: 'Energía',
@@ -2512,7 +2567,7 @@
           copy: 'Para quienes buscan vitalidad, energía celular, mitocondria y longevidad.',
           products: ['nad', 'mots'],
           primaryUrl: '/products/aesthetic-labs-nad-1000-mg',
-          whatsapp: 'Hola, vengo de Alicyn Lab. Me interesa la ruta Energía con NAD+ y MOTS-C. ¿Me pueden orientar?'
+          whatsapp: 'Hola, vengo de Alicyn. Me interesa la ruta Energía de Aesthetic Labs con NAD+ y MOTS-C. ¿Me pueden orientar?'
         },
         metabolic: {
           objective: 'Metabolismo',
@@ -2523,7 +2578,7 @@
           copy: 'Para quienes buscan definición, control corporal y composición con más intención.',
           products: ['aod', 'hgh', 'rt', 't3s'],
           primaryUrl: '/products/aesthetic-labs-aod-9604-10-mg',
-          whatsapp: 'Hola, vengo de Alicyn Lab. Me interesa la ruta Metabolismo con AOD-9604, HGH Fragment y RT-Triple Agonist. ¿Me pueden orientar?'
+          whatsapp: 'Hola, vengo de Alicyn. Me interesa la ruta Metabolismo de Aesthetic Labs con AOD-9604, HGH Fragment y RT-Triple Agonist. ¿Me pueden orientar?'
         },
         recovery: {
           objective: 'Recovery',
@@ -2534,7 +2589,7 @@
           copy: 'Para quienes buscan continuidad, movilidad y cuidado corporal avanzado.',
           products: ['bpc', 'tb', 'ghk'],
           primaryUrl: '/products/aesthetic-labs-bpc-157-10-mg',
-          whatsapp: 'Hola, vengo de Alicyn Lab. Me interesa la ruta Recovery con BPC-157 y TB-500. ¿Me pueden orientar?'
+          whatsapp: 'Hola, vengo de Alicyn. Me interesa la ruta Recovery de Aesthetic Labs con BPC-157 y TB-500. ¿Me pueden orientar?'
         },
         performance: {
           objective: 'Performance',
@@ -2545,7 +2600,7 @@
           copy: 'Para quienes buscan fuerza, presencia física y performance inteligente.',
           products: ['cjc', 'ipa', 'igf'],
           primaryUrl: '/products/aesthetic-labs-cjc-1295-sin-dac-10-mg',
-          whatsapp: 'Hola, vengo de Alicyn Lab. Me interesa la ruta Performance con CJC-1295, Ipamorelin e IGF1-LR3. ¿Me pueden orientar?'
+          whatsapp: 'Hola, vengo de Alicyn. Me interesa la ruta Performance de Aesthetic Labs con CJC-1295, Ipamorelin e IGF1-LR3. ¿Me pueden orientar?'
         },
         definition: {
           objective: 'Definición',
@@ -2556,7 +2611,7 @@
           copy: 'Para quienes buscan silueta, precisión y metabolismo.',
           products: ['aod', 'hgh', 'rt'],
           primaryUrl: '/products/aesthetic-labs-aod-9604-10-mg',
-          whatsapp: 'Hola, vengo de Alicyn Lab. Me interesa la ruta Definición con AOD-9604, HGH Fragment y RT-Triple Agonist. ¿Me pueden orientar?'
+          whatsapp: 'Hola, vengo de Alicyn. Me interesa la ruta Definición de Aesthetic Labs con AOD-9604, HGH Fragment y RT-Triple Agonist. ¿Me pueden orientar?'
         },
         starter: {
           objective: 'No sé por dónde empezar',
@@ -2567,7 +2622,7 @@
           copy: 'Empieza simple: compara una ruta clara antes de elegir un producto.',
           products: ['nad', 'mots'],
           primaryUrl: '/products/aesthetic-labs-nad-1000-mg',
-          whatsapp: 'Hola, vengo de Alicyn Lab. No sé por dónde empezar y quiero comparar NAD+ con MOTS-C. ¿Me pueden orientar?'
+          whatsapp: 'Hola, vengo de Alicyn. No sé por dónde empezar con péptidos Aesthetic Labs y quiero comparar NAD+ con MOTS-C. ¿Me pueden orientar?'
         }
       };
       var productKeys = {
@@ -2650,7 +2705,7 @@
           if (card) link.href = whatsApp(card.dataset.productQuestion);
         });
         root.querySelectorAll('[data-lab-protocol-whatsapp]').forEach(function (link) {
-          link.href = whatsApp('Hola, vengo de Alicyn Lab. Estoy interesado en ' + link.dataset.name + '. ¿Me pueden orientar?');
+          link.href = whatsApp('Hola, vengo de Alicyn. Estoy interesado en ' + link.dataset.name + ' de Aesthetic Labs. ¿Me pueden orientar?');
         });
       }
 
@@ -2714,8 +2769,8 @@
         root.querySelectorAll('[data-mode-nav]').forEach(function (button) {
           button.hidden = button.dataset.modeNav !== activeMode;
         });
-        root.querySelector('[data-app-brand]').textContent = activeMode === 'care' ? 'ALICYN CARE' : 'ALICYN LAB';
-        root.querySelector('[data-app-tagline]').textContent = activeMode === 'care' ? 'Cuidado · Confianza · Claridad' : 'Ciencia · Bienestar · Evolución';
+        root.querySelector('[data-app-brand]').textContent = activeMode === 'care' ? 'ALICYN CARE' : 'AESTHETIC LABS';
+        root.querySelector('[data-app-tagline]').textContent = activeMode === 'care' ? 'Cuidado · Confianza · Claridad' : 'Péptidos · Compra por objetivo · Envío gratis';
         if (activeMode === 'care') showCarePanel(activeCarePanel, shouldScroll);
         else showLabScreen(activeLabScreen, shouldScroll);
         syncBottomNav();
@@ -2758,7 +2813,7 @@
           note.textContent = 'Puedes empezar comparando opciones sin comprometerte a una ruta avanzada.';
         } else if (experience === 'advanced') {
           note.hidden = false;
-          note.textContent = 'Consulta también los paquetes técnicos del mismo eje para una comparación más amplia.';
+          note.textContent = 'Consulta también protocolos Aesthetic Labs del mismo objetivo para una comparación más amplia.';
         } else {
           note.hidden = true;
         }
@@ -2894,19 +2949,19 @@
       "type": "text",
       "id": "heading",
       "label": "Título principal",
-      "default": "¿Qué quieres trabajar?"
+      "default": "Péptidos Aesthetic Labs"
     },
     {
       "type": "textarea",
       "id": "subheading",
       "label": "Subtítulo",
-      "default": "Explora por objetivo y encuentra tus péptidos con envío gratis."
+      "default": "Elige tu objetivo y encuentra tu ruta."
     },
     {
       "type": "text",
       "id": "primary_button_label",
       "label": "Texto del botón final",
-      "default": "Ver péptidos con envío gratis"
+      "default": "Ver péptidos Aesthetic Labs con envío gratis"
     },
     {
       "type": "text",
@@ -2933,7 +2988,7 @@
       "default": "care",
       "options": [
         { "value": "care", "label": "Antiséptico / Alicyn Care" },
-        { "value": "peptides", "label": "Péptidos / Alicyn Lab" }
+        { "value": "peptides", "label": "Péptidos / Aesthetic Labs" }
       ]
     },
     {
@@ -3056,21 +3111,21 @@
         { "type": "text", "id": "product_presentation", "label": "Presentación", "default": "100 mg · Aesthetic Labs" },
         { "type": "text", "id": "product_focus", "label": "Eje de investigación", "default": "Skin science y señalización celular" },
         { "type": "text", "id": "product_badge", "label": "Badge", "default": "Skin science" },
-        { "type": "textarea", "id": "product_description", "label": "Descripción", "default": "Compuesto presentado para análisis técnico dentro del eje de skin science." },
+        { "type": "textarea", "id": "product_description", "label": "Descripción", "default": "Producto Aesthetic Labs organizado dentro del eje Skin / Glow." },
         { "type": "text", "id": "product_link", "label": "Enlace de respaldo", "default": "/collections/peptidos" },
         { "type": "image_picker", "id": "product_image", "label": "Imagen del producto" }
       ]
     },
     {
       "type": "protocol_card",
-      "name": "Paquete técnico",
+      "name": "Protocolo Aesthetic Labs",
       "settings": [
         { "type": "text", "id": "protocol_name", "label": "Nombre", "default": "Protocolo Piel y Longevidad Celular" },
         { "type": "text", "id": "protocol_price", "label": "Precio", "default": "$3,150 MXN" },
         { "type": "text", "id": "protocol_components", "label": "Componentes", "default": "GHK-CU + NAD+" },
         { "type": "text", "id": "protocol_focus", "label": "Eje", "default": "Skin science y longevidad celular" },
-        { "type": "text", "id": "protocol_badge", "label": "Badge", "default": "Paquete técnico" },
-        { "type": "textarea", "id": "protocol_description", "label": "Descripción", "default": "Paquete comercial organizado para investigación dentro del mismo eje técnico." },
+        { "type": "text", "id": "protocol_badge", "label": "Badge", "default": "Envío gratis" },
+        { "type": "textarea", "id": "protocol_description", "label": "Descripción", "default": "Guía de compra Aesthetic Labs organizada por objetivo." },
         { "type": "text", "id": "protocol_link", "label": "Enlace del paquete", "default": "/collections/peptidos" },
         { "type": "image_picker", "id": "protocol_image", "label": "Imagen del paquete" }
       ]
@@ -3088,7 +3143,7 @@
       "name": "Pregunta frecuente",
       "settings": [
         { "type": "text", "id": "faq_question", "label": "Pregunta", "default": "¿Qué son los péptidos de investigación?" },
-        { "type": "textarea", "id": "faq_answer", "label": "Respuesta", "default": "Son compuestos presentados para análisis técnico y educativo en entornos de investigación y laboratorio." }
+        { "type": "textarea", "id": "faq_answer", "label": "Respuesta", "default": "Son productos Aesthetic Labs presentados con información educativa y comercial para comparar antes de comprar." }
       ]
     }
   ],

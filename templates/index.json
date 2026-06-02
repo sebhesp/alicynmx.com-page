@@ -616,8 +616,8 @@
         "education_protocols": {
           "type": "education_step",
           "settings": {
-            "step_title": "Protocolos de investigación",
-            "step_text": "Stacks comerciales por eje técnico de investigación; no representan pautas para personas o animales."
+            "step_title": "Guías de compra Aesthetic Labs",
+            "step_text": "Rutas comerciales organizadas por objetivo para comparar antes de comprar."
           }
         },
         "product_rt": {
@@ -771,7 +771,7 @@
             "protocol_price": "$3,600 MXN",
             "protocol_components": "BPC-157 + TB-500",
             "protocol_focus": "Respuesta tisular experimental",
-            "protocol_badge": "Paquete técnico",
+            "protocol_badge": "Envío gratis",
             "protocol_description": "Ruta recovery para continuidad física, movilidad y cuidado corporal avanzado.",
             "protocol_link": "/products/stack-bpc-157-tb-500-aesthetic-labs"
           }
@@ -876,7 +876,7 @@
           "type": "faq_item",
           "settings": {
             "faq_question": "¿Qué son los péptidos de investigación?",
-            "faq_answer": "Son compuestos presentados para análisis técnico y educativo en entornos de investigación. Su presencia en el catálogo no implica resultados clínicos."
+            "faq_answer": "Son productos Aesthetic Labs presentados con información educativa y comercial para comparar antes de comprar."
           }
         },
         "faq_medicine": {
@@ -897,7 +897,7 @@
           "type": "faq_item",
           "settings": {
             "faq_question": "¿Qué significa liofilizado?",
-            "faq_answer": "Describe un formato técnico deshidratado empleado en catálogos de investigación; no define aplicación ni resultado."
+            "faq_answer": "Describe una presentación usada en catálogos Aesthetic Labs. Revisa siempre la ficha individual antes de comprar."
           }
         },
         "faq_skin": {
@@ -911,28 +911,28 @@
           "type": "faq_item",
           "settings": {
             "faq_question": "¿Qué péptidos se relacionan con investigación celular y wellness?",
-            "faq_answer": "NAD+ y MOTS-C se organizan en ejes de energía celular y wellness avanzado; la selección depende del objetivo técnico de investigación."
+            "faq_answer": "NAD+ y MOTS-C se organizan dentro de energía celular y wellness avanzado para ayudarte a comparar por objetivo."
           }
         },
         "faq_protocols": {
           "type": "faq_item",
           "settings": {
-            "faq_question": "¿Qué son los protocolos de investigación?",
-            "faq_answer": "Son paquetes comerciales que reúnen compuestos por un eje técnico común para simplificar la selección del catálogo."
+            "faq_question": "¿Qué son los protocolos Aesthetic Labs?",
+            "faq_answer": "Son guías de compra que agrupan productos por objetivo para simplificar la comparación del catálogo."
           }
         },
         "faq_instructions": {
           "type": "faq_item",
           "settings": {
             "faq_question": "¿Los protocolos incluyen instrucciones de uso?",
-            "faq_answer": "No. Los paquetes no incluyen pautas de aplicación o consumo ni recomendaciones para personas o animales."
+            "faq_answer": "No. Son guías comerciales para comparar productos. Revisa la ficha individual y la información disponible antes de comprar."
           }
         },
         "faq_mexico": {
           "type": "faq_item",
           "settings": {
             "faq_question": "¿Dónde comprar péptidos Aesthetic Labs en México?",
-            "faq_answer": "Puedes explorar la colección Aesthetic Labs en Alicyn Lab dentro de alicynmx.com y seleccionar por eje de investigación."
+            "faq_answer": "Puedes explorar péptidos Aesthetic Labs en Alicyn, comparar por objetivo y comprar con envío gratis en México."
           }
         }
       },
@@ -973,9 +973,9 @@
         "faq_mexico"
       ],
       "settings": {
-        "heading": "¿Qué quieres trabajar?",
-        "subheading": "Explora por objetivo y encuentra tus péptidos con envío gratis.",
-        "primary_button_label": "Ver péptidos con envío gratis",
+        "heading": "Péptidos Aesthetic Labs",
+        "subheading": "Elige tu objetivo y encuentra tu ruta.",
+        "primary_button_label": "Ver péptidos Aesthetic Labs con envío gratis",
         "primary_button_link": "/collections/peptidos",
         "secondary_button_label": "Explorar por objetivo",
         "whatsapp_number": "525542388056",
