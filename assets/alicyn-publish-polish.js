@@ -1,576 +1,82 @@
-(function () {
+(function(){
   "use strict";
-
-  var PHONE = "525542388056";
-  var COLLECTION_URL = "/collections/peptidos";
-
-  var GOALS = [
-    {
-      key: "skin",
-      title: "Skin / Glow",
-      icon: "✦",
-      keywords: ["Piel", "Colágeno", "Glow"],
-      products: ["GHK-CU", "NAD+", "BPC-157"],
-      protocol: "Piel y Longevidad Celular",
-      description: "Para quienes buscan piel, glow, colágeno y belleza celular desde una lógica de wellness avanzado.",
-      accent: "#b98cff"
-    },
-    {
-      key: "energy",
-      title: "Energía",
-      icon: "⌁",
-      keywords: ["Vitalidad", "Mitocondria", "Longevidad"],
-      products: ["NAD+", "MOTS-C"],
-      protocol: "Cellular Energy",
-      description: "Para quienes buscan vitalidad, energía celular y longevidad con una ruta limpia y fácil de comparar.",
-      accent: "#73e6c4"
-    },
-    {
-      key: "metabolism",
-      title: "Metabolismo",
-      icon: "◇",
-      keywords: ["Definición", "Control", "Composición"],
-      products: ["AOD-9604", "HGH Fragment", "RT3"],
-      protocol: "Definición",
-      description: "Para quienes buscan definición, composición corporal y control metabólico con más intención.",
-      accent: "#8aa2ff"
-    },
-    {
-      key: "recovery",
-      title: "Recovery",
-      icon: "⌬",
-      keywords: ["Constancia", "Movilidad", "Cuidado corporal"],
-      products: ["BPC-157", "TB-500", "GHK-CU"],
-      protocol: "Recuperación Total",
-      description: "Para quienes quieren sostener constancia, movilidad y cuidado corporal desde una visión premium.",
-      accent: "#a88cff"
-    },
-    {
-      key: "performance",
-      title: "Performance",
-      icon: "⚡",
-      keywords: ["Fuerza", "Señalización", "Presencia física"],
-      products: ["CJC-1295", "Ipamorelin", "IGF1-LR3"],
-      protocol: "Volumen / HGH Natural",
-      description: "Para quienes buscan fuerza, señalización y presencia física con una ruta más avanzada.",
-      accent: "#c7ff78"
-    },
-    {
-      key: "definition",
-      title: "Definición",
-      icon: "◌",
-      keywords: ["Silueta", "Metabolismo", "Precisión"],
-      products: ["AOD-9604", "HGH Fragment", "RT3"],
-      protocol: "Definición / Shred Definitivo",
-      description: "Para quienes quieren una ruta enfocada en silueta, definición y precisión estética.",
-      accent: "#71d8ff"
-    }
-  ];
-
-  var PRODUCTS = [
-    { key: "ghk", axes: ["skin", "recovery"], name: "GHK-CU 100 mg", price: "$1,350 MXN", axis: "Skin / Glow", desire: "El punto de entrada para piel, glow, colágeno y belleza celular.", url: "/products/aesthetic-labs-ghk-cu-100-mg", related: "NAD+ · BPC-157 · TB-500" },
-    { key: "nad", axes: ["skin", "energy"], name: "NAD+ 1000 mg", price: "$2,000 MXN", axis: "Energía", desire: "Una pieza clave para energía celular, vitalidad y longevidad estética.", url: "/products/aesthetic-labs-nad-1000-mg", related: "MOTS-C · GHK-CU" },
-    { key: "bpc", axes: ["skin", "recovery"], name: "BPC-157 10 mg", price: "$1,250 MXN", axis: "Recovery", desire: "Una opción para continuidad física, constancia y cuidado corporal avanzado.", url: "/products/aesthetic-labs-bpc-157-10-mg", related: "TB-500 · GHK-CU" },
-    { key: "mots", axes: ["energy"], name: "MOTS-C 10 mg", price: "$1,800 MXN", axis: "Energía", desire: "Para explorar energía celular, metabolismo y constancia con más precisión.", url: "/products/aesthetic-labs-mots-c-10-mg", related: "NAD+ · AOD-9604" },
-    { key: "aod", axes: ["metabolism", "definition"], name: "AOD-9604 10 mg", price: "$1,600 MXN", axis: "Metabolismo", desire: "Una opción para definición, composición corporal y control estético.", url: "/products/aesthetic-labs-aod-9604-10-mg", related: "HGH Fragment · RT3 · MOTS-C" },
-    { key: "hgh", axes: ["metabolism", "definition"], name: "HGH Fragment 176-191 5 mg", price: "$1,250 MXN", axis: "Definición", desire: "Una opción metabólica para silueta, definición y control corporal.", url: "/products/aesthetic-labs-hgh-fragment-176-191-5-mg", related: "AOD-9604 · RT3" },
-    { key: "rt", axes: ["metabolism", "definition"], name: "RT-Triple Agonist 20 mg", price: "$3,000 MXN", axis: "Metabolismo", desire: "Ruta metabólica avanzada con intención, control y precisión.", url: "/products/aesthetic-labs-rt-triple-agonist-20-mg", related: "AOD-9604 · HGH Fragment · T3S@" },
-    { key: "t3s", axes: ["metabolism"], name: "T3S@ 10", price: "$2,500 MXN", axis: "Metabolismo", desire: "Una opción para energía, control corporal y wellness avanzado.", url: "/products/aesthetic-labs-t3s-10", related: "RT3 · AOD-9604" },
-    { key: "tb", axes: ["recovery"], name: "TB-500 10 mg", price: "$1,350 MXN", axis: "Recovery", desire: "Para comparar movilidad, respuesta corporal y cuidado físico completo.", url: "/products/aesthetic-labs-tb-500-10-mg", related: "BPC-157 · GHK-CU" },
-    { key: "cjc", axes: ["performance"], name: "CJC-1295 Sin DAC 10 mg", price: "$1,800 MXN", axis: "Performance", desire: "Para explorar señalización avanzada, performance y composición corporal.", url: "/products/aesthetic-labs-cjc-1295-sin-dac-10-mg", related: "Ipamorelin · IGF1-LR3" },
-    { key: "ipa", axes: ["performance"], name: "Ipamorelin 10 mg", price: "$1,250 MXN", axis: "Performance", desire: "Una opción para optimización, descanso y composición corporal inteligente.", url: "/products/aesthetic-labs-ipamorelin-10-mg", related: "CJC-1295 · IGF1-LR3" },
-    { key: "igf", axes: ["performance"], name: "IGF1-LR3 1 mg", price: "$1,800 MXN", axis: "Performance", desire: "Para usuarios avanzados que comparan señalización IGF y performance.", url: "/products/aesthetic-labs-igf1-lr3-1-mg", related: "CJC-1295 · Ipamorelin" }
-  ];
-
-  var PROTOCOLS = [
-    { key: "skin-protocol", axes: ["skin"], name: "Piel y Longevidad Celular", price: "$3,150 MXN", products: "GHK-CU + NAD+", text: "Ruta beauty-tech para piel, glow, energía celular y longevidad estética.", url: "/products/protocolo-piel-y-longevidad-celular" },
-    { key: "energy-protocol", axes: ["energy"], name: "Cellular Energy", price: "Ruta sugerida", products: "NAD+ + MOTS-C", text: "Guía simple para vitalidad, energía celular y wellness avanzado.", url: COLLECTION_URL },
-    { key: "definition-protocol", axes: ["metabolism", "definition"], name: "Definición", price: "$6,450 MXN", products: "HGH Fragment + AOD-9604", text: "Ruta metabólica para definición, composición corporal y control estético.", url: "/products/protocolo-definicion" },
-    { key: "shred-protocol", axes: ["metabolism", "definition"], name: "Shred Definitivo", price: "$7,400 MXN", products: "RT3 + AOD-9604", text: "Ruta metabólica avanzada para comparar opciones con precisión.", url: "/products/protocolo-shred-definitivo" },
-    { key: "recovery-protocol", axes: ["recovery"], name: "Recuperación Total", price: "$3,800 MXN", products: "GHK-CU + BPC-157 + TB-500", text: "Ruta recovery para constancia, movilidad y cuidado corporal premium.", url: "/products/protocolo-recuperacion-total" },
-    { key: "volume-protocol", axes: ["performance"], name: "Volumen", price: "$4,650 MXN", products: "IGF1-LR3 + CJC-1295 + Ipamorelin", text: "Guía avanzada para señalización, presencia física y composición corporal.", url: "/products/protocolo-volumen" },
-    { key: "hgh-protocol", axes: ["performance"], name: "HGH Natural", price: "$2,850 MXN", products: "CJC-1295 + Ipamorelin", text: "Ruta performance para señalización, descanso y composición corporal inteligente.", url: "/products/protocolo-hgh-natural" }
-  ];
-
-  function goalByKey(key) {
-    return GOALS.filter(function (goal) { return goal.key === key; })[0] || GOALS[0];
+  var PHONE="525542388056", COLLECTION="/collections/peptidos";
+  var goals=[
+    ["skin","Skin / Glow","spark","Piel · Colágeno · Glow",["ghk","nad","bpc"],"Piel y Longevidad Celular","Para quienes buscan piel, glow, colágeno y belleza celular desde una lógica de wellness avanzado.","#b98cff"],
+    ["energy","Energía","bolt","Vitalidad · Mitocondria",["nad","mots"],"Cellular Energy","Para quienes buscan vitalidad, energía celular, mitocondria y longevidad.","#82dec8"],
+    ["metabolism","Metabolismo","loop","Control · Composición",["aod","hgh","rt","t3s"],"Definición","Para quienes buscan definición, control corporal y composición con más intención.","#8aa2ff"],
+    ["recovery","Recovery","flow","Movilidad · Continuidad",["bpc","tb","ghk"],"Recuperación Total","Para quienes buscan continuidad, movilidad y cuidado corporal avanzado.","#a88cff"],
+    ["performance","Performance","rise","Fuerza · Presencia",["cjc","ipa","igf"],"Volumen / HGH Natural","Para quienes buscan fuerza, presencia física y performance inteligente.","#c7ff78"],
+    ["definition","Definición","diamond","Silueta · Precisión",["aod","hgh","rt"],"Definición / Shred Definitivo","Para quienes buscan silueta, precisión y metabolismo.","#71d8ff"]
+  ].map(function(g){return{key:g[0],title:g[1],icon:g[2],micro:g[3],products:g[4],protocol:g[5],description:g[6],accent:g[7]};});
+  var products=[
+    ["rt",["metabolism","definition"],"RT-Triple Agonist 20 mg","$3,000 MXN","Metabolismo","Ruta metabólica avanzada para precisión, control corporal y estrategia decidida.","/products/aesthetic-labs-rt-triple-agonist-20-mg","RT3","AOD-9604 · HGH Fragment · T3S@"],
+    ["bpc",["skin","recovery"],"BPC-157 10 mg","$1,250 MXN","Recovery","Recovery, constancia y cuidado corporal avanzado para rutinas activas.","/products/aesthetic-labs-bpc-157-10-mg","BPC","TB-500 · GHK-CU"],
+    ["tb",["recovery"],"TB-500 10 mg","$1,350 MXN","Recovery","Movilidad, respuesta corporal y continuidad física dentro del eje recovery.","/products/aesthetic-labs-tb-500-10-mg","TB","BPC-157 · GHK-CU"],
+    ["ghk",["skin","recovery"],"GHK-CU 100 mg","$1,350 MXN","Skin / Glow","Skin wellness, glow, colágeno y belleza celular.","/products/aesthetic-labs-ghk-cu-100-mg","GHK","NAD+ · BPC-157"],
+    ["ipa",["performance"],"Ipamorelin 10 mg","$1,250 MXN","Performance","Performance, descanso y composición corporal inteligente.","/products/aesthetic-labs-ipamorelin-10-mg","IPA","CJC-1295 · IGF1-LR3"],
+    ["cjc",["performance"],"CJC-1295 Sin DAC 10 mg","$1,800 MXN","Performance","Señalización avanzada, performance y composición corporal.","/products/aesthetic-labs-cjc-1295-sin-dac-10-mg","CJC","Ipamorelin · IGF1-LR3"],
+    ["igf",["performance"],"IGF1-LR3 1 mg","$1,800 MXN","Performance","Señalización IGF, presencia física y performance avanzada.","/products/aesthetic-labs-igf1-lr3-1-mg","IGF","CJC-1295 · Ipamorelin"],
+    ["mots",["energy"],"MOTS-C 10 mg","$1,800 MXN","Energía","Energía celular, metabolismo y constancia.","/products/aesthetic-labs-mots-c-10-mg","MOTS","NAD+ · AOD-9604"],
+    ["aod",["metabolism","definition"],"AOD-9604 10 mg","$1,600 MXN","Metabolismo","Definición, composición corporal y control estético.","/products/aesthetic-labs-aod-9604-10-mg","AOD","HGH Fragment · RT-Triple Agonist"],
+    ["hgh",["metabolism","definition"],"HGH Fragment 176-191 5 mg","$1,250 MXN","Definición","Silueta, metabolismo y composición corporal.","/products/aesthetic-labs-hgh-fragment-176-191-5-mg","HGH","AOD-9604 · RT-Triple Agonist"],
+    ["t3s",["metabolism"],"T3S@ 10","$2,500 MXN","Metabolismo","Energía, control corporal y metabolismo avanzado.","/products/aesthetic-labs-t3s-10","T3S","RT-Triple Agonist · AOD-9604"],
+    ["nad",["skin","energy"],"NAD+ 1000 mg","$2,000 MXN","Energía","Energía celular, vitalidad y longevidad estética.","/products/aesthetic-labs-nad-1000-mg","NAD","MOTS-C · GHK-CU"]
+  ].map(function(p){return{key:p[0],axes:p[1],name:p[2],price:p[3],axis:p[4],desire:p[5],url:p[6],initials:p[7],related:p[8]};});
+  var protocols=[
+    ["stack-protocol",["recovery"],"Stack BPC-157 + TB-500","$3,600 MXN","BPC-157 + TB-500","Ruta recovery para continuidad física, movilidad y cuidado corporal avanzado.","/products/stack-bpc-157-tb-500-aesthetic-labs"],
+    ["wolverine-protocol",["recovery"],"Wolverine Stack","$2,550 MXN","BPC-157 + TB-500","Stack de recovery para comparar BPC-157 y TB-500 en una misma ruta.","/products/wolverine-stack-bpc-157-tb-500"],
+    ["hgh-protocol",["performance"],"Protocolo HGH Natural","$2,850 MXN","CJC-1295 + Ipamorelin","Ruta de performance para señalización, descanso y composición corporal inteligente.","/products/protocolo-hgh-natural"],
+    ["volume-protocol",["performance"],"Protocolo Volumen","$4,650 MXN","IGF1-LR3 + CJC-1295 + Ipamorelin","Guía de compra para presencia física, performance y composición corporal.","/products/protocolo-volumen"],
+    ["recovery-protocol",["recovery","skin"],"Protocolo Recuperación Total","$3,800 MXN","GHK-CU + BPC-157 + TB-500","Ruta completa entre recovery, piel y cuidado corporal avanzado.","/products/protocolo-recuperacion-total"],
+    ["skin-protocol",["skin"],"Protocolo Piel y Longevidad Celular","$3,150 MXN","GHK-CU + NAD+","Ruta beauty-tech para piel, glow, energía celular y longevidad estética.","/products/protocolo-piel-y-longevidad-celular"],
+    ["definition-protocol",["metabolism","definition"],"Protocolo Definición","$6,450 MXN","HGH Fragment + AOD-9604","Ruta metabólica para definición, composición corporal y control estético.","/products/protocolo-definicion"],
+    ["shred-protocol",["metabolism","definition"],"Protocolo Shred Definitivo","$7,400 MXN","RT3 + AOD-9604","Ruta avanzada para metabolismo, definición y precisión corporal.","/products/protocolo-shred-definitivo"],
+    ["muscle-protocol",["performance","definition"],"Protocolo Músculo y Definición","$5,200 MXN","Ipamorelin + CJC-1295 + HGH Fragment","Ruta híbrida para performance, composición corporal y definición estética.","/products/protocolo-musculo-y-definicion"],
+    ["energy-protocol",["energy"],"Cellular Energy","Ruta sugerida","NAD+ + MOTS-C","Guía simple para vitalidad, energía celular y wellness avanzado.",COLLECTION]
+  ].map(function(p){return{key:p[0],axes:p[1],name:p[2],price:p[3],products:p[4],text:p[5],url:p[6]};});
+  function q(r,s){return r?r.querySelector(s):null} function qa(r,s){return r?Array.prototype.slice.call(r.querySelectorAll(s)):[]}
+  function esc(v){return String(v==null?"":v).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/\"/g,"&quot;").replace(/'/g,"&#039;")}
+  function find(a,k){return a.filter(function(x){return x.key===k})[0]} function goal(k){return find(goals,k)||goals[0]} function prod(k){return find(products,k)}
+  function wa(m){return"https://wa.me/"+PHONE+"?text="+encodeURIComponent(m)} function go(n){if(n)n.scrollIntoView({behavior:"smooth",block:"start"})}
+  function icon(t){var m={spark:'<path d="M24 5l4 12 12 4-12 4-4 12-4-12-12-4 12-4 4-12Z"/><path d="M38 31l2 5 5 2-5 2-2 5-2-5-5-2 5-2 2-5Z"/>',bolt:'<path d="M28 4L12 26h12l-4 18 16-23H24l4-17Z"/>',loop:'<path d="M14 18a12 12 0 0 1 20-8l3 3"/><path d="M37 8v9h-9"/><path d="M34 30a12 12 0 0 1-20 8l-3-3"/><path d="M11 40v-9h9"/>',flow:'<path d="M15 12a14 14 0 1 1-2 21"/><path d="M12 34h8v-8"/><path d="M24 15v9l7 4"/>',rise:'<path d="M8 36h32"/><path d="M13 32l8-8 6 6 11-14"/><path d="M31 16h7v7"/>',diamond:'<path d="M24 5l17 15-17 23L7 20 24 5Z"/><path d="M7 20h34"/><path d="M17 20l7-15 7 15-7 23-7-23Z"/>'};return'<svg viewBox="0 0 48 48" aria-hidden="true">'+(m[t]||m.spark)+'</svg>'}
+  function vial(x,cls){return'<span class="ag-vial '+(cls||'')+'" aria-hidden="true"><span></span><b>'+esc(x.initials||"PACK")+'</b></span>'}
+  function styles(root){if(q(root,"[data-ag-style]"))return;var id="#"+root.id,s=document.createElement("style");s.setAttribute("data-ag-style","");s.textContent=`
+${id}{overflow-x:hidden}${id} *,${id} *:before,${id} *:after{box-sizing:border-box}${id} .alicyn-os-label,${id} .alicyn-lab-orbit,${id} .alicyn-lab-orbit-core,${id} .ag-hide{display:none!important}
+${id} [data-lab-view='peptides'] .alicyn-lab-badges,${id} [data-lab-view='peptides'] .alicyn-lab-compliance,${id} [data-lab-view='peptides'] .alicyn-lab-hero-hint,${id} [data-lab-view='peptides'] .alicyn-lab-hero-media,${id} [data-lab-view='peptides'] .alicyn-lab-trust-grid{display:none!important}
+${id} [data-lab-view='peptides']{gap:0}${id} [data-lab-view='peptides'] .alicyn-lab-hero{align-items:center;background:radial-gradient(circle at 86% 18%,rgba(149,109,255,.2),transparent 28rem),radial-gradient(circle at 18% 16%,rgba(130,222,200,.14),transparent 24rem),linear-gradient(135deg,rgba(255,255,255,.05),rgba(255,255,255,.015))!important;border:1px solid rgba(223,255,246,.13)!important;border-radius:clamp(26px,4vw,40px)!important;box-shadow:0 34px 95px rgba(0,0,0,.34)!important;display:grid!important;gap:clamp(18px,4vw,46px)!important;margin:clamp(8px,2vw,20px) 0 clamp(18px,4vw,34px)!important;overflow:hidden!important;padding:clamp(22px,5vw,54px)!important}
+${id} [data-lab-view='peptides'] .alicyn-lab-hero-copy{background:transparent!important;border:0!important;box-shadow:none!important;display:grid!important;gap:14px!important;margin:0!important;max-width:620px!important;padding:0!important;text-align:left!important}${id} [data-lab-view='peptides'] .alicyn-lab-hero-title{color:#fff!important;font-size:clamp(2.3rem,7vw,5.6rem)!important;font-weight:900!important;letter-spacing:-.075em!important;line-height:.93!important;margin:0!important}${id} [data-lab-view='peptides'] .alicyn-lab-hero-text{color:#d7d4e4!important;display:block!important;font-size:clamp(1rem,2.5vw,1.28rem)!important;line-height:1.45!important;margin:0!important;max-width:520px!important}
+${id} .ag-badge{background:rgba(130,222,200,.12);border:1px solid rgba(130,222,200,.35);border-radius:999px;color:#cffff0;display:inline-flex;font-size:.78rem;font-weight:900;max-width:max-content;padding:9px 12px}${id} .ag-micro{color:#aaa6bb!important;font-size:.92rem!important;line-height:1.45!important;margin:0!important;max-width:560px!important}${id} .ag-cta{align-items:center;background:linear-gradient(120deg,#82dec8,#956dff);border-radius:18px;color:#071016!important;display:inline-flex;font-weight:950;justify-content:center;min-height:54px;padding:0 18px;text-decoration:none;width:max-content}
+${id} .ag-word{align-items:center;aspect-ratio:1.45;background:radial-gradient(circle at 50% 32%,rgba(255,255,255,.13),transparent 31%),linear-gradient(135deg,rgba(149,109,255,.18),rgba(130,222,200,.10) 48%,rgba(255,255,255,.04));border:1px solid rgba(223,255,246,.16);border-radius:clamp(26px,4vw,42px);display:flex;justify-content:center;min-height:220px;overflow:hidden;padding:clamp(14px,3vw,32px);position:relative;width:100%}${id} .ag-word span{background:linear-gradient(100deg,#fff,#d8fff3 30%,#a7f0d7 55%,#bc99ff);-webkit-background-clip:text;background-clip:text;color:transparent;font-size:clamp(3rem,8.8vw,8.6rem);font-weight:950;letter-spacing:-.12em;line-height:.78;white-space:nowrap}
+${id} .ag-section{background:radial-gradient(circle at 0 0,rgba(130,222,200,.14),transparent 30%),radial-gradient(circle at 100% 12%,rgba(149,109,255,.15),transparent 30%),linear-gradient(180deg,rgba(9,12,24,.88),rgba(4,7,15,.72));border:1px solid rgba(210,255,241,.13);border-radius:clamp(24px,4vw,36px);box-shadow:0 32px 90px rgba(0,0,0,.32);margin:clamp(18px,4vw,34px) 0 clamp(34px,6vw,64px);overflow:hidden;padding:clamp(15px,3vw,28px)}${id} .ag-head{display:grid;gap:8px;margin-bottom:clamp(14px,3vw,24px);max-width:760px}${id} .ag-head h2,${id} .ag-block h3{color:#fff;font-weight:900;letter-spacing:-.055em;line-height:1.04;margin:0}${id} .ag-head h2{font-size:clamp(1.55rem,5vw,2.7rem)}${id} .ag-head p,${id} .ag-block p{color:#c9c5d6;font-size:clamp(.9rem,2.6vw,1.05rem);line-height:1.45;margin:0;max-width:660px}
+${id} .ag-grid{display:grid;gap:10px;grid-template-columns:repeat(2,minmax(0,1fr));margin:0 0 clamp(18px,4vw,30px)}${id} .ag-card{background:radial-gradient(circle at 82% 0,var(--a),transparent 42%),linear-gradient(145deg,rgba(255,255,255,.075),rgba(255,255,255,.025));border:1px solid rgba(223,255,246,.15);border-radius:22px;color:#fff;cursor:pointer;display:grid;gap:12px;min-height:146px;padding:14px;text-align:left;transition:.22s;width:100%}${id} .ag-card:hover,${id} .ag-card:focus-visible,${id} .ag-card.is-active{border-color:var(--b);box-shadow:0 22px 52px rgba(0,0,0,.26),0 0 34px var(--a);transform:translateY(-2px)}${id} .ag-ico{align-items:center;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.12);border-radius:18px;display:flex;height:56px;justify-content:center;width:56px}${id} .ag-ico svg{fill:none;stroke:#fff;stroke-linecap:round;stroke-linejoin:round;stroke-width:2;height:30px;width:30px}${id} .ag-title{display:block;font-size:clamp(1rem,3.8vw,1.35rem);font-weight:900;line-height:1.05}${id} .ag-keys{color:#e9e7f4;display:block;font-size:.78rem;line-height:1.24;margin-top:6px}${id} .ag-more{color:#cffff0;font-size:.8rem;font-weight:900;margin-top:auto}
+${id} .ag-detail{background:linear-gradient(145deg,rgba(15,22,36,.96),rgba(7,9,18,.9));border:1px solid rgba(223,255,246,.16);border-radius:26px;display:grid;gap:18px;margin:0 0 clamp(22px,4vw,34px);padding:clamp(17px,4vw,28px);scroll-margin-top:96px}${id} .ag-eyebrow{color:#9ff2d5;font-size:.68rem;font-weight:900;letter-spacing:.18em;text-transform:uppercase}${id} .ag-detail h3{color:#fff;font-size:clamp(1.45rem,5vw,2.45rem);font-weight:900;letter-spacing:-.055em;line-height:1.04;margin:5px 0 8px}${id} .ag-detail p{color:#d8d5e4;line-height:1.48;margin:0;max-width:760px}${id} .ag-mini{display:flex;gap:10px;margin-top:14px;overflow:auto;padding:2px 2px 8px;scrollbar-width:none}${id} .ag-mini::-webkit-scrollbar{display:none}${id} .ag-mini-card{align-items:center;background:rgba(255,255,255,.055);border:1px solid rgba(223,255,246,.15);border-radius:18px;color:#fff;display:grid;flex:0 0 min(270px,82vw);gap:10px;grid-template-columns:58px minmax(0,1fr);padding:10px;text-decoration:none}${id} .ag-mini-card strong{display:block;font-size:.86rem;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}${id} .ag-mini-card span{color:#aaa6ba;display:block;font-size:.74rem;margin-top:3px}${id} .ag-mini-card small,${id} .ag-free{background:rgba(130,222,200,.12);border:1px solid rgba(130,222,200,.28);border-radius:999px;color:#cffff0;display:inline-flex;font-size:.65rem;font-weight:900;margin-top:6px;padding:5px 7px;width:max-content}
+${id} .ag-actions,.ag-card-actions{display:grid;gap:10px}${id} .ag-btn{align-items:center;border:1px solid transparent;border-radius:16px;display:inline-flex;font-size:.88rem;font-weight:950;justify-content:center;min-height:48px;padding:0 14px;text-decoration:none;width:100%}${id} .ag-primary{background:linear-gradient(120deg,#82dec8,#956dff);color:#081018!important}${id} .ag-secondary{background:rgba(255,255,255,.05);border-color:rgba(223,255,246,.16);color:#fff!important}${id} .ag-ghost{background:transparent;border-color:rgba(223,255,246,.18);color:#cffff0!important}
+${id} .ag-block{margin-top:clamp(22px,5vw,42px);scroll-margin-top:96px}${id} .ag-block-head{display:flex;flex-wrap:wrap;gap:10px;justify-content:space-between;margin-bottom:14px}${id} .ag-block h3{font-size:clamp(1.25rem,4.5vw,2rem)}${id} .ag-filters{display:flex;gap:8px;overflow:auto;padding:2px 0 10px;scrollbar-width:none}${id} .ag-filter{background:rgba(255,255,255,.045);border:1px solid rgba(223,255,246,.14);border-radius:999px;color:#d8d5e6;cursor:pointer;font-size:.78rem;font-weight:850;min-height:40px;padding:0 13px;white-space:nowrap}${id} .ag-filter.is-active{background:rgba(130,222,200,.16);border-color:rgba(130,222,200,.52);color:#fff}${id} .ag-products,${id} .ag-protocols{display:grid;gap:12px;grid-template-columns:1fr}${id} .ag-product{background:linear-gradient(145deg,rgba(255,255,255,.066),rgba(255,255,255,.024));border:1px solid rgba(223,255,246,.14);border-radius:22px;color:#fff;display:grid;gap:11px;padding:15px}${id} .ag-product[hidden]{display:none!important}${id} .ag-media{display:grid;gap:11px;grid-template-columns:62px minmax(0,1fr)}${id} .ag-product h4{font-size:1rem;font-weight:900;line-height:1.14;margin:0;overflow-wrap:anywhere}${id} .ag-axis{color:#bdb8cc;font-size:.76rem;font-weight:850}${id} .ag-price{color:#9ff2d5;display:block;font-size:.88rem;font-weight:950;margin-top:5px}${id} .ag-desire{color:#e5e2ef;font-size:.88rem;line-height:1.42;margin:0}${id} .ag-card-actions{grid-template-columns:1fr 1fr}
+${id} .ag-vial{align-items:center;background:linear-gradient(180deg,rgba(255,255,255,.20),rgba(255,255,255,.05));border:1px solid rgba(255,255,255,.16);border-radius:15px;display:grid;height:62px;justify-items:center;padding:8px 6px;width:52px}${id} .ag-vial span{background:linear-gradient(180deg,#f7f4ff,#9da0b5);border-radius:7px 7px 4px 4px;height:10px;width:29px}${id} .ag-vial b{align-items:center;background:rgba(255,255,255,.86);border-radius:6px;color:#202338;display:flex;font-size:.58rem;font-weight:950;height:24px;justify-content:center;width:38px}${id} .ag-vial.mini{height:58px;width:48px}
+${id} .ag-compare{border:1px solid rgba(223,255,246,.14);border-radius:22px;overflow:hidden}${id} .ag-row{display:grid;gap:4px;padding:13px 14px}${id} .ag-row:not(:last-child){border-bottom:1px solid rgba(223,255,246,.1)}${id} .ag-row strong{color:#fff;font-size:.93rem}${id} .ag-row span{color:#aaa6ba;font-size:.8rem;line-height:1.35}${id} .ag-info{background:rgba(255,255,255,.035);border:1px solid rgba(223,255,246,.12);border-radius:22px;color:#c9c5d8;display:grid;gap:8px;line-height:1.48;padding:16px}${id} .ag-info strong{color:#fff}${id} .ag-faq{display:grid;gap:10px}${id} .ag-faq details{background:rgba(255,255,255,.045);border:1px solid rgba(223,255,246,.12);border-radius:18px;color:#d8d5e6;padding:14px}${id} .ag-faq summary{color:#fff;cursor:pointer;font-weight:900}${id} .ag-faq p{font-size:.88rem;line-height:1.45;margin:10px 0 0}
+${id} .ag-drawer[hidden]{display:none!important}${id} .ag-drawer{align-items:flex-end;display:flex;inset:0;justify-content:center;padding:10px;position:fixed;z-index:140}${id} .ag-overlay{background:rgba(2,4,10,.76);backdrop-filter:blur(12px);inset:0;position:absolute}${id} .ag-panel{background:radial-gradient(circle at 90% 0,rgba(130,222,200,.16),transparent 34%),linear-gradient(150deg,#15192b,#070a14);border:1px solid rgba(223,255,246,.2);border-radius:28px 28px 18px 18px;max-height:88vh;max-width:720px;overflow:auto;padding:20px 16px 16px;position:relative;width:100%}${id} .ag-close{background:rgba(255,255,255,.06);border:1px solid rgba(223,255,246,.16);border-radius:50%;color:#fff;cursor:pointer;font-size:1.3rem;height:38px;position:absolute;right:14px;top:14px;width:38px}${id} .ag-panel h3{color:#fff;font-size:clamp(1.35rem,5vw,2.15rem);font-weight:900;letter-spacing:-.05em;line-height:1.05;margin:22px 42px 16px 0}${id} .ag-guide{display:grid;gap:10px}${id} .ag-guide div{background:rgba(255,255,255,.045);border:1px solid rgba(223,255,246,.12);border-radius:16px;padding:12px}${id} .ag-guide strong{color:#fff;display:block;font-size:.82rem;margin-bottom:5px}${id} .ag-guide span{color:#d8d5e6;display:block;font-size:.84rem;line-height:1.42}${id} .ag-drawer-actions{display:grid;gap:10px;margin-top:14px}
+@media(min-width:700px){${id} [data-lab-view='peptides'] .alicyn-lab-hero{grid-template-columns:minmax(0,1fr) minmax(320px,.9fr)!important}${id} .ag-actions{grid-template-columns:repeat(3,minmax(0,1fr))}${id} .ag-products,${id} .ag-protocols{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(min-width:990px){${id} .ag-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}${id} .ag-card{min-height:176px;padding:18px}${id} .ag-products,${id} .ag-protocols{grid-template-columns:repeat(3,minmax(0,1fr))}${id} .ag-detail{grid-template-columns:minmax(0,1fr) 350px;align-items:center}${id} .ag-actions{grid-template-columns:1fr;max-width:350px}${id} .ag-mini{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));overflow:visible}${id} .ag-mini-card{flex:initial}${id} .ag-row{grid-template-columns:1.05fr .85fr 1.4fr;align-items:center}}
+@media(max-width:749px){${id} .alicyn-lab-shell{padding-left:14px;padding-right:14px}${id} [data-lab-view='peptides'] .alicyn-lab-hero{padding:22px 16px!important}${id} .ag-word{min-height:150px}${id} .ag-word span{font-size:clamp(3rem,18vw,5rem)}${id} .ag-cta{width:100%}${id} .ag-section{border-radius:26px;margin-left:-2px;margin-right:-2px;padding:13px}${id} .ag-card-actions{grid-template-columns:1fr}${id} .ag-btn{min-height:50px}}
+@media(max-width:380px){${id} .ag-grid{grid-template-columns:1fr}${id} .ag-mini-card{flex-basis:88vw}${id} .ag-media{grid-template-columns:56px minmax(0,1fr)}}`;
+    root.appendChild(s);
   }
-
-  function q(root, selector) { return root.querySelector(selector); }
-  function qa(root, selector) { return Array.prototype.slice.call(root.querySelectorAll(selector)); }
-  function esc(value) {
-    return String(value == null ? "" : value)
-      .replace(/&/g, "&amp;")
-      .replace(/</g, "&lt;")
-      .replace(/>/g, "&gt;")
-      .replace(/"/g, "&quot;")
-      .replace(/'/g, "&#039;");
-  }
-  function whats(message) {
-    return "https://wa.me/" + PHONE + "?text=" + encodeURIComponent(message);
-  }
-  function scrollToNode(node) {
-    if (node) node.scrollIntoView({ behavior: "smooth", block: "start" });
-  }
-
-  function injectStyles(root) {
-    if (q(root, "[data-alicyn-goal-style]")) return;
-    var id = "#" + root.id;
-    var style = document.createElement("style");
-    style.setAttribute("data-alicyn-goal-style", "");
-    style.textContent =
-      id + "{overflow-x:hidden;}" +
-      id + " *," + id + " *::before," + id + " *::after{box-sizing:border-box;}" +
-      id + " .alicyn-lab-orbit," + id + " .alicyn-lab-orbit-core," + id + " .alicyn-goal-legacy-hidden{display:none!important;}" +
-      id + " [data-lab-view='peptides'] .alicyn-lab-badges," + id + " [data-lab-view='peptides'] .alicyn-lab-compliance," + id + " [data-lab-view='peptides'] .alicyn-lab-hero-hint," + id + " [data-lab-view='peptides'] .alicyn-lab-hero-media," + id + " [data-lab-view='peptides'] .alicyn-lab-trust-grid{display:none!important;}" +
-      id + " [data-lab-view='peptides']{gap:0;}" +
-      id + " [data-lab-view='peptides'] .alicyn-lab-hero{align-items:center;background:radial-gradient(circle at 50% 35%,rgba(130,222,200,.16),transparent 34rem),radial-gradient(circle at 82% 20%,rgba(149,109,255,.16),transparent 28rem)!important;border:0!important;box-shadow:none!important;grid-template-columns:1fr!important;margin:0 0 clamp(10px,3vw,22px);min-height:auto;padding:clamp(24px,7vw,72px) 0 clamp(10px,3vw,22px)!important;}" +
-      id + " [data-lab-view='peptides'] .alicyn-lab-hero-copy{background:transparent!important;border:0!important;box-shadow:none!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important;margin:0 auto;max-width:980px!important;padding:0!important;text-align:center;width:100%;}" +
-      id + " [data-lab-view='peptides'] .alicyn-lab-hero-copy .alicyn-lab-kicker," + id + " [data-lab-view='peptides'] .alicyn-lab-hero-text," + id + " [data-lab-view='peptides'] .alicyn-lab-actions," + id + " [data-lab-view='peptides'] .alicyn-goal-mini-line{display:none!important;}" +
-      id + " [data-lab-view='peptides'] .alicyn-lab-hero-title{background:linear-gradient(105deg,#ffffff 0%,#d7fff1 34%,#9ff2d5 58%,#b99cff 100%);-webkit-background-clip:text;background-clip:text;color:transparent!important;display:block;font-size:clamp(4.8rem,20vw,13rem)!important;font-weight:900!important;letter-spacing:-.12em!important;line-height:.78!important;margin:0!important;text-transform:uppercase;text-shadow:0 30px 90px rgba(130,222,200,.18);}" +
-      id + " .alicyn-goal-hero-cta{display:none!important;}" +
-      id + " .alicyn-goal-mini-line{display:none!important;}" +
-      id + " .alicyn-goal-section{--goal-accent:#82dec8;background:radial-gradient(circle at 0% 0%,rgba(130,222,200,.16),transparent 31%),radial-gradient(circle at 100% 12%,rgba(149,109,255,.18),transparent 30%),linear-gradient(180deg,rgba(9,12,24,.88),rgba(4,7,15,.72));border:1px solid rgba(210,255,241,.14);border-radius:clamp(24px,4vw,36px);box-shadow:0 32px 90px rgba(0,0,0,.34);margin:clamp(18px,4vw,34px) 0 clamp(34px,6vw,64px);overflow:hidden;padding:clamp(16px,3vw,28px);position:relative;}" +
-      id + " .alicyn-goal-header{display:grid;gap:8px;margin-bottom:clamp(16px,3vw,26px);max-width:780px;}" +
-      id + " .alicyn-goal-kicker{color:#9ff2d5;font-size:.72rem;font-weight:900;letter-spacing:.18em;margin:0;text-transform:uppercase;}" +
-      id + " .alicyn-goal-header h2{color:#fff;font-size:clamp(1.55rem,5.2vw,2.75rem);letter-spacing:-.06em;line-height:1.02;margin:0;}" +
-      id + " .alicyn-goal-header p{color:#cbc8d8;font-size:clamp(.94rem,2.7vw,1.05rem);line-height:1.48;margin:0;max-width:680px;}" +
-      id + " .alicyn-goal-grid{display:grid;gap:12px;grid-template-columns:1fr;margin:0 0 clamp(18px,4vw,32px);}" +
-      id + " .alicyn-goal-card{background:radial-gradient(circle at 86% 0%,color-mix(in srgb,var(--card-accent) 28%,transparent),transparent 42%),linear-gradient(145deg,rgba(255,255,255,.08),rgba(255,255,255,.026));border:1px solid rgba(223,255,246,.16);border-radius:24px;color:#fff;cursor:pointer;display:grid;gap:13px;min-height:188px;overflow:hidden;padding:16px;position:relative;text-align:left;transition:transform .22s ease,border-color .22s ease,box-shadow .22s ease,background .22s ease;width:100%;}" +
-      id + " .alicyn-goal-card:hover," + id + " .alicyn-goal-card:focus-visible," + id + " .alicyn-goal-card.is-active{border-color:color-mix(in srgb,var(--card-accent) 72%,white 8%);box-shadow:0 24px 52px rgba(0,0,0,.28),0 0 38px color-mix(in srgb,var(--card-accent) 24%,transparent);transform:translateY(-2px);}" +
-      id + " .alicyn-goal-card.is-active::after{background:linear-gradient(90deg,var(--card-accent),rgba(255,255,255,.7));border-radius:999px;bottom:0;content:'';height:4px;left:18px;position:absolute;right:18px;}" +
-      id + " .alicyn-goal-card__image{align-items:center;aspect-ratio:1.2;background:radial-gradient(circle at 50% 42%,color-mix(in srgb,var(--card-accent) 36%,transparent),transparent 58%),rgba(255,255,255,.035);border:1px solid rgba(255,255,255,.12);border-radius:20px;display:flex;font-size:2rem;justify-content:center;overflow:hidden;}" +
-      id + " .alicyn-goal-card__title{display:block;font-size:clamp(1.15rem,4vw,1.5rem);font-weight:820;letter-spacing:-.045em;line-height:1.02;margin:0;}" +
-      id + " .alicyn-goal-card__keywords{color:#e9e7f4;display:block;font-size:.83rem;line-height:1.25;margin-top:6px;}" +
-      id + " .alicyn-goal-card__products{color:#aaa5bb;display:block;font-size:.76rem;line-height:1.35;margin-top:9px;max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}" +
-      id + " .alicyn-goal-card__button{align-items:center;align-self:end;color:#cffff0;display:inline-flex;font-size:.82rem;font-weight:900;gap:7px;margin-top:auto;}" +
-      id + " .alicyn-goal-detail{background:linear-gradient(145deg,rgba(15,22,36,.96),rgba(7,9,18,.9));border:1px solid rgba(223,255,246,.16);border-radius:26px;display:grid;gap:18px;margin:0 0 clamp(22px,4vw,34px);padding:clamp(17px,4vw,28px);scroll-margin-top:96px;}" +
-      id + " .alicyn-goal-detail__top{align-items:start;display:grid;gap:12px;}" +
-      id + " .alicyn-goal-detail__eyebrow{color:#9ff2d5;font-size:.68rem;font-weight:900;letter-spacing:.18em;text-transform:uppercase;}" +
-      id + " .alicyn-goal-detail h3{color:#fff;font-size:clamp(1.45rem,5vw,2.45rem);letter-spacing:-.055em;line-height:1.02;margin:4px 0 9px;}" +
-      id + " .alicyn-goal-detail p{color:#d8d5e4;font-size:clamp(.94rem,2.7vw,1.05rem);line-height:1.5;margin:0;max-width:760px;}" +
-      id + " .alicyn-goal-chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px;}" +
-      id + " .alicyn-goal-chip{background:rgba(255,255,255,.06);border:1px solid rgba(223,255,246,.15);border-radius:999px;color:#fff;font-size:.78rem;line-height:1.1;padding:9px 11px;}" +
-      id + " .alicyn-goal-route-meta{display:grid;gap:8px;margin-top:16px;}" +
-      id + " .alicyn-goal-route-meta small{color:#908da1;font-size:.68rem;font-weight:900;letter-spacing:.14em;text-transform:uppercase;}" +
-      id + " .alicyn-goal-route-meta strong{color:#fff;font-size:1rem;line-height:1.2;}" +
-      id + " .alicyn-goal-actions{display:grid;gap:10px;grid-template-columns:1fr;margin-top:2px;}" +
-      id + " .alicyn-goal-button{align-items:center;border:1px solid transparent;border-radius:16px;display:inline-flex;font-size:.92rem;font-weight:900;justify-content:center;min-height:52px;padding:0 18px;text-decoration:none;width:100%;}" +
-      id + " .alicyn-goal-button--primary{background:linear-gradient(120deg,#82dec8,#956dff);box-shadow:0 18px 38px rgba(92,255,210,.16);color:#081018;}" +
-      id + " .alicyn-goal-button--secondary{background:rgba(255,255,255,.045);border-color:rgba(223,255,246,.16);color:#fff;}" +
-      id + " .alicyn-goal-button--ghost{background:transparent;border-color:rgba(223,255,246,.18);color:#cffff0;}" +
-      id + " .alicyn-goal-block{margin-top:clamp(22px,5vw,42px);scroll-margin-top:96px;}" +
-      id + " .alicyn-goal-block__head{align-items:end;display:flex;flex-wrap:wrap;gap:10px;justify-content:space-between;margin-bottom:14px;}" +
-      id + " .alicyn-goal-block h3{color:#fff;font-size:clamp(1.25rem,4.5vw,2rem);letter-spacing:-.045em;line-height:1.08;margin:0;}" +
-      id + " .alicyn-goal-block__head p{color:#aaa6ba;font-size:.88rem;line-height:1.42;margin:0;max-width:560px;}" +
-      id + " .alicyn-goal-inline-filters{display:flex;gap:8px;overflow:auto;padding:2px 0 10px;scrollbar-width:none;}" +
-      id + " .alicyn-goal-inline-filters::-webkit-scrollbar{display:none;}" +
-      id + " .alicyn-goal-filter{background:rgba(255,255,255,.045);border:1px solid rgba(223,255,246,.14);border-radius:999px;color:#d8d5e6;cursor:pointer;font-size:.78rem;font-weight:800;min-height:40px;padding:0 13px;white-space:nowrap;}" +
-      id + " .alicyn-goal-filter.is-active{background:rgba(130,222,200,.16);border-color:rgba(130,222,200,.52);color:#fff;}" +
-      id + " .alicyn-goal-products{display:grid;gap:12px;grid-template-columns:1fr;}" +
-      id + " .alicyn-goal-product-card{background:linear-gradient(145deg,rgba(255,255,255,.066),rgba(255,255,255,.024));border:1px solid rgba(223,255,246,.14);border-radius:22px;color:#fff;display:grid;gap:10px;padding:15px;min-width:0;}" +
-      id + " .alicyn-goal-product-card[hidden]{display:none!important;}" +
-      id + " .alicyn-goal-product-card__top{align-items:start;display:flex;gap:10px;justify-content:space-between;}" +
-      id + " .alicyn-goal-product-card h4{font-size:1.02rem;letter-spacing:-.025em;line-height:1.14;margin:0;overflow-wrap:anywhere;}" +
-      id + " .alicyn-goal-product-card__price{color:#9ff2d5;font-size:.88rem;font-weight:900;line-height:1.1;white-space:nowrap;}" +
-      id + " .alicyn-goal-product-card__axis{color:#bdb8cc;font-size:.76rem;font-weight:800;line-height:1.3;}" +
-      id + " .alicyn-goal-product-card__desire{color:#e5e2ef;font-size:.88rem;line-height:1.42;margin:0;}" +
-      id + " .alicyn-goal-product-card__actions{display:grid;gap:8px;grid-template-columns:1fr 1fr;margin-top:3px;}" +
-      id + " .alicyn-goal-product-card__actions .alicyn-goal-button{font-size:.82rem;min-height:46px;padding:0 12px;}" +
-      id + " .alicyn-goal-protocols{display:grid;gap:12px;grid-template-columns:1fr;}" +
-      id + " .alicyn-goal-compare{border:1px solid rgba(223,255,246,.14);border-radius:22px;overflow:hidden;}" +
-      id + " .alicyn-goal-compare-row{display:grid;gap:4px;padding:13px 14px;}" +
-      id + " .alicyn-goal-compare-row:not(:last-child){border-bottom:1px solid rgba(223,255,246,.1);}" +
-      id + " .alicyn-goal-compare-row strong{color:#fff;font-size:.93rem;}" +
-      id + " .alicyn-goal-compare-row span{color:#aaa6ba;font-size:.8rem;line-height:1.35;}" +
-      id + " .alicyn-goal-info{background:rgba(255,255,255,.035);border:1px solid rgba(223,255,246,.12);border-radius:22px;color:#c9c5d8;display:grid;gap:10px;line-height:1.48;padding:16px;}" +
-      id + " .alicyn-goal-info strong{color:#fff;}" +
-      id + " .alicyn-goal-drawer[hidden]{display:none!important;}" +
-      id + " .alicyn-goal-drawer{align-items:flex-end;display:flex;inset:0;justify-content:center;padding:10px;position:fixed;z-index:140;}" +
-      id + " .alicyn-goal-drawer__overlay{background:rgba(2,4,10,.76);backdrop-filter:blur(12px);inset:0;position:absolute;}" +
-      id + " .alicyn-goal-drawer__panel{background:radial-gradient(circle at 90% 0%,rgba(130,222,200,.16),transparent 34%),linear-gradient(150deg,#15192b,#070a14);border:1px solid rgba(223,255,246,.2);border-radius:28px 28px 18px 18px;box-shadow:0 30px 90px rgba(0,0,0,.45);max-height:88vh;max-width:720px;overflow:auto;padding:20px 16px 16px;position:relative;width:100%;}" +
-      id + " .alicyn-goal-drawer__close{align-items:center;background:rgba(255,255,255,.06);border:1px solid rgba(223,255,246,.16);border-radius:50%;color:#fff;cursor:pointer;display:flex;font-size:1.3rem;height:38px;justify-content:center;position:absolute;right:14px;top:14px;width:38px;}" +
-      id + " .alicyn-goal-drawer h3{color:#fff;font-size:clamp(1.35rem,5vw,2.15rem);letter-spacing:-.05em;line-height:1.05;margin:22px 42px 16px 0;}" +
-      id + " .alicyn-goal-guide-grid{display:grid;gap:10px;}" +
-      id + " .alicyn-goal-guide-item{background:rgba(255,255,255,.045);border:1px solid rgba(223,255,246,.12);border-radius:16px;padding:12px;}" +
-      id + " .alicyn-goal-guide-item strong{color:#fff;display:block;font-size:.82rem;margin-bottom:5px;}" +
-      id + " .alicyn-goal-guide-item span{color:#d8d5e6;display:block;font-size:.84rem;line-height:1.42;}" +
-      id + " .alicyn-goal-drawer__actions{display:grid;gap:10px;margin-top:14px;}" +
-      "@media(min-width:560px){" + id + " .alicyn-goal-grid{grid-template-columns:repeat(2,minmax(0,1fr));}" + id + " .alicyn-goal-products," + id + " .alicyn-goal-protocols{grid-template-columns:repeat(2,minmax(0,1fr));}" + id + " .alicyn-goal-drawer__actions{grid-template-columns:max-content max-content;}" + "}" +
-      "@media(min-width:900px){" + id + " .alicyn-goal-grid{grid-template-columns:repeat(3,minmax(0,1fr));}" + id + " .alicyn-goal-products{grid-template-columns:repeat(3,minmax(0,1fr));}" + id + " .alicyn-goal-protocols{grid-template-columns:repeat(3,minmax(0,1fr));}" + id + " .alicyn-goal-detail{grid-template-columns:minmax(0,1fr) 360px;align-items:center;}" + id + " .alicyn-goal-actions{grid-template-columns:1fr;max-width:360px;}" + id + " .alicyn-goal-compare-row{grid-template-columns:1.1fr 1fr 1.2fr;align-items:center;}" + "}" +
-      "@media(max-width:749px){" + id + " .alicyn-lab-shell{padding-left:14px;padding-right:14px;}" + id + " [data-lab-view='peptides'] .alicyn-lab-hero{border-radius:0!important;padding:clamp(34px,16vw,72px) 0 clamp(8px,4vw,18px)!important;}" + id + " [data-lab-view='peptides'] .alicyn-lab-hero-visual{display:none!important;}" + id + " .alicyn-goal-section{margin-left:-2px;margin-right:-2px;padding:14px;border-radius:26px;}" + id + " .alicyn-goal-card{grid-template-columns:72px minmax(0,1fr);min-height:154px;padding:14px;}" + id + " .alicyn-goal-card__image{aspect-ratio:1;height:72px;}" + id + " .alicyn-goal-card__button{grid-column:2;}" + id + " .alicyn-goal-product-card__actions{grid-template-columns:1fr;}" + id + " .alicyn-goal-button{min-height:50px;}" + id + " .alicyn-goal-drawer__panel{border-radius:24px 24px 16px 16px;}" + "}" +
-      "@media(max-width:390px){" + id + " .alicyn-goal-card{grid-template-columns:1fr;}" + id + " .alicyn-goal-card__image{height:auto;width:78px;}" + id + " .alicyn-goal-card__button{grid-column:1;}" + id + " .alicyn-goal-product-card__top{display:grid;}" + id + " .alicyn-goal-product-card__price{white-space:normal;}" + "}" +
-      "@media(prefers-reduced-motion:reduce){" + id + " .alicyn-goal-card{transition:none;}" + "}";
-    root.appendChild(style);
-  }
-
-  function simplifyHero(root) {
-    var peptide = q(root, "[data-lab-view='peptides']");
-    if (!peptide) return;
-    var title = q(peptide, ".alicyn-lab-hero-title, .alicyn-lab-hero h1");
-    var text = q(peptide, ".alicyn-lab-hero-text, .alicyn-lab-section-copy");
-    var copy = q(peptide, ".alicyn-lab-hero-copy") || q(peptide, ".alicyn-lab-hero");
-    if (title) title.textContent = "Péptidos";
-    if (text) text.textContent = "";
-    qa(peptide, ".alicyn-lab-orbit, .alicyn-lab-orbit-core").forEach(function (node) { node.remove(); });
-    var actions = q(peptide, ".alicyn-lab-actions");
-    if (actions) {
-      actions.innerHTML = '';
-    }
-    if (copy && !q(copy, ".alicyn-goal-mini-line")) {
-      var mini = document.createElement("p");
-      mini.className = "alicyn-goal-mini-line";
-      mini.textContent = "Piel. Energía. Metabolismo. Recovery. Performance.";
-      if (actions) actions.insertAdjacentElement("beforebegin", mini);
-      else copy.appendChild(mini);
-    }
-  }
-
-  function hideLegacy(root) {
-    var selectors = [
-      "[data-alicyn-axis-live]",
-      "[id^='alicyn-lab-mapa-']",
-      "[data-lab-screen='objetivos']",
-      "[data-lab-screen='quiz']",
-      "[data-lab-screen='productos']",
-      "[data-lab-screen='mas']",
-      "#catalogo-peptidos-investigacion",
-      "#protocolos-investigacion",
-      "[id^='alicyn-lab-comparador-']"
-    ];
-    selectors.forEach(function (selector) {
-      qa(root, selector).forEach(function (node) {
-        if (node && !node.hasAttribute("data-alicyn-goal-section")) {
-          node.classList.add("alicyn-goal-legacy-hidden");
-          node.hidden = true;
-        }
-      });
-    });
-  }
-
-  function buildGoalApp(root) {
-    var peptide = q(root, "[data-lab-view='peptides']");
-    if (!peptide) return;
-    var old = q(peptide, "[data-alicyn-goal-section]");
-    if (old) old.remove();
-
-    var section = document.createElement("section");
-    section.className = "alicyn-goal-section";
-    section.setAttribute("data-alicyn-goal-section", "");
-    section.innerHTML =
-      '<div class="alicyn-goal-header" id="alicyn-goal-objectives">' +
-        '<p class="alicyn-goal-kicker">Alicyn Lab Navigator</p>' +
-        '<h2>Elige tu objetivo</h2>' +
-        '<p>Bloques simples, rutas claras y productos filtrados para decidir más rápido.</p>' +
-      '</div>' +
-      '<div class="alicyn-goal-grid" data-goal-grid aria-label="Objetivos Alicyn Lab"></div>' +
-      '<div class="alicyn-goal-detail" id="alicyn-lab-route-detail" aria-live="polite">' +
-        '<div class="alicyn-goal-detail__top">' +
-          '<div><span class="alicyn-goal-detail__eyebrow">Tu ruta sugerida</span><h3 data-route-title></h3><p data-route-description></p></div>' +
-          '<div><div class="alicyn-goal-route-meta"><small>Productos recomendados</small><div class="alicyn-goal-chips" data-route-products></div></div><div class="alicyn-goal-route-meta"><small>Protocolo recomendado</small><strong data-route-protocol></strong></div></div>' +
-        '</div>' +
-        '<div class="alicyn-goal-actions"><button class="alicyn-goal-button alicyn-goal-button--primary" type="button" data-route-products-button>Ver productos</button><button class="alicyn-goal-button alicyn-goal-button--secondary" type="button" data-route-protocol-button>Ver protocolo</button><a class="alicyn-goal-button alicyn-goal-button--ghost" data-route-whatsapp target="_blank" rel="noopener">Preguntar por WhatsApp</a></div>' +
-      '</div>' +
-      '<section class="alicyn-goal-block" id="alicyn-goal-products-block"><div class="alicyn-goal-block__head"><div><h3 data-products-heading>Productos filtrados</h3><p>Cards compactas, precio claro y una sola idea por producto.</p></div></div><div class="alicyn-goal-inline-filters" data-inline-filters></div><div class="alicyn-goal-products" data-goal-products></div></section>' +
-      '<section class="alicyn-goal-block" id="alicyn-goal-protocols-block"><div class="alicyn-goal-block__head"><div><h3>Protocolos recomendados</h3><p>Guías de compra por objetivo, sin saturarte de texto.</p></div></div><div class="alicyn-goal-protocols" data-goal-protocols></div></section>' +
-      '<section class="alicyn-goal-block" id="alicyn-goal-compare-block"><div class="alicyn-goal-block__head"><div><h3>Comparador rápido</h3><p>Una vista corta para ubicar eje, nivel y ruta.</p></div></div><div class="alicyn-goal-compare" data-goal-compare></div></section>' +
-      '<section class="alicyn-goal-block alicyn-goal-info" id="alicyn-goal-info-block"><strong>Información responsable</strong><span>Los productos Alicyn Lab se presentan como información educativa y comercial para investigación/laboratorio. Compara opciones por objetivo, revisa cada ficha y pregunta si necesitas orientación antes de comprar.</span></section>';
-
-    var hero = q(peptide, ".alicyn-lab-hero");
-    if (hero) hero.insertAdjacentElement("afterend", section);
-    else peptide.insertBefore(section, peptide.firstChild);
-
-    renderGoals(section);
-    renderInlineFilters(section);
-    renderProducts(section);
-    renderProtocols(section);
-    renderCompare(section);
-    ensureDrawer(root);
-    bindRouteButtons(root, section);
-    selectGoal(root, section, "skin", false);
-  }
-
-  function renderGoals(section) {
-    var grid = q(section, "[data-goal-grid]");
-    grid.innerHTML = "";
-    GOALS.forEach(function (goal) {
-      var button = document.createElement("button");
-      button.className = "alicyn-goal-card";
-      button.type = "button";
-      button.setAttribute("data-goal-card", goal.key);
-      button.setAttribute("aria-pressed", "false");
-      button.style.setProperty("--card-accent", goal.accent);
-      button.innerHTML =
-        '<span class="alicyn-goal-card__image" aria-hidden="true">' + esc(goal.icon) + '</span>' +
-        '<span><strong class="alicyn-goal-card__title">' + esc(goal.title) + '</strong>' +
-        '<span class="alicyn-goal-card__keywords">' + esc(goal.keywords.join(" · ")) + '</span>' +
-        '<span class="alicyn-goal-card__products">' + esc(goal.products.join(" · ")) + '</span></span>' +
-        '<span class="alicyn-goal-card__button">Explorar →</span>';
-      button.addEventListener("click", function () {
-        var root = section.closest("[data-alicyn-lab-app]");
-        selectGoal(root, section, goal.key, true);
-      });
-      grid.appendChild(button);
-    });
-  }
-
-  function renderInlineFilters(section) {
-    var wrap = q(section, "[data-inline-filters]");
-    wrap.innerHTML = "";
-    [{ key: "all", title: "Todos" }].concat(GOALS).forEach(function (goal) {
-      var button = document.createElement("button");
-      button.type = "button";
-      button.className = "alicyn-goal-filter";
-      button.setAttribute("data-goal-filter", goal.key);
-      button.textContent = goal.title;
-      button.addEventListener("click", function () {
-        var root = section.closest("[data-alicyn-lab-app]");
-        selectGoal(root, section, goal.key, false);
-        scrollToNode(q(section, "#alicyn-goal-products-block"));
-      });
-      wrap.appendChild(button);
-    });
-  }
-
-  function renderProducts(section) {
-    var wrap = q(section, "[data-goal-products]");
-    wrap.innerHTML = "";
-    PRODUCTS.forEach(function (product) {
-      var card = document.createElement("article");
-      card.className = "alicyn-goal-product-card";
-      card.setAttribute("data-goal-product", product.key);
-      card.setAttribute("data-goal-axes", product.axes.join(" "));
-      card.innerHTML =
-        '<div class="alicyn-goal-product-card__top"><div><h4>' + esc(product.name) + '</h4><span class="alicyn-goal-product-card__axis">Eje: ' + esc(product.axis) + '</span></div><strong class="alicyn-goal-product-card__price">' + esc(product.price) + '</strong></div>' +
-        '<p class="alicyn-goal-product-card__desire">' + esc(product.desire) + '</p>' +
-        '<div class="alicyn-goal-product-card__actions"><a class="alicyn-goal-button alicyn-goal-button--primary" href="' + esc(product.url) + '">Ver producto</a><button class="alicyn-goal-button alicyn-goal-button--secondary" type="button" data-guide-product="' + esc(product.key) + '">Ver guía</button></div>';
-      q(card, "[data-guide-product]").addEventListener("click", function () {
-        var root = section.closest("[data-alicyn-lab-app]");
-        openGuide(root, guideForProduct(product));
-      });
-      wrap.appendChild(card);
-    });
-  }
-
-  function renderProtocols(section) {
-    var wrap = q(section, "[data-goal-protocols]");
-    wrap.innerHTML = "";
-    PROTOCOLS.forEach(function (protocol) {
-      var card = document.createElement("article");
-      card.className = "alicyn-goal-product-card";
-      card.setAttribute("data-goal-protocol", protocol.key);
-      card.setAttribute("data-goal-axes", protocol.axes.join(" "));
-      card.innerHTML =
-        '<div class="alicyn-goal-product-card__top"><div><h4>' + esc(protocol.name) + '</h4><span class="alicyn-goal-product-card__axis">' + esc(protocol.products) + '</span></div><strong class="alicyn-goal-product-card__price">' + esc(protocol.price) + '</strong></div>' +
-        '<p class="alicyn-goal-product-card__desire">' + esc(protocol.text) + '</p>' +
-        '<div class="alicyn-goal-product-card__actions"><a class="alicyn-goal-button alicyn-goal-button--primary" href="' + esc(protocol.url) + '">Ver protocolo</a><button class="alicyn-goal-button alicyn-goal-button--secondary" type="button" data-guide-protocol="' + esc(protocol.key) + '">Ver guía</button></div>';
-      q(card, "[data-guide-protocol]").addEventListener("click", function () {
-        var root = section.closest("[data-alicyn-lab-app]");
-        openGuide(root, guideForProtocol(protocol));
-      });
-      wrap.appendChild(card);
-    });
-  }
-
-  function renderCompare(section) {
-    var wrap = q(section, "[data-goal-compare]");
-    wrap.innerHTML = "";
-    PRODUCTS.slice(0, 8).forEach(function (product) {
-      var row = document.createElement("div");
-      row.className = "alicyn-goal-compare-row";
-      row.setAttribute("data-goal-axes", product.axes.join(" "));
-      row.innerHTML = '<strong>' + esc(product.name) + '</strong><span>' + esc(product.axis) + '</span><span>' + esc(product.desire) + '</span>';
-      wrap.appendChild(row);
-    });
-  }
-
-  function bindRouteButtons(root, section) {
-    q(section, "[data-route-products-button]").addEventListener("click", function () {
-      scrollToNode(q(section, "#alicyn-goal-products-block"));
-    });
-    q(section, "[data-route-protocol-button]").addEventListener("click", function () {
-      scrollToNode(q(section, "#alicyn-goal-protocols-block"));
-    });
-  }
-
-  function selectGoal(root, section, key, shouldScroll) {
-    if (!section) return;
-    var activeKey = key === "all" ? "all" : goalByKey(key).key;
-    var goal = activeKey === "all" ? { key: "all", title: "Todos", products: ["Colección completa"], protocol: "Explora productos individuales", description: "Vista completa para comparar todos los productos Alicyn Lab por objetivo." } : goalByKey(activeKey);
-
-    qa(section, "[data-goal-card]").forEach(function (card) {
-      var active = card.getAttribute("data-goal-card") === activeKey;
-      card.classList.toggle("is-active", active);
-      card.setAttribute("aria-pressed", active ? "true" : "false");
-    });
-    qa(section, "[data-goal-filter]").forEach(function (filter) {
-      filter.classList.toggle("is-active", filter.getAttribute("data-goal-filter") === activeKey);
-    });
-
-    q(section, "[data-route-title]").textContent = "Tu ruta: " + goal.title;
-    q(section, "[data-route-description]").textContent = goal.description;
-    q(section, "[data-route-protocol]").textContent = goal.protocol;
-    var chips = q(section, "[data-route-products]");
-    chips.innerHTML = "";
-    goal.products.forEach(function (name) {
-      var chip = document.createElement("span");
-      chip.className = "alicyn-goal-chip";
-      chip.textContent = name;
-      chips.appendChild(chip);
-    });
-
-    var wa = q(section, "[data-route-whatsapp]");
-    wa.href = whats("Hola, vengo de Alicyn Lab. Me interesa la ruta " + goal.title + " con " + goal.products.join(" y ") + ". ¿Me pueden orientar?");
-
-    q(section, "[data-products-heading]").textContent = activeKey === "all" ? "Todos los productos" : "Productos para " + goal.title;
-    filterCards(section, activeKey);
-    try { window.localStorage.setItem("alicynLabGoal.active", activeKey); } catch (error) {}
-    if (shouldScroll) scrollToNode(q(section, "#alicyn-lab-route-detail"));
-  }
-
-  function filterCards(section, key) {
-    var all = key === "all";
-    qa(section, "[data-goal-product], [data-goal-protocol], .alicyn-goal-compare-row").forEach(function (card) {
-      var axes = (card.getAttribute("data-goal-axes") || "").split(/\s+/);
-      card.hidden = !(all || axes.indexOf(key) !== -1);
-    });
-  }
-
-  function ensureDrawer(root) {
-    var drawer = q(root, "[data-alicyn-goal-drawer]");
-    if (drawer) return drawer;
-    drawer = document.createElement("div");
-    drawer.className = "alicyn-goal-drawer";
-    drawer.hidden = true;
-    drawer.setAttribute("data-alicyn-goal-drawer", "");
-    drawer.innerHTML =
-      '<div class="alicyn-goal-drawer__overlay" data-goal-drawer-close></div>' +
-      '<div class="alicyn-goal-drawer__panel" role="dialog" aria-modal="true" aria-labelledby="alicyn-goal-guide-title">' +
-        '<button class="alicyn-goal-drawer__close" type="button" aria-label="Cerrar guía" data-goal-drawer-close>×</button>' +
-        '<p class="alicyn-goal-kicker">Guía rápida</p><h3 id="alicyn-goal-guide-title" data-guide-title></h3><div class="alicyn-goal-guide-grid" data-guide-grid></div>' +
-        '<div class="alicyn-goal-drawer__actions"><a class="alicyn-goal-button alicyn-goal-button--primary" data-guide-cta>Ver producto</a><button class="alicyn-goal-button alicyn-goal-button--secondary" type="button" data-goal-drawer-close>Cerrar guía</button></div>' +
-      '</div>';
-    root.appendChild(drawer);
-    qa(drawer, "[data-goal-drawer-close]").forEach(function (button) {
-      button.addEventListener("click", function () { drawer.hidden = true; });
-    });
-    document.addEventListener("keydown", function (event) {
-      if (event.key === "Escape") drawer.hidden = true;
-    });
-    return drawer;
-  }
-
-  function openGuide(root, guide) {
-    var drawer = ensureDrawer(root);
-    q(drawer, "[data-guide-title]").textContent = guide.title;
-    var grid = q(drawer, "[data-guide-grid]");
-    grid.innerHTML = "";
-    guide.items.forEach(function (item) {
-      var node = document.createElement("div");
-      node.className = "alicyn-goal-guide-item";
-      node.innerHTML = "<strong></strong><span></span>";
-      q(node, "strong").textContent = item[0];
-      q(node, "span").textContent = item[1];
-      grid.appendChild(node);
-    });
-    var cta = q(drawer, "[data-guide-cta]");
-    cta.textContent = guide.ctaLabel;
-    cta.href = guide.ctaUrl;
-    drawer.hidden = false;
-    q(drawer, "[data-goal-drawer-close]").focus({ preventScroll: true });
-  }
-
-  function guideBase(name, desire, related, ctaUrl, ctaLabel) {
-    return {
-      title: name,
-      ctaLabel: ctaLabel,
-      ctaUrl: ctaUrl,
-      items: [
-        ["Qué es", "Una opción Alicyn Lab organizada por objetivo para comparar con claridad."],
-        ["Para qué se busca", desire],
-        ["Cuándo considerarlo", "Cuando ese eje conecta con lo que quieres trabajar y necesitas una ruta más simple."],
-        ["Con qué se relaciona", related],
-        ["Precauciones responsables", "Información educativa y comercial. Producto exclusivo para investigación/laboratorio."]
-      ]
-    };
-  }
-
-  function guideForProduct(product) {
-    return guideBase(product.name, product.desire, product.related, product.url, "Ver producto");
-  }
-
-  function guideForProtocol(protocol) {
-    return guideBase(protocol.name, protocol.text, protocol.products, protocol.url, "Ver protocolo");
-  }
-
-  function setupNavigation(root) {
-    var peptideMenu = q(root, "[data-menu-mode='peptides']");
-    if (peptideMenu) {
-      peptideMenu.innerHTML =
-        '<button type="button" data-goal-jump="objectives">Objetivos</button>' +
-        '<button type="button" data-goal-jump="products">Productos</button>' +
-        '<button type="button" data-goal-jump="protocols">Protocolos</button>' +
-        '<a href="' + whats("Hola, vengo de Alicyn Lab. Quiero orientación para elegir un producto.") + '" target="_blank" rel="noopener">WhatsApp</a>';
-      qa(peptideMenu, "[data-goal-jump]").forEach(function (button) {
-        button.addEventListener("click", function () { jump(root, button.getAttribute("data-goal-jump")); });
-      });
-    }
-    var labels = [
-      ["inicio", "Inicio", "hero"],
-      ["objetivos", "Objetivos", "objectives"],
-      ["productos", "Productos", "products"],
-      ["protocolos", "Protocolos", "protocols"],
-      ["whatsapp", "WhatsApp", "whatsapp"]
-    ];
-    qa(root, "[data-mode-nav='peptides']").forEach(function (button, index) {
-      var config = labels[index];
-      if (!config) return;
-      button.setAttribute("data-lab-nav", config[0]);
-      var span = q(button, "span");
-      if (span) span.textContent = config[1];
-      button.addEventListener("click", function (event) {
-        event.preventDefault();
-        event.stopImmediatePropagation();
-        jump(root, config[2]);
-      }, true);
-    });
-  }
-
-  function jump(root, target) {
-    if (target === "whatsapp") {
-      window.open(whats("Hola, vengo de Alicyn Lab. Quiero orientación para elegir un producto."), "_blank", "noopener");
-      return;
-    }
-    var map = {
-      hero: "[data-lab-view='peptides'] .alicyn-lab-hero",
-      objectives: "#alicyn-goal-objectives",
-      products: "#alicyn-goal-products-block",
-      protocols: "#alicyn-goal-protocols-block"
-    };
-    scrollToNode(q(root, map[target] || map.objectives));
-  }
-
-  function init(root) {
-    if (!root || root.dataset.alicynGoalSimplified === "true") return;
-    root.dataset.alicynGoalSimplified = "true";
-    PHONE = root.dataset.whatsapp || PHONE;
-    injectStyles(root);
-    simplifyHero(root);
-    hideLegacy(root);
-    buildGoalApp(root);
-    setupNavigation(root);
-    window.setTimeout(function () { hideLegacy(root); }, 120);
-    window.setTimeout(function () { hideLegacy(root); }, 700);
-    try {
-      var active = window.localStorage.getItem("alicynLabGoal.active");
-      if (active) {
-        var section = q(root, "[data-alicyn-goal-section]");
-        if (section) selectGoal(root, section, active, false);
-      }
-    } catch (error) {}
-  }
-
-  document.addEventListener("DOMContentLoaded", function () {
-    qa(document, "[data-alicyn-lab-app]").forEach(init);
-  });
+  function hero(root){var p=q(root,"[data-lab-view='peptides']"),h=q(p,".alicyn-lab-hero");if(!h||h.dataset.agHero)return;h.dataset.agHero="1";h.innerHTML='<div class="alicyn-lab-hero-copy"><span class="ag-badge">Envío gratis en todos los péptidos</span><h1 class="alicyn-lab-hero-title">Péptidos Aesthetic Labs</h1><p class="alicyn-lab-hero-text">Elige tu objetivo y encuentra tu ruta.</p><p class="ag-micro">Compara productos Aesthetic Labs por piel, energía, metabolismo, recovery, performance o definición.</p><a class="ag-cta" href="'+COLLECTION+'">Ver péptidos Aesthetic Labs con envío gratis →</a></div><div class="ag-word" aria-hidden="true"><span>PEPTIDOS</span></div>'}
+  function hideOld(root){["[data-alicyn-axis-live]","[id^='alicyn-lab-mapa-']","[data-lab-screen='objetivos']","[data-lab-screen='quiz']","[data-lab-screen='productos']","[data-lab-screen='mas']","#catalogo-peptidos-investigacion","#protocolos-investigacion","[id^='alicyn-lab-comparador-']"].forEach(function(s){qa(root,s).forEach(function(n){if(!n.hasAttribute("data-ag-section")){n.classList.add("ag-hide");n.hidden=true}})});qa(root,"[data-app-brand]").forEach(function(n){n.textContent="Alicyn"});qa(root,"[data-app-tagline]").forEach(function(n){n.textContent="Compra por objetivo"})}
+  function build(root){var p=q(root,"[data-lab-view='peptides']");if(!p)return;var old=q(p,"[data-ag-section]");if(old)old.remove();var sec=document.createElement("section");sec.className="ag-section";sec.setAttribute("data-ag-section","");sec.innerHTML='<div class="ag-head" id="alicyn-goal-objectives"><h2>¿Qué quieres trabajar?</h2><p>Elige un objetivo y filtra tus péptidos Aesthetic Labs.</p></div><div class="ag-grid" data-goals></div><div class="ag-detail" id="alicyn-lab-route-detail" aria-live="polite"><div><span class="ag-eyebrow">Tu ruta sugerida</span><h3 data-route-title></h3><p data-route-text></p><div class="ag-route"><small>Productos recomendados</small><div class="ag-mini" data-route-products></div></div><div class="ag-route"><small>Protocolo recomendado</small><strong data-route-protocol></strong></div></div><div class="ag-actions"><button class="ag-btn ag-primary" type="button" data-to-products>Ver productos</button><button class="ag-btn ag-secondary" type="button" data-to-protocols>Ver protocolo</button><a class="ag-btn ag-ghost" data-whatsapp target="_blank" rel="noopener">WhatsApp</a></div></div><section class="ag-block" id="alicyn-goal-products-block"><div class="ag-block-head"><div><h3 data-products-title>Productos recomendados</h3><p>Precio claro, envío gratis y guía rápida para elegir con más claridad.</p></div></div><div class="ag-filters" data-filters></div><div class="ag-products" data-products></div></section><section class="ag-block" id="alicyn-goal-protocols-block"><div class="ag-block-head"><div><h3>Protocolos Aesthetic Labs por objetivo</h3><p>Guías de compra para elegir tus péptidos Aesthetic Labs con menos confusión, más intención y envío gratis.</p></div></div><div class="ag-protocols" data-protocols></div></section><section class="ag-block" id="alicyn-goal-compare-block"><div class="ag-block-head"><div><h3>Comparador rápido</h3><p>Una vista corta para ubicar eje, precio y ruta.</p></div></div><div class="ag-compare" data-compare></div></section><section class="ag-block"><div class="ag-info"><strong>Información importante</strong><span>Información educativa y comercial. En Alicyn te ayudamos a comparar productos Aesthetic Labs por objetivo, resolver dudas y elegir con más claridad. La información no sustituye orientación profesional ni representa promesa de resultado.</span></div></section><section class="ag-block" id="alicyn-goal-faq-block"><div class="ag-block-head"><div><h3>Preguntas frecuentes</h3><p>Compra guiada, disponibilidad y envío gratis.</p></div></div><div class="ag-faq" data-faq></div></section>';var h=q(p,".alicyn-lab-hero");(h?h:p).insertAdjacentElement(h?"afterend":"afterbegin",sec);render(sec);drawer(root);select(root,sec,"skin",false)}
+  function render(sec){q(sec,"[data-goals]").innerHTML=goals.map(function(g){return'<button class="ag-card" style="--a:'+g.accent+'33;--b:'+g.accent+'" data-goal="'+g.key+'" type="button"><span class="ag-ico">'+icon(g.icon)+'</span><span><strong class="ag-title">'+esc(g.title)+'</strong><span class="ag-keys">'+esc(g.micro)+'</span></span><span class="ag-more">Explorar →</span></button>'}).join("");qa(sec,"[data-goal]").forEach(function(b){b.onclick=function(){select(sec.closest("[data-alicyn-lab-app]"),sec,b.dataset.goal,true)}});q(sec,"[data-filters]").innerHTML=[{key:"all",title:"Todos"}].concat(goals).map(function(g){return'<button class="ag-filter" data-filter="'+g.key+'" type="button">'+esc(g.title)+'</button>'}).join("");qa(sec,"[data-filter]").forEach(function(b){b.onclick=function(){select(sec.closest("[data-alicyn-lab-app]"),sec,b.dataset.filter,false);go(q(sec,"#alicyn-goal-products-block"))}});q(sec,"[data-products]").innerHTML=products.map(cardProduct).join("");qa(sec,"[data-guide-product]").forEach(function(b){b.onclick=function(){openGuide(sec.closest("[data-alicyn-lab-app]"),guideProduct(prod(b.dataset.guideProduct)))}});q(sec,"[data-protocols]").innerHTML=protocols.map(cardProtocol).join("");qa(sec,"[data-guide-protocol]").forEach(function(b){b.onclick=function(){openGuide(sec.closest("[data-alicyn-lab-app]"),guideProtocol(find(protocols,b.dataset.guideProtocol)))}});q(sec,"[data-compare]").innerHTML=products.map(function(p){return'<div class="ag-row" data-axes="'+p.axes.join(' ')+'"><strong>'+esc(p.name)+'</strong><span>'+esc(p.axis)+' · '+esc(p.price)+'</span><span>'+esc(p.desire)+'</span></div>'}).join("");q(sec,"[data-faq]").innerHTML=[["¿Por qué comprar en Alicyn?","Porque no solo encuentras el producto: tienes asistencia para comparar opciones, resolver dudas antes de comprar y elegir una ruta con más claridad. También puedes escribir por WhatsApp para confirmar disponibilidad, revisar qué protocolo hace más sentido y recibir seguimiento sobre tu pedido."],["¿Puedo pedir ayuda antes de elegir?","Sí. Si no sabes por dónde empezar, puedes escribirnos por WhatsApp. Te ayudamos a comparar productos Aesthetic Labs por objetivo: piel, energía, metabolismo, recovery, performance o definición."],["¿Qué pasa después de comprar?","Te damos seguimiento del pedido, confirmación de envío y apoyo si tienes dudas sobre la información del producto. Todos los péptidos incluyen envío gratis."],["¿Para quién puede hacer sentido un producto?","Para personas que buscan comparar productos Aesthetic Labs por objetivo y entender dónde encaja dentro de una ruta de compra."],["¿Se puede combinar con otros productos?","Sí, puede formar parte de protocolos Aesthetic Labs por objetivo. Revisa las rutas sugeridas o escríbenos por WhatsApp para comparar opciones antes de elegir."]].map(function(f){return'<details><summary>'+esc(f[0])+'</summary><p>'+esc(f[1])+'</p></details>'}).join("");q(sec,"[data-to-products]").onclick=function(){go(q(sec,"#alicyn-goal-products-block"))};q(sec,"[data-to-protocols]").onclick=function(){go(q(sec,"#alicyn-goal-protocols-block"))}}
+  function cardProduct(p){return'<article class="ag-product" data-product="'+p.key+'" data-axes="'+p.axes.join(' ')+'"><div class="ag-media">'+vial(p)+'<div><h4>'+esc(p.name)+'</h4><span class="ag-axis">Eje: '+esc(p.axis)+'</span><strong class="ag-price">'+esc(p.price)+'</strong><span class="ag-free">Envío gratis</span></div></div><p class="ag-desire">'+esc(p.desire)+'</p><div class="ag-card-actions"><a class="ag-btn ag-primary" href="'+esc(p.url)+'">Ver producto</a><button class="ag-btn ag-secondary" type="button" data-guide-product="'+p.key+'">Ver guía</button></div></article>'}
+  function cardProtocol(p){return'<article class="ag-product" data-protocol="'+p.key+'" data-axes="'+p.axes.join(' ')+'"><div class="ag-media">'+vial({initials:"PACK"})+'<div><h4>'+esc(p.name)+'</h4><span class="ag-axis">'+esc(p.products)+'</span><strong class="ag-price">'+esc(p.price)+'</strong><span class="ag-free">Envío gratis</span></div></div><p class="ag-desire">'+esc(p.text)+'</p><div class="ag-card-actions"><a class="ag-btn ag-primary" href="'+esc(p.url)+'">Ver protocolo</a><button class="ag-btn ag-secondary" type="button" data-guide-protocol="'+p.key+'">Ver guía</button></div></article>'}
+  function mini(p){return'<a class="ag-mini-card" href="'+esc(p.url)+'">'+vial(p,"mini")+'<span><strong>'+esc(p.name)+'</strong><span>'+esc(p.price)+'</span><small>Envío gratis</small></span></a>'}
+  function select(root,sec,key,scroll){var all=key==="all",g=all?{key:"all",title:"Todos",products:products.map(function(p){return p.key}),protocol:"Explora por objetivo",description:"Vista completa para comparar productos Aesthetic Labs por precio, objetivo y ruta de compra."}:goal(key);qa(sec,"[data-goal]").forEach(function(b){var on=b.dataset.goal===g.key;b.classList.toggle("is-active",on);b.setAttribute("aria-pressed",on?"true":"false")});qa(sec,"[data-filter]").forEach(function(b){b.classList.toggle("is-active",b.dataset.filter===g.key)});q(sec,"[data-route-title]").textContent="Tu ruta: "+g.title;q(sec,"[data-route-text]").textContent=g.description;q(sec,"[data-route-protocol]").textContent=g.protocol;q(sec,"[data-route-products]").innerHTML=g.products.map(prod).filter(Boolean).map(mini).join("");q(sec,"[data-products-title]").textContent=all?"Todos los productos":"Productos para "+g.title;q(sec,"[data-whatsapp]").href=wa("Hola, vengo de Alicyn. Me interesa la ruta "+g.title+" de Péptidos Aesthetic Labs. ¿Me pueden orientar?");filter(sec,g.key);try{localStorage.setItem("alicynPeptidesGoal.active",g.key)}catch(e){}if(scroll)go(q(sec,"#alicyn-lab-route-detail"))}
+  function filter(sec,key){var all=key==="all";qa(sec,"[data-product], [data-protocol], .ag-row").forEach(function(c){var axes=(c.getAttribute("data-axes")||"").split(/\s+/);c.hidden=!(all||axes.indexOf(key)>-1)})}
+  function drawer(root){var d=q(root,"[data-ag-drawer]");if(d)return d;d=document.createElement("div");d.className="ag-drawer";d.hidden=true;d.setAttribute("data-ag-drawer","");d.innerHTML='<div class="ag-overlay" data-close></div><div class="ag-panel" role="dialog" aria-modal="true" aria-labelledby="ag-guide-title"><button class="ag-close" type="button" aria-label="Cerrar guía" data-close>×</button><h3 id="ag-guide-title" data-guide-title></h3><div class="ag-guide" data-guide></div><div class="ag-drawer-actions"><a class="ag-btn ag-primary" data-guide-cta>Ver producto</a><button class="ag-btn ag-secondary" type="button" data-close>Cerrar guía</button></div></div>';root.appendChild(d);qa(d,"[data-close]").forEach(function(b){b.onclick=function(){d.hidden=true}});document.addEventListener("keydown",function(e){if(e.key==="Escape")d.hidden=true});return d}
+  function openGuide(root,g){var d=drawer(root);q(d,"[data-guide-title]").textContent=g.title;q(d,"[data-guide]").innerHTML=g.items.map(function(i){return'<div><strong>'+esc(i[0])+'</strong><span>'+esc(i[1])+'</span></div>'}).join("");var a=q(d,"[data-guide-cta]");a.textContent=g.cta;a.href=g.url;d.hidden=false;q(d,"[data-close]").focus({preventScroll:true})}
+  function guideProduct(p){return{title:p.name,cta:"Ver producto",url:p.url,items:[["Qué es","Producto Aesthetic Labs organizado por objetivo para ayudarte a comparar antes de comprar."],["Para quién puede hacer sentido",p.desire],["Con qué objetivo se relaciona",p.axis+"."],["Con qué productos se relaciona",p.related+"."],["¿Incluye envío gratis?","Sí. Todos los péptidos y protocolos Aesthetic Labs de esta sección incluyen envío gratis."],["¿Puedo pedir ayuda antes de comprar?","Sí. En Alicyn te ayudamos a comparar opciones, confirmar disponibilidad y elegir con más claridad por WhatsApp."],["Después de comprar","Te damos seguimiento del pedido, confirmación de envío y apoyo si tienes dudas sobre la información del producto."]]}}
+  function guideProtocol(p){return{title:p.name,cta:"Ver protocolo",url:p.url,items:[["Qué incluye",p.products+"."],["Para qué objetivo está pensado",p.text],["Por qué comprarlo como protocolo","Porque agrupa productos por objetivo y simplifica la comparación antes de elegir."],["¿Incluye envío gratis?","Sí. Todos los protocolos Aesthetic Labs de esta sección incluyen envío gratis."],["¿Puedo pedir ayuda para elegir?","Sí. Puedes escribirnos por WhatsApp para comparar protocolos Aesthetic Labs, resolver dudas de disponibilidad y elegir con más claridad antes de comprar."]]}}
+  function nav(root){var menu=q(root,"[data-menu-mode='peptides']");if(menu){menu.innerHTML='<button type="button" data-jump="objectives">Objetivos</button><button type="button" data-jump="products">Productos</button><button type="button" data-jump="protocols">Protocolos</button><a href="'+wa("Hola, vengo de Alicyn. Quiero ayuda para elegir Péptidos Aesthetic Labs.")+'" target="_blank" rel="noopener">WhatsApp</a>';qa(menu,"[data-jump]").forEach(function(b){b.onclick=function(){jump(root,b.dataset.jump)}})}[["inicio","Inicio","hero"],["objetivos","Objetivos","objectives"],["productos","Productos","products"],["protocolos","Protocolos","protocols"],["whatsapp","WhatsApp","whatsapp"]].forEach(function(c,i){var b=qa(root,"[data-mode-nav='peptides']")[i];if(!b)return;b.setAttribute("data-lab-nav",c[0]);var sp=q(b,"span");if(sp)sp.textContent=c[1];b.addEventListener("click",function(e){e.preventDefault();e.stopImmediatePropagation();jump(root,c[2])},true)})}
+  function jump(root,t){if(t==="whatsapp"){window.open(wa("Hola, vengo de Alicyn. Quiero ayuda para elegir Péptidos Aesthetic Labs."),"_blank","noopener");return}go(q(root,{hero:"[data-lab-view='peptides'] .alicyn-lab-hero",objectives:"#alicyn-goal-objectives",products:"#alicyn-goal-products-block",protocols:"#alicyn-goal-protocols-block"}[t]||"#alicyn-goal-objectives"))}
+  function init(root){if(!root||root.dataset.agRefined)return;root.dataset.agRefined="1";PHONE=root.dataset.whatsapp||PHONE;styles(root);hideOld(root);hero(root);build(root);nav(root);setTimeout(function(){hideOld(root)},120);setTimeout(function(){hideOld(root)},700);try{var a=localStorage.getItem("alicynPeptidesGoal.active"),s=q(root,"[data-ag-section]");if(a&&s)select(root,s,a,false)}catch(e){}}
+  document.addEventListener("DOMContentLoaded",function(){qa(document,"[data-alicyn-lab-app]").forEach(init)});
 })();
