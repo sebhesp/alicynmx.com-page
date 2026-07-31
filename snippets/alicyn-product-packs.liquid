@@ -88,6 +88,7 @@
         <p class="alicyn-pack-unit">$350 MXN por pieza</p>
       {% endif %}
       <p>Para cuidado personal.</p>
+      <p class="alicyn-pack-microcopy">Tenlo antes de que pase: roce, sudor, presión o una noche incómoda.</p>
       {% render 'alicyn-buy-actions',
         product_handle: single_handle,
         quantity: 1,
@@ -131,6 +132,7 @@
         <p class="alicyn-pack-unit">$332.50 MXN por pieza</p>
       {% endif %}
       <p>Para compartir o tener repuesto.</p>
+      <p class="alicyn-pack-microcopy">Un frasco para ti y otro listo para alguien cercano o para respaldo.</p>
       {% render 'alicyn-buy-actions',
         product_handle: pack_2_handle,
         quantity: 1,
@@ -175,6 +177,7 @@
         <p class="alicyn-pack-unit">$315 MXN por pieza</p>
       {% endif %}
       <p>Para comprar con amigos.</p>
+      <p class="alicyn-pack-microcopy">Ideal cuando varias personas salen del estudio con perforación reciente.</p>
       {% render 'alicyn-buy-actions',
         product_handle: pack_3_handle,
         quantity: 1,
@@ -219,6 +222,7 @@
         <p class="alicyn-pack-unit">$305 MXN por pieza</p>
       {% endif %}
       <p>Para pedido grupal.</p>
+      <p class="alicyn-pack-microcopy">Para compartir, regalar o tener varias piezas listas sin entrar a mayoreo.</p>
       {% render 'alicyn-buy-actions',
         product_handle: pack_4_handle,
         quantity: 1,
@@ -263,6 +267,7 @@
         <p class="alicyn-pack-unit">Mejor precio por pieza del pedido</p>
       {% endif %}
       <p>Mejor precio por pieza.</p>
+      <p class="alicyn-pack-microcopy">La opción pública para grupo que quiere ordenar mejor su pedido.</p>
       {% render 'alicyn-buy-actions',
         product_handle: pack_5_handle,
         quantity: 1,
@@ -275,5 +280,35 @@
         setup_message: 'Configura este pack en Shopify Admin para activar compra directa.'
       %}
     </article>
+  </div>
+
+  <div class="alicyn-pack-decision" aria-labelledby="alicyn-pack-decision-title">
+    <div class="alicyn-pack-decision-copy">
+      <p class="eyebrow">Guía rápida</p>
+      <h3 id="alicyn-pack-decision-title">¿Cuál pack te conviene?</h3>
+      <p>Elige por contexto, no por presión. Alicyn es para tener claridad cuando aparece un momento incómodo, sin improvisar ni manipular de más.</p>
+    </div>
+    <div class="alicyn-pack-decision-grid">
+      <article>
+        <span>1 pieza</span>
+        <strong>Piercing nuevo personal</strong>
+        <p>Para tener algo claro cuando hay roce, sudor o sensibilidad común.</p>
+      </article>
+      <article>
+        <span>2 piezas</span>
+        <strong>Tú + alguien cercano</strong>
+        <p>Un respaldo en casa o una compra compartida con pareja, roomie o familiar.</p>
+      </article>
+      <article>
+        <span>3 piezas</span>
+        <strong>Amigos con perfos recientes</strong>
+        <p>Pedido grupal pequeño para cuidar mejor sin comprar de más.</p>
+      </article>
+      <article>
+        <span>4-5 piezas</span>
+        <strong>Mini comunidad</strong>
+        <p>Para compartir entre varios y aprovechar mejor el pedido. El envío se cotiza en checkout.</p>
+      </article>
+    </div>
   </div>
 </section>

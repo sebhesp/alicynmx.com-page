@@ -284,6 +284,24 @@
       </div>
     </section>
 
+    <section class="brand-pillars" aria-label="Pilares de marca Alicyn">
+      <article>
+        <span>01</span>
+        <strong>Cuidado responsable</strong>
+        <p>Uso tópico externo, sobre piel sana y sin promesas médicas.</p>
+      </article>
+      <article>
+        <span>02</span>
+        <strong>Claridad en momentos clave</strong>
+        <p>Para saber qué hacer cuando hubo roce, sudor, presión o sensibilidad común.</p>
+      </article>
+      <article>
+        <span>03</span>
+        <strong>Respeto por la guía profesional</strong>
+        <p>Si aparecen señales de alerta, Alicyn no reemplaza a tu perforador ni a un profesional de salud.</p>
+      </article>
+    </section>
+
     {% if section.settings.show_packs %}
       {% render 'alicyn-product-packs',
         product_single_handle: section.settings.product_single_handle,
@@ -498,16 +516,27 @@
           <span>{{ section.settings.reviews_years_text | escape }}</span>
         </article>
       </div>
+      <div class="review-filter-row" aria-label="Filtrar experiencias por tipo de perforación">
+        <button type="button" data-review-filter="all" aria-pressed="true">Todas</button>
+        <button type="button" data-review-filter="nostril" aria-pressed="false">Nostril</button>
+        <button type="button" data-review-filter="helix" aria-pressed="false">Helix</button>
+        <button type="button" data-review-filter="conch" aria-pressed="false">Conch</button>
+        <button type="button" data-review-filter="lobulo" aria-pressed="false">Lóbulo</button>
+        <button type="button" data-review-filter="septum" aria-pressed="false">Septum</button>
+        <button type="button" data-review-filter="ombligo" aria-pressed="false">Ombligo</button>
+        <button type="button" data-review-filter="tragus" aria-pressed="false">Tragus</button>
+      </div>
       <div class="reviews-carousel" data-reviews-carousel>
       <div class="reviews-track" data-reviews-track tabindex="0" aria-label="Experiencias de clientes Alicyn">
         {% for block in section.blocks %}
           {% case block.type %}
             {% when 'testimonial' %}
-              <article class="review-card" {{ block.shopify_attributes }}>
+              <article class="review-card" data-review-piercing="{{ block.settings.piercing | handleize }}" {{ block.shopify_attributes }}>
                 <div class="review-top">
                   <strong>{{ block.settings.initials | escape }} - {{ block.settings.piercing | escape }}</strong>
                   <span>{{ block.settings.rating | escape }}</span>
                 </div>
+                <span class="review-tag">{{ block.settings.piercing | escape }}</span>
                 <p>{{ block.settings.text | escape }}</p>
               </article>
           {% endcase %}
@@ -537,6 +566,34 @@
               </article>
           {% endcase %}
         {% endfor %}
+      </div>
+    </section>
+
+    <section class="section-pad dm-section" aria-labelledby="dm-title">
+      <div class="section-heading">
+        <p class="eyebrow">Alicyn responde</p>
+        <h2 id="dm-title">Mensajes típicos antes de comprar.</h2>
+        <p>La mayoría no busca tocar más su piercing. Busca saber si está actuando con criterio. Estos escenarios ayudan a decidir sin dramatizar.</p>
+      </div>
+      <div class="dm-grid" aria-label="Escenarios frecuentes de cuidado post-piercing">
+        <article>
+          <span>DM 01</span>
+          <blockquote>“Me jalé la pieza con la ropa y ahora me da miedo limpiarla.”</blockquote>
+          <p><strong>Respuesta Alicyn:</strong> revisa señales de alerta. Si parece una molestia común, limpia por fuera con manos lavadas, gasa limpia y sin girar la joyería.</p>
+        </article>
+        <article>
+          <span>DM 02</span>
+          <blockquote>“Dormí sobre mi helix y amaneció sensible.”</blockquote>
+          <p><strong>Respuesta Alicyn:</strong> úsalo como apoyo puntual si lo necesitas. Si la zona se ve cada vez peor, pausa y consulta a tu perforador.</p>
+        </article>
+        <article>
+          <span>DM 03</span>
+          <blockquote>“Salí del gym y siento la zona rara por sudor.”</blockquote>
+          <p><strong>Respuesta Alicyn:</strong> prioriza limpieza externa y movimientos suaves. Alicyn ayuda a ordenar ese momento sin convertirlo en rutina permanente.</p>
+        </article>
+      </div>
+      <div class="care-note" role="note">
+        Si aparece dolor intenso, calor fuerte, secreción abundante, mal olor, fiebre, líneas rojas, joyería incrustada o reacción severa, no experimentes: consulta a un profesional.
       </div>
     </section>
 

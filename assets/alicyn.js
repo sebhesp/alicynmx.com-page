@@ -274,6 +274,39 @@
     });
   }
 
+  function setupReviewFilters() {
+    var sections = document.querySelectorAll(".experiences");
+
+    sections.forEach(function (section) {
+      var buttons = section.querySelectorAll("[data-review-filter]");
+      var cards = section.querySelectorAll("[data-review-piercing]");
+      var track = section.querySelector("[data-reviews-track]");
+
+      if (!buttons.length || !cards.length) {
+        return;
+      }
+
+      buttons.forEach(function (button) {
+        button.addEventListener("click", function () {
+          var filter = button.getAttribute("data-review-filter") || "all";
+
+          buttons.forEach(function (item) {
+            item.setAttribute("aria-pressed", String(item === button));
+          });
+
+          cards.forEach(function (card) {
+            var matches = filter === "all" || card.getAttribute("data-review-piercing") === filter;
+            card.hidden = !matches;
+          });
+
+          if (track) {
+            track.scrollTo({ left: 0, behavior: "smooth" });
+          }
+        });
+      });
+    });
+  }
+
   function setupAjaxCartForms() {
     var forms = document.querySelectorAll("[data-ajax-cart-form]");
 
@@ -374,6 +407,7 @@
     setupFaq();
     setupChat();
     setupReviewsCarousel();
+    setupReviewFilters();
     setupAjaxCartForms();
   });
 })();
