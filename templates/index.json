@@ -11,7 +11,6 @@
   "sections": {
     "alicyn_landing": {
       "type": "alicyn-landing",
-      "disabled": true,
       "blocks": {
         "trust_formula": {
           "type": "trust_badge",
@@ -508,8 +507,8 @@
         "alert_note": "Si aparece alguna de estas señales, pausa cualquier experimento de autocuidado y consulta a tu perforador o a un profesional de la salud.",
         "how_eyebrow": "Cómo usarlo",
         "how_heading": "Úsalo solo cuando el momento lo pide.",
-        "how_copy": "Para cuidado post piercing puntual: después de sudor, roce, cambio de joyería o molestias en piercing, siempre sobre piel sana y siguiendo la indicación de tu perforador.",
-        "how_note": "Alicyn está pensado para piel sana y molestias comunes del proceso. No debe usarse como sustituto de valoración profesional ante signos de infección.",
+        "how_copy": "Alicyn es de uso puntual y localizado: aplica 1 vez al día cuando sientas que la zona lo necesita. Si la molestia es mucha, máximo 2 aplicaciones en el día. Si no sientes que lo necesitas, mejor no aplicar.",
+        "how_note": "Antes de volver a aplicar al día siguiente, lava la zona con cuidado y seca con gasa limpia. No lo conviertas en una rutina diaria permanente; úsalo como apoyo localizado en momentos de molestia, roce o exposición. Si aparecen señales de infección, consulta a un profesional.",
         "details_eyebrow": "Producto",
         "details_heading": "Alicyn 100 ml, listo para tenerlo a la mano.",
         "details_product_title": "Alicyn solución antiséptica",
@@ -564,7 +563,7 @@
         "chat_default_message": "Hola, quiero comprar Alicyn 100 ml.",
         "chat_send_label": "Abrir WhatsApp",
         "sticky_cta_label": "Comprar Alicyn 100 ml — $350",
-        "footer_copy": "Cuidado post-piercing de uso tópico para apoyo puntual. Solo uso externo. Evita ojos y mucosas. Usa sobre piel sana. Consulta a tu perforador si tienes dudas o si las molestias empeoran.",
+        "footer_copy": "Uso tópico externo. No es medicamento. Evita ojos y mucosas. Usa sobre piel sana. Consulta a tu perforador o a un profesional de la salud ante signos de infección o si las molestias empeoran.",
         "footer_badge_1": "Solo uso externo",
         "footer_badge_2": "Consulta a tu perforador si tienes dudas",
         "schema_product_name": "Alicyn Solución Antiséptica 100 ml",
@@ -591,6 +590,7 @@
     },
     "alicyn_lab": {
       "type": "alicyn-lab-peptides",
+      "disabled": true,
       "blocks": {
         "education_skin": {
           "type": "education_step",
@@ -771,7 +771,7 @@
             "protocol_price": "$3,600 MXN",
             "protocol_components": "BPC-157 + TB-500",
             "protocol_focus": "Respuesta tisular experimental",
-            "protocol_badge": "Envío gratis",
+            "protocol_badge": "Envío cotizado en checkout",
             "protocol_description": "Ruta recovery para continuidad física, movilidad y cuidado corporal avanzado.",
             "protocol_link": "/products/stack-bpc-157-tb-500-aesthetic-labs"
           }
@@ -932,7 +932,7 @@
           "type": "faq_item",
           "settings": {
             "faq_question": "¿Dónde comprar péptidos Aesthetic Labs en México?",
-            "faq_answer": "Puedes explorar péptidos Aesthetic Labs en Alicyn, comparar por objetivo y comprar con envío gratis en México."
+            "faq_answer": "Puedes explorar péptidos Aesthetic Labs en Alicyn, comparar por objetivo y comprar con envío cotizado en checkout en México."
           }
         }
       },
@@ -975,7 +975,7 @@
       "settings": {
         "heading": "Péptidos Aesthetic Labs",
         "subheading": "Elige tu objetivo y encuentra tu ruta.",
-        "primary_button_label": "Ver péptidos Aesthetic Labs con envío gratis",
+        "primary_button_label": "Ver péptidos Aesthetic Labs con envío cotizado en checkout",
         "primary_button_link": "/collections/peptidos",
         "secondary_button_label": "Explorar por objetivo",
         "whatsapp_number": "525542388056",

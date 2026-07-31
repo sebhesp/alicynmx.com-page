@@ -28,48 +28,27 @@
     assign buy_enabled = false
   endif
 
-  assign checkout_url_clean = checkout_url | default: '' | strip
-  assign checkout_url_downcase = checkout_url_clean | downcase
-  assign valid_checkout_url = false
-  if checkout_url_clean != blank
-    if checkout_url_downcase contains 'checkout' or checkout_url_downcase contains 'mercadopago' or checkout_url_downcase contains '/cart/'
-      assign valid_checkout_url = true
-    endif
-  endif
-
-  assign open_external_checkout = false
-  if open_checkout_new_tab and valid_checkout_url
-    assign open_external_checkout = true
-  endif
 %}
 
 <div class="alicyn-buy-actions {{ extra_class }}" data-buy-actions>
   {% if action_product != blank and action_product.available and action_variant != blank and action_variant.available %}
     {% if add_enabled %}
-      <form class="alicyn-cart-form" method="post" action="/cart/add">
+      <form class="alicyn-cart-form" method="post" action="{{ routes.cart_add_url }}" data-ajax-cart-form data-cart-action="add">
         <input type="hidden" name="id" value="{{ action_variant.id }}">
         <input type="hidden" name="quantity" value="{{ action_quantity }}">
         <button class="button button-primary" type="submit">{{ add_label | escape }}</button>
+        <span class="alicyn-cart-status" data-cart-status aria-live="polite"></span>
       </form>
     {% endif %}
 
     {% if buy_enabled %}
-      {% if valid_checkout_url %}
-        <a
-          class="button button-secondary"
-          href="{{ checkout_url_clean | escape }}"
-          {% if open_external_checkout %}target="_blank" rel="noopener noreferrer"{% endif %}
-        >
-          {{ buy_label | escape }}
-        </a>
-      {% else %}
-        <form class="alicyn-cart-form" method="post" action="/cart/add">
-          <input type="hidden" name="id" value="{{ action_variant.id }}">
-          <input type="hidden" name="quantity" value="{{ action_quantity }}">
-          <input type="hidden" name="return_to" value="/checkout">
-          <button class="button button-secondary" type="submit">{{ buy_label | escape }}</button>
-        </form>
-      {% endif %}
+      <form class="alicyn-cart-form" method="post" action="{{ routes.cart_add_url }}" data-ajax-cart-form data-cart-action="checkout">
+        <input type="hidden" name="id" value="{{ action_variant.id }}">
+        <input type="hidden" name="quantity" value="{{ action_quantity }}">
+        <input type="hidden" name="return_to" value="/checkout">
+        <button class="button button-secondary" type="submit">{{ buy_label | escape }}</button>
+        <span class="alicyn-cart-status" data-cart-status aria-live="polite"></span>
+      </form>
     {% endif %}
   {% else %}
     <p class="alicyn-setup-note">{{ setup_message_text | escape }}</p>

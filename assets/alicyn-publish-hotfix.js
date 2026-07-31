@@ -41,7 +41,7 @@
       if(!data||!box||q(box,"img"))return;
       var label=(q(card,"strong")||q(card,"h4")||{textContent:data.alt}).textContent.trim()||data.alt;
       box.classList.add("ag-photo");
-      box.innerHTML='<img src="'+attr(data.src)+'" alt="'+attr(label+' con envío gratis en Alicyn')+'" loading="lazy">';
+      box.innerHTML='<img src="'+attr(data.src)+'" alt="'+attr(label+' con envío cotizado en checkout en Alicyn')+'" loading="lazy">';
     });
   }
   function refine(root){
@@ -58,7 +58,7 @@
     if(hero.dataset.agHotfix!=="1"){
       hero.dataset.agHotfix="1";
       hero.classList.add("alicyn-lab-hero","ag-hotfix-hero");
-      hero.innerHTML='<div class="alicyn-lab-hero-copy"><span class="ag-badge">Envío gratis en todos los péptidos</span><h1 class="alicyn-lab-hero-title">Péptidos Aesthetic Labs</h1><p class="alicyn-lab-hero-text">Elige tu objetivo y encuentra tu ruta.</p><p class="ag-micro">Compara productos Aesthetic Labs por piel, energía, metabolismo, recovery, performance o definición.</p><a class="ag-cta" href="'+COLLECTION+'">Ver péptidos Aesthetic Labs con envío gratis →</a></div><div class="ag-word" aria-hidden="true"><span>PEPTIDOS</span></div>';
+      hero.innerHTML='<div class="alicyn-lab-hero-copy"><span class="ag-badge">Envío cotizado en checkout en todos los péptidos</span><h1 class="alicyn-lab-hero-title">Péptidos Aesthetic Labs</h1><p class="alicyn-lab-hero-text">Elige tu objetivo y encuentra tu ruta.</p><p class="ag-micro">Compara productos Aesthetic Labs por piel, energía, metabolismo, recovery, performance o definición.</p><a class="ag-cta" href="'+COLLECTION+'">Ver péptidos Aesthetic Labs con envío cotizado en checkout →</a></div><div class="ag-word" aria-hidden="true"><span>PEPTIDOS</span></div>';
     }
     if(app&&hero.nextElementSibling!==app)hero.insertAdjacentElement("afterend",app);
     var assistant=q(peptide,".alicyn-lab-assistant");

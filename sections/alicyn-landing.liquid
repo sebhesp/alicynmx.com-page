@@ -1,26 +1,9 @@
 {% liquid
   assign product_url = section.settings.product_url | default: '/products/alicyn-solucion-antiseptica'
-  assign checkout_url = section.settings.checkout_url | default: '' | strip
-  assign checkout_url_downcase = checkout_url | downcase
-  assign valid_checkout_url = false
-  if checkout_url != blank
-    if checkout_url_downcase contains 'checkout' or checkout_url_downcase contains 'mercadopago' or checkout_url_downcase contains '/cart/'
-      assign valid_checkout_url = true
-    endif
-  endif
   assign checkout_product_handle = section.settings.product_single_handle | default: 'alicyn-solucion-antiseptica'
   assign checkout_product = all_products[checkout_product_handle]
-  assign buy_url = product_url
-  assign checkout_target_blank = false
   assign direct_purchase_available = false
-  if valid_checkout_url
-    assign buy_url = checkout_url
-    assign direct_purchase_available = true
-    if section.settings.open_checkout_new_tab
-      assign checkout_target_blank = true
-    endif
-  elsif checkout_product != blank and checkout_product.available and checkout_product.selected_or_first_available_variant != blank and checkout_product.selected_or_first_available_variant.available
-    assign buy_url = '/cart/' | append: checkout_product.selected_or_first_available_variant.id | append: ':1'
+  if checkout_product != blank and checkout_product.available and checkout_product.selected_or_first_available_variant != blank and checkout_product.selected_or_first_available_variant.available
     assign direct_purchase_available = true
   endif
   assign whatsapp_url = section.settings.whatsapp_url | default: 'https://wa.me/525542388056?text=Hola%2C%20quiero%20comprar%20Alicyn'
@@ -28,6 +11,10 @@
   assign product_size = section.settings.product_size | default: '100 ml'
   assign product_price = section.settings.product_price | default: '350.00'
   assign product_price_label = section.settings.product_price_label | default: '$350 MXN'
+  if checkout_product != blank
+    assign product_price = checkout_product.price | money_without_currency | remove: ','
+    assign product_price_label = checkout_product.price | money
+  endif
   assign primary_cta_label = section.settings.primary_cta_label | default: 'Comprar Alicyn 100 ml — $350 MXN'
   assign sticky_cta_label = section.settings.sticky_cta_label | default: 'Comprar Alicyn 100 ml — $350'
   assign product_image_cleanup = section.settings.product_image_cleanup | default: 'transparent'
@@ -52,9 +39,13 @@
   unless product_url contains 'http'
     assign product_canonical_url = 'https://alicynmx.com' | append: product_url
   endunless
+  assign product_display_image = section.settings.product_image
+  if checkout_product != blank and checkout_product.featured_image != blank
+    assign product_display_image = checkout_product.featured_image
+  endif
   assign product_schema_image = 'alicyn-product.png' | asset_url
-  if section.settings.product_image != blank
-    assign product_schema_image = section.settings.product_image | image_url: width: 1200
+  if product_display_image != blank
+    assign product_schema_image = product_display_image | image_url: width: 1200
   endif
 %}
 
@@ -158,13 +149,16 @@
       <a href="/cart">Carrito</a>
       <a href="{{ account_url | escape }}">{{ account_label | escape }}</a>
     </nav>
-    <a
-      class="header-cta"
-      href="{{ buy_url | escape }}"
-      {% if checkout_target_blank %}target="_blank" rel="noopener noreferrer"{% endif %}
-    >
-      {{ section.settings.header_cta_label | escape }}
-    </a>
+    {% if direct_purchase_available %}
+      <form class="header-cta-form alicyn-cart-form" method="post" action="{{ routes.cart_add_url }}" data-ajax-cart-form>
+        <input type="hidden" name="id" value="{{ checkout_product.selected_or_first_available_variant.id }}">
+        <input type="hidden" name="quantity" value="1">
+        <button class="header-cta" type="submit">{{ section.settings.header_cta_label | escape }}</button>
+        <span class="alicyn-cart-status" data-cart-status aria-live="polite"></span>
+      </form>
+    {% else %}
+      <a class="header-cta" href="{{ product_url | escape }}">{{ section.settings.header_cta_label | escape }}</a>
+    {% endif %}
   </header>
 
   <main id="contenido">
@@ -179,16 +173,16 @@
           style="--product-image-fit: {{ product_image_fit }}; --product-image-position: {{ product_image_position }}; --product-image-scale: {{ product_image_scale_value }}; --product-image-x: {{ product_image_horizontal_offset }}px; --product-image-y: {{ product_image_vertical_offset }}px; --product-image-stage-padding: {{ product_image_stage_padding }}px;"
           data-product-image-wrap
         >
-          {% if section.settings.product_image != blank %}
+          {% if product_display_image != blank %}
             <img
               class="product-photo product-photo-fit-{{ product_image_fit }}"
-              src="{{ section.settings.product_image | image_url: width: 1000 }}"
+              src="{{ product_display_image | image_url: width: 1000 }}"
               srcset="
-                {{ section.settings.product_image | image_url: width: 320 }} 320w,
-                {{ section.settings.product_image | image_url: width: 520 }} 520w,
-                {{ section.settings.product_image | image_url: width: 760 }} 760w,
-                {{ section.settings.product_image | image_url: width: 1000 }} 1000w,
-                {{ section.settings.product_image | image_url: width: 1200 }} 1200w
+                {{ product_display_image | image_url: width: 320 }} 320w,
+                {{ product_display_image | image_url: width: 520 }} 520w,
+                {{ product_display_image | image_url: width: 760 }} 760w,
+                {{ product_display_image | image_url: width: 1000 }} 1000w,
+                {{ product_display_image | image_url: width: 1200 }} 1200w
               "
               sizes="(min-width: 900px) 440px, 84vw"
               alt="{{ section.settings.product_image_alt | escape }}"
@@ -223,7 +217,7 @@
           </div>
           <div class="product-note">
             <span>{{ section.settings.product_note_label | escape }}</span>
-            <strong>{{ section.settings.product_note_value | escape }}</strong>
+            <strong>{{ product_price_label | escape }}</strong>
           </div>
         </div>
         <!-- END PRODUCT IMAGE BLOCK -->
@@ -241,8 +235,6 @@
             secondary_label: primary_cta_label,
             fallback_url: product_url,
             whatsapp_url: whatsapp_url,
-            checkout_url: checkout_url,
-            open_checkout_new_tab: section.settings.open_checkout_new_tab,
             show_add_to_cart: false,
             show_buy_now: true,
             class_name: 'alicyn-buy-actions-inline alicyn-buy-actions-hero'
@@ -304,9 +296,8 @@
         packs_copy: section.settings.packs_copy,
         whatsapp_url: whatsapp_url,
         product_url: product_url,
-        checkout_url: checkout_url,
         pack_product_image: section.settings.pack_product_image,
-        fallback_product_image: section.settings.product_image,
+        fallback_product_image: product_display_image,
         pack_product_image_alt: section.settings.pack_product_image_alt,
         pack_image_style: section.settings.pack_image_style,
         pack_image_scale: section.settings.pack_image_scale,
@@ -445,8 +436,6 @@
             secondary_label: section.settings.details_cta_label,
             fallback_url: product_url,
             whatsapp_url: whatsapp_url,
-            checkout_url: checkout_url,
-            open_checkout_new_tab: section.settings.open_checkout_new_tab,
             show_add_to_cart: true,
             show_buy_now: true,
             class_name: 'alicyn-buy-actions-panel'
@@ -614,8 +603,6 @@
           secondary_label: section.settings.final_primary_label,
           fallback_url: product_url,
           whatsapp_url: whatsapp_url,
-          checkout_url: checkout_url,
-          open_checkout_new_tab: section.settings.open_checkout_new_tab,
           show_add_to_cart: false,
           show_buy_now: true,
           class_name: 'alicyn-buy-actions-inline'
@@ -672,13 +659,16 @@
     </div>
   </section>
 
-  <a
-    class="sticky-mobile-cta"
-    href="{{ buy_url | escape }}"
-    {% if checkout_target_blank %}target="_blank" rel="noopener noreferrer"{% endif %}
-  >
-    {{ sticky_cta_label | escape }}
-  </a>
+  {% if direct_purchase_available %}
+    <form class="sticky-mobile-cta-form alicyn-cart-form" method="post" action="{{ routes.cart_add_url }}" data-ajax-cart-form>
+      <input type="hidden" name="id" value="{{ checkout_product.selected_or_first_available_variant.id }}">
+      <input type="hidden" name="quantity" value="1">
+      <button class="sticky-mobile-cta" type="submit">{{ sticky_cta_label | escape }}</button>
+      <span class="alicyn-cart-status sticky-cart-status" data-cart-status aria-live="polite"></span>
+    </form>
+  {% else %}
+    <a class="sticky-mobile-cta" href="{{ product_url | escape }}">{{ sticky_cta_label | escape }}</a>
+  {% endif %}
 
   <footer class="site-footer" aria-label="Pie de página">
     <div>
@@ -750,19 +740,6 @@
       "id": "product_url",
       "label": "Product URL",
       "default": "/products/alicyn-solucion-antiseptica"
-    },
-    {
-      "type": "text",
-      "id": "checkout_url",
-      "label": "Checkout URL for buy buttons",
-      "info": "Optional override. Leave empty to use the real Shopify product, cart and checkout flow so Skydrop can calculate shipping.",
-      "default": ""
-    },
-    {
-      "type": "checkbox",
-      "id": "open_checkout_new_tab",
-      "label": "Open checkout in a new tab",
-      "default": false
     },
     {
       "type": "text",
@@ -1353,13 +1330,13 @@
       "type": "textarea",
       "id": "how_copy",
       "label": "How-to copy",
-      "default": "Para cuidado post piercing puntual: después de sudor, roce, cambio de joyería o molestias en piercing, siempre sobre piel sana y siguiendo la indicación de tu perforador."
+      "default": "Alicyn es de uso puntual y localizado: aplica 1 vez al día cuando sientas que la zona lo necesita. Si la molestia es mucha, máximo 2 aplicaciones en el día. Si no sientes que lo necesitas, mejor no aplicar."
     },
     {
       "type": "textarea",
       "id": "how_note",
       "label": "How-to note",
-      "default": "Alicyn está pensado para piel sana y molestias comunes del proceso. No debe usarse como sustituto de valoración profesional ante signos de infección."
+      "default": "Antes de volver a aplicar al día siguiente, lava la zona con cuidado y seca con gasa limpia. No lo conviertas en una rutina diaria permanente; úsalo como apoyo localizado en momentos de molestia, roce o exposición. Si aparecen señales de infección, consulta a un profesional."
     },
     {
       "type": "header",
@@ -1741,7 +1718,7 @@
       "type": "textarea",
       "id": "footer_copy",
       "label": "Footer copy",
-      "default": "Cuidado post-piercing de uso tópico para apoyo puntual. Solo uso externo. Evita ojos y mucosas. Usa sobre piel sana. Consulta a tu perforador si tienes dudas o si las molestias empeoran."
+      "default": "Uso tópico externo. No es medicamento. Evita ojos y mucosas. Usa sobre piel sana. Consulta a tu perforador o a un profesional de la salud ante signos de infección o si las molestias empeoran."
     },
     {
       "type": "text",

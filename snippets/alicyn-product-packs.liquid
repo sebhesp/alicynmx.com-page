@@ -9,7 +9,6 @@
   assign packs_copy_text = packs_copy | default: 'Pide una pieza para tu cuidado personal o arma un pedido con amigos para aprovechar mejor el envío y mejorar el precio por pieza.'
   assign whatsapp_fallback_url = whatsapp_url | default: 'https://wa.me/525542388056?text=Hola%2C%20quiero%20comprar%20Alicyn'
   assign product_url_value = product_url | default: '/products/alicyn-solucion-antiseptica'
-  assign checkout_url_value = checkout_url | default: ''
 
   assign single_product = all_products[single_handle]
   assign pack_2_product = all_products[pack_2_handle]
@@ -22,8 +21,8 @@
     assign pack_visual_enabled = false
   endif
   assign pack_visual_image = pack_product_image
-  if pack_visual_image == fallback_product_image
-    assign pack_visual_image = blank
+  if pack_visual_image == blank
+    assign pack_visual_image = fallback_product_image
   endif
   assign pack_visual_alt = pack_product_image_alt | default: 'Alicyn solución antiséptica 100 ml para cuidado post-piercing'
   assign pack_visual_style = pack_image_style | default: 'stacked'
@@ -96,7 +95,6 @@
         secondary_label: 'Comprar ahora',
         fallback_url: product_url_value,
         whatsapp_url: whatsapp_fallback_url,
-        checkout_url: checkout_url_value,
         show_add_to_cart: true,
         show_buy_now: true,
         setup_message: 'Configura este producto en Shopify Admin para activar compra directa.'
@@ -140,7 +138,6 @@
         secondary_label: 'Comprar ahora',
         fallback_url: '/products/alicyn-pack-2',
         whatsapp_url: whatsapp_fallback_url,
-        checkout_url: '',
         show_add_to_cart: true,
         show_buy_now: true,
         setup_message: 'Configura este pack en Shopify Admin para activar compra directa.'
@@ -185,7 +182,6 @@
         secondary_label: 'Comprar ahora',
         fallback_url: '/products/alicyn-pack-3',
         whatsapp_url: whatsapp_fallback_url,
-        checkout_url: '',
         show_add_to_cart: true,
         show_buy_now: true,
         setup_message: 'Configura este pack en Shopify Admin para activar compra directa.'
@@ -230,7 +226,6 @@
         secondary_label: 'Comprar ahora',
         fallback_url: '/products/alicyn-pack-4',
         whatsapp_url: whatsapp_fallback_url,
-        checkout_url: '',
         show_add_to_cart: true,
         show_buy_now: true,
         setup_message: 'Configura este pack en Shopify Admin para activar compra directa.'
@@ -275,7 +270,6 @@
         secondary_label: 'Comprar ahora',
         fallback_url: '/products/alicyn-pack-5',
         whatsapp_url: whatsapp_fallback_url,
-        checkout_url: '',
         show_add_to_cart: true,
         show_buy_now: true,
         setup_message: 'Configura este pack en Shopify Admin para activar compra directa.'
