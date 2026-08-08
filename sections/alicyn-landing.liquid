@@ -98,7 +98,7 @@
       class="brand brand-with-logo"
       href="#producto"
       aria-label="Alicyn"
-      style="--header-logo-width: {{ section.settings.header_logo_width | default: 156 }}px; --header-logo-mobile-width: {{ section.settings.header_logo_mobile_width | default: 124 }}px;"
+      style="--header-logo-width: {{ section.settings.header_logo_width | default: 172 }}px; --header-logo-mobile-width: {{ section.settings.header_logo_mobile_width | default: 136 }}px;"
     >
       {% if section.settings.header_logo != blank %}
         <img
@@ -108,18 +108,18 @@
             {{ section.settings.header_logo | image_url: width: 260 }} 260w,
             {{ section.settings.header_logo | image_url: width: 520 }} 520w
           "
-          sizes="(max-width: 749px) {{ section.settings.header_logo_mobile_width | default: 124 }}px, {{ section.settings.header_logo_width | default: 156 }}px"
+          sizes="(max-width: 749px) {{ section.settings.header_logo_mobile_width | default: 136 }}px, {{ section.settings.header_logo_width | default: 172 }}px"
           alt="Alicyn"
-          width="{{ section.settings.header_logo_width | default: 156 }}"
+          width="{{ section.settings.header_logo_width | default: 172 }}"
           loading="eager"
           onerror="this.style.display='none'; this.nextElementSibling.style.display='inline-flex';"
         >
       {% else %}
         <img
           class="brand-logo-image brand-logo-image-fallback"
-          src="{{ 'alicyn-logo-principal-blanco.png' | asset_url }}"
+          src="{{ 'alicyn-logo-header-tight.png' | asset_url }}"
           alt="Alicyn"
-          width="{{ section.settings.header_logo_width | default: 156 }}"
+          width="{{ section.settings.header_logo_width | default: 172 }}"
           loading="eager"
           onerror="this.style.display='none'; this.nextElementSibling.style.display='inline-flex';"
         >
@@ -300,6 +300,112 @@
         <strong>Respeto por la guía profesional</strong>
         <p>Si aparecen señales de alerta, Alicyn no reemplaza a tu perforador ni a un profesional de salud.</p>
       </article>
+    </section>
+
+    <section class="section-pad visual-moments" aria-labelledby="visual-moments-title">
+      <div class="section-heading visual-moments-heading">
+        <p class="eyebrow">Guía visual</p>
+        <h2 id="visual-moments-title">Compra por el momento que estás viviendo.</h2>
+        <p>La mayoría no compra aftercare por costumbre: lo busca cuando su piercing se siente vulnerable. Elige tu situación y sigue con una compra clara.</p>
+      </div>
+
+      <div class="visual-moment-grid" aria-label="Momentos comunes para usar Alicyn">
+        <article class="visual-moment-card visual-moment-card-large">
+          <img
+            src="{{ 'alicyn-lifestyle-studio-counter.jpg' | asset_url }}"
+            alt="Material limpio de cuidado post-piercing sobre mostrador de estudio"
+            width="1400"
+            height="875"
+            loading="lazy"
+            decoding="async"
+          >
+          <div>
+            <span>Saliste del estudio</span>
+            <h3>Ten Alicyn listo antes de improvisar.</h3>
+            <p>Para tener una solución clara cuando aparece roce, sudor, polvo o sensibilidad común.</p>
+            <a class="button button-secondary" href="#packs">Elegir pack</a>
+          </div>
+        </article>
+
+        <article class="visual-moment-card">
+          <img
+            src="{{ 'alicyn-lifestyle-nostril-mirror.jpg' | asset_url }}"
+            alt="Persona adulta con piercing nostril frente al espejo en rutina de cuidado externo"
+            width="1400"
+            height="875"
+            loading="lazy"
+            decoding="async"
+          >
+          <div>
+            <span>Nostril / rostro</span>
+            <h3>Sin tocarlo todo el día.</h3>
+            <p>Apoyo puntual para limpiar por fuera cuando hubo exposición o molestia común.</p>
+          </div>
+        </article>
+
+        <article class="visual-moment-card">
+          <img
+            src="{{ 'alicyn-lifestyle-helix-vanity.jpg' | asset_url }}"
+            alt="Piercing helix sano en contexto de tocador oscuro y cuidado responsable"
+            width="1400"
+            height="875"
+            loading="lazy"
+            decoding="async"
+          >
+          <div>
+            <span>Helix / oreja</span>
+            <h3>Cuando dormiste de lado.</h3>
+            <p>Revisa señales, lava tus manos y evita girar o manipular de más.</p>
+          </div>
+        </article>
+
+        <article class="visual-moment-card">
+          <img
+            src="{{ 'alicyn-lifestyle-gym-bag.jpg' | asset_url }}"
+            alt="Bolsa de gym con gasa limpia como contexto de cuidado después de sudor o calle"
+            width="1400"
+            height="875"
+            loading="lazy"
+            decoding="async"
+          >
+          <div>
+            <span>Gym / calle</span>
+            <h3>Después de sudor o ambiente no controlado.</h3>
+            <p>Para apoyar limpieza externa al volver de transporte, polvo, gym o maquillaje.</p>
+          </div>
+        </article>
+
+        <article class="visual-moment-card">
+          <img
+            src="{{ 'alicyn-lifestyle-nightstand.jpg' | asset_url }}"
+            alt="Mesa de noche con gasa limpia como recordatorio de cuidado puntual"
+            width="1400"
+            height="875"
+            loading="lazy"
+            decoding="async"
+          >
+          <div>
+            <span>Noche / presión</span>
+            <h3>Si amaneció sensible, no experimentes.</h3>
+            <p>Úsalo solo si lo necesitas y consulta si hay señales de alerta.</p>
+          </div>
+        </article>
+      </div>
+
+      <div class="visual-moments-cta">
+        {% render 'alicyn-buy-actions',
+          product_handle: section.settings.product_single_handle,
+          quantity: 1,
+          primary_label: 'Agregar al carrito',
+          secondary_label: primary_cta_label,
+          fallback_url: product_url,
+          whatsapp_url: whatsapp_url,
+          show_add_to_cart: false,
+          show_buy_now: true,
+          class_name: 'alicyn-buy-actions-inline'
+        %}
+        <a class="button button-secondary" href="#como-usarlo">Ver guía rápida</a>
+      </div>
     </section>
 
     {% if section.settings.show_packs %}
@@ -752,7 +858,7 @@
         {% else %}
           <img
             class="footer-logo-image footer-logo-image-fallback"
-            src="{{ 'alicyn-logo-footer-blanco.png' | asset_url }}"
+            src="{{ 'alicyn-logo-full-transparent.png' | asset_url }}"
             alt="Alicyn"
             width="{{ section.settings.footer_logo_width | default: 160 }}"
             loading="lazy"
@@ -829,7 +935,7 @@
       "max": 260,
       "step": 4,
       "unit": "px",
-      "default": 156
+      "default": 172
     },
     {
       "type": "range",
@@ -839,7 +945,7 @@
       "max": 180,
       "step": 4,
       "unit": "px",
-      "default": 124
+      "default": 136
     },
     {
       "type": "image_picker",

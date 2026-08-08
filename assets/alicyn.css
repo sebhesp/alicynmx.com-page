@@ -97,15 +97,16 @@ body {
   top: 0;
   z-index: 40;
   display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
+  grid-template-columns: minmax(132px, 1fr) auto;
   justify-content: start;
   align-items: center;
-  gap: 12px;
+  gap: 10px;
   border-bottom: 1px solid var(--border);
   background: rgba(11, 11, 13, 0.92);
   backdrop-filter: blur(18px);
-  padding: 14px 16px;
-  overflow: hidden;
+  box-shadow: 0 16px 42px rgba(0, 0, 0, 0.22);
+  padding: 12px 14px;
+  overflow: visible;
 }
 
 .alicyn-page .brand {
@@ -126,7 +127,8 @@ body {
   align-items: center;
   justify-content: flex-start;
   min-width: 0;
-  max-width: 100%;
+  width: fit-content;
+  max-width: min(58vw, var(--header-logo-width, 172px));
 }
 
 .alicyn-page .brand-drop {
@@ -150,9 +152,9 @@ body {
 
 .alicyn-page .brand-logo-image {
   display: block;
-  width: min(var(--header-logo-mobile-width, 124px), 42vw);
+  width: min(var(--header-logo-mobile-width, 136px), 48vw);
   max-width: 100%;
-  max-height: 38px;
+  max-height: 40px;
   height: auto;
   object-fit: contain;
   object-position: left center;
@@ -688,6 +690,125 @@ body {
 .alicyn-page .brand-pillars p {
   margin: 8px 0 0;
   color: var(--soft);
+}
+
+.alicyn-page .visual-moments {
+  max-width: var(--container);
+  margin: 0 auto;
+  padding-top: 48px;
+  padding-bottom: 48px;
+}
+
+.alicyn-page .visual-moments-heading {
+  max-width: 780px;
+  margin-right: auto;
+  margin-left: auto;
+  text-align: center;
+}
+
+.alicyn-page .visual-moment-grid {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(270px, 86vw);
+  gap: 14px;
+  margin-top: 28px;
+  overflow-x: auto;
+  overscroll-behavior-inline: contain;
+  padding: 2px 18px 12px;
+  scroll-padding-inline: 18px;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: thin;
+}
+
+.alicyn-page .visual-moment-card {
+  position: relative;
+  min-height: 390px;
+  display: flex;
+  align-items: flex-end;
+  overflow: hidden;
+  border: 1px solid rgba(143, 191, 195, 0.22);
+  border-radius: calc(var(--radius) + 8px);
+  background: var(--surface);
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.28);
+  isolation: isolate;
+  scroll-snap-align: center;
+}
+
+.alicyn-page .visual-moment-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background:
+    linear-gradient(180deg, rgba(11, 11, 13, 0.08), rgba(11, 11, 13, 0.42) 38%, rgba(11, 11, 13, 0.94)),
+    linear-gradient(135deg, rgba(143, 191, 195, 0.16), rgba(187, 184, 242, 0.1), transparent 54%);
+  pointer-events: none;
+}
+
+.alicyn-page .visual-moment-card img {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transform: scale(1.012);
+  transition: transform 360ms ease, opacity 360ms ease;
+}
+
+.alicyn-page .visual-moment-card:hover img {
+  transform: scale(1.045);
+}
+
+.alicyn-page .visual-moment-card > div {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  padding: 22px;
+}
+
+.alicyn-page .visual-moment-card span {
+  display: inline-flex;
+  align-items: center;
+  width: fit-content;
+  margin-bottom: 10px;
+  border: 1px solid rgba(167, 222, 228, 0.34);
+  border-radius: 999px;
+  background: rgba(11, 11, 13, 0.56);
+  color: var(--brand-ice);
+  font-size: 0.74rem;
+  font-weight: 900;
+  letter-spacing: 0.04em;
+  padding: 7px 10px;
+  text-transform: uppercase;
+}
+
+.alicyn-page .visual-moment-card h3 {
+  max-width: 420px;
+  margin: 0;
+  color: var(--text);
+  font-size: clamp(1.28rem, 7vw, 2.1rem);
+  line-height: 1.02;
+}
+
+.alicyn-page .visual-moment-card p {
+  max-width: 430px;
+  margin: 12px 0 0;
+  color: var(--soft);
+}
+
+.alicyn-page .visual-moment-card .button {
+  margin-top: 18px;
+}
+
+.alicyn-page .visual-moments-cta {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 20px;
+  padding: 0 18px;
 }
 
 .alicyn-page .trust-strip {
@@ -2110,6 +2231,17 @@ body {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 
+  .alicyn-page .visual-moment-grid {
+    grid-auto-columns: minmax(320px, 54vw);
+    padding-right: 28px;
+    padding-left: 28px;
+    scroll-padding-inline: 28px;
+  }
+
+  .alicyn-page .visual-moment-card {
+    min-height: 430px;
+  }
+
   .alicyn-page .alicyn-pack-decision {
     grid-template-columns: 0.72fr 1.28fr;
     align-items: start;
@@ -2199,8 +2331,8 @@ body {
 
 @media (min-width: 750px) {
   .alicyn-page .brand-logo-image {
-    width: min(var(--header-logo-width, 156px), 22vw);
-    max-height: 46px;
+    width: min(var(--header-logo-width, 172px), 24vw);
+    max-height: 48px;
   }
 
   .alicyn-page .site-header {
@@ -2246,6 +2378,23 @@ body {
   .alicyn-page .hero {
     grid-template-columns: minmax(0, 1.06fr) minmax(360px, 0.74fr);
     min-height: 760px;
+  }
+
+  .alicyn-page .visual-moment-grid {
+    grid-auto-flow: row;
+    grid-auto-columns: auto;
+    grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.9fr) minmax(0, 0.9fr);
+    overflow: visible;
+    padding: 0;
+  }
+
+  .alicyn-page .visual-moment-card-large {
+    grid-row: span 2;
+    min-height: 640px;
+  }
+
+  .alicyn-page .visual-moment-card:not(.visual-moment-card-large) {
+    min-height: 312px;
   }
 
   .alicyn-page .alicyn-product-page {
